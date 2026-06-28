@@ -35,11 +35,11 @@ export default function About() {
               <p className="text-blue-600 font-mono text-sm tracking-wide uppercase font-semibold">
                 Frontend Developer → Future Full Stack
               </p>
-              
+
               <p className="text-slate-500 text-sm md:text-base font-normal leading-relaxed">
                 I started my career as a Sample Technician in the garments industry with 8+ years of experience.
               </p>
-              
+
               <p className="text-slate-500 text-sm md:text-base font-normal leading-relaxed">
                 Now I build modern web applications using React, Next.js, and Node.js. My goal is to become a Full Stack Developer and work globally.
               </p>
@@ -56,7 +56,7 @@ export default function About() {
                 <p className="text-[10px] text-slate-400 font-medium uppercase tracking-wider mb-1">
                   {stat.label}
                 </p>
-                <p className="text-xl font-bold text-blue-600 leading-none">
+                <p className="text-xl font-bold text-blue-500 leading-none">
                   {stat.value}
                 </p>
               </div>
