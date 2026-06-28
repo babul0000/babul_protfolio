@@ -16,7 +16,7 @@ export default function Ecosystem() {
   const marqueeItems = [...techStack, ...techStack, ...techStack];
 
   return (
-    <section className="py-14 bg-[#f8fafc] border-y border-slate-200/60 overflow-hidden relative">
+    <section className="py-14 bg-[#f8fafc] border-y border-slate-200/60 overflow-hidden relative mb-8 md:mb-14">
       {/* Side fades */}
       <div className="absolute left-0 inset-y-0 w-32 bg-gradient-to-r from-[#f8fafc] to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 inset-y-0 w-32 bg-gradient-to-l from-[#f8fafc] to-transparent z-10 pointer-events-none" />

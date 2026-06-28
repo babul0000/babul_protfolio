@@ -25,7 +25,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative bg-white py-20" ref={ref}>
+    <section id="contact" className="relative bg-white pt-20 pb-28 md:pb-36" ref={ref}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Info Side */}

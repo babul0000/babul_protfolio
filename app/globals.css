@@ -213,3 +213,16 @@ body {
   0%, 100% { transform: scale(1); opacity: 0.12; }
   50% { transform: scale(1.1); opacity: 0.18; }
 }
+
+/* Responsive section padding for vertical spacing */
+.section-padding {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 7.5rem;
+    padding-bottom: 7.5rem;
+  }
+}
+

@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useScrollReveal } from "./useScrollReveal";
 
 const projects = [
@@ -9,6 +10,7 @@ const projects = [
     tech: ["Next.js", "Tailwind CSS", "BetterAuth", "Node.js", "Express.js", "MongoDB"],
     github: "https://github.com/babul0000/wander-lust",
     live: "https://wander-lust-phi-lyart.vercel.app/",
+    image: "/wanderlust.webp",
     gradient: "from-indigo-500 to-blue-400",
     glow: "rgba(99,102,241,0.1)",
     color: "#2563eb"
@@ -20,6 +22,7 @@ const projects = [
     tech: ["Next.js", "Tailwind CSS", "JavaScript", "MongoDB"],
     github: "https://github.com/babul0000/tiles-galary-a-8",
     live: "https://tiles-galary-a-8.vercel.app/",
+    image: "/tiles.webp",
     gradient: "from-emerald-500 to-teal-400",
     glow: "rgba(16,185,129,0.1)",
     color: "#16a34a"
@@ -31,6 +34,7 @@ const projects = [
     tech: ["Next.js", "Tailwind CSS", "MongoDB"],
     github: "https://github.com/babul0000/pixgen-s-8-2",
     live: "https://pixgen-b.vercel.app/",
+    image: "/pixgen.webp",
     gradient: "from-purple-500 to-pink-400",
     glow: "rgba(168,85,247,0.1)",
     color: "#7c3aed"
@@ -42,6 +46,7 @@ const projects = [
     tech: ["React", "Firebase", "Tailwind CSS"],
     github: "https://github.com/babul0000/The-dragan-news-m-46",
     live: "https://the-dragan-news-b.vercel.app/category/01",
+    image: "/dragon-news.webp",
     gradient: "from-orange-500 to-amber-400",
     glow: "rgba(249,115,22,0.1)",
     color: "#ea580c"
@@ -53,6 +58,7 @@ const projects = [
     tech: ["React", "Tailwind CSS", "Vite"],
     github: "https://github.com/babul0000/B13-A6-DigiTools-Platform-6",
     live: "https://digitools-platform-assignment-babul.netlify.app/",
+    image: "/digitools.webp",
     gradient: "from-sky-500 to-cyan-400",
     glow: "rgba(56,189,248,0.1)",
     color: "#0891b2"
@@ -64,6 +70,7 @@ const projects = [
     tech: ["JavaScript", "HTML5", "CSS3"],
     github: "https://github.com/babul0000/assingment-5--Issues-Tracker",
     live: "https://github-issue-tracker-babul.netlify.app/home.html",
+    image: "/issue-tracker.webp",
     gradient: "from-slate-500 to-slate-400",
     glow: "rgba(148,163,184,0.1)",
     color: "#475569"
@@ -102,25 +109,29 @@ export default function Projects() {
               className="bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden group transition-all duration-500 hover:shadow-md hover:border-slate-300 flex flex-col reveal"
               style={{ transitionDelay: `${0.1 * (idx + 1)}s` }}
             >
-              {/* Banner with gradient overlay */}
-              <div className={`h-44 bg-gradient-to-br ${project.gradient} relative overflow-hidden flex items-center justify-center`}>
-                <span className="text-white/30 font-black text-6xl tracking-tighter select-none transform group-hover:scale-110 transition-transform duration-700">
-                  {project.name.split(" ").map(w => w[0]).join("")}
-                </span>
+              {/* Banner with wallpaper image */}
+              <div className="h-44 relative overflow-hidden flex items-center justify-center bg-slate-100">
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 380px"
+                  className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                />
                 
                 {/* Overlay layer */}
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors duration-500" />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors duration-500" />
                 
                 {/* Glow highlights */}
                 <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
                   style={{
                     background: `radial-gradient(ellipse at center, ${project.glow} 0%, transparent 70%)`
                   }}
                 />
 
                 {/* External Action Links (Live & Code) */}
-                <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-20">
                   <a
                     href={project.github}
                     target="_blank"
