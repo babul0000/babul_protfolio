@@ -1,24 +1,22 @@
 "use client";
+import { useState } from "react";
 import { useScrollReveal } from "./useScrollReveal";
 
 const skillGroups = [
   {
     category: "Frontend",
     icon: "💻",
-    gradient: "from-blue-600 to-indigo-600",
-    borderClass: "border-blue-100 bg-blue-50/20",
     skills: [
       { name: "JavaScript", icon: "🟨" },
       { name: "React", icon: "⚛️" },
       { name: "Next.js", icon: "▲" },
-      { name: "Tailwind CSS", icon: "🎨" }
+      { name: "Tailwind CSS", icon: "🎨" },
+      { name: "HTML5 & CSS3", icon: "🌐" }
     ]
   },
   {
     category: "Backend",
     icon: "⚙️",
-    gradient: "from-green-600 to-teal-600",
-    borderClass: "border-green-100 bg-green-50/20",
     skills: [
       { name: "Node.js", icon: "🟢" },
       { name: "Express.js", icon: "🚀" },
@@ -28,8 +26,6 @@ const skillGroups = [
   {
     category: "Database",
     icon: "🗄️",
-    gradient: "from-purple-600 to-pink-600",
-    borderClass: "border-purple-100 bg-purple-50/20",
     skills: [
       { name: "MongoDB", icon: "🍃" },
       { name: "Mongoose", icon: "🐍" }
@@ -38,8 +34,6 @@ const skillGroups = [
   {
     category: "Tools & DevOps",
     icon: "🛠️",
-    gradient: "from-orange-600 to-red-600",
-    borderClass: "border-orange-100 bg-orange-50/20",
     skills: [
       { name: "Git", icon: "📦" },
       { name: "GitHub", icon: "🐙" },
@@ -52,58 +46,77 @@ const skillGroups = [
 
 export default function Skills() {
   const ref = useScrollReveal();
+  const [selectedCategory, setSelectedCategory] = useState("Frontend");
+
+  // Get active skills
+  const activeGroup = skillGroups.find(
+    (group) => group.category === selectedCategory
+  );
 
   return (
-    <section id="skills" className="section-padding pt-10" ref={ref}>
-      <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="skills" className="section-padding bg-slate-50 border-b border-slate-200/50" ref={ref}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        
         {/* Header */}
-        <div className="text-center mb-16 reveal">
+        <div className="text-center mb-12 reveal">
           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-1 h-4 rounded-full bg-blue-600" />
-            <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest" style={{ letterSpacing: "0.12em" }}>
+            <div className="w-1.5 h-4 rounded-full bg-orange-600" />
+            <span className="text-xs font-bold text-orange-600 uppercase tracking-widest">
               Expertise
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight">
-            My <span className="gradient-text">Skills</span>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
+            My <span className="gradient-text">Skills</span> &amp; Toolkit
           </h2>
+          <p className="text-slate-500 text-sm mt-3 max-w-md mx-auto font-normal">
+            A filtered overview of the technologies and frameworks I use to build scalable web applications.
+          </p>
         </div>
 
-        {/* Skill Groups Grid */}
-        <div className="grid lg:grid-cols-2 gap-6">
-          {skillGroups.map((group, idx) => (
-            <div
+        {/* Filter Categories Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-10 reveal" style={{ transitionDelay: "0.1s" }}>
+          {skillGroups.map((group) => (
+            <button
               key={group.category}
-              className={`rounded-3xl p-6 flex flex-col gap-4 border shadow-sm ${group.borderClass} reveal`}
-              style={{ transitionDelay: `${0.1 * (idx + 1)}s` }}
+              onClick={() => setSelectedCategory(group.category)}
+              className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all shadow-sm flex items-center gap-2 ${
+                selectedCategory === group.category
+                  ? "bg-orange-600 text-white"
+                  : "bg-white border border-slate-200 hover:border-orange-500/20 text-slate-600 hover:text-orange-600"
+              }`}
             >
-              {/* Category Header */}
-              <div className="flex items-center gap-3">
-                <span className="text-xl p-2 bg-white rounded-xl border border-slate-200/80 shadow-sm flex items-center justify-center">
-                  {group.icon}
-                </span>
-                <h3 className={`text-transparent bg-clip-text bg-gradient-to-r ${group.gradient} font-bold text-lg`}>
-                  {group.category}
-                </h3>
-              </div>
-
-              {/* Skills Grid inside Category */}
-              <div className="grid grid-cols-2 gap-3">
-                {group.skills.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className="bg-white border border-slate-200/60 rounded-xl p-3 flex items-center gap-2 hover:border-slate-300 transition-colors shadow-sm"
-                  >
-                    <span className="text-sm">{skill.icon}</span>
-                    <span className="text-xs font-semibold text-slate-700">
-                      {skill.name}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
+              <span>{group.icon}</span>
+              {group.category}
+            </button>
           ))}
         </div>
+
+        {/* Active Skills Grid */}
+        <div className="max-w-3xl mx-auto reveal" style={{ transitionDelay: "0.2s" }}>
+          <div className="bg-white border border-slate-200/80 rounded-3xl p-6 md:p-8 shadow-sm">
+            <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+              <span className="p-1.5 bg-orange-50 border border-orange-100 rounded-lg text-sm shrink-0">
+                {activeGroup?.icon}
+              </span>
+              {activeGroup?.category} Technologies
+            </h3>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {activeGroup?.skills.map((skill) => (
+                <div
+                  key={skill.name}
+                  className="p-4 bg-slate-50/50 border border-slate-200/60 hover:border-orange-500/20 rounded-2xl flex items-center gap-3 transition-colors shadow-sm"
+                >
+                  <span className="text-xl shrink-0">{skill.icon}</span>
+                  <span className="text-xs font-bold text-slate-700">
+                    {skill.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
 import { useScrollReveal } from "./useScrollReveal";
 
@@ -11,9 +12,14 @@ const projects = [
     github: "https://github.com/babul0000/wander-lust",
     live: "https://wander-lust-phi-lyart.vercel.app/",
     image: "/wanderlust.webp",
-    gradient: "from-indigo-500 to-blue-400",
     glow: "rgba(99,102,241,0.1)",
-    color: "#2563eb"
+    color: "#ea580c",
+    features: [
+      "Secure user sessions & sign-ins via BetterAuth.",
+      "Complete property listings CRUD with file upload attachments.",
+      "Interactive booking schedule calendar with client triggers."
+    ],
+    challenge: "Handling dynamic mapping of user session parameters in SSR pages without rendering lags. Solved by middleware request intercepts."
   },
   {
     name: "Tiles Galary",
@@ -23,9 +29,14 @@ const projects = [
     github: "https://github.com/babul0000/tiles-galary-a-8",
     live: "https://tiles-galary-a-8.vercel.app/",
     image: "/tiles.webp",
-    gradient: "from-emerald-500 to-teal-400",
     glow: "rgba(16,185,129,0.1)",
-    color: "#16a34a"
+    color: "#ea580c",
+    features: [
+      "Dynamic filtering by size, type, and color categories.",
+      "Meticulous high-resolution thumbnail rendering with zoom grids.",
+      "Smooth layout transitions between desktop and mobile formats."
+    ],
+    challenge: "Managing image arrays loading without degrading LCP scores. Solved via lazy loading tags and WebP file transformations."
   },
   {
     name: "Pixgen",
@@ -35,9 +46,14 @@ const projects = [
     github: "https://github.com/babul0000/pixgen-s-8-2",
     live: "https://pixgen-b.vercel.app/",
     image: "/pixgen.webp",
-    gradient: "from-purple-500 to-pink-400",
     glow: "rgba(168,85,247,0.1)",
-    color: "#7c3aed"
+    color: "#ea580c",
+    features: [
+      "AI creative prompt parser engine integration.",
+      "Sleek glassmorphism details cards overlay with glowing meshes.",
+      "Clean user gallery page fetching generative history."
+    ],
+    challenge: "Styling translucent background blur filters that remain compatible across mobile platforms. Solved using optimized backdrop CSS attributes."
   },
   {
     name: "The Dragon News",
@@ -47,9 +63,14 @@ const projects = [
     github: "https://github.com/babul0000/The-dragan-news-m-46",
     live: "https://the-dragan-news-b.vercel.app/category/01",
     image: "/dragon-news.webp",
-    gradient: "from-orange-500 to-amber-400",
     glow: "rgba(249,115,22,0.1)",
-    color: "#ea580c"
+    color: "#ea580c",
+    features: [
+      "Real-time news feeds filtering by category tabs.",
+      "Firebase auth integration (social and email login).",
+      "Clean responsive article grid matching dashboard templates."
+    ],
+    challenge: "Mitigating excessive Firebase fetches during route swapping. Solved using React local state persistence layers."
   },
   {
     name: "DigiTools Platform",
@@ -59,9 +80,14 @@ const projects = [
     github: "https://github.com/babul0000/B13-A6-DigiTools-Platform-6",
     live: "https://digitools-platform-assignment-babul.netlify.app/",
     image: "/digitools.webp",
-    gradient: "from-sky-500 to-cyan-400",
     glow: "rgba(56,189,248,0.1)",
-    color: "#0891b2"
+    color: "#ea580c",
+    features: [
+      "Interactive data widget dashboards displaying clean data curves.",
+      "Modular calculators and conversion utilities in single cards.",
+      "Sleek custom dashboard configuration sidebar."
+    ],
+    challenge: "Integrating telemetry charts that adapt correctly to parent width adjustments. Solved using responsive canvas wrapper containers."
   },
   {
     name: "GitHub Issue Tracker",
@@ -71,42 +97,53 @@ const projects = [
     github: "https://github.com/babul0000/assingment-5--Issues-Tracker",
     live: "https://github-issue-tracker-babul.netlify.app/home.html",
     image: "/issue-tracker.webp",
-    gradient: "from-slate-500 to-slate-400",
     glow: "rgba(148,163,184,0.1)",
-    color: "#475569"
+    color: "#ea580c",
+    features: [
+      "Pure vanilla ES6 module structure with DOM render logic.",
+      "Local storage data sync capturing active tickets.",
+      "Simple bug tracking filter by tags."
+    ],
+    challenge: "Structuring complex CRUD loops without a framework. Solved by designing a clean, centralized store class pattern in native JS."
   }
 ];
 
 export default function Projects() {
   const ref = useScrollReveal();
+  const [expandedProject, setExpandedProject] = useState(null);
+
+  const toggleDetails = (name) => {
+    setExpandedProject(expandedProject === name ? null : name);
+  };
 
   return (
-    <section id="projects" className="section-padding bg-[#f8fafc] border-y border-slate-200/50" ref={ref}>
+    <section id="projects" className="section-padding bg-[#f8fafc] border-b border-slate-200/50" ref={ref}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 reveal">
           <div>
             <div className="inline-flex items-center gap-2 mb-4">
-              <div className="w-1 h-4 rounded-full bg-blue-600" />
-              <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest" style={{ letterSpacing: "0.12em" }}>
+              <div className="w-1.5 h-4 rounded-full bg-orange-600" />
+              <span className="text-xs font-bold text-orange-600 uppercase tracking-widest">
                 Portfolio
               </span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-1">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-1">
               Featured <span className="gradient-text">Projects</span>
             </h2>
           </div>
-          <p className="text-slate-500 text-sm max-w-xs">
-            Real-world applications built with production-grade code and modern tooling.
+          <p className="text-slate-500 text-sm max-w-xs font-normal">
+            Real-world applications built with clean code and verified user workflows.
           </p>
         </div>
 
         {/* Project Cards Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, idx) => (
             <div
               key={project.name}
-              className="bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden group transition-all duration-500 hover:shadow-md hover:border-slate-300 flex flex-col reveal"
+              className="bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden group transition-all duration-500 hover:shadow-md hover:border-slate-350 flex flex-col reveal"
               style={{ transitionDelay: `${0.1 * (idx + 1)}s` }}
             >
               {/* Banner with wallpaper image */}
@@ -120,7 +157,7 @@ export default function Projects() {
                 />
                 
                 {/* Overlay layer */}
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors duration-500" />
+                <div className="absolute inset-0 bg-black/15 group-hover:bg-black/30 transition-colors duration-500" />
                 
                 {/* Glow highlights */}
                 <div
@@ -136,7 +173,7 @@ export default function Projects() {
                     href={project.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/90 border border-slate-200/80 flex items-center justify-center text-slate-700 hover:bg-slate-50 transition"
+                    className="w-8 h-8 rounded-full bg-white/95 border border-slate-200/80 flex items-center justify-center text-slate-700 hover:bg-slate-50 hover:text-orange-600 transition"
                     title="View Source Code"
                   >
                     <svg
@@ -146,7 +183,7 @@ export default function Projects() {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      strokeWidth="2"
+                      strokeWidth="2.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
@@ -158,7 +195,7 @@ export default function Projects() {
                     href={project.live}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/90 border border-slate-200/80 flex items-center justify-center text-slate-700 hover:bg-slate-50 transition"
+                    className="w-8 h-8 rounded-full bg-white/95 border border-slate-200/80 flex items-center justify-center text-slate-700 hover:bg-slate-50 hover:text-orange-600 transition"
                     title="View Live Site"
                   >
                     <svg
@@ -168,7 +205,7 @@ export default function Projects() {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      strokeWidth="2"
+                      strokeWidth="2.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
@@ -178,64 +215,114 @@ export default function Projects() {
                     </svg>
                   </a>
                 </div>
-                <div
-                  className="absolute inset-x-0 bottom-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    background: `linear-gradient(90deg, transparent, ${project.color}, transparent)`
-                  }}
-                />
               </div>
 
               {/* Card Body */}
-              <div className="p-6 flex flex-col gap-4 flex-1">
-                <div className="flex items-start justify-between">
-                  <h3 className="text-slate-900 font-bold text-base leading-tight group-hover:text-blue-600 transition-colors">
-                    {project.name}
-                  </h3>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-slate-400 group-hover:text-blue-600 transition-colors shrink-0 mt-0.5"
-                  >
-                    <path d="M7 7h10v10"></path>
-                    <path d="M7 17 17 7"></path>
-                  </svg>
-                </div>
-
-                <p className="text-slate-500 text-xs leading-relaxed flex-1">
-                  {project.desc}
-                </p>
-
-                {/* Tech chips */}
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  {project.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="text-[10px] font-mono px-2.5 py-1 rounded-full border border-slate-200/60 bg-slate-50 text-slate-500 font-medium"
+              <div className="p-6 flex flex-col gap-4 flex-grow justify-between">
+                <div className="space-y-2">
+                  <div className="flex items-start justify-between">
+                    <h3 className="text-slate-900 font-bold text-base leading-tight group-hover:text-orange-600 transition-colors">
+                      {project.name}
+                    </h3>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="15"
+                      height="15"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="text-slate-400 group-hover:text-orange-600 transition-colors shrink-0 mt-0.5"
                     >
-                      {t}
-                    </span>
-                  ))}
+                      <path d="M7 7h10v10"></path>
+                      <path d="M7 17 17 7"></path>
+                    </svg>
+                  </div>
+
+                  <p className="text-slate-500 text-xs leading-relaxed">
+                    {project.desc}
+                  </p>
                 </div>
+
+                <div className="space-y-4 pt-1">
+                  {/* Tech chips */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="text-[10px] font-mono px-2.5 py-0.5 rounded-full border border-slate-200/60 bg-slate-50 text-slate-500 font-semibold"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Expandable Details Action */}
+                  <div>
+                    <button
+                      onClick={() => toggleDetails(project.name)}
+                      className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl border border-slate-200 hover:border-orange-500/20 text-slate-600 hover:text-orange-600 bg-slate-50 hover:bg-white text-xs font-bold transition-all shadow-sm"
+                    >
+                      {expandedProject === project.name ? "Hide Details" : "Show Details"}
+                      <svg
+                        className={`w-3.5 h-3.5 transition-transform duration-300 ${
+                          expandedProject === project.name ? "rotate-180" : ""
+                        }`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {/* Expandable Drawer Content */}
+                  <div
+                    className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                      expandedProject === project.name
+                        ? "max-h-[300px] opacity-100 border-t border-slate-200/80 pt-4 mt-2"
+                        : "max-h-0 opacity-0 pointer-events-none"
+                    }`}
+                  >
+                    <div className="space-y-3.5 text-left">
+                      <div>
+                        <h4 className="text-[10px] font-bold text-orange-600 uppercase tracking-widest">
+                          Key Features
+                        </h4>
+                        <ul className="list-disc pl-4 text-[11px] text-slate-500 mt-1 space-y-1 font-normal leading-relaxed">
+                          {project.features.map((feature, fIdx) => (
+                            <li key={fIdx}>{feature}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="text-[10px] font-bold text-orange-600 uppercase tracking-widest">
+                          Tech Highlight
+                        </h4>
+                        <p className="text-[11px] text-slate-500 mt-1 leading-relaxed font-normal">
+                          {project.challenge}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           ))}
         </div>
 
         {/* View all on Github button */}
-        <div className="text-center mt-12 reveal">
+        <div className="text-center mt-14 reveal">
           <a
             href="https://github.com/babul0000"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-200 text-slate-700 text-sm font-medium bg-white hover:bg-slate-50 transition-colors shadow-sm"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-200 text-slate-700 text-sm font-bold bg-white hover:bg-slate-50 hover:border-orange-500/30 hover:text-orange-600 transition-colors shadow-sm"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -244,7 +331,7 @@ export default function Projects() {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              strokeWidth="2"
+              strokeWidth="2.2"
               strokeLinecap="round"
               strokeLinejoin="round"
             >

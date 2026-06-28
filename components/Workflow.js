@@ -7,32 +7,32 @@ const steps = [
     emoji: "🧠",
     title: "Research",
     desc: "Understand the problem deeply, analyze requirements, and identify user needs before starting any solution.",
-    color: "#2563eb",
-    glow: "rgba(37,99,235,0.05)"
+    color: "#ea580c",
+    glow: "rgba(234,88,12,0.05)"
   },
   {
     num: "02",
     emoji: "🏗️",
     title: "Architect",
     desc: "Plan system structure, database schema, components, and overall application architecture for scalability.",
-    color: "#6366f1",
-    glow: "rgba(99,102,241,0.05)"
+    color: "#f97316",
+    glow: "rgba(249,115,22,0.05)"
   },
   {
     num: "03",
     emoji: "⚡",
     title: "Develop",
     desc: "Build clean, reusable, and scalable code using modern frameworks and best practices.",
-    color: "#ea580c",
-    glow: "rgba(234,88,12,0.05)"
+    color: "#f59e0b",
+    glow: "rgba(245,158,11,0.05)"
   },
   {
     num: "04",
     emoji: "🚀",
     title: "Optimize",
     desc: "Improve performance, fix issues, and ensure the application is fast, stable, and production-ready.",
-    color: "#f43f5e",
-    glow: "rgba(244,63,94,0.05)"
+    color: "#e11d48",
+    glow: "rgba(225,29,72,0.05)"
   }
 ];
 
@@ -45,8 +45,8 @@ export default function Workflow() {
         {/* Header */}
         <div className="text-center mb-16 reveal">
           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-1 h-4 rounded-full bg-blue-600" />
-            <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest" style={{ letterSpacing: "0.12em" }}>
+            <div className="w-1.5 h-4 rounded-full bg-orange-600" />
+            <span className="text-xs font-semibold text-orange-600 uppercase tracking-widest" style={{ letterSpacing: "0.12em" }}>
               Workflow
             </span>
           </div>

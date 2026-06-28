@@ -4,11 +4,11 @@ import { useScrollReveal } from "./useScrollReveal";
 
 export default function Contact() {
   const ref = useScrollReveal();
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState("idle");
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [status, setStatus] = useState("idle"); // idle, sending, sent
 
   const handleChange = (e) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -16,38 +16,48 @@ export default function Contact() {
     setStatus("sending");
     
     try {
-      await new Promise((r) => setTimeout(r, 1200));
-      setStatus("sent");
-      setForm({ name: "", email: "", message: "" });
-    } catch (err) {
+      const response = await fetch("https://formspree.io/f/mqaeorle", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      
+      if (response.ok) {
+        setStatus("sent");
+        setForm({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setStatus("idle");
+      }
+    } catch {
       setStatus("idle");
     }
   };
 
   return (
-    <section id="contact" className="relative bg-white pt-20 pb-28 md:pb-36" ref={ref}>
+    <section id="contact" className="relative bg-white pt-20 pb-28 md:pb-36 font-sans antialiased text-slate-900" ref={ref}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          
           {/* Info Side */}
           <div className="space-y-6 reveal">
             <div>
               <div className="inline-flex items-center gap-2 mb-4">
-                <div className="w-1 h-4 rounded-full bg-blue-600" />
-                <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest" style={{ letterSpacing: "0.12em" }}>
+                <div className="w-1.5 h-4 rounded-full bg-orange-600" />
+                <span className="text-xs font-bold text-orange-600 uppercase tracking-widest">
                   Contact
                 </span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-1">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-1 leading-tight">
                 Let’s build something <span className="gradient-text">great</span>
               </h2>
             </div>
             
-            <p className="text-slate-500 text-sm md:text-base leading-relaxed max-w-md">
-              Have a project or idea? I’m ready to help you build it.
+            <p className="text-slate-500 text-sm md:text-base leading-relaxed max-w-md font-normal">
+              Have a project or idea? I’m ready to help you build it. Fill out the form or reach out via email or LinkedIn.
             </p>
 
             {/* Availability Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-50 border border-green-200 text-xs font-medium text-green-700">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-50 border border-green-200 text-xs font-medium text-green-700 w-fit">
               <span className="w-2 h-2 rounded-full bg-green-500 status-badge" />
               Available for Work
             </div>
@@ -56,15 +66,15 @@ export default function Contact() {
             <div className="space-y-3 pt-4">
               <a
                 href="mailto:babulhossan.info@gmail.com"
-                className="flex items-center gap-4 p-4 rounded-2xl border border-slate-200/80 bg-white hover:border-blue-200 hover:shadow-md transition-all duration-300 group"
+                className="flex items-center gap-4 p-4 rounded-3xl border border-slate-200/80 bg-slate-50/50 hover:border-orange-500/25 hover:shadow-md transition-all duration-300 group"
               >
-                <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100/50 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 group-hover:text-blue-600 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center flex-shrink-0 group-hover:bg-orange-100 group-hover:text-orange-600 transition-colors">
                   <svg
-                    className="w-5 h-5 text-blue-600"
+                    className="w-5 h-5 text-orange-600"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    strokeWidth={1.8}
+                    strokeWidth={2}
                   >
                     <path
                       strokeLinecap="round"
@@ -74,17 +84,17 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <div className="text-xs text-slate-400 font-medium mb-0.5">Email</div>
+                  <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">Email</div>
                   <div className="text-sm font-semibold text-slate-800">
                     babulhossan.info@gmail.com
                   </div>
                 </div>
                 <svg
-                  className="w-4 h-4 text-slate-400 ml-auto group-hover:text-blue-600 transition-colors"
+                  className="w-4 h-4 text-slate-400 ml-auto group-hover:text-orange-600 transition-colors"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth={2}
+                  strokeWidth={2.5}
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
@@ -96,7 +106,7 @@ export default function Contact() {
                   href="https://github.com/babul0000"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl border border-slate-200/80 flex items-center justify-center bg-slate-50 hover:bg-slate-100 transition-colors text-slate-400 hover:text-slate-800 shadow-sm"
+                  className="w-10 h-10 rounded-xl border border-slate-200/80 flex items-center justify-center bg-slate-50 hover:bg-slate-100 hover:border-orange-500/20 hover:text-orange-600 transition-colors text-slate-400 shadow-sm"
                   aria-label="GitHub"
                 >
                   <svg
@@ -106,7 +116,7 @@ export default function Contact() {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="2.2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   >
@@ -118,7 +128,7 @@ export default function Contact() {
                   href="https://www.linkedin.com/in/babul-hossan-09932837a/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl border border-slate-200/80 flex items-center justify-center bg-slate-50 hover:bg-slate-100 transition-colors text-slate-400 hover:text-blue-600 shadow-sm"
+                  className="w-10 h-10 rounded-xl border border-slate-200/80 flex items-center justify-center bg-slate-50 hover:bg-slate-100 hover:border-orange-500/20 hover:text-orange-600 transition-colors text-slate-400 shadow-sm"
                   aria-label="LinkedIn"
                 >
                   <svg
@@ -128,7 +138,7 @@ export default function Contact() {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="2.2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   >
@@ -146,9 +156,9 @@ export default function Contact() {
             <div className="p-8 rounded-3xl border border-slate-200/80 bg-slate-50/50 shadow-sm">
               {status === "sent" ? (
                 <div className="flex flex-col items-center justify-center py-12 gap-4">
-                  <div className="w-16 h-16 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-orange-50 border border-orange-100 flex items-center justify-center">
                     <svg
-                      className="w-8 h-8 text-blue-600"
+                      className="w-8 h-8 text-orange-600"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -165,7 +175,7 @@ export default function Contact() {
                   </div>
                   <button
                     onClick={() => setStatus("idle")}
-                    className="text-sm font-medium text-blue-600 hover:text-blue-700 mt-2"
+                    className="text-xs font-bold text-orange-600 hover:text-orange-700 mt-2 uppercase tracking-wider"
                   >
                     Send another message
                   </button>
@@ -173,7 +183,7 @@ export default function Contact() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-500 mb-2 uppercase tracking-wide">
+                    <label className="block text-[10px] font-bold text-slate-400 mb-2 uppercase tracking-wider">
                       Name
                     </label>
                     <input
@@ -183,11 +193,11 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       placeholder="Your full name"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm placeholder-slate-400 focus:border-blue-500/40 outline-none transition shadow-sm"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-xs placeholder-slate-400 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/10 outline-none transition shadow-sm"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-slate-500 mb-2 uppercase tracking-wide">
+                    <label className="block text-[10px] font-bold text-slate-400 mb-2 uppercase tracking-wider">
                       Email
                     </label>
                     <input
@@ -197,11 +207,11 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       placeholder="you@company.com"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm placeholder-slate-400 focus:border-blue-500/40 outline-none transition shadow-sm"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-xs placeholder-slate-400 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/10 outline-none transition shadow-sm"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-slate-500 mb-2 uppercase tracking-wide">
+                    <label className="block text-[10px] font-bold text-slate-400 mb-2 uppercase tracking-wider">
                       Message
                     </label>
                     <textarea
@@ -209,15 +219,15 @@ export default function Contact() {
                       value={form.message}
                       onChange={handleChange}
                       required
-                      rows={5}
+                      rows={4}
                       placeholder="Tell me about the project or opportunity..."
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm placeholder-slate-400 focus:border-blue-500/40 outline-none transition resize-none shadow-sm"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-xs placeholder-slate-400 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/10 outline-none transition resize-none shadow-sm"
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition duration-300 disabled:opacity-60 disabled:cursor-not-allowed shadow-md"
+                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-wider transition duration-300 disabled:opacity-60 disabled:cursor-not-allowed shadow-md"
                   >
                     {status === "sending" ? (
                       <>
@@ -232,12 +242,12 @@ export default function Contact() {
                         Send Message
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
+                          width="14"
+                          height="14"
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
-                          strokeWidth="2"
+                          strokeWidth="2.5"
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         >

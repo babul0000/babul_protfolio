@@ -80,11 +80,11 @@ export default function Navbar() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           {/* LOGO */}
           <a href="#home" className="flex items-center gap-2 font-bold text-slate-900">
-            <span className="w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center font-bold">
+            <span className="w-8 h-8 bg-orange-600 text-white rounded-lg flex items-center justify-center font-bold">
               BH
             </span>
             <span className="text-xl">
-              Babul<span className="text-blue-600">.</span>
+              Babul<span className="text-orange-600">.</span>
             </span>
           </a>
 
@@ -97,7 +97,7 @@ export default function Navbar() {
                 onClick={() => handleClick(link.href)}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
                   active === link.href
-                    ? "bg-blue-600 text-white shadow-sm"
+                    ? "bg-orange-600 text-white shadow-sm"
                     : "text-slate-500 hover:text-slate-900"
                 }`}
               >
@@ -110,7 +110,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <a
               href="mailto:babulhossan.info@gmail.com"
-              className="hidden md:flex px-5 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-semibold hover:scale-105 transition duration-300 text-sm shadow-sm"
+              className="hidden md:flex px-5 py-2 rounded-full bg-orange-600 hover:bg-orange-700 text-white font-semibold hover:scale-105 transition duration-300 text-sm shadow-sm"
             >
               Hire Me
             </a>
@@ -183,7 +183,7 @@ export default function Navbar() {
                 onClick={() => handleClick(link.href)}
                 className={`px-4 py-3 rounded-xl text-sm font-medium transition ${
                   active === link.href
-                    ? "text-blue-600 bg-blue-50"
+                    ? "text-orange-600 bg-orange-50"
                     : "text-slate-600 hover:text-slate-900"
                 }`}
               >
@@ -192,7 +192,7 @@ export default function Navbar() {
             ))}
             <a
               href="mailto:babulhossan.info@gmail.com"
-              className="mt-4 px-4 py-3 rounded-xl text-sm font-semibold text-center text-white bg-blue-600 hover:bg-blue-700 transition"
+              className="mt-4 px-4 py-3 rounded-xl text-sm font-semibold text-center text-white bg-orange-600 hover:bg-orange-700 transition"
             >
               Hire Me
             </a>
@@ -225,7 +225,7 @@ export default function Navbar() {
 
               <button
                 onClick={handleConfirmDownload}
-                className="px-4 py-2 text-sm font-semibold rounded-xl text-white bg-blue-600 hover:bg-blue-700 transition"
+                className="px-4 py-2 text-sm font-semibold rounded-xl text-white bg-orange-600 hover:bg-orange-700 transition"
               >
                 Confirm
               </button>
