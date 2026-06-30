@@ -1,104 +1,94 @@
 "use client";
-
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
+  { label: "Journey", href: "#experience" },
   { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "#contact" }
 ];
 
 export default function Navbar() {
+  const [active, setActive] = useState("#home");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [active, setActive] = useState("#home");
 
-  // navbar background scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // ACTIVE SECTION (scroll spy)
-  useEffect(() => {
-    const handleScrollSpy = () => {
-      const sections = navLinks.map((link) =>
-        document.querySelector(link.href)
-      );
-
-      sections.forEach((section, i) => {
-        if (!section) return;
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= 150 && rect.bottom >= 150) {
-          setActive(navLinks[i].href);
+      
+      // Active section highlight
+      const sections = navLinks.map(l => document.querySelector(l.href));
+      const scrollPos = window.scrollY + 200;
+      
+      sections.forEach((sec, idx) => {
+        if (sec) {
+          const top = sec.offsetTop;
+          const height = sec.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            setActive(navLinks[idx].href);
+          }
         }
       });
     };
 
-    window.addEventListener("scroll", handleScrollSpy);
-    return () => window.removeEventListener("scroll", handleScrollSpy);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = menuOpen || showModal ? "hidden" : "auto";
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [menuOpen, showModal]);
-
-  const resumeLink =
-    "https://drive.google.com/uc?export=download&id=1wVdSsXlzOlbM3FNlMGpkz8Djyvf1MyxB";
 
   const handleClick = (href) => {
     setActive(href);
     setMenuOpen(false);
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const handleConfirmDownload = () => {
     setShowModal(false);
+    const resumeLink =
+      "https://drive.google.com/uc?export=download&id=1wVdSsXlzOlbM3FNlMGpkz8Djyvf1MyxB";
     window.open(resumeLink, "_blank");
   };
 
   return (
     <>
-      {/* NAVBAR */}
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-white/70 backdrop-blur-xl border-b border-slate-200/80 shadow-sm"
-            : "bg-transparent"
+            ? "py-3 bg-gray-950/75 backdrop-blur-md border-b border-white/5"
+            : "py-5 bg-transparent"
         }`}
       >
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           {/* LOGO */}
-          <a href="#home" className="flex items-center gap-2 font-bold text-slate-900">
-            <span className="w-8 h-8 bg-orange-600 text-white rounded-lg flex items-center justify-center font-bold">
+          <a href="#home" className="flex items-center gap-2 font-bold text-white tracking-tight">
+            <span className="w-8 h-8 bg-gradient-to-tr from-indigo-500 to-purple-600 text-white rounded-lg flex items-center justify-center font-black">
               BH
             </span>
             <span className="text-xl">
-              Babul<span className="text-orange-600">.</span>
+              Babul<span className="text-indigo-400">.</span>
             </span>
           </a>
 
-          {/* DESKTOP NAV */}
-          <div className="hidden md:flex items-center gap-2 bg-slate-50 px-3 py-2 rounded-full border border-slate-200/60 shadow-sm">
+          {/* DESKTOP NAV PILL */}
+          <div className="hidden md:flex items-center gap-1.5 bg-slate-900/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/5 shadow-lg">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                onClick={() => handleClick(link.href)}
-                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleClick(link.href);
+                }}
+                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
                   active === link.href
-                    ? "bg-orange-600 text-white shadow-sm"
-                    : "text-slate-500 hover:text-slate-900"
+                    ? "bg-indigo-600 text-white shadow-md shadow-indigo-500/10"
+                    : "text-gray-400 hover:text-white"
                 }`}
               >
                 {link.label}
@@ -110,32 +100,32 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <a
               href="mailto:babulhossan.info@gmail.com"
-              className="hidden md:flex px-5 py-2 rounded-full bg-orange-600 hover:bg-orange-700 text-white font-semibold hover:scale-105 transition duration-300 text-sm shadow-sm"
+              className="hidden md:flex px-5 py-2.5 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold tracking-wide transition duration-300 text-xs shadow-md shadow-indigo-500/10 hover:scale-[1.02]"
             >
-              Hire Me
+              HIRE ME
             </a>
 
             <button
               onClick={() => setShowModal(true)}
-              className="px-4 py-2 text-sm font-medium text-slate-700 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 transition-colors shadow-sm"
+              className="px-4 py-2 text-xs font-bold text-gray-300 rounded-xl bg-slate-900/60 border border-white/5 hover:border-indigo-500/30 hover:text-white transition duration-300 shadow-sm"
             >
-              Resume
+              RESUME
             </button>
 
-            {/* MOBILE BUTTON */}
+            {/* MOBILE HAMBURGER BUTTON */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden text-slate-700 p-2 hover:bg-slate-100 rounded-lg transition-colors"
+              className="md:hidden text-gray-300 p-2 hover:bg-slate-900/60 rounded-lg border border-white/5 transition"
               aria-label="Toggle Menu"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
+                width="20"
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2"
+                strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
@@ -166,12 +156,12 @@ export default function Navbar() {
         {/* Backdrop overlay */}
         <div
           onClick={() => setMenuOpen(false)}
-          className="absolute inset-0 bg-black/30 backdrop-blur-sm"
+          className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         />
 
         {/* Drawer container */}
         <div
-          className={`absolute top-20 left-4 right-4 rounded-2xl bg-white p-6 shadow-2xl border border-slate-200 transition-all duration-300 ${
+          className={`absolute top-24 left-4 right-4 rounded-2xl bg-gray-900/90 border border-white/10 p-6 shadow-2xl backdrop-blur-md transition-all duration-300 ${
             menuOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
           }`}
         >
@@ -180,11 +170,14 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={() => handleClick(link.href)}
-                className={`px-4 py-3 rounded-xl text-sm font-medium transition ${
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleClick(link.href);
+                }}
+                className={`px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition ${
                   active === link.href
-                    ? "text-orange-600 bg-orange-50"
-                    : "text-slate-600 hover:text-slate-900"
+                    ? "text-indigo-400 bg-indigo-500/10"
+                    : "text-gray-400 hover:text-white"
                 }`}
               >
                 {link.label}
@@ -192,9 +185,9 @@ export default function Navbar() {
             ))}
             <a
               href="mailto:babulhossan.info@gmail.com"
-              className="mt-4 px-4 py-3 rounded-xl text-sm font-semibold text-center text-white bg-orange-600 hover:bg-orange-700 transition"
+              className="mt-4 px-4 py-3 rounded-xl text-xs font-bold text-center text-white bg-gradient-to-r from-indigo-600 to-purple-600 transition"
             >
-              Hire Me
+              HIRE ME
             </a>
           </div>
         </div>
@@ -205,27 +198,25 @@ export default function Navbar() {
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           <div
             onClick={() => setShowModal(false)}
-            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
           />
 
-          <div className="relative z-10 w-[90%] max-w-md rounded-2xl bg-white p-6 shadow-2xl border border-slate-200">
-            <h2 className="text-lg font-bold text-slate-900">Download Resume</h2>
-
-            <p className="mt-2 text-sm text-slate-500">
-              Do you want to download my resume?
+          <div className="relative z-10 w-[90%] max-w-sm rounded-3xl bg-gray-900 border border-white/10 p-6 shadow-2xl text-left">
+            <h2 className="text-lg font-bold text-white">Download Resume</h2>
+            <p className="mt-2 text-xs text-gray-400 leading-relaxed font-normal">
+              Do you want to download my resume containing details of my transition and MERN stack certifications?
             </p>
 
-            <div className="mt-5 flex justify-end gap-3">
+            <div className="mt-6 flex justify-end gap-3">
               <button
                 onClick={() => setShowModal(false)}
-                className="px-4 py-2 text-sm rounded-xl text-slate-600 bg-slate-100 hover:bg-slate-200 transition"
+                className="px-4 py-2 text-xs font-bold rounded-xl text-gray-400 bg-slate-800 hover:bg-slate-700 transition"
               >
                 Cancel
               </button>
-
               <button
                 onClick={handleConfirmDownload}
-                className="px-4 py-2 text-sm font-semibold rounded-xl text-white bg-orange-600 hover:bg-orange-700 transition"
+                className="px-4 py-2 text-xs font-bold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 transition shadow-md shadow-indigo-500/10"
               >
                 Confirm
               </button>

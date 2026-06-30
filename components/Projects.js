@@ -12,8 +12,8 @@ const projects = [
     github: "https://github.com/babul0000/wander-lust",
     live: "https://wander-lust-phi-lyart.vercel.app/",
     image: "/wanderlust.webp",
-    glow: "rgba(99,102,241,0.1)",
-    color: "#ea580c",
+    glow: "rgba(99,102,241,0.15)",
+    color: "#6366f1",
     features: [
       "Secure user sessions & sign-ins via BetterAuth.",
       "Complete property listings CRUD with file upload attachments.",
@@ -29,8 +29,8 @@ const projects = [
     github: "https://github.com/babul0000/tiles-galary-a-8",
     live: "https://tiles-galary-a-8.vercel.app/",
     image: "/tiles.webp",
-    glow: "rgba(16,185,129,0.1)",
-    color: "#ea580c",
+    glow: "rgba(16,185,129,0.15)",
+    color: "#10b981",
     features: [
       "Dynamic filtering by size, type, and color categories.",
       "Meticulous high-resolution thumbnail rendering with zoom grids.",
@@ -46,8 +46,8 @@ const projects = [
     github: "https://github.com/babul0000/pixgen-s-8-2",
     live: "https://pixgen-b.vercel.app/",
     image: "/pixgen.webp",
-    glow: "rgba(168,85,247,0.1)",
-    color: "#ea580c",
+    glow: "rgba(168,85,247,0.15)",
+    color: "#a855f7",
     features: [
       "AI creative prompt parser engine integration.",
       "Sleek glassmorphism details cards overlay with glowing meshes.",
@@ -63,8 +63,8 @@ const projects = [
     github: "https://github.com/babul0000/The-dragan-news-m-46",
     live: "https://the-dragan-news-b.vercel.app/category/01",
     image: "/dragon-news.webp",
-    glow: "rgba(249,115,22,0.1)",
-    color: "#ea580c",
+    glow: "rgba(249,115,22,0.15)",
+    color: "#f97316",
     features: [
       "Real-time news feeds filtering by category tabs.",
       "Firebase auth integration (social and email login).",
@@ -80,8 +80,8 @@ const projects = [
     github: "https://github.com/babul0000/B13-A6-DigiTools-Platform-6",
     live: "https://digitools-platform-assignment-babul.netlify.app/",
     image: "/digitools.webp",
-    glow: "rgba(56,189,248,0.1)",
-    color: "#ea580c",
+    glow: "rgba(56,189,248,0.15)",
+    color: "#38bdf8",
     features: [
       "Interactive data widget dashboards displaying clean data curves.",
       "Modular calculators and conversion utilities in single cards.",
@@ -97,8 +97,8 @@ const projects = [
     github: "https://github.com/babul0000/assingment-5--Issues-Tracker",
     live: "https://github-issue-tracker-babul.netlify.app/home.html",
     image: "/issue-tracker.webp",
-    glow: "rgba(148,163,184,0.1)",
-    color: "#ea580c",
+    glow: "rgba(148,163,184,0.15)",
+    color: "#94a3b8",
     features: [
       "Pure vanilla ES6 module structure with DOM render logic.",
       "Local storage data sync capturing active tickets.",
@@ -117,23 +117,27 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="section-padding bg-[#f8fafc] border-b border-slate-200/50" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="projects" className="section-padding bg-gray-950 border-b border-white/5 relative" ref={ref}>
+      
+      {/* Background glowing orb */}
+      <div className="absolute top-[30%] right-[-10%] w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-[100px] pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 reveal">
           <div>
             <div className="inline-flex items-center gap-2 mb-4">
-              <div className="w-1.5 h-4 rounded-full bg-orange-600" />
-              <span className="text-xs font-bold text-orange-600 uppercase tracking-widest">
+              <div className="w-1.5 h-4 rounded-full bg-indigo-500" />
+              <span className="text-xs font-bold text-indigo-400 uppercase tracking-widest">
                 Portfolio
               </span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-1">
-              Featured <span className="gradient-text">Projects</span>
+            <h2 className="text-3xl md:text-4xl font-black text-white mt-1 uppercase tracking-tight">
+              Featured <span className="gradient-text font-extrabold">Projects</span>
             </h2>
           </div>
-          <p className="text-slate-500 text-sm max-w-xs font-normal">
+          <p className="text-gray-400 text-sm max-w-xs font-normal">
             Real-world applications built with clean code and verified user workflows.
           </p>
         </div>
@@ -143,21 +147,21 @@ export default function Projects() {
           {projects.map((project, idx) => (
             <div
               key={project.name}
-              className="bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden group transition-all duration-500 hover:shadow-md hover:border-slate-350 flex flex-col reveal"
+              className="bg-slate-900/30 backdrop-blur-md rounded-3xl border border-white/5 overflow-hidden group transition-all duration-500 hover:border-indigo-500/20 flex flex-col reveal"
               style={{ transitionDelay: `${0.1 * (idx + 1)}s` }}
             >
               {/* Banner with wallpaper image */}
-              <div className="h-44 relative overflow-hidden flex items-center justify-center bg-slate-100">
+              <div className="h-44 relative overflow-hidden flex items-center justify-center bg-slate-900">
                 <Image
                   src={project.image}
                   alt={project.name}
                   fill
                   sizes="(max-width: 768px) 100vw, 380px"
-                  className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  className="object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100"
                 />
                 
                 {/* Overlay layer */}
-                <div className="absolute inset-0 bg-black/15 group-hover:bg-black/30 transition-colors duration-500" />
+                <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/40 transition-colors duration-500" />
                 
                 {/* Glow highlights */}
                 <div
@@ -173,7 +177,7 @@ export default function Projects() {
                     href={project.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/95 border border-slate-200/80 flex items-center justify-center text-slate-700 hover:bg-slate-50 hover:text-orange-600 transition"
+                    className="w-8 h-8 rounded-full bg-slate-950/90 border border-white/10 flex items-center justify-center text-gray-300 hover:text-indigo-400 hover:border-indigo-500/30 transition"
                     title="View Source Code"
                   >
                     <svg
@@ -195,7 +199,7 @@ export default function Projects() {
                     href={project.live}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-8 h-8 rounded-full bg-white/95 border border-slate-200/80 flex items-center justify-center text-slate-700 hover:bg-slate-50 hover:text-orange-600 transition"
+                    className="w-8 h-8 rounded-full bg-slate-950/90 border border-white/10 flex items-center justify-center text-gray-300 hover:text-indigo-400 hover:border-indigo-500/30 transition"
                     title="View Live Site"
                   >
                     <svg
@@ -221,7 +225,7 @@ export default function Projects() {
               <div className="p-6 flex flex-col gap-4 flex-grow justify-between">
                 <div className="space-y-2">
                   <div className="flex items-start justify-between">
-                    <h3 className="text-slate-900 font-bold text-base leading-tight group-hover:text-orange-600 transition-colors">
+                    <h3 className="text-white font-bold text-base leading-tight group-hover:text-indigo-400 transition-colors">
                       {project.name}
                     </h3>
                     <svg
@@ -234,14 +238,14 @@ export default function Projects() {
                       strokeWidth="2.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="text-slate-400 group-hover:text-orange-600 transition-colors shrink-0 mt-0.5"
+                      className="text-gray-500 group-hover:text-indigo-400 transition-colors shrink-0 mt-0.5"
                     >
                       <path d="M7 7h10v10"></path>
                       <path d="M7 17 17 7"></path>
                     </svg>
                   </div>
 
-                  <p className="text-slate-500 text-xs leading-relaxed">
+                  <p className="text-gray-400 text-xs leading-relaxed font-normal">
                     {project.desc}
                   </p>
                 </div>
@@ -252,7 +256,7 @@ export default function Projects() {
                     {project.tech.map((t) => (
                       <span
                         key={t}
-                        className="text-[10px] font-mono px-2.5 py-0.5 rounded-full border border-slate-200/60 bg-slate-50 text-slate-500 font-semibold"
+                        className="text-[9px] font-mono px-2.5 py-0.5 rounded-full border border-white/5 bg-slate-950/60 text-gray-400 font-semibold"
                       >
                         {t}
                       </span>
@@ -263,7 +267,7 @@ export default function Projects() {
                   <div>
                     <button
                       onClick={() => toggleDetails(project.name)}
-                      className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl border border-slate-200 hover:border-orange-500/20 text-slate-600 hover:text-orange-600 bg-slate-50 hover:bg-white text-xs font-bold transition-all shadow-sm"
+                      className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl border border-white/5 hover:border-indigo-500/20 text-gray-300 hover:text-indigo-450 bg-slate-950/65 hover:bg-slate-950 text-xs font-bold transition-all"
                     >
                       {expandedProject === project.name ? "Hide Details" : "Show Details"}
                       <svg
@@ -284,26 +288,26 @@ export default function Projects() {
                   <div
                     className={`transition-all duration-500 ease-in-out overflow-hidden ${
                       expandedProject === project.name
-                        ? "max-h-[300px] opacity-100 border-t border-slate-200/80 pt-4 mt-2"
+                        ? "max-h-[300px] opacity-100 border-t border-white/5 pt-4 mt-2"
                         : "max-h-0 opacity-0 pointer-events-none"
                     }`}
                   >
-                    <div className="space-y-3.5 text-left">
+                    <div className="space-y-3.5 text-left font-normal">
                       <div>
-                        <h4 className="text-[10px] font-bold text-orange-600 uppercase tracking-widest">
+                        <h4 className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">
                           Key Features
                         </h4>
-                        <ul className="list-disc pl-4 text-[11px] text-slate-500 mt-1 space-y-1 font-normal leading-relaxed">
+                        <ul className="list-disc pl-4 text-[11px] text-gray-400 mt-1 space-y-1 leading-relaxed">
                           {project.features.map((feature, fIdx) => (
                             <li key={fIdx}>{feature}</li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <h4 className="text-[10px] font-bold text-orange-600 uppercase tracking-widest">
+                        <h4 className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">
                           Tech Highlight
                         </h4>
-                        <p className="text-[11px] text-slate-500 mt-1 leading-relaxed font-normal">
+                        <p className="text-[11px] text-gray-400 mt-1 leading-relaxed">
                           {project.challenge}
                         </p>
                       </div>
@@ -322,7 +326,7 @@ export default function Projects() {
             href="https://github.com/babul0000"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-200 text-slate-700 text-sm font-bold bg-white hover:bg-slate-50 hover:border-orange-500/30 hover:text-orange-600 transition-colors shadow-sm"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/5 text-gray-300 text-xs font-bold bg-slate-900/60 hover:bg-slate-950 hover:border-indigo-500/30 hover:text-indigo-400 transition-colors tracking-wide uppercase"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

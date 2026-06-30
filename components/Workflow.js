@@ -7,32 +7,32 @@ const steps = [
     emoji: "🧠",
     title: "Research",
     desc: "Understand the problem deeply, analyze requirements, and identify user needs before starting any solution.",
-    color: "#ea580c",
-    glow: "rgba(234,88,12,0.05)"
+    color: "#6366f1",
+    glow: "rgba(99,102,241,0.05)"
   },
   {
     num: "02",
     emoji: "🏗️",
     title: "Architect",
     desc: "Plan system structure, database schema, components, and overall application architecture for scalability.",
-    color: "#f97316",
-    glow: "rgba(249,115,22,0.05)"
+    color: "#a855f7",
+    glow: "rgba(168,85,247,0.05)"
   },
   {
     num: "03",
     emoji: "⚡",
     title: "Develop",
     desc: "Build clean, reusable, and scalable code using modern frameworks and best practices.",
-    color: "#f59e0b",
-    glow: "rgba(245,158,11,0.05)"
+    color: "#06b6d4",
+    glow: "rgba(6,182,212,0.05)"
   },
   {
     num: "04",
     emoji: "🚀",
     title: "Optimize",
     desc: "Improve performance, fix issues, and ensure the application is fast, stable, and production-ready.",
-    color: "#e11d48",
-    glow: "rgba(225,29,72,0.05)"
+    color: "#10b981",
+    glow: "rgba(16,185,129,0.05)"
   }
 ];
 
@@ -40,20 +40,24 @@ export default function Workflow() {
   const ref = useScrollReveal();
 
   return (
-    <section className="section-padding bg-[#f8fafc] border-y border-slate-200/50" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="section-padding bg-[#090d16] border-y border-white/5 relative text-white font-sans antialiased" ref={ref}>
+      
+      {/* Background glowing orb */}
+      <div className="absolute top-[20%] right-[-10%] w-[300px] h-[300px] bg-indigo-500/5 rounded-full blur-[80px] pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16 reveal">
           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-1.5 h-4 rounded-full bg-orange-600" />
-            <span className="text-xs font-semibold text-orange-600 uppercase tracking-widest" style={{ letterSpacing: "0.12em" }}>
+            <div className="w-1.5 h-4 rounded-full bg-indigo-500" />
+            <span className="text-xs font-semibold text-indigo-400 uppercase tracking-widest" style={{ letterSpacing: "0.12em" }}>
               Workflow
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-1">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mt-1 uppercase tracking-tight">
             How I <span className="gradient-text">Work</span>
           </h2>
-          <p className="text-slate-500 text-sm mt-4 max-w-md mx-auto">
+          <p className="text-gray-400 text-sm mt-4 max-w-md mx-auto">
             A systematic approach refined from both laboratory science and software engineering.
           </p>
         </div>
@@ -63,12 +67,12 @@ export default function Workflow() {
           {steps.map((step, idx) => (
             <div
               key={step.num}
-              className="relative bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-300 overflow-hidden reveal"
+              className="relative bg-slate-900/30 backdrop-blur-md rounded-3xl p-6 border border-white/5 hover:border-indigo-500/20 hover:shadow-xl transition-all duration-300 overflow-hidden reveal"
               style={{ transitionDelay: `${0.1 * (idx + 1)}s` }}
             >
               {/* Step Number Background Indicator */}
               <div
-                className="absolute -top-4 -right-2 text-7xl font-black opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none"
+                className="absolute -top-4 -right-2 text-7xl font-black opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none"
                 style={{ color: step.color }}
               >
                 {step.num}
@@ -87,7 +91,7 @@ export default function Workflow() {
                 <div
                   className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl border transition-all duration-300 shadow-sm"
                   style={{
-                    background: `${step.color}10`,
+                    background: `${step.color}15`,
                     borderColor: `${step.color}30`
                   }}
                 >
@@ -97,9 +101,9 @@ export default function Workflow() {
                   <span className="text-[10px] font-mono font-bold uppercase tracking-widest" style={{ color: step.color }}>
                     Step {step.num}
                   </span>
-                  <h3 className="text-slate-900 font-bold text-xl mt-1">{step.title}</h3>
+                  <h3 className="text-white font-bold text-lg mt-1">{step.title}</h3>
                 </div>
-                <p className="text-slate-500 text-xs leading-relaxed">{step.desc}</p>
+                <p className="text-gray-400 text-xs leading-relaxed font-normal">{step.desc}</p>
                 <div
                   className="h-px w-0 hover:w-full transition-all duration-500 rounded-full mt-2"
                   style={{

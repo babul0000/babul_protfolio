@@ -10,8 +10,8 @@ function getSeededRandom(seed) {
 export default function GithubActivity() {
   const ref = useScrollReveal();
   
-  // Generating mock calendar contributions grid (53 columns x 7 days)
-  const columns = 36; // Show 36 weeks (~8 months) to fit nicely on mobile screens
+  // Generating mock calendar contributions grid (36 columns x 7 days)
+  const columns = 36;
   const days = 7;
   const gridCells = [];
   let seed = 12345;
@@ -21,10 +21,10 @@ export default function GithubActivity() {
     for (let d = 0; d < days; d++) {
       const rand = getSeededRandom(seed++);
       let level = 0;
-      if (rand > 0.4 && rand <= 0.75) level = 1;      // light orange
-      else if (rand > 0.75 && rand <= 0.9) level = 2; // medium orange
-      else if (rand > 0.9 && rand <= 0.97) level = 3; // strong orange
-      else if (rand > 0.97) level = 4;                // deep orange
+      if (rand > 0.4 && rand <= 0.75) level = 1;      
+      else if (rand > 0.75 && rand <= 0.9) level = 2; 
+      else if (rand > 0.9 && rand <= 0.97) level = 3; 
+      else if (rand > 0.97) level = 4;                
       columnCells.push(level);
     }
     gridCells.push(columnCells);
@@ -33,32 +33,36 @@ export default function GithubActivity() {
   const months = ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"];
 
   return (
-    <section id="github" className="section-padding bg-slate-50 border-b border-slate-200/50" ref={ref}>
-      <div className="max-w-4xl mx-auto px-6">
+    <section id="github" className="section-padding bg-[#090d16] border-b border-white/5 relative" ref={ref}>
+      
+      {/* Background glowing orb */}
+      <div className="absolute top-[20%] right-[-10%] w-[300px] h-[300px] bg-purple-500/5 rounded-full blur-[80px] pointer-events-none" />
+      
+      <div className="max-w-4xl mx-auto px-6 relative z-10">
         
         {/* Header */}
         <div className="text-center mb-12 reveal">
           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-1.5 h-4 rounded-full bg-orange-600" />
-            <span className="text-xs font-bold text-orange-600 uppercase tracking-widest">
+            <div className="w-1.5 h-4 rounded-full bg-indigo-500" />
+            <span className="text-xs font-bold text-indigo-400 uppercase tracking-widest">
               Activity
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-1">
+          <h2 className="text-3xl md:text-4xl font-black text-white mt-1 uppercase tracking-tight">
             GitHub <span className="gradient-text">Contributions</span>
           </h2>
-          <p className="text-slate-500 text-sm mt-3 max-w-md mx-auto font-normal">
+          <p className="text-gray-400 text-sm mt-3 max-w-md mx-auto font-normal">
             Consistency breeds excellence. An active logs index of my commits, repository pushes, and pull requests.
           </p>
         </div>
 
         {/* Contribution Calendar Wrapper */}
-        <div className="bg-white border border-slate-200/80 rounded-3xl p-6 md:p-8 shadow-sm reveal" style={{ transitionDelay: "0.2s" }}>
+        <div className="bg-slate-900/30 backdrop-blur-md border border-white/5 rounded-3xl p-6 md:p-8 shadow-2xl reveal" style={{ transitionDelay: "0.2s" }}>
           
           {/* Header metrics */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-200/50">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/5">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700">
+              <div className="w-10 h-10 rounded-xl bg-slate-950 border border-white/5 flex items-center justify-center text-gray-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -75,14 +79,14 @@ export default function GithubActivity() {
                 </svg>
               </div>
               <div>
-                <h3 className="text-sm font-bold text-slate-900 leading-none">babul0000</h3>
-                <p className="text-xs text-slate-400 mt-1 font-normal">Contributions in the last year</p>
+                <h3 className="text-sm font-bold text-white leading-none">babul0000</h3>
+                <p className="text-xs text-gray-500 mt-1.5 font-normal">Contributions in the last year</p>
               </div>
             </div>
 
             <div className="text-left sm:text-right">
-              <p className="text-2xl font-black text-slate-900 leading-none">1,317</p>
-              <p className="text-[10px] text-orange-600 font-bold uppercase tracking-wider mt-1">Total Contributions</p>
+              <p className="text-2xl font-black text-white leading-none">1,317</p>
+              <p className="text-[9px] text-indigo-400 font-bold uppercase tracking-wider mt-1.5">Total Contributions</p>
             </div>
           </div>
 
@@ -91,7 +95,7 @@ export default function GithubActivity() {
             <div className="min-w-[620px] flex flex-col gap-1.5 pl-4 select-none">
               
               {/* Months labels */}
-              <div className="flex text-[10px] text-slate-400 font-bold leading-none mb-1">
+              <div className="flex text-[10px] text-gray-500 font-bold leading-none mb-1">
                 {months.map((month, idx) => (
                   <span key={idx} className="w-[17%] text-left">
                     {month}
@@ -100,20 +104,20 @@ export default function GithubActivity() {
               </div>
 
               {/* Grid content */}
-              <div className="flex gap-1">
+              <div className="flex gap-1.5">
                 {gridCells.map((week, colIdx) => (
-                  <div key={colIdx} className="flex flex-col gap-1">
+                  <div key={colIdx} className="flex flex-col gap-1.5">
                     {week.map((level, rowIdx) => {
-                      let bgClass = "bg-slate-100";
-                      if (level === 1) bgClass = "bg-orange-200/50";
-                      else if (level === 2) bgClass = "bg-orange-350";
-                      else if (level === 3) bgClass = "bg-orange-500";
-                      else if (level === 4) bgClass = "bg-orange-650";
+                      let bgClass = "bg-slate-950/60 border border-white/5";
+                      if (level === 1) bgClass = "bg-indigo-950/40 border border-indigo-900/20";
+                      else if (level === 2) bgClass = "bg-indigo-700/60";
+                      else if (level === 3) bgClass = "bg-purple-600";
+                      else if (level === 4) bgClass = "bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]";
                       
                       return (
                         <div
                           key={rowIdx}
-                          className={`w-3 h-3 rounded-[2px] ${bgClass} transition-colors duration-300 hover:scale-125 cursor-pointer`}
+                          className={`w-3.5 h-3.5 rounded-[2px] ${bgClass} transition-all duration-300 hover:scale-125 cursor-pointer`}
                           title={`${level > 0 ? `${level * 2} commits` : "No commits"}`}
                         />
                       );
@@ -126,15 +130,15 @@ export default function GithubActivity() {
           </div>
 
           {/* Legend */}
-          <div className="flex items-center justify-between text-[10px] text-slate-400 font-bold mt-4 pt-4 border-t border-slate-200/50 select-none">
+          <div className="flex items-center justify-between text-[10px] text-gray-500 font-bold mt-4 pt-4 border-t border-white/5 select-none">
             <span>Learn how I code on GitHub</span>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1.5">
               <span>Less</span>
-              <div className="w-2.5 h-2.5 rounded-[1px] bg-slate-100" />
-              <div className="w-2.5 h-2.5 rounded-[1px] bg-orange-200/50" />
-              <div className="w-2.5 h-2.5 rounded-[1px] bg-orange-350" />
-              <div className="w-2.5 h-2.5 rounded-[1px] bg-orange-500" />
-              <div className="w-2.5 h-2.5 rounded-[1px] bg-orange-650" />
+              <div className="w-3 h-3 rounded-[2px] bg-slate-950/60 border border-white/5" />
+              <div className="w-3 h-3 rounded-[2px] bg-indigo-950/40 border border-indigo-900/20" />
+              <div className="w-3 h-3 rounded-[2px] bg-indigo-700/60" />
+              <div className="w-3 h-3 rounded-[2px] bg-purple-600" />
+              <div className="w-3 h-3 rounded-[2px] bg-cyan-400" />
               <span>More</span>
             </div>
           </div>

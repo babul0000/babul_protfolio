@@ -12,12 +12,12 @@ import Footer from "../components/Footer";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-slate-50 overflow-hidden font-sans antialiased">
-      {/* Light background glow meshes */}
+    <main className="relative min-h-screen bg-gray-950 overflow-hidden font-sans antialiased text-white">
+      {/* Dark background glowing meshes */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-orange-100/30 rounded-full blur-3xl" />
-        <div className="absolute top-1/3 right-0 w-[400px] h-[400px] bg-amber-100/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-0 w-[350px] h-[350px] bg-orange-50/30 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-[120px]" />
+        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[100px]" />
+        <div className="absolute bottom-1/4 left-0 w-[450px] h-[450px] bg-cyan-500/5 rounded-full blur-[110px]" />
       </div>
 
       {/* Main Sections */}

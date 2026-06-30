@@ -15,7 +15,7 @@ const whatIDo = [
     desc: "Crafting modern, pixel-perfect, mobile-first, and responsive layouts using Tailwind CSS."
   },
   {
-    title: "Domain logic translation",
+    title: "Domain Logic Translation",
     desc: "Applying 8+ years of buying house coordination, quality control, and workflow management structure to software cycles."
   },
   {
@@ -30,52 +30,90 @@ export default function About() {
     "https://drive.google.com/uc?export=download&id=1wVdSsXlzOlbM3FNlMGpkz8Djyvf1MyxB";
 
   return (
-    <section id="about" className="section-padding bg-white border-b border-slate-200/50" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="about" className="section-padding bg-gray-950 border-b border-white/5 relative" ref={ref}>
+      
+      {/* Background glow orb */}
+      <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[100px] pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column: Bio Card */}
+          {/* Left Column: Terminal Mockup */}
           <div className="lg:col-span-6 space-y-6 reveal">
             <div>
               <div className="inline-flex items-center gap-2 mb-4">
-                <div className="w-1.5 h-4 rounded-full bg-orange-600" />
-                <span className="text-xs font-bold text-orange-600 uppercase tracking-widest">
+                <div className="w-1.5 h-4 rounded-full bg-gradient-to-t from-indigo-500 to-purple-500" />
+                <span className="text-xs font-bold text-indigo-400 uppercase tracking-widest">
                   About me
                 </span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
+              <h2 className="text-3xl md:text-4xl font-black text-white leading-tight">
                 My Story &amp; <span className="gradient-text">Background</span>
               </h2>
             </div>
 
-            <div className="bg-slate-50 border border-slate-200/80 rounded-3xl p-6 md:p-8 space-y-4 shadow-sm">
-              <h3 className="text-2xl font-bold text-slate-900">
-                Hey! I&apos;m Babul Hossan
-              </h3>
-              
-              <p className="text-orange-600 font-mono text-xs font-bold uppercase tracking-wide">
-                Garments Technician → MERN Stack Developer
-              </p>
+            {/* VS Code Mockup */}
+            <div className="w-full bg-slate-950 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+              {/* Window Controls Header */}
+              <div className="flex items-center justify-between px-4 py-3 bg-slate-900 border-b border-white/5 select-none">
+                <div className="flex gap-1.5">
+                  <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
+                  <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                  <span className="w-3 h-3 rounded-full bg-[#27c93f]" />
+                </div>
+                <span className="text-[10px] text-gray-500 font-mono font-bold uppercase tracking-wider">
+                  developer@babul: ~/portfolio
+                </span>
+                <span className="w-12" /> {/* spacing element */}
+              </div>
 
-              <div className="space-y-3 text-slate-500 text-sm leading-relaxed font-normal">
-                <p>
-                  I started my professional career in the apparel sector as a Sample Technician, accumulating 8+ years of rigorous experience in production workflow coordination and buyer specification management.
-                </p>
-                <p>
-                  Driven by a deep curiosity for software systems, I transitioned into software development. I dedicated myself to master the MERN stack (MongoDB, Express.js, React, Node.js) and modern tooling like Next.js.
-                </p>
-                <p>
-                  My goal is to translate raw business requirements into performant, elegant web applications, combining technical skills with the meticulous quality control and operational discipline gained in buying houses.
+              {/* Code content */}
+              <div className="p-6 font-mono text-xs md:text-sm leading-relaxed overflow-x-auto text-slate-300">
+                <p className="text-slate-500">&lt;!-- Developer profile properties --&gt;</p>
+                <div className="mt-2 text-indigo-400 font-bold">
+                  const <span className="text-purple-400">developer</span> = &#123;
+                </div>
+                <div className="pl-6 space-y-1 mt-1">
+                  <div>
+                    <span className="text-cyan-400">name</span>:{" "}
+                    <span className="text-emerald-400">&quot;Babul Hossan&quot;</span>,
+                  </div>
+                  <div>
+                    <span className="text-cyan-400">origin</span>:{" "}
+                    <span className="text-emerald-400">&quot;Garments Sample Tech (8+ Yrs)&quot;</span>,
+                  </div>
+                  <div>
+                    <span className="text-cyan-400">stack</span>: [
+                    <span className="text-amber-400">&quot;MongoDB&quot;</span>,{" "}
+                    <span className="text-amber-400">&quot;Express.js&quot;</span>,{" "}
+                    <span className="text-amber-400">&quot;React&quot;</span>,{" "}
+                    <span className="text-amber-400">&quot;Node.js&quot;</span>,{" "}
+                    <span className="text-amber-400">&quot;Next.js&quot;</span>],
+                  </div>
+                  <div>
+                    <span className="text-cyan-400">focus</span>:{" "}
+                    <span className="text-emerald-400">&quot;Performance, UI/UX &amp; Clean Architectures&quot;</span>,
+                  </div>
+                  <div>
+                    <span className="text-cyan-400">motto</span>:{" "}
+                    <span className="text-emerald-400">&quot;Precision from Buying House audits translates directly to clean software engineering.&quot;</span>
+                  </div>
+                </div>
+                <div className="text-indigo-400 font-bold mt-1">&#125;;</div>
+                
+                {/* Simulated typed line */}
+                <p className="mt-4 text-emerald-400 leading-none">
+                  babul@mern-terminal:~$&nbsp;<span className="terminal-cursor text-white font-bold">npm run build</span>
                 </p>
               </div>
 
-              {/* Connect buttons */}
-              <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-200/60">
+              {/* Connect footer row */}
+              <div className="px-6 py-4 bg-slate-900/50 border-t border-white/5 flex flex-wrap items-center gap-3">
                 <a
                   href="https://github.com/babul0000"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 text-xs font-bold text-slate-700 bg-white hover:bg-slate-50 hover:text-orange-600 border border-slate-200 rounded-xl transition shadow-sm"
+                  className="px-3.5 py-1.5 text-xs font-bold text-gray-300 bg-slate-900 border border-white/5 hover:border-indigo-500/30 hover:text-white rounded-xl transition"
                 >
                   GitHub
                 </a>
@@ -83,7 +121,7 @@ export default function About() {
                   href="https://www.linkedin.com/in/babul-hossan-09932837a/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 text-xs font-bold text-slate-700 bg-white hover:bg-slate-50 hover:text-orange-600 border border-slate-200 rounded-xl transition shadow-sm"
+                  className="px-3.5 py-1.5 text-xs font-bold text-gray-300 bg-slate-900 border border-white/5 hover:border-indigo-500/30 hover:text-white rounded-xl transition"
                 >
                   LinkedIn
                 </a>
@@ -91,7 +129,7 @@ export default function About() {
                   href={resumeLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 text-xs font-bold text-white bg-orange-600 hover:bg-orange-700 rounded-xl transition shadow-sm"
+                  className="px-3.5 py-1.5 text-xs font-bold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 rounded-xl transition shadow-md shadow-indigo-500/10"
                 >
                   View Resume
                 </a>
@@ -101,22 +139,22 @@ export default function About() {
 
           {/* Right Column: What I Do */}
           <div className="lg:col-span-6 space-y-6 reveal" style={{ transitionDelay: "0.2s" }}>
-            <h2 className="text-3xl font-extrabold text-slate-900 leading-tight md:pt-14">
-              What I <span className="text-orange-600 font-extrabold">Do</span>
+            <h2 className="text-3xl font-black text-white leading-tight md:pt-14 uppercase tracking-tight">
+              What I <span className="gradient-text font-extrabold">Do</span>
             </h2>
 
             <div className="space-y-4">
               {whatIDo.map((item, idx) => (
                 <div
                   key={item.title}
-                  className="flex gap-4 p-5 bg-white border border-slate-200/80 hover:border-orange-500/20 hover:shadow-md rounded-3xl transition-all duration-300 shadow-sm"
+                  className="flex gap-4 p-5 bg-slate-900/30 backdrop-blur-md border border-white/5 hover:border-indigo-500/20 rounded-3xl transition-all duration-300 shadow-sm"
                 >
-                  <div className="w-6 h-6 rounded-lg bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-600 font-black text-sm shrink-0">
+                  <div className="w-6 h-6 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 font-black text-xs shrink-0 mt-0.5">
                     ✓
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-slate-900">{item.title}</h4>
-                    <p className="text-xs text-slate-500 mt-1 leading-relaxed">{item.desc}</p>
+                    <h4 className="text-sm font-bold text-white">{item.title}</h4>
+                    <p className="text-xs text-gray-400 mt-1 leading-relaxed font-normal">{item.desc}</p>
                   </div>
                 </div>
               ))}
