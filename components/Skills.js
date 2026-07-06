@@ -54,25 +54,25 @@ export default function Skills() {
   );
 
   return (
-    <section id="skills" className="section-padding bg-[#090d16] border-b border-white/5 relative" ref={ref}>
+    <section id="skills" className="section-padding bg-themeBg border-b border-themeBorder relative transition-colors duration-300" ref={ref}>
       
       {/* Background glow orb */}
-      <div className="absolute top-[20%] left-[-10%] w-[350px] h-[350px] bg-indigo-500/5 rounded-full blur-[90px] pointer-events-none" />
+      <div className="absolute top-[20%] left-[-10%] w-[350px] h-[350px] bg-themeAccent/5 rounded-full blur-[90px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
         {/* Header */}
         <div className="text-center mb-12 reveal">
           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-1.5 h-4 rounded-full bg-indigo-500" />
-            <span className="text-xs font-bold text-indigo-400 uppercase tracking-widest">
+            <div className="w-1.5 h-4 rounded-full bg-themeAccent" />
+            <span className="text-xs font-bold text-themeAccent uppercase tracking-widest">
               Expertise
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-black text-white leading-tight uppercase tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-black text-themeText leading-tight uppercase tracking-tight">
             My <span className="gradient-text">Skills</span> &amp; Toolkit
           </h2>
-          <p className="text-gray-400 text-sm mt-3 max-w-md mx-auto font-normal">
+          <p className="text-themeTextMuted text-sm mt-3 max-w-md mx-auto font-normal">
             A filtered overview of the technologies and frameworks I use to build scalable web applications.
           </p>
         </div>
@@ -85,8 +85,8 @@ export default function Skills() {
               onClick={() => setSelectedCategory(group.category)}
               className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all shadow-sm flex items-center gap-2 uppercase tracking-wider ${
                 selectedCategory === group.category
-                  ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white"
-                  : "bg-slate-900/60 border border-white/5 hover:border-indigo-500/30 text-gray-400 hover:text-white"
+                  ? "bg-themeAccent text-white"
+                  : "bg-themeCard border border-themeBorder hover:border-themeAccent/30 text-themeTextMuted hover:text-themeText"
               }`}
             >
               <span>{group.icon}</span>
@@ -97,9 +97,9 @@ export default function Skills() {
 
         {/* Active Skills Grid */}
         <div className="max-w-3xl mx-auto reveal" style={{ transitionDelay: "0.2s" }}>
-          <div className="bg-slate-900/30 backdrop-blur-md border border-white/5 rounded-3xl p-6 md:p-8 shadow-2xl">
-            <h3 className="text-sm font-bold text-white mb-6 flex items-center gap-2 uppercase tracking-wider">
-              <span className="p-1.5 bg-indigo-500/10 border border-indigo-500/20 rounded-lg text-sm shrink-0">
+          <div className="bg-themeCard border border-themeBorder rounded-3xl p-6 md:p-8 shadow-md">
+            <h3 className="text-sm font-bold text-themeText mb-6 flex items-center gap-2 uppercase tracking-wider">
+              <span className="p-1.5 bg-themeAccent/10 border border-themeAccent/20 rounded-lg text-sm shrink-0">
                 {activeGroup?.icon}
               </span>
               {activeGroup?.category} Technologies
@@ -109,17 +109,17 @@ export default function Skills() {
               {activeGroup?.skills.map((skill) => (
                 <div
                   key={skill.name}
-                  className="p-4 bg-slate-950/40 border border-white/5 hover:border-indigo-500/20 rounded-2xl flex items-center justify-between gap-3 transition-all duration-300 group hover:translate-x-1"
+                  className="p-4 bg-themeCardHover/40 border border-themeBorder hover:border-themeAccent/20 rounded-2xl flex items-center justify-between gap-3 transition-all duration-300 group hover:translate-x-1"
                 >
                   <div className="flex items-center gap-3">
                     <span className="text-xl shrink-0">{skill.icon}</span>
-                    <span className="text-xs font-bold text-gray-200">
+                    <span className="text-xs font-bold text-themeTextSecondary">
                       {skill.name}
                     </span>
                   </div>
                   
                   {/* Skill level tags */}
-                  <span className="text-[9px] font-mono font-bold px-2 py-0.5 rounded-md bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300">
+                  <span className="text-[9px] font-mono font-bold px-2 py-0.5 rounded-md bg-themeAccent/10 border border-themeAccent/20 text-themeAccent group-hover:bg-themeAccent group-hover:text-white transition-all duration-300">
                     {skill.level}
                   </span>
                 </div>

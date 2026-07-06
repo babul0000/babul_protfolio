@@ -117,10 +117,10 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="section-padding bg-gray-950 border-b border-white/5 relative" ref={ref}>
+    <section id="projects" className="section-padding bg-themeBg border-b border-themeBorder relative transition-colors duration-300" ref={ref}>
       
       {/* Background glowing orb */}
-      <div className="absolute top-[30%] right-[-10%] w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-[30%] right-[-10%] w-[400px] h-[400px] bg-themeAccent/5 rounded-full blur-[100px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
@@ -128,16 +128,16 @@ export default function Projects() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 reveal">
           <div>
             <div className="inline-flex items-center gap-2 mb-4">
-              <div className="w-1.5 h-4 rounded-full bg-indigo-500" />
-              <span className="text-xs font-bold text-indigo-400 uppercase tracking-widest">
+              <div className="w-1.5 h-4 rounded-full bg-themeAccent" />
+              <span className="text-xs font-bold text-themeAccent uppercase tracking-widest">
                 Portfolio
               </span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-black text-white mt-1 uppercase tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-black text-themeText mt-1 uppercase tracking-tight">
               Featured <span className="gradient-text font-extrabold">Projects</span>
             </h2>
           </div>
-          <p className="text-gray-400 text-sm max-w-xs font-normal">
+          <p className="text-themeTextMuted text-sm max-w-xs font-normal">
             Real-world applications built with clean code and verified user workflows.
           </p>
         </div>
@@ -147,7 +147,7 @@ export default function Projects() {
           {projects.map((project, idx) => (
             <div
               key={project.name}
-              className="bg-slate-900/30 backdrop-blur-md rounded-3xl border border-white/5 overflow-hidden group transition-all duration-500 hover:border-indigo-500/20 flex flex-col reveal"
+              className="bg-themeCard rounded-3xl border border-themeBorder overflow-hidden group transition-all duration-500 hover:border-themeAccent/20 flex flex-col reveal"
               style={{ transitionDelay: `${0.1 * (idx + 1)}s` }}
             >
               {/* Banner with wallpaper image */}
@@ -161,7 +161,7 @@ export default function Projects() {
                 />
                 
                 {/* Overlay layer */}
-                <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/40 transition-colors duration-500" />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500" />
                 
                 {/* Glow highlights */}
                 <div
@@ -177,7 +177,7 @@ export default function Projects() {
                     href={project.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-8 h-8 rounded-full bg-slate-950/90 border border-white/10 flex items-center justify-center text-gray-300 hover:text-indigo-400 hover:border-indigo-500/30 transition"
+                    className="w-8 h-8 rounded-full bg-themeCard/90 border border-themeBorder flex items-center justify-center text-themeTextSecondary hover:text-themeAccent hover:border-themeAccent/30 transition"
                     title="View Source Code"
                   >
                     <svg
@@ -199,7 +199,7 @@ export default function Projects() {
                     href={project.live}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-8 h-8 rounded-full bg-slate-950/90 border border-white/10 flex items-center justify-center text-gray-300 hover:text-indigo-400 hover:border-indigo-500/30 transition"
+                    className="w-8 h-8 rounded-full bg-themeCard/90 border border-themeBorder flex items-center justify-center text-themeTextSecondary hover:text-themeAccent hover:border-themeAccent/30 transition"
                     title="View Live Site"
                   >
                     <svg
@@ -225,7 +225,7 @@ export default function Projects() {
               <div className="p-6 flex flex-col gap-4 flex-grow justify-between">
                 <div className="space-y-2">
                   <div className="flex items-start justify-between">
-                    <h3 className="text-white font-bold text-base leading-tight group-hover:text-indigo-400 transition-colors">
+                    <h3 className="text-themeText font-bold text-base leading-tight group-hover:text-themeAccent transition-colors">
                       {project.name}
                     </h3>
                     <svg
@@ -238,14 +238,14 @@ export default function Projects() {
                       strokeWidth="2.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="text-gray-500 group-hover:text-indigo-400 transition-colors shrink-0 mt-0.5"
+                      className="text-themeTextMuted group-hover:text-themeAccent transition-colors shrink-0 mt-0.5"
                     >
                       <path d="M7 7h10v10"></path>
                       <path d="M7 17 17 7"></path>
                     </svg>
                   </div>
 
-                  <p className="text-gray-400 text-xs leading-relaxed font-normal">
+                  <p className="text-themeTextMuted text-xs leading-relaxed font-normal">
                     {project.desc}
                   </p>
                 </div>
@@ -256,7 +256,7 @@ export default function Projects() {
                     {project.tech.map((t) => (
                       <span
                         key={t}
-                        className="text-[9px] font-mono px-2.5 py-0.5 rounded-full border border-white/5 bg-slate-950/60 text-gray-400 font-semibold"
+                        className="text-[9px] font-mono px-2.5 py-0.5 rounded-full border border-themeBorder bg-themeCardHover/60 text-themeTextMuted font-semibold"
                       >
                         {t}
                       </span>
@@ -267,7 +267,7 @@ export default function Projects() {
                   <div>
                     <button
                       onClick={() => toggleDetails(project.name)}
-                      className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl border border-white/5 hover:border-indigo-500/20 text-gray-300 hover:text-indigo-450 bg-slate-950/65 hover:bg-slate-950 text-xs font-bold transition-all"
+                      className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl border border-themeBorder hover:border-themeAccent/20 text-themeTextSecondary hover:text-themeAccent bg-themeCardHover/40 hover:bg-themeCard text-xs font-bold transition-all"
                     >
                       {expandedProject === project.name ? "Hide Details" : "Show Details"}
                       <svg
@@ -288,26 +288,26 @@ export default function Projects() {
                   <div
                     className={`transition-all duration-500 ease-in-out overflow-hidden ${
                       expandedProject === project.name
-                        ? "max-h-[300px] opacity-100 border-t border-white/5 pt-4 mt-2"
+                        ? "max-h-[300px] opacity-100 border-t border-themeBorder pt-4 mt-2"
                         : "max-h-0 opacity-0 pointer-events-none"
                     }`}
                   >
                     <div className="space-y-3.5 text-left font-normal">
                       <div>
-                        <h4 className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">
+                        <h4 className="text-[10px] font-bold text-themeAccent uppercase tracking-widest">
                           Key Features
                         </h4>
-                        <ul className="list-disc pl-4 text-[11px] text-gray-400 mt-1 space-y-1 leading-relaxed">
+                        <ul className="list-disc pl-4 text-[11px] text-themeTextMuted mt-1 space-y-1 leading-relaxed">
                           {project.features.map((feature, fIdx) => (
                             <li key={fIdx}>{feature}</li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <h4 className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">
+                        <h4 className="text-[10px] font-bold text-themeAccent uppercase tracking-widest">
                           Tech Highlight
                         </h4>
-                        <p className="text-[11px] text-gray-400 mt-1 leading-relaxed">
+                        <p className="text-[11px] text-themeTextMuted mt-1 leading-relaxed">
                           {project.challenge}
                         </p>
                       </div>
@@ -326,7 +326,7 @@ export default function Projects() {
             href="https://github.com/babul0000"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/5 text-gray-300 text-xs font-bold bg-slate-900/60 hover:bg-slate-950 hover:border-indigo-500/30 hover:text-indigo-400 transition-colors tracking-wide uppercase"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-themeBorder text-themeTextSecondary text-xs font-bold bg-themeCard hover:bg-themeCardHover hover:border-themeAccent/30 hover:text-themeAccent transition-colors tracking-wide uppercase"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

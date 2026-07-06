@@ -39,6 +39,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+
   const handleClick = (href) => {
     setActive(href);
     setMenuOpen(false);
@@ -60,23 +61,23 @@ export default function Navbar() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "py-3 bg-gray-950/75 backdrop-blur-md border-b border-white/5"
+            ? "py-3 bg-themeBg/85 backdrop-blur-md border-b border-themeBorder shadow-sm"
             : "py-5 bg-transparent"
         }`}
       >
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           {/* LOGO */}
-          <a href="#home" className="flex items-center gap-2 font-bold text-white tracking-tight">
-            <span className="w-8 h-8 bg-gradient-to-tr from-indigo-500 to-purple-600 text-white rounded-lg flex items-center justify-center font-black">
+          <a href="#home" className="flex items-center gap-2 font-bold text-themeText tracking-tight">
+            <span className="w-8 h-8 bg-gradient-to-tr from-themeAccent to-emerald-400 text-white rounded-lg flex items-center justify-center font-black">
               BH
             </span>
             <span className="text-xl">
-              Babul<span className="text-indigo-400">.</span>
+              Babul<span className="text-themeAccent">.</span>
             </span>
           </a>
 
           {/* DESKTOP NAV PILL */}
-          <div className="hidden md:flex items-center gap-1.5 bg-slate-900/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/5 shadow-lg">
+          <div className="hidden md:flex items-center gap-1.5 bg-themeCard/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-themeBorder shadow-md">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -87,8 +88,8 @@ export default function Navbar() {
                 }}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
                   active === link.href
-                    ? "bg-indigo-600 text-white shadow-md shadow-indigo-500/10"
-                    : "text-gray-400 hover:text-white"
+                    ? "bg-themeAccent text-white shadow-md shadow-themeAccent/10"
+                    : "text-themeTextMuted hover:text-themeText"
                 }`}
               >
                 {link.label}
@@ -100,14 +101,14 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <a
               href="mailto:babulhossan.info@gmail.com"
-              className="hidden md:flex px-5 py-2.5 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold tracking-wide transition duration-300 text-xs shadow-md shadow-indigo-500/10 hover:scale-[1.02]"
+              className="hidden md:flex px-5 py-2.5 rounded-full bg-themeAccent hover:bg-themeAccentHover text-white font-bold tracking-wide transition duration-300 text-xs shadow-md shadow-themeAccent/10 hover:scale-[1.02]"
             >
               HIRE ME
             </a>
 
             <button
               onClick={() => setShowModal(true)}
-              className="px-4 py-2 text-xs font-bold text-gray-300 rounded-xl bg-slate-900/60 border border-white/5 hover:border-indigo-500/30 hover:text-white transition duration-300 shadow-sm"
+              className="px-4 py-2 text-xs font-bold text-themeTextSecondary rounded-xl bg-themeCard/60 border border-themeBorder hover:border-themeAccent/30 hover:text-themeText transition duration-300 shadow-sm"
             >
               RESUME
             </button>
@@ -115,7 +116,7 @@ export default function Navbar() {
             {/* MOBILE HAMBURGER BUTTON */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden text-gray-300 p-2 hover:bg-slate-900/60 rounded-lg border border-white/5 transition"
+              className="md:hidden text-themeTextSecondary p-2 hover:bg-themeCard/60 rounded-lg border border-themeBorder transition"
               aria-label="Toggle Menu"
             >
               <svg
@@ -156,12 +157,12 @@ export default function Navbar() {
         {/* Backdrop overlay */}
         <div
           onClick={() => setMenuOpen(false)}
-          className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         />
 
         {/* Drawer container */}
         <div
-          className={`absolute top-24 left-4 right-4 rounded-2xl bg-gray-900/90 border border-white/10 p-6 shadow-2xl backdrop-blur-md transition-all duration-300 ${
+          className={`absolute top-24 left-4 right-4 rounded-2xl bg-themeCard/95 border border-themeBorder p-6 shadow-2xl backdrop-blur-md transition-all duration-300 ${
             menuOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
           }`}
         >
@@ -176,8 +177,8 @@ export default function Navbar() {
                 }}
                 className={`px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition ${
                   active === link.href
-                    ? "text-indigo-400 bg-indigo-500/10"
-                    : "text-gray-400 hover:text-white"
+                    ? "text-themeAccent bg-themeAccent/10"
+                    : "text-themeTextMuted hover:text-themeText"
                 }`}
               >
                 {link.label}
@@ -185,7 +186,7 @@ export default function Navbar() {
             ))}
             <a
               href="mailto:babulhossan.info@gmail.com"
-              className="mt-4 px-4 py-3 rounded-xl text-xs font-bold text-center text-white bg-gradient-to-r from-indigo-600 to-purple-600 transition"
+              className="mt-4 px-4 py-3 rounded-xl text-xs font-bold text-center text-white bg-themeAccent hover:bg-themeAccentHover transition"
             >
               HIRE ME
             </a>
@@ -198,25 +199,25 @@ export default function Navbar() {
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           <div
             onClick={() => setShowModal(false)}
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
           />
 
-          <div className="relative z-10 w-[90%] max-w-sm rounded-3xl bg-gray-900 border border-white/10 p-6 shadow-2xl text-left">
-            <h2 className="text-lg font-bold text-white">Download Resume</h2>
-            <p className="mt-2 text-xs text-gray-400 leading-relaxed font-normal">
+          <div className="relative z-10 w-[90%] max-w-sm rounded-3xl bg-themeCard border border-themeBorder p-6 shadow-2xl text-left">
+            <h2 className="text-lg font-bold text-themeText">Download Resume</h2>
+            <p className="mt-2 text-xs text-themeTextMuted leading-relaxed font-normal">
               Do you want to download my resume containing details of my transition and MERN stack certifications?
             </p>
 
             <div className="mt-6 flex justify-end gap-3">
               <button
                 onClick={() => setShowModal(false)}
-                className="px-4 py-2 text-xs font-bold rounded-xl text-gray-400 bg-slate-800 hover:bg-slate-700 transition"
+                className="px-4 py-2 text-xs font-bold rounded-xl text-themeTextMuted bg-themeBg hover:bg-themeCard/80 transition"
               >
                 Cancel
               </button>
               <button
                 onClick={handleConfirmDownload}
-                className="px-4 py-2 text-xs font-bold rounded-xl text-white bg-indigo-600 hover:bg-indigo-700 transition shadow-md shadow-indigo-500/10"
+                className="px-4 py-2 text-xs font-bold rounded-xl text-white bg-themeAccent hover:bg-themeAccentHover transition shadow-md shadow-themeAccent/10"
               >
                 Confirm
               </button>

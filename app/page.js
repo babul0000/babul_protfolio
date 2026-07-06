@@ -1,3 +1,5 @@
+"use client";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Ecosystem from "../components/Ecosystem";
@@ -9,14 +11,33 @@ import About from "../components/About";
 import GithubActivity from "../components/GithubActivity";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import SkeletonLoader from "../components/SkeletonLoader";
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Lock site layout to light theme values
+    document.documentElement.setAttribute("data-theme", "light");
+    document.documentElement.classList.remove("dark");
+
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 900);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <SkeletonLoader />;
+  }
+
   return (
-    <main className="relative min-h-screen bg-gray-950 overflow-hidden font-sans antialiased text-white">
+    <main className="relative min-h-screen bg-themeBg overflow-hidden font-sans antialiased text-themeText transition-colors duration-300">
       {/* Dark background glowing meshes */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-[120px]" />
-        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[100px]" />
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-themeAccent/5 rounded-full blur-[120px]" />
+        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[100px]" />
         <div className="absolute bottom-1/4 left-0 w-[450px] h-[450px] bg-cyan-500/5 rounded-full blur-[110px]" />
       </div>
 

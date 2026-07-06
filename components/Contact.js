@@ -34,10 +34,10 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative bg-gray-950 pt-20 pb-28 md:pb-36 font-sans antialiased text-white border-b border-white/5" ref={ref}>
+    <section id="contact" className="relative bg-themeBg pt-20 pb-28 md:pb-36 font-sans antialiased text-themeText border-b border-themeBorder transition-colors duration-300" ref={ref}>
       
       {/* Background glowing orb */}
-      <div className="absolute top-[20%] left-[-10%] w-[350px] h-[350px] bg-indigo-500/5 rounded-full blur-[90px] pointer-events-none" />
+      <div className="absolute top-[20%] left-[-10%] w-[350px] h-[350px] bg-themeAccent/5 rounded-full blur-[90px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -46,17 +46,17 @@ export default function Contact() {
           <div className="space-y-6 reveal">
             <div>
               <div className="inline-flex items-center gap-2 mb-4">
-                <div className="w-1.5 h-4 rounded-full bg-indigo-500" />
-                <span className="text-xs font-bold text-indigo-400 uppercase tracking-widest">
+                <div className="w-1.5 h-4 rounded-full bg-themeAccent" />
+                <span className="text-xs font-bold text-themeAccent uppercase tracking-widest">
                   Contact
                 </span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-black text-white mt-1 leading-tight uppercase tracking-tight">
+              <h2 className="text-3xl md:text-4xl font-black text-themeText mt-1 leading-tight uppercase tracking-tight">
                 Let’s build something <span className="gradient-text">great</span>
               </h2>
             </div>
             
-            <p className="text-gray-400 text-sm md:text-base leading-relaxed max-w-md font-normal">
+            <p className="text-themeTextMuted text-sm md:text-base leading-relaxed max-w-md font-normal">
               Have a project or idea? I’m ready to help you build it. Fill out the form or reach out via email or LinkedIn.
             </p>
 
@@ -70,11 +70,11 @@ export default function Contact() {
             <div className="space-y-3 pt-4">
               <a
                 href="mailto:babulhossan.info@gmail.com"
-                className="flex items-center gap-4 p-4 rounded-3xl border border-white/5 bg-slate-900/30 backdrop-blur-md hover:border-indigo-500/20 hover:shadow-lg transition-all duration-300 group"
+                className="flex items-center gap-4 p-4 rounded-3xl border border-themeBorder bg-themeCard hover:border-themeAccent/20 hover:shadow-md transition-all duration-300 group"
               >
-                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300">
+                <div className="w-10 h-10 rounded-xl bg-themeAccent/10 border border-themeAccent/20 flex items-center justify-center flex-shrink-0 group-hover:bg-themeAccent group-hover:text-white transition-all duration-300">
                   <svg
-                    className="w-5 h-5 text-indigo-400"
+                    className="w-5 h-5 text-themeAccent group-hover:text-white transition-colors"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -88,13 +88,13 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <div className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-0.5">Email</div>
-                  <div className="text-sm font-semibold text-gray-200">
+                  <div className="text-[10px] text-themeTextMuted font-bold uppercase tracking-wider mb-0.5">Email</div>
+                  <div className="text-sm font-semibold text-themeTextSecondary">
                     babulhossan.info@gmail.com
                   </div>
                 </div>
                 <svg
-                  className="w-4 h-4 text-gray-500 ml-auto group-hover:text-indigo-400 transition-colors"
+                  className="w-4 h-4 text-themeTextMuted ml-auto group-hover:text-themeAccent transition-colors"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -110,7 +110,7 @@ export default function Contact() {
                   href="https://github.com/babul0000"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl border border-white/5 flex items-center justify-center bg-slate-900/40 hover:border-indigo-500/20 hover:text-indigo-400 transition-colors text-gray-400 shadow-sm"
+                  className="w-10 h-10 rounded-xl border border-themeBorder flex items-center justify-center bg-themeCard hover:border-themeAccent/20 hover:text-themeAccent transition-colors text-themeTextMuted shadow-sm"
                   aria-label="GitHub"
                 >
                   <svg
@@ -132,7 +132,7 @@ export default function Contact() {
                   href="https://www.linkedin.com/in/babul-hossan-09932837a/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl border border-white/5 flex items-center justify-center bg-slate-900/40 hover:border-indigo-500/20 hover:text-indigo-400 transition-colors text-gray-400 shadow-sm"
+                  className="w-10 h-10 rounded-xl border border-themeBorder flex items-center justify-center bg-themeCard hover:border-themeAccent/20 hover:text-themeAccent transition-colors text-themeTextMuted shadow-sm"
                   aria-label="LinkedIn"
                 >
                   <svg
@@ -157,12 +157,12 @@ export default function Contact() {
 
           {/* Form Side */}
           <div className="reveal w-full" style={{ transitionDelay: "0.2s" }}>
-            <div className="p-8 rounded-3xl border border-white/5 bg-slate-900/20 backdrop-blur-md shadow-2xl">
+            <div className="p-8 rounded-3xl border border-themeBorder bg-themeCard shadow-sm">
               {status === "sent" ? (
                 <div className="flex flex-col items-center justify-center py-12 gap-4">
-                  <div className="w-16 h-16 rounded-full bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-themeAccent/10 border border-themeAccent/20 flex items-center justify-center">
                     <svg
-                      className="w-8 h-8 text-indigo-400"
+                      className="w-8 h-8 text-themeAccent"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -172,14 +172,14 @@ export default function Contact() {
                     </svg>
                   </div>
                   <div className="text-center">
-                    <h3 className="text-lg font-bold text-white mb-1">Message sent!</h3>
-                    <p className="text-xs text-gray-400">
+                    <h3 className="text-lg font-bold text-themeText mb-1">Message sent!</h3>
+                    <p className="text-xs text-themeTextMuted">
                       I&apos;ll get back to you within 24 hours.
                     </p>
                   </div>
                   <button
                     onClick={() => setStatus("idle")}
-                    className="text-xs font-bold text-indigo-400 hover:text-indigo-350 mt-2 uppercase tracking-widest"
+                    className="text-xs font-bold text-themeAccent hover:text-themeAccentHover mt-2 uppercase tracking-widest"
                   >
                     Send another message
                   </button>
@@ -187,7 +187,7 @@ export default function Contact() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <label className="block text-[10px] font-bold text-gray-500 mb-2 uppercase tracking-wider">
+                    <label className="block text-[10px] font-bold text-themeTextMuted mb-2 uppercase tracking-wider">
                       Name
                     </label>
                     <input
@@ -197,11 +197,11 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       placeholder="Your full name"
-                      className="w-full px-4 py-3 rounded-xl border border-white/5 bg-slate-950/45 text-white text-xs placeholder-gray-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 outline-none transition shadow-sm"
+                      className="w-full px-4 py-3 rounded-xl border border-themeBorder bg-themeBg text-themeText text-xs placeholder-themeTextMuted focus:border-themeAccent focus:ring-2 focus:ring-themeAccent/10 outline-none transition shadow-sm"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-gray-500 mb-2 uppercase tracking-wider">
+                    <label className="block text-[10px] font-bold text-themeTextMuted mb-2 uppercase tracking-wider">
                       Email
                     </label>
                     <input
@@ -211,11 +211,11 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       placeholder="you@company.com"
-                      className="w-full px-4 py-3 rounded-xl border border-white/5 bg-slate-950/45 text-white text-xs placeholder-gray-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 outline-none transition shadow-sm"
+                      className="w-full px-4 py-3 rounded-xl border border-themeBorder bg-themeBg text-themeText text-xs placeholder-themeTextMuted focus:border-themeAccent focus:ring-2 focus:ring-themeAccent/10 outline-none transition shadow-sm"
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-gray-500 mb-2 uppercase tracking-wider">
+                    <label className="block text-[10px] font-bold text-themeTextMuted mb-2 uppercase tracking-wider">
                       Message
                     </label>
                     <textarea
@@ -225,13 +225,13 @@ export default function Contact() {
                       required
                       rows={4}
                       placeholder="Tell me about the project or opportunity..."
-                      className="w-full px-4 py-3 rounded-xl border border-white/5 bg-slate-950/45 text-white text-xs placeholder-gray-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 outline-none transition resize-none shadow-sm"
+                      className="w-full px-4 py-3 rounded-xl border border-themeBorder bg-themeBg text-themeText text-xs placeholder-themeTextMuted focus:border-themeAccent focus:ring-2 focus:ring-themeAccent/10 outline-none transition resize-none shadow-sm"
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-gradient-to-r from-indigo-650 via-purple-650 to-cyan-500 hover:from-indigo-600 hover:via-purple-600 hover:to-cyan-400 text-white font-bold text-xs uppercase tracking-wider transition duration-300 disabled:opacity-60 disabled:cursor-not-allowed shadow-md"
+                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-themeAccent hover:bg-themeAccentHover text-white font-bold text-xs uppercase tracking-wider transition duration-300 disabled:opacity-60 disabled:cursor-not-allowed shadow-sm"
                   >
                     {status === "sending" ? (
                       <>

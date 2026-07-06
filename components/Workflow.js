@@ -40,24 +40,24 @@ export default function Workflow() {
   const ref = useScrollReveal();
 
   return (
-    <section className="section-padding bg-[#090d16] border-y border-white/5 relative text-white font-sans antialiased" ref={ref}>
+    <section className="section-padding bg-themeBg border-y border-themeBorder relative text-themeText font-sans antialiased transition-colors duration-300" ref={ref}>
       
       {/* Background glowing orb */}
-      <div className="absolute top-[20%] right-[-10%] w-[300px] h-[300px] bg-indigo-500/5 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute top-[20%] right-[-10%] w-[300px] h-[300px] bg-themeAccent/5 rounded-full blur-[80px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16 reveal">
           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-1.5 h-4 rounded-full bg-indigo-500" />
-            <span className="text-xs font-semibold text-indigo-400 uppercase tracking-widest" style={{ letterSpacing: "0.12em" }}>
+            <div className="w-1.5 h-4 rounded-full bg-themeAccent" />
+            <span className="text-xs font-semibold text-themeAccent uppercase tracking-widest" style={{ letterSpacing: "0.12em" }}>
               Workflow
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-1 uppercase tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-themeText mt-1 uppercase tracking-tight">
             How I <span className="gradient-text">Work</span>
           </h2>
-          <p className="text-gray-400 text-sm mt-4 max-w-md mx-auto">
+          <p className="text-themeTextMuted text-sm mt-4 max-w-md mx-auto">
             A systematic approach refined from both laboratory science and software engineering.
           </p>
         </div>
@@ -67,7 +67,7 @@ export default function Workflow() {
           {steps.map((step, idx) => (
             <div
               key={step.num}
-              className="relative bg-slate-900/30 backdrop-blur-md rounded-3xl p-6 border border-white/5 hover:border-indigo-500/20 hover:shadow-xl transition-all duration-300 overflow-hidden reveal"
+              className="relative bg-themeCard rounded-3xl p-6 border border-themeBorder hover:border-themeAccent/20 hover:shadow-md transition-all duration-300 overflow-hidden reveal shadow-sm"
               style={{ transitionDelay: `${0.1 * (idx + 1)}s` }}
             >
               {/* Step Number Background Indicator */}
@@ -101,9 +101,9 @@ export default function Workflow() {
                   <span className="text-[10px] font-mono font-bold uppercase tracking-widest" style={{ color: step.color }}>
                     Step {step.num}
                   </span>
-                  <h3 className="text-white font-bold text-lg mt-1">{step.title}</h3>
+                  <h3 className="text-themeText font-bold text-lg mt-1">{step.title}</h3>
                 </div>
-                <p className="text-gray-400 text-xs leading-relaxed font-normal">{step.desc}</p>
+                <p className="text-themeTextMuted text-xs leading-relaxed font-normal">{step.desc}</p>
                 <div
                   className="h-px w-0 hover:w-full transition-all duration-500 rounded-full mt-2"
                   style={{

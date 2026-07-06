@@ -8,7 +8,7 @@ export default function NotFound() {
       </div>
       <h2 className="text-3xl font-bold text-slate-900">404 - Page Not Found</h2>
       <p className="mt-2 text-slate-500 text-sm max-w-xs mx-auto">
-        The page you are looking for does not exist or has been moved.
+        The page you are looking for does not exist or has been moved
       </p>
       <Link
         href="/"

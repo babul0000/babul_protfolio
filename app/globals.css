@@ -3,21 +3,24 @@
 @tailwind utilities;
 
 :root {
-  --bg-primary: #030712;      /* Gray 950 */
-  --bg-secondary: #0b0f19;    /* Obsidian slate */
-  --bg-tertiary: #111827;     /* Gray 900 */
-  --text-primary: #f9fafb;    /* Gray 50 */
-  --text-secondary: #d1d5db;  /* Gray 300 */
-  --text-muted: #9ca3af;     /* Gray 400 */
-  --accent: #6366f1;          /* Indigo 500 */
-  --accent-light: rgba(99, 102, 241, 0.05);
-  --accent-mid: rgba(99, 102, 241, 0.12);
-  --border: #1f2937;          /* Gray 800 */
-  --border-light: #374151;    /* Gray 700 */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --bg-primary: #f7f7f9;       /* Off-white */
+  --bg-secondary: #ffffff;     /* White card */
+  --bg-tertiary: #f1f1f4;      /* Light gray for hover/skeleton */
+  --text-primary: #111111;     /* Charcoal/Almost Black */
+  --text-secondary: #333333;   /* Slate/Dark gray */
+  --text-muted: #666666;       /* Medium gray */
+  --accent: #2ecc71;           /* Emerald Green */
+  --accent-hover: #27ae60;     /* Darker Green */
+  --accent-light: rgba(46, 204, 113, 0.05);
+  --accent-mid: rgba(46, 204, 113, 0.12);
+  --border: #e5e5e5;           /* Light gray border */
+  --border-light: #f0f0f0;     /* Very light gray border */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
 }
+
+
 
 * {
   box-sizing: border-box;
@@ -76,20 +79,20 @@ body {
 
 /* Gradient text styling */
 .gradient-text {
-  background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #06b6d4 100%);
+  background: linear-gradient(135deg, #2ecc71 0%, #06b6d4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-bg {
-  background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #06b6d4 100%);
+  background: linear-gradient(135deg, #2ecc71 0%, #06b6d4 100%);
 }
 
 .gradient-border {
   position: relative;
   background: linear-gradient(var(--bg-secondary), var(--bg-secondary)) padding-box,
-              linear-gradient(135deg, #6366f1, #a855f7, #06b6d4) border-box;
+              linear-gradient(135deg, #2ecc71, #06b6d4) border-box;
   border: 1px solid transparent;
 }
 
@@ -123,8 +126,8 @@ body {
 
 /* Pulse effects */
 @keyframes pulse-dot {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
-  50% { box-shadow: 0 0 0 6px rgba(99, 102, 241, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(46, 204, 113, 0); }
 }
 .pulse-badge {
   animation: pulse-dot 2s ease infinite;
@@ -135,8 +138,8 @@ body {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  mix-blend-mode: screen;
-  opacity: 0.15;
+  mix-blend-mode: multiply;
+  opacity: 0.04;
   pointer-events: none;
 }
 
@@ -148,5 +151,50 @@ body {
 .terminal-cursor::after {
   content: "▋";
   animation: blink 1s step-start infinite;
-  color: #6366f1;
+  color: var(--accent);
+}
+
+/* Shimmer Loader Animations */
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-tertiary);
+  border-radius: inherit;
+}
+
+.skeleton-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(46, 204, 113, 0.08) 35%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(46, 204, 113, 0.08) 65%,
+    transparent 100%
+  );
+  animation: skeleton-shimmer-animation 1.5s infinite linear;
+}
+
+
+@keyframes skeleton-shimmer-animation {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.section-padding {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
 }
