@@ -12,7 +12,7 @@ const projects = [
     tech: ["Next.js", "React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
     github: "https://github.com/babul0000/prompt-forge",
     live: "https://prompt-forge-babul.vercel.app/",
-    image: "/pixgen.webp",
+    image: "/promptforge.png",
     glow: "rgba(168,85,247,0.15)",
     color: "#a855f7",
     features: [
@@ -29,7 +29,7 @@ const projects = [
     tech: ["Next.js", "Tailwind CSS", "HeroUI", "Express.js", "BetterAuth", "MongoDB"],
     github: "https://github.com/babul0000/mediqueue-client",
     live: "https://mediqueue-babul.vercel.app/",
-    image: "/wanderlust.webp",
+    image: "/mediqueue.png",
     glow: "rgba(56,189,248,0.15)",
     color: "#38bdf8",
     features: [
@@ -46,7 +46,7 @@ const projects = [
     tech: ["TypeScript", "Next.js", "React", "Node.js", "Express.js", "MongoDB"],
     github: "https://github.com/babul0000/bloodconnect",
     live: "https://bloodconnect-babul.vercel.app/",
-    image: "/dragon-news.webp",
+    image: "/bloodconnect.png",
     glow: "rgba(239,68,68,0.15)",
     color: "#ef4444",
     features: [
