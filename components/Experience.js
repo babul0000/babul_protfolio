@@ -4,27 +4,19 @@ import { useScrollReveal } from "./useScrollReveal";
 const timelineEvents = [
   {
     year: "2025 — Present",
-    title: "MERN Stack Web Developer",
-    org: "Self-Learning & Programming Hero Level 1",
-    desc: "Decided to follow my passion for software systems. Dived into computer science foundations and full-stack web development. Mastered HTML, CSS, JavaScript, React, Next.js, Express.js, Node.js, and MongoDB. Committed to writing clean code, building responsive interfaces, and resolving complex workflow logics.",
+    title: "Mern Stack Developer (Programming Hero Level 1 + Self Learning)",
+    org: "Programming Hero & Personal Projects",
+    desc: "Currently learning full stack web development through Programming Hero Level 1 course while building real-world projects. Working with frontend and backend technologies including React, Next.js, Node.js, Express.js, and MongoDB. Focused on UI/UX, API development, authentication, and performance optimization.",
     skills: ["React", "Next.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "Git"],
     badge: "Software"
   },
   {
     year: "2018 — Present",
-    title: "Garments Sample Technician",
-    org: "Buying House (Apparel Sector)",
-    desc: "Promoted to Buying House as a Sample Technician. Coordinating complex sample fabrication stages between international fashion buyers and local factory operations. Excelled in parsing detailed client requirement documents, maintaining strict audit specifications, and resolving technical sizing/material challenges.",
-    skills: ["Requirements Parsing", "Meticulous Audit", "Communication", "Problem Solving"],
+    title: "Technical Operations Specialist (Cross-Functional Coordination)",
+    org: "Manufacturing & Buying House Operations",
+    desc: "Diagnosed and resolved complex technical issues under tight deadlines, coordinating across design, quality, and production teams to deliver projects on schedule. Led end-to-end project execution for international clients. Served as primary technical point of contact, translating requirements into execution plans—a skill directly transferable to client-facing engineering roles.",
+    skills: ["Project Coordination", "Quality Control", "Client Relations", "Workflow Optimization"],
     badge: "Buying House"
-  },
-  {
-    year: "2013 — 2018",
-    title: "Production Coordinator & Auditor",
-    org: "Garments Manufacturing Units",
-    desc: "Started my career in garments manufacturing factories. Managed assembly workflows, audited product quality, and tracked hourly yield charts. Developed a deep respect for operational discipline, workflow optimization, and speed under strict deadlines.",
-    skills: ["Operational Quality", "Workflow Efficiency", "Attention to Detail", "Discipline"],
-    badge: "Manufacturing"
   }
 ];
 

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,16 +9,25 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-dm-mono)", "monospace"],
+        sans: [
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          '"Segoe UI"',
+          "Roboto",
+          '"Helvetica Neue"',
+          "Arial",
+          "sans-serif"
+        ],
+        mono: ["monospace"],
       },
       colors: {
         accent: {
           50: "#eff6ff",
           100: "#dbeafe",
-          500: "#3b82f6",
-          600: "#2563eb",
-          700: "#1d4ed8",
+          500: "#10b981",
+          600: "#059669",
+          700: "#047857",
         },
         themeBg: "var(--bg-primary)",
         themeCard: "var(--bg-secondary)",
@@ -29,6 +39,7 @@ module.exports = {
         themeBorderLight: "var(--border-light)",
         themeAccent: "var(--accent)",
         themeAccentHover: "var(--accent-hover)",
+        themeAccentText: "var(--accent-text)",
       },
       animation: {
         "fade-up": "fadeUp 0.6s ease forwards",

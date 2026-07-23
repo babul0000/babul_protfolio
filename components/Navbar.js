@@ -10,7 +10,7 @@ const navLinks = [
   { label: "Contact", href: "#contact" }
 ];
 
-export default function Navbar() {
+export default function Navbar({ theme, toggleTheme }) {
   const [active, setActive] = useState("#home");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -88,7 +88,7 @@ export default function Navbar() {
                 }}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
                   active === link.href
-                    ? "bg-themeAccent text-white shadow-md shadow-themeAccent/10"
+                    ? "bg-themeAccent text-themeAccentText shadow-md shadow-themeAccent/10"
                     : "text-themeTextMuted hover:text-themeText"
                 }`}
               >
@@ -99,9 +99,54 @@ export default function Navbar() {
 
           {/* ACTIONS */}
           <div className="flex items-center gap-3">
+            {/* Theme Switcher */}
+            <button
+              onClick={toggleTheme}
+              className="p-2.5 text-themeTextSecondary hover:text-themeAccent bg-themeCard/60 border border-themeBorder hover:border-themeAccent/30 rounded-xl transition duration-300 shadow-sm flex items-center justify-center"
+              aria-label="Toggle Theme"
+            >
+              {theme === "dark" ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="12" r="5" />
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              )}
+            </button>
+
             <a
               href="mailto:babulhossan.info@gmail.com"
-              className="hidden md:flex px-5 py-2.5 rounded-full bg-themeAccent hover:bg-themeAccentHover text-white font-bold tracking-wide transition duration-300 text-xs shadow-md shadow-themeAccent/10 hover:scale-[1.02]"
+              className="hidden md:flex px-5 py-2.5 rounded-full bg-themeAccent hover:bg-themeAccentHover text-themeAccentText font-bold tracking-wide transition duration-300 text-xs shadow-md shadow-themeAccent/10 hover:scale-[1.02]"
             >
               HIRE ME
             </a>
@@ -186,7 +231,7 @@ export default function Navbar() {
             ))}
             <a
               href="mailto:babulhossan.info@gmail.com"
-              className="mt-4 px-4 py-3 rounded-xl text-xs font-bold text-center text-white bg-themeAccent hover:bg-themeAccentHover transition"
+              className="mt-4 px-4 py-3 rounded-xl text-xs font-bold text-center text-themeAccentText bg-themeAccent hover:bg-themeAccentHover transition"
             >
               HIRE ME
             </a>
@@ -217,7 +262,7 @@ export default function Navbar() {
               </button>
               <button
                 onClick={handleConfirmDownload}
-                className="px-4 py-2 text-xs font-bold rounded-xl text-white bg-themeAccent hover:bg-themeAccentHover transition shadow-md shadow-themeAccent/10"
+                className="px-4 py-2 text-xs font-bold rounded-xl text-themeAccentText bg-themeAccent hover:bg-themeAccentHover transition shadow-md shadow-themeAccent/10"
               >
                 Confirm
               </button>

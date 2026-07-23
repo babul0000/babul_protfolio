@@ -47,15 +47,15 @@ export default function Hero() {
 
               {/* Headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-6.5xl font-black tracking-tight text-themeText uppercase leading-[1.05]">
-                MERN Stack<br />
+                Building Smart &amp;<br />
                 <span className="gradient-text font-extrabold">
-                  Developer
+                  Scalable Web Solutions
                 </span>
               </h1>
 
               {/* Description */}
               <p className="text-themeTextMuted text-sm md:text-base max-w-xl font-normal leading-relaxed">
-                I engineer modern web applications that solve real-world problems. Leveraging 8+ years of detail-oriented garments technology experience to architect clean, scalable, and optimized digital solutions.
+                I am a Software Engineer specializing in full-stack MERN development (Next.js, React, Node.js, MongoDB) with 8+ years of technical operations and cross-functional coordination experience.
               </p>
             </div>
 
@@ -63,7 +63,7 @@ export default function Hero() {
             <div className="flex flex-wrap items-center gap-4">
               <a
                 href="#contact"
-                className="px-6 py-3.5 bg-themeAccent hover:bg-themeAccentHover text-white font-bold rounded-xl shadow-md hover:scale-[1.02] transition-all text-xs tracking-wider uppercase"
+                className="px-6 py-3 bg-themeAccent hover:bg-themeAccentHover text-themeAccentText font-medium rounded-xl shadow-lg shadow-themeAccent/10 hover:scale-[1.02] transition-all text-sm tracking-wide"
               >
                 Contact Me
               </a>
@@ -72,7 +72,7 @@ export default function Hero() {
                 href={resumeLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3.5 bg-themeCard/60 border border-themeBorder hover:border-themeAccent/30 text-themeTextSecondary font-bold rounded-xl shadow-sm transition-all text-xs flex items-center gap-2 tracking-wider hover:scale-[1.02] hover:text-themeText"
+                className="px-6 py-3 bg-themeCard border border-themeBorder hover:border-themeAccent/30 text-themeTextSecondary font-medium rounded-xl shadow-sm transition-all text-sm flex items-center gap-2 tracking-wide hover:scale-[1.02] hover:text-themeText"
               >
                 Get Resume
                 <svg
@@ -189,30 +189,7 @@ export default function Hero() {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Stats Grid at the bottom */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-10 border-t border-themeBorder">
-          {[
-            { value: "2025", label: "Journey Started" },
-            { value: "8+ Yrs", label: "Garments Industry Exp" },
-            { value: "6+", label: "Projects Built" },
-            { value: "25+", label: "GitHub Repos" },
-          ].map((stat) => (
-            <div
-              key={stat.label}
-              className="p-5 bg-themeCard border border-themeBorder rounded-3xl hover:border-themeAccent/30 hover:shadow-md transition-all duration-300"
-            >
-              <p className="text-3xl font-black text-themeAccent leading-none tracking-tight">
-                {stat.value}
-              </p>
-              <p className="text-[9px] text-themeTextMuted font-bold uppercase tracking-widest mt-2.5">
-                {stat.label}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
+        </div>      </div>
     </section>
   );
 }

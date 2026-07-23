@@ -2,24 +2,32 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
-import Ecosystem from "../components/Ecosystem";
 import Skills from "../components/Skills";
 import Workflow from "../components/Workflow";
 import Projects from "../components/Projects";
 import Experience from "../components/Experience";
 import About from "../components/About";
-import GithubActivity from "../components/GithubActivity";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import SkeletonLoader from "../components/SkeletonLoader";
 
 export default function Home() {
+  const [theme, setTheme] = useState("dark");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Lock site layout to light theme values
-    document.documentElement.setAttribute("data-theme", "light");
-    document.documentElement.classList.remove("dark");
+    // Determine initial theme
+    const savedTheme = localStorage.getItem("theme");
+    const initialTheme = savedTheme || "dark";
+    setTheme(initialTheme);
+    
+    if (initialTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.setAttribute("data-theme", "light");
+    }
 
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -27,6 +35,20 @@ export default function Home() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+    localStorage.setItem("theme", nextTheme);
+    
+    if (nextTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  };
 
   if (isLoading) {
     return <SkeletonLoader />;
@@ -43,15 +65,13 @@ export default function Home() {
 
       {/* Main Sections */}
       <div className="relative z-10">
-        <Navbar />
+        <Navbar theme={theme} toggleTheme={toggleTheme} />
         <Hero />
-        <Ecosystem />
         <Skills />
         <Workflow />
         <Projects />
         <Experience />
         <About />
-        <GithubActivity />
         <Contact />
         <Footer />
       </div>

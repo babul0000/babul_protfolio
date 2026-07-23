@@ -1,10 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useScrollReveal } from "./useScrollReveal";
 
-const projects = [
+const allProjects = [
   {
     name: "PromptForge",
     tagline: "AI Prompt Marketplace.",
@@ -109,49 +108,113 @@ const projects = [
   }
 ];
 
-export default function Projects() {
-  const ref = useScrollReveal();
+export default function ProjectsPage() {
+  const [theme, setTheme] = useState("dark");
   const [expandedProject, setExpandedProject] = useState(null);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    setTheme(savedTheme);
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+    localStorage.setItem("theme", nextTheme);
+    if (nextTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  };
 
   const toggleDetails = (name) => {
     setExpandedProject(expandedProject === name ? null : name);
   };
 
   return (
-    <section id="projects" className="section-padding bg-themeBg border-b border-themeBorder relative transition-colors duration-300" ref={ref}>
-      
-      {/* Background glowing orb */}
-      <div className="absolute top-[30%] right-[-10%] w-[400px] h-[400px] bg-themeAccent/5 rounded-full blur-[100px] pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 reveal">
-          <div>
-            <div className="inline-flex items-center gap-2 mb-4">
-              <div className="w-1.5 h-4 rounded-full bg-themeAccent" />
-              <span className="text-xs font-bold text-themeAccent uppercase tracking-widest">
-                Portfolio
-              </span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-black text-themeText mt-1 uppercase tracking-tight">
-              Featured <span className="gradient-text font-extrabold">Projects</span>
-            </h2>
+    <main className="relative min-h-screen bg-themeBg text-themeText font-sans antialiased transition-colors duration-300 pb-20">
+      {/* Background glowing meshes */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-themeAccent/5 rounded-full blur-[120px]" />
+        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[100px]" />
+      </div>
+
+      {/* Mini Navbar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 py-4 bg-themeBg/85 backdrop-blur-md border-b border-themeBorder shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
+          <Link href="/" className="flex items-center gap-2 font-bold text-themeText tracking-tight">
+            <span className="w-8 h-8 bg-gradient-to-tr from-themeAccent to-emerald-400 text-white rounded-lg flex items-center justify-center font-black">
+              BH
+            </span>
+            <span className="text-xl">
+              Babul<span className="text-themeAccent">.</span>
+            </span>
+          </Link>
+
+          <div className="flex items-center gap-3">
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="p-2.5 text-themeTextSecondary hover:text-themeAccent bg-themeCard/60 border border-themeBorder hover:border-themeAccent/30 rounded-xl transition duration-300 shadow-sm flex items-center justify-center"
+              aria-label="Toggle Theme"
+            >
+              {theme === "dark" ? (
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              )}
+            </button>
+
+            <Link
+              href="/"
+              className="px-4 py-2 text-xs font-bold text-themeTextSecondary rounded-xl bg-themeCard border border-themeBorder hover:border-themeAccent/30 hover:text-themeText transition duration-300 shadow-sm"
+            >
+              Back Home
+            </Link>
           </div>
-          <p className="text-themeTextMuted text-sm max-w-xs font-normal">
-            Real-world applications built with clean code and verified user workflows.
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 mb-4">
+            <div className="w-1.5 h-4 rounded-full bg-themeAccent" />
+            <span className="text-xs font-bold text-themeAccent uppercase tracking-widest">
+              Showcase
+            </span>
+          </div>
+          <h1 className="text-3xl md:text-5xl font-black text-themeText uppercase tracking-tight">
+            All <span className="gradient-text font-extrabold">Projects</span>
+          </h1>
+          <p className="text-themeTextMuted text-sm mt-4 max-w-md mx-auto font-normal">
+            A comprehensive compilation of applications, platforms, and utilities built using modern web standard stacks.
           </p>
         </div>
 
         {/* Project Cards Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.slice(0, 4).map((project, idx) => (
+          {allProjects.map((project) => (
             <div
               key={project.name}
-              className="bg-themeCard rounded-3xl border border-themeBorder overflow-hidden group transition-all duration-500 hover:border-themeAccent/20 flex flex-col reveal"
-              style={{ transitionDelay: `${0.1 * (idx + 1)}s` }}
+              className="bg-themeCard rounded-3xl border border-themeBorder overflow-hidden group transition-all duration-500 hover:border-themeAccent/20 flex flex-col"
             >
-              {/* Banner with wallpaper image */}
+              {/* Banner */}
               <div className="h-44 relative overflow-hidden flex items-center justify-center bg-slate-900">
                 <Image
                   src={project.image}
@@ -160,11 +223,7 @@ export default function Projects() {
                   sizes="(max-width: 768px) 100vw, 380px"
                   className="object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100"
                 />
-                
-                {/* Overlay layer */}
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500" />
-                
-                {/* Glow highlights */}
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
                   style={{
@@ -172,7 +231,7 @@ export default function Projects() {
                   }}
                 />
 
-                {/* External Action Links (Live & Code) */}
+                {/* Links */}
                 <div className="absolute top-4 right-4 flex gap-2 md:opacity-0 md:group-hover:opacity-100 opacity-100 transition-all duration-300 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 z-20">
                   <a
                     href={project.github}
@@ -181,19 +240,8 @@ export default function Projects() {
                     className="w-8 h-8 rounded-full bg-themeCard/90 border border-themeBorder flex items-center justify-center text-themeTextSecondary hover:text-themeAccent hover:border-themeAccent/30 transition"
                     title="View Source Code"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="13"
-                      height="13"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                      <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path>
                     </svg>
                   </a>
                   <a
@@ -203,20 +251,8 @@ export default function Projects() {
                     className="w-8 h-8 rounded-full bg-themeCard/90 border border-themeBorder flex items-center justify-center text-themeTextSecondary hover:text-themeAccent hover:border-themeAccent/30 transition"
                     title="View Live Site"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="13"
-                      height="13"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M15 3h6v6"></path>
-                      <path d="M10 14 21 3"></path>
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                     </svg>
                   </a>
                 </div>
@@ -229,75 +265,41 @@ export default function Projects() {
                     <h3 className="text-themeText font-bold text-base leading-tight group-hover:text-themeAccent transition-colors">
                       {project.name}
                     </h3>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="15"
-                      height="15"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="text-themeTextMuted group-hover:text-themeAccent transition-colors shrink-0 mt-0.5"
-                    >
-                      <path d="M7 7h10v10"></path>
-                      <path d="M7 17 17 7"></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-themeTextMuted group-hover:text-themeAccent transition-colors shrink-0 mt-0.5">
+                      <path d="M7 7h10v10"></path><path d="M7 17 17 7"></path>
                     </svg>
                   </div>
-
                   <p className="text-themeTextMuted text-xs leading-relaxed font-normal">
                     {project.desc}
                   </p>
                 </div>
 
                 <div className="space-y-4 pt-1">
-                  {/* Tech chips */}
                   <div className="flex flex-wrap gap-1.5">
                     {project.tech.map((t) => (
-                      <span
-                        key={t}
-                        className="text-[9px] font-mono px-2.5 py-0.5 rounded-full border border-themeBorder bg-themeCardHover/60 text-themeTextMuted font-semibold"
-                      >
+                      <span key={t} className="text-[9px] font-mono px-2.5 py-0.5 rounded-full border border-themeBorder bg-themeCardHover/60 text-themeTextMuted font-semibold">
                         {t}
                       </span>
                     ))}
                   </div>
 
-                  {/* Expandable Details Action */}
                   <div>
                     <button
                       onClick={() => toggleDetails(project.name)}
                       className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl border border-themeBorder hover:border-themeAccent/20 text-themeTextSecondary hover:text-themeAccent bg-themeCardHover/40 hover:bg-themeCard text-xs font-bold transition-all"
                     >
                       {expandedProject === project.name ? "Hide Details" : "Show Details"}
-                      <svg
-                        className={`w-3.5 h-3.5 transition-transform duration-300 ${
-                          expandedProject === project.name ? "rotate-180" : ""
-                        }`}
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                      >
+                      <svg className={`w-3.5 h-3.5 transition-transform duration-300 ${expandedProject === project.name ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                       </svg>
                     </button>
                   </div>
 
-                  {/* Expandable Drawer Content */}
-                  <div
-                    className={`transition-all duration-500 ease-in-out overflow-hidden ${
-                      expandedProject === project.name
-                        ? "max-h-[300px] opacity-100 border-t border-themeBorder pt-4 mt-2"
-                        : "max-h-0 opacity-0 pointer-events-none"
-                    }`}
-                  >
+                  {/* Drawer Content */}
+                  <div className={`transition-all duration-500 ease-in-out overflow-hidden ${expandedProject === project.name ? "max-h-[300px] opacity-100 border-t border-themeBorder pt-4 mt-2" : "max-h-0 opacity-0 pointer-events-none"}`}>
                     <div className="space-y-3.5 text-left font-normal">
                       <div>
-                        <h4 className="text-[10px] font-bold text-themeAccent uppercase tracking-widest">
-                          Key Features
-                        </h4>
+                        <h4 className="text-[10px] font-bold text-themeAccent uppercase tracking-widest">Key Features</h4>
                         <ul className="list-disc pl-4 text-[11px] text-themeTextMuted mt-1 space-y-1 leading-relaxed">
                           {project.features.map((feature, fIdx) => (
                             <li key={fIdx}>{feature}</li>
@@ -305,9 +307,7 @@ export default function Projects() {
                         </ul>
                       </div>
                       <div>
-                        <h4 className="text-[10px] font-bold text-themeAccent uppercase tracking-widest">
-                          Tech Highlight
-                        </h4>
+                        <h4 className="text-[10px] font-bold text-themeAccent uppercase tracking-widest">Tech Highlight</h4>
                         <p className="text-[11px] text-themeTextMuted mt-1 leading-relaxed">
                           {project.challenge}
                         </p>
@@ -315,36 +315,11 @@ export default function Projects() {
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           ))}
         </div>
-
-        {/* View all Projects button */}
-        <div className="text-center mt-14 reveal">
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-themeBorder text-themeTextSecondary text-xs font-bold bg-themeCard hover:bg-themeCardHover hover:border-themeAccent/30 hover:text-themeAccent transition-colors tracking-wide uppercase"
-          >
-            View All Projects
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </Link>
-        </div>
       </div>
-    </section>
+    </main>
   );
 }

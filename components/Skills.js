@@ -7,39 +7,35 @@ const skillGroups = [
     category: "Frontend",
     icon: "💻",
     skills: [
-      { name: "JavaScript", icon: "🟨", level: "Advanced" },
-      { name: "React", icon: "⚛️", level: "Advanced" },
-      { name: "Next.js", icon: "▲", level: "Intermediate" },
-      { name: "Tailwind CSS", icon: "🎨", level: "Advanced" },
-      { name: "HTML5 & CSS3", icon: "🌐", level: "Advanced" }
+      { name: "React.js", icon: "⚛️" },
+      { name: "Next.js", icon: "▲" },
+      { name: "JavaScript (ES6+)", icon: "🟨" },
+      { name: "Tailwind CSS", icon: "🎨" },
+      { name: "HTML5 & CSS3", icon: "🌐" },
+      { name: "DaisyUI", icon: "🌼" },
+      { name: "HeroUI", icon: "🛡️" }
     ]
   },
   {
-    category: "Backend",
+    category: "Backend & DB",
     icon: "⚙️",
     skills: [
-      { name: "Node.js", icon: "🟢", level: "Intermediate" },
-      { name: "Express.js", icon: "🚀", level: "Intermediate" },
-      { name: "REST APIs", icon: "🔗", level: "Advanced" }
+      { name: "Node.js", icon: "🟢" },
+      { name: "Express.js", icon: "🚀" },
+      { name: "MongoDB", icon: "🍃" },
+      { name: "REST APIs", icon: "🔗" }
     ]
   },
   {
-    category: "Database",
-    icon: "🗄️",
-    skills: [
-      { name: "MongoDB", icon: "🍃", level: "Intermediate" },
-      { name: "Mongoose", icon: "🐍", level: "Intermediate" }
-    ]
-  },
-  {
-    category: "Tools & DevOps",
+    category: "Auth & Tools",
     icon: "🛠️",
     skills: [
-      { name: "Git", icon: "📦", level: "Advanced" },
-      { name: "GitHub", icon: "🐙", level: "Advanced" },
-      { name: "Vercel", icon: "▲", level: "Advanced" },
-      { name: "Netlify", icon: "🌐", level: "Advanced" },
-      { name: "Figma", icon: "🎯", level: "Intermediate" }
+      { name: "Better Auth", icon: "🔒" },
+      { name: "JWT", icon: "🔑" },
+      { name: "Git & GitHub", icon: "🐙" },
+      { name: "Vercel", icon: "▲" },
+      { name: "VS Code", icon: "📝" },
+      { name: "Context API", icon: "🧩" }
     ]
   }
 ];
@@ -109,18 +105,11 @@ export default function Skills() {
               {activeGroup?.skills.map((skill) => (
                 <div
                   key={skill.name}
-                  className="p-4 bg-themeCardHover/40 border border-themeBorder hover:border-themeAccent/20 rounded-2xl flex items-center justify-between gap-3 transition-all duration-300 group hover:translate-x-1"
+                  className="p-4 bg-themeCardHover/40 border border-themeBorder hover:border-themeAccent/20 rounded-2xl flex items-center gap-3 transition-all duration-300 group hover:translate-x-1"
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="text-xl shrink-0">{skill.icon}</span>
-                    <span className="text-xs font-bold text-themeTextSecondary">
-                      {skill.name}
-                    </span>
-                  </div>
-                  
-                  {/* Skill level tags */}
-                  <span className="text-[9px] font-mono font-bold px-2 py-0.5 rounded-md bg-themeAccent/10 border border-themeAccent/20 text-themeAccent group-hover:bg-themeAccent group-hover:text-white transition-all duration-300">
-                    {skill.level}
+                  <span className="text-xl shrink-0">{skill.icon}</span>
+                  <span className="text-xs font-bold text-themeTextSecondary">
+                    {skill.name}
                   </span>
                 </div>
               ))}
