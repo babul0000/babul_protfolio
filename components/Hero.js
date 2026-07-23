@@ -2,8 +2,7 @@
 import Image from "next/image";
 
 export default function Hero() {
-  const resumeLink =
-    "https://drive.google.com/uc?export=download&id=1wVdSsXlzOlbM3FNlMGpkz8Djyvf1MyxB";
+  const resumeLink = "/resume.pdf";
 
   return (
     <section

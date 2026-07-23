@@ -3,8 +3,7 @@ import { useScrollReveal } from "./useScrollReveal";
 
 export default function About() {
   const ref = useScrollReveal();
-  const resumeLink =
-    "https://drive.google.com/uc?export=download&id=1wVdSsXlzOlbM3FNlMGpkz8Djyvf1MyxB";
+  const resumeLink = "/resume.pdf";
 
   const stats = [
     { label: "Experience", value: "8+ Years", sub: "Garments & Tech" },

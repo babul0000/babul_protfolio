@@ -51,8 +51,7 @@ export default function Navbar({ theme, toggleTheme }) {
 
   const handleConfirmDownload = () => {
     setShowModal(false);
-    const resumeLink =
-      "https://drive.google.com/uc?export=download&id=1wVdSsXlzOlbM3FNlMGpkz8Djyvf1MyxB";
+    const resumeLink = "/resume.pdf";
     window.open(resumeLink, "_blank");
   };
 
