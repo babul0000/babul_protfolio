@@ -40,72 +40,21 @@ const projects = [
     challenge: "Designed optimized SSR & ISR page setups to boost SEO parameters and load speeds."
   },
   {
-    name: "Tile Gallery",
-    tagline: "Modern Gallery Platform.",
-    desc: "Developed a responsive, tile-based gallery with dynamic image rendering and full CRUD content management via REST APIs and MongoDB.",
-    tech: ["Next.js", "Tailwind CSS", "Express.js", "MongoDB"],
-    github: "https://github.com/babul0000/tiles-galary-a-8",
-    live: "https://tiles-galary-a-8.vercel.app/",
-    image: "/tiles.webp",
-    glow: "rgba(16,185,129,0.15)",
-    color: "#10b981",
-    features: [
-      "Dynamic filtering by size, type, and color categories.",
-      "Meticulous high-resolution thumbnail rendering with zoom grids.",
-      "Full CRUD operations via REST API integrations."
-    ],
-    challenge: "Achieved seamless navigation and image lazy-loading to optimize Largest Contentful Paint (LCP) rendering times."
-  },
-  {
-    name: "WanderLust",
-    tagline: "A full-stack travel accommodation platform inspired by Airbnb.",
-    desc: "Built with authentication, property listings, and CRUD features for users to explore and manage places easily. Features BetterAuth for secure login and a seamless booking experience.",
-    tech: ["Next.js", "Tailwind CSS", "BetterAuth", "Node.js", "Express.js", "MongoDB"],
-    github: "https://github.com/babul0000/wander-lust",
-    live: "https://wander-lust-phi-lyart.vercel.app/",
-    image: "/wanderlust.webp",
-    glow: "rgba(99,102,241,0.15)",
-    color: "#6366f1",
-    features: [
-      "Secure user sessions & sign-ins via BetterAuth.",
-      "Complete property listings CRUD with file upload attachments.",
-      "Interactive booking schedule calendar with client triggers."
-    ],
-    challenge: "Handling dynamic mapping of user session parameters in SSR pages without rendering lags. Solved by middleware request intercepts."
-  },
-  {
-    name: "Pixgen",
-    tagline: "AI-powered creative image generator tool with a modern glassmorphism UI.",
-    desc: "An AI-powered creative image generator tool with a modern glassmorphism UI, offering dynamic tools for creative professionals.",
-    tech: ["Next.js", "Tailwind CSS", "MongoDB"],
-    github: "https://github.com/babul0000/pixgen-s-8-2",
-    live: "https://pixgen-b.vercel.app/",
-    image: "/pixgen.webp",
-    glow: "rgba(168,85,247,0.15)",
-    color: "#a855f7",
-    features: [
-      "AI creative prompt parser engine integration.",
-      "Sleek glassmorphism details cards overlay with glowing meshes.",
-      "Clean user gallery page fetching generative history."
-    ],
-    challenge: "Styling translucent background blur filters that remain compatible across mobile platforms. Solved using optimized backdrop CSS attributes."
-  },
-  {
-    name: "The Dragon News",
-    tagline: "A full-stack dynamic news portal application with auth.",
-    desc: "A full-stack dynamic news portal application. Features category-wise news rendering, user authentication, and responsive layout for a smooth reading experience.",
-    tech: ["React", "Firebase", "Tailwind CSS"],
-    github: "https://github.com/babul0000/The-dragan-news-m-46",
-    live: "https://the-dragan-news-b.vercel.app/category/01",
+    name: "BloodConnect",
+    tagline: "TypeScript MERN Blood Donation App.",
+    desc: "A full-stack blood donation platform connecting volunteers and donors. Built with React, Next.js, Node.js, Express, MongoDB, and TypeScript, featuring custom location sorting and notifications.",
+    tech: ["TypeScript", "Next.js", "React", "Node.js", "Express.js", "MongoDB"],
+    github: "https://github.com/babul0000/bloodconnect",
+    live: "https://bloodconnect-babul.vercel.app/",
     image: "/dragon-news.webp",
-    glow: "rgba(249,115,22,0.15)",
-    color: "#f97316",
+    glow: "rgba(239,68,68,0.15)",
+    color: "#ef4444",
     features: [
-      "Real-time news feeds filtering by category tabs.",
-      "Firebase auth integration (social and email login).",
-      "Clean responsive article grid matching dashboard templates."
+      "Secure donor profile creation and availability status toggles.",
+      "TypeScript type-safety implemented across API parameters.",
+      "Real-time search filters matching donor blood groups."
     ],
-    challenge: "Mitigating excessive Firebase fetches during route swapping. Solved using React local state persistence layers."
+    challenge: "Enforcing complex database schemas and type safety in high-frequency data states. Resolved by deploying strict TypeScript interfaces."
   }
 ];
 
@@ -145,7 +94,7 @@ export default function Projects() {
 
         {/* Project Cards Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.slice(0, 4).map((project, idx) => (
+          {projects.map((project, idx) => (
             <div
               key={project.name}
               className="bg-themeCard rounded-3xl border border-themeBorder overflow-hidden group transition-all duration-500 hover:border-themeAccent/20 flex flex-col reveal"
@@ -153,12 +102,11 @@ export default function Projects() {
             >
               {/* Banner with wallpaper image */}
               <div className="h-44 relative overflow-hidden flex items-center justify-center bg-slate-900">
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={project.image}
                   alt={project.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 380px"
-                  className="object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100"
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100"
                 />
                 
                 {/* Overlay layer */}
@@ -321,28 +269,30 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* View all Projects button */}
+        {/* View all on Github button */}
         <div className="text-center mt-14 reveal">
-          <Link
-            href="/projects"
+          <a
+            href="https://github.com/babul0000"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-themeBorder text-themeTextSecondary text-xs font-bold bg-themeCard hover:bg-themeCardHover hover:border-themeAccent/30 hover:text-themeAccent transition-colors tracking-wide uppercase"
           >
-            View All Projects
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              strokeWidth="2.5"
+              strokeWidth="2.2"
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
+              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+              <path d="M9 18c-4.51 2-5-2-7-2"></path>
             </svg>
-          </Link>
+            View all on GitHub
+          </a>
         </div>
       </div>
     </section>
