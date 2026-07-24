@@ -6,7 +6,6 @@ export default function About() {
   const resumeLink = "/resume.pdf";
 
   const stats = [
-    { label: "Experience", value: "8+ Years", sub: "Garments & Tech" },
     { label: "Focus", value: "Frontend Dev", sub: "React, Next.js" },
     { label: "Status", value: "Open to Work", sub: "MERN Stack" }
   ];
@@ -39,7 +38,7 @@ export default function About() {
 
             <div className="space-y-4 text-themeTextSecondary text-sm md:text-base leading-relaxed font-normal">
               <p>
-                I am a Software Engineer with 8+ years of professional technical operations and cross-functional coordination experience.
+                I am a Software Engineer with professional technical operations and cross-functional coordination experience.
                 Through this career path, I have refined my attention to detail, execution speed, and team alignment.
               </p>
               <p>

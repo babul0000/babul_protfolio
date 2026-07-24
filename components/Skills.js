@@ -7,6 +7,15 @@ const skillGroups = [
     category: "Frontend",
     icon: "💻",
     skills: [
+      {
+        name: "TypeScript",
+        icon: (
+          <svg className="w-5 h-5 text-[#3178c6] shrink-0" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M0 0h24v24H0V0zm22.034 18.995c-.073-.668-.387-1.226-.889-1.57-.497-.343-1.183-.556-2.072-.647-1.127-.114-1.923-.332-2.39-.63-.467-.3-.687-.73-.687-1.272 0-.365.118-.68.355-.95.236-.272.564-.476.985-.615.42-.137.915-.207 1.482-.207.726 0 1.298.15 1.714.444.417.297.685.748.817 1.344l2.138-.85c-.274-1.002-.79-1.748-1.547-2.222-.756-.474-1.762-.714-3.003-.714-1.077 0-1.996.223-2.738.666-.74.444-1.29 1.042-1.637 1.785-.347.74-.52 1.56-.52 2.443 0 1.393.393 2.463 1.176 3.19.782.727 1.91 1.14 3.37 1.233 1.15.082 1.968.22 2.45.412.48.19.82.467 1.018.82.2.353.3.774.3 1.264 0 .546-.206 1.006-.615 1.373-.41.367-.98.55-1.706.55-.77 0-1.395-.218-1.874-.652-.48-.435-.776-1.037-.887-1.802l-2.16.732c.245 1.2.798 2.128 1.655 2.766.858.636 1.99.957 3.398.957 1.218 0 2.247-.25 3.078-.75.83-.5 1.442-1.17 1.83-2.013.39-.844.584-1.78.584-2.807 0-1.25-.332-2.262-.997-3.025zM12 4.302H2.016v2.098h3.873V20h2.24V6.4h3.87v-2.1z"/>
+          </svg>
+        ),
+        highlight: true
+      },
       { name: "React.js", icon: "⚛️" },
       { name: "Next.js", icon: "▲" },
       { name: "JavaScript (ES6+)", icon: "🟨" },
@@ -105,10 +114,19 @@ export default function Skills() {
               {activeGroup?.skills.map((skill) => (
                 <div
                   key={skill.name}
-                  className="p-4 bg-themeCardHover/40 border border-themeBorder hover:border-themeAccent/20 rounded-2xl flex items-center gap-3 transition-all duration-300 group hover:translate-x-1"
+                  className={`p-4 rounded-2xl flex items-center gap-3 transition-all duration-300 group hover:translate-x-1 relative overflow-hidden ${
+                    skill.highlight
+                      ? "bg-themeAccent/10 border border-themeAccent shadow-[0_0_15px_rgba(16,185,129,0.15)] dark:shadow-[0_0_20px_rgba(16,185,129,0.2)]"
+                      : "bg-themeCardHover/40 border border-themeBorder hover:border-themeAccent/20"
+                  }`}
                 >
-                  <span className="text-xl shrink-0">{skill.icon}</span>
-                  <span className="text-xs font-bold text-themeTextSecondary">
+                  {skill.highlight && (
+                    <div className="absolute top-0 right-0 bg-themeAccent text-themeAccentText text-[8px] font-black uppercase px-2 py-0.5 rounded-bl-lg tracking-wider animate-pulse">
+                      Featured
+                    </div>
+                  )}
+                  <span className="text-xl shrink-0 flex items-center justify-center">{skill.icon}</span>
+                  <span className={`text-xs font-bold ${skill.highlight ? "text-themeAccent font-black" : "text-themeTextSecondary"}`}>
                     {skill.name}
                   </span>
                 </div>

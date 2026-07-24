@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect, useRef } from "react";
 import { useScrollReveal } from "./useScrollReveal";
 
 const timelineEvents = [
@@ -22,6 +23,35 @@ const timelineEvents = [
 
 export default function Experience() {
   const ref = useScrollReveal();
+  const timelineRef = useRef(null);
+  const [progressHeight, setProgressHeight] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!timelineRef.current) return;
+      const rect = timelineRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Calculate scroll progress percentage based on the viewport center trigger
+      const triggerPoint = windowHeight * 0.75; // Starts filling when it enters the lower 75% of the screen
+      const totalHeight = rect.height;
+      const scrolled = triggerPoint - rect.top;
+      
+      let progress = (scrolled / totalHeight) * 100;
+      progress = Math.min(Math.max(progress, 0), 100);
+      
+      setProgressHeight(progress);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+    handleScroll(); // Initial call
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
 
   return (
     <section id="experience" className="section-padding bg-themeBg border-b border-themeBorder relative transition-colors duration-300" ref={ref}>
@@ -48,56 +78,73 @@ export default function Experience() {
         </div>
 
         {/* Timeline wrapper */}
-        <div className="relative ml-3 md:ml-6 space-y-10 reveal" style={{ transitionDelay: "0.2s" }}>
+        <div ref={timelineRef} className="relative ml-3 md:ml-6 space-y-10 reveal" style={{ transitionDelay: "0.2s" }}>
           
-          {/* Vertical Laser Line */}
-          <div className="absolute left-0 top-2 bottom-2 w-[2px] bg-gradient-to-b from-themeAccent via-emerald-500 to-cyan-500 shadow-[0_0_10px_rgba(46,204,113,0.2)]" />
+          {/* Vertical Line Track (Background) */}
+          <div className="absolute left-0 top-2 bottom-2 w-[2px] bg-themeBorder pointer-events-none" />
           
-          {timelineEvents.map((event, idx) => (
-            <div key={idx} className="relative pl-8 md:pl-10">
-              
-              {/* Timeline indicator node */}
-              <span className="absolute -left-[7px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-themeBg border-2 border-themeAccent shadow-[0_0_8px_rgba(46,204,113,0.3)] z-10">
-                <span className="h-1.5 w-1.5 rounded-full bg-themeAccent"></span>
-              </span>
+          {/* Vertical Laser Line (Active progress overlay) */}
+          <div 
+            className="absolute left-0 top-2 w-[2px] bg-gradient-to-b from-themeAccent via-emerald-500 to-cyan-500 shadow-[0_0_10px_rgba(46,204,113,0.3)] transition-all duration-100 ease-out origin-top pointer-events-none" 
+            style={{ height: `${progressHeight}%`, maxHeight: "calc(100% - 16px)" }}
+          />
+          
+          {timelineEvents.map((event, idx) => {
+            // Determine if the laser line has scrolled past this event node
+            const isNodeActive = progressHeight >= (idx / (timelineEvents.length - 1 || 1)) * 95;
 
-              {/* Event card details */}
-              <div className="bg-themeCard border border-themeBorder rounded-3xl p-6 md:p-8 hover:border-themeAccent/20 hover:shadow-md transition-all duration-300 shadow-sm space-y-4">
+            return (
+              <div key={idx} className="relative pl-8 md:pl-10">
                 
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <div>
-                    <span className="text-[9px] font-mono font-bold px-2.5 py-1 bg-themeAccent/10 text-themeAccent border border-themeAccent/20 rounded-full uppercase tracking-wider">
-                      {event.badge}
-                    </span>
-                    <h3 className="text-lg font-bold text-themeText mt-2">{event.title}</h3>
-                    <p className="text-xs font-bold text-themeTextMuted mt-0.5">{event.org}</p>
-                  </div>
+                {/* Timeline indicator node */}
+                <span className={`absolute -left-[7px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-themeBg border-2 transition-all duration-300 z-10 ${
+                  isNodeActive 
+                    ? "border-themeAccent shadow-[0_0_8px_rgba(46,204,113,0.3)] scale-110" 
+                    : "border-themeBorder shadow-sm"
+                }`}>
+                  <span className={`h-1.5 w-1.5 rounded-full transition-all duration-300 ${
+                    isNodeActive ? "bg-themeAccent" : "bg-themeTextMuted"
+                  }`}></span>
+                </span>
+
+                {/* Event card details */}
+                <div className="bg-themeCard border border-themeBorder rounded-3xl p-6 md:p-8 hover:border-themeAccent/20 hover:shadow-md transition-all duration-300 shadow-sm space-y-4">
                   
-                  <span className="text-xs font-bold text-themeAccent sm:text-right shrink-0">
-                    {event.year}
-                  </span>
-                </div>
-
-                <p className="text-themeTextMuted text-xs leading-relaxed font-normal">
-                  {event.desc}
-                </p>
-
-                {/* Skills used */}
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-themeBorder">
-                  {event.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="text-[9px] font-mono px-2 py-0.5 rounded bg-themeCardHover border border-themeBorder text-themeTextMuted font-semibold"
-                    >
-                      {skill}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div>
+                      <span className="text-[9px] font-mono font-bold px-2.5 py-1 bg-themeAccent/10 text-themeAccent border border-themeAccent/20 rounded-full uppercase tracking-wider">
+                        {event.badge}
+                      </span>
+                      <h3 className="text-lg font-bold text-themeText mt-2">{event.title}</h3>
+                      <p className="text-xs font-bold text-themeTextMuted mt-0.5">{event.org}</p>
+                    </div>
+                    
+                    <span className="text-xs font-bold text-themeAccent sm:text-right shrink-0">
+                      {event.year}
                     </span>
-                  ))}
+                  </div>
+
+                  <p className="text-themeTextMuted text-xs leading-relaxed font-normal">
+                    {event.desc}
+                  </p>
+
+                  {/* Skills used */}
+                  <div className="flex flex-wrap gap-1.5 pt-3 border-t border-themeBorder">
+                    {event.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="text-[9px] font-mono px-2 py-0.5 rounded bg-themeCardHover border border-themeBorder text-themeTextMuted font-semibold"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+
                 </div>
 
               </div>
-
-            </div>
-          ))}
+            );
+          })}
 
         </div>
 

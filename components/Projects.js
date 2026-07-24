@@ -11,7 +11,7 @@ const projects = [
     desc: "Built a full-stack marketplace where creators publish, discover, and monetize AI prompts for ChatGPT, Midjourney, Claude, and Gemini, with authentication and a subscription-based premium content model. Designed the database structure, API integration, and user dashboards.",
     tech: ["Next.js", "React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
     github: "https://github.com/babul0000/prompt-forge",
-    live: "https://prompt-forge-babul.vercel.app/",
+    live: "https://promt-nexus.vercel.app/",
     image: "/promptforge.png",
     glow: "rgba(168,85,247,0.15)",
     color: "#a855f7",
@@ -23,21 +23,21 @@ const projects = [
     challenge: "Architected the platform end-to-end — frontend, backend, API integration, and database schema design."
   },
   {
-    name: "MediQueue",
-    tagline: "Tutor/Doctor Booking Platform.",
-    desc: "Built a production-ready appointment booking platform with secure authentication, payment integration, and SSR/ISR for fast loads and strong SEO. Supports dynamic slots management.",
-    tech: ["Next.js", "Tailwind CSS", "HeroUI", "Express.js", "BetterAuth", "MongoDB"],
-    github: "https://github.com/babul0000/mediqueue-client",
-    live: "https://mediqueue-babul.vercel.app/",
-    image: "/mediqueue.png",
-    glow: "rgba(56,189,248,0.15)",
-    color: "#38bdf8",
+    name: "Tiles Gallery",
+    tagline: "Premium Tiles Showcase & Catalog.",
+    desc: "A sleek, responsive visual showcase platform built for cataloging and displaying high-quality tile designs. Features advanced filtering by categories, materials, and sizes, optimized for seamless performance.",
+    tech: ["React", "Next.js", "Tailwind CSS", "CSS Grid", "Vercel"],
+    github: "https://github.com/babul0000/tiles-galary-a-8",
+    live: "https://tiles-galary-a-8.vercel.app",
+    image: "/tiles.webp",
+    glow: "rgba(245,158,11,0.15)",
+    color: "#f59e0b",
     features: [
-      "Tutor and doctor slot availability scheduler.",
-      "Secure gateway checkout transaction setups.",
-      "BetterAuth authentication middleware hooks."
+      "Dynamic catalog filtering based on material type and size profiles.",
+      "High-performance responsive image grid with lazy-loading.",
+      "Clean, modern UI optimized for visual product presentations."
     ],
-    challenge: "Designed optimized SSR & ISR page setups to boost SEO parameters and load speeds."
+    challenge: "Optimizing multiple high-resolution asset displays concurrently without affecting core web vitals. Solved through structural Next.js image loading controls."
   },
   {
     name: "BloodConnect",
@@ -45,7 +45,7 @@ const projects = [
     desc: "A full-stack blood donation platform connecting volunteers and donors. Built with React, Next.js, Node.js, Express, MongoDB, and TypeScript, featuring custom location sorting and notifications.",
     tech: ["TypeScript", "Next.js", "React", "Node.js", "Express.js", "MongoDB"],
     github: "https://github.com/babul0000/bloodconnect",
-    live: "https://bloodconnect-babul.vercel.app/",
+    live: "https://staynest-pi.vercel.app/",
     image: "/bloodconnect.png",
     glow: "rgba(239,68,68,0.15)",
     color: "#ef4444",

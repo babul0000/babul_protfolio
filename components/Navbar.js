@@ -66,13 +66,11 @@ export default function Navbar({ theme, toggleTheme }) {
       >
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           {/* LOGO */}
-          <a href="#home" className="flex items-center gap-2 font-bold text-themeText tracking-tight">
-            <span className="w-8 h-8 bg-gradient-to-tr from-themeAccent to-emerald-400 text-white rounded-lg flex items-center justify-center font-black">
-              BH
+          <a href="#home" className="flex items-center gap-1 group select-none relative py-1">
+            <span className="signature-logo text-3xl font-bold tracking-wide text-themeText group-hover:text-themeAccent transition-colors duration-300 transform group-hover:rotate-[-2deg] inline-block">
+              Babul
             </span>
-            <span className="text-xl">
-              Babul<span className="text-themeAccent">.</span>
-            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-themeAccent group-hover:bg-emerald-400 transition-colors self-end mb-2"></span>
           </a>
 
           {/* DESKTOP NAV PILL */}
