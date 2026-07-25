@@ -18,6 +18,10 @@ export const metadata = {
   authors: [{ name: "Babul Hossan" }],
   creator: "Babul Hossan",
   metadataBase: new URL("https://babul-portfolio.vercel.app"),
+  icons: {
+    icon: "/icon.png",
+    apple: "/icon.png",
+  },
   openGraph: {
     title: "Babul Hossan — Full Stack Developer",
     description: "Building smart & scalable web solutions. Full-stack developer specializing in React, Next.js, and modern web technologies.",
@@ -50,7 +54,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`scroll-smooth ${caveat.variable}`}>
       <body className="font-sans antialiased text-themeText bg-themeBg transition-colors duration-300">
-        <Script id="microsoft-clarity" strategy="afterInteractive">
+        <Script id="microsoft-clarity" strategy="lazyOnload">
           {`
             (function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};

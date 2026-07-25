@@ -201,7 +201,8 @@ export default function Hero() {
                   alt="Babul Hossan"
                   fill
                   priority
-                  sizes="(max-width: 768px) 100vw, 350px"
+                  quality={70}
+                  sizes="(max-width: 640px) 100vw, 350px"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   src="/my.webp"
                 />

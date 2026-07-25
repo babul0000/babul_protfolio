@@ -1,9 +1,11 @@
-# Targets only modern browsers to omit legacy polyfills
+# Targets modern browsers (ES2022+) to avoid bundling legacy polyfills
 
-chrome >= 90
-firefox >= 90
-safari >= 15
-edge >= 90
-ios_saf >= 15
-opera >= 75
+chrome >= 100
+firefox >= 100
+safari >= 16
+edge >= 100
+ios_saf >= 16
+opera >= 85
 node >= 18
+not dead
+not IE 11

@@ -34,7 +34,7 @@ export default function ProjectDetails() {
     const nextTheme = theme === "dark" ? "light" : "dark";
     setTheme(nextTheme);
     localStorage.setItem("theme", nextTheme);
-    
+
     if (nextTheme === "dark") {
       document.documentElement.classList.add("dark");
       document.documentElement.setAttribute("data-theme", "dark");
@@ -55,10 +55,10 @@ export default function ProjectDetails() {
 
   return (
     <main className="min-h-screen bg-themeBg text-themeText transition-colors duration-300 font-sans antialiased relative overflow-hidden pb-20">
-      
+
       {/* Background glowing meshes */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div 
+        <div
           className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full blur-[120px] opacity-75"
           style={{ backgroundColor: `${project.color}08` }}
         />
@@ -114,7 +114,7 @@ export default function ProjectDetails() {
 
       {/* Main Content Body */}
       <section className="relative z-10 max-w-5xl mx-auto px-6 pt-12 md:pt-16 space-y-10">
-        
+
         {/* Title Block */}
         <div className="space-y-4">
           <div className="inline-flex items-center gap-2">
@@ -160,7 +160,7 @@ export default function ProjectDetails() {
 
         {/* Dynamic Detail Sections Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 pt-4">
-          
+
           {/* Left Column: Tech Stack, Description, & Buttons */}
           <div className="md:col-span-7 space-y-8">
             <div className="space-y-4">
@@ -223,7 +223,7 @@ export default function ProjectDetails() {
 
           {/* Right Column: Features, Challenges, and Plans */}
           <div className="md:col-span-5 space-y-6">
-            
+
             {/* Key Features List */}
             <div className="p-6 bg-themeCard border border-themeBorder rounded-3xl shadow-sm space-y-4">
               <h3 className="text-sm font-bold text-themeText uppercase tracking-wider flex items-center gap-2">

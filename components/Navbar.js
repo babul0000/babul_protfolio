@@ -19,11 +19,11 @@ export default function Navbar({ theme, toggleTheme }) {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
-      
+
       // Active section highlight
       const sections = navLinks.map(l => document.querySelector(l.href));
       const scrollPos = window.scrollY + 200;
-      
+
       sections.forEach((sec, idx) => {
         if (sec) {
           const top = sec.offsetTop;
@@ -58,11 +58,10 @@ export default function Navbar({ theme, toggleTheme }) {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
             ? "py-3 bg-themeBg/85 backdrop-blur-md border-b border-themeBorder shadow-sm"
             : "py-5 bg-transparent"
-        }`}
+          }`}
       >
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           {/* LOGO */}
@@ -83,11 +82,10 @@ export default function Navbar({ theme, toggleTheme }) {
                   e.preventDefault();
                   handleClick(link.href);
                 }}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
-                  active === link.href
+                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${active === link.href
                     ? "bg-themeAccent text-themeAccentText shadow-md shadow-themeAccent/10"
                     : "text-themeTextSecondary hover:text-themeText"
-                }`}
+                  }`}
               >
                 {link.label}
               </a>
@@ -192,9 +190,8 @@ export default function Navbar({ theme, toggleTheme }) {
 
       {/* MOBILE MENU */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
-          menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
       >
         {/* Backdrop overlay */}
         <div
@@ -204,9 +201,8 @@ export default function Navbar({ theme, toggleTheme }) {
 
         {/* Drawer container */}
         <div
-          className={`absolute top-24 left-4 right-4 rounded-2xl bg-white/95 dark:bg-slate-900/95 border border-themeBorder p-6 shadow-2xl backdrop-blur-md transition-all duration-300 ${
-            menuOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
-          }`}
+          className={`absolute top-24 left-4 right-4 rounded-2xl bg-white/95 dark:bg-slate-900/95 border border-themeBorder p-6 shadow-2xl backdrop-blur-md transition-all duration-300 ${menuOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
+            }`}
         >
           <div className="flex flex-col gap-2">
             {navLinks.map((link) => (
@@ -217,11 +213,10 @@ export default function Navbar({ theme, toggleTheme }) {
                   e.preventDefault();
                   handleClick(link.href);
                 }}
-                className={`px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition ${
-                  active === link.href
+                className={`px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition ${active === link.href
                     ? "text-themeAccent bg-themeAccent/10"
                     : "text-themeTextSecondary hover:text-themeText"
-                }`}
+                  }`}
               >
                 {link.label}
               </a>
