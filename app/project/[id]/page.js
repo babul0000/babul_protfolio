@@ -54,7 +54,7 @@ export default function ProjectDetails() {
   }
 
   return (
-    <main className="min-h-screen bg-themeBg text-themeText transition-colors duration-300 font-sans antialiased relative overflow-hidden pb-20">
+    <main className="min-h-screen bg-themeBg text-themeText font-sans antialiased relative overflow-hidden pb-20">
 
       {/* Background glowing meshes */}
       <div className="fixed inset-0 pointer-events-none z-0">

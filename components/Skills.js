@@ -164,7 +164,7 @@ export default function Skills() {
   );
 
   return (
-    <section id="skills" className="section-padding bg-themeBg border-b border-themeBorder relative transition-colors duration-300" ref={ref}>
+    <section id="skills" className="section-padding bg-themeBg border-b border-themeBorder relative" ref={ref}>
       
       {/* Background glow orb */}
       <div className="absolute top-[20%] left-[-10%] w-[350px] h-[350px] bg-themeAccent/5 rounded-full blur-[90px] pointer-events-none" />

@@ -53,7 +53,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`scroll-smooth ${caveat.variable}`}>
-      <body className="font-sans antialiased text-themeText bg-themeBg transition-colors duration-300">
+      <body className="font-sans antialiased text-themeText bg-themeBg">
         <Script id="microsoft-clarity" strategy="lazyOnload">
           {`
             (function(c,l,a,r,i,t,y){

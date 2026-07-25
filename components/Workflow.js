@@ -40,7 +40,7 @@ export default function Workflow() {
   const ref = useScrollReveal();
 
   return (
-    <section className="section-padding bg-themeBg border-y border-themeBorder relative text-themeText font-sans antialiased transition-colors duration-300" ref={ref}>
+    <section className="section-padding bg-themeBg border-y border-themeBorder relative text-themeText font-sans antialiased" ref={ref}>
       
       {/* Background glowing orb */}
       <div className="absolute top-[20%] right-[-10%] w-[300px] h-[300px] bg-themeAccent/5 rounded-full blur-[80px] pointer-events-none" />

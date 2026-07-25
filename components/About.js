@@ -11,7 +11,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="section-padding bg-themeBg border-b border-themeBorder relative transition-colors duration-300" ref={ref}>
+    <section id="about" className="section-padding bg-themeBg border-b border-themeBorder relative" ref={ref}>
       
       {/* Background glow orb */}
       <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-themeAccent/5 rounded-full blur-[100px] pointer-events-none" />

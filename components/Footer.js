@@ -4,7 +4,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-themeBg border-t border-themeBorder py-12 text-themeText font-sans antialiased transition-colors duration-300">
+    <footer className="bg-themeBg border-t border-themeBorder py-12 text-themeText font-sans antialiased">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Brand */}

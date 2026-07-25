@@ -54,7 +54,7 @@ export default function Experience() {
   }, []);
 
   return (
-    <section id="experience" className="section-padding bg-themeBg border-b border-themeBorder relative transition-colors duration-300" ref={ref}>
+    <section id="experience" className="section-padding bg-themeBg border-b border-themeBorder relative" ref={ref}>
       
       {/* Background glowing orb */}
       <div className="absolute top-[20%] left-[-10%] w-[350px] h-[350px] bg-themeAccent/5 rounded-full blur-[90px] pointer-events-none" />

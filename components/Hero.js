@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col justify-center pt-28 pb-16 overflow-hidden bg-themeBg text-themeText font-sans antialiased transition-colors duration-300"
+      className="relative min-h-screen flex flex-col justify-center pt-28 pb-16 overflow-hidden bg-themeBg text-themeText font-sans antialiased"
     >
       {/* Ambient background glow meshes */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -202,7 +202,7 @@ export default function Hero() {
                   fill
                   priority
                   quality={70}
-                  sizes="(max-width: 640px) 100vw, 350px"
+                  sizes="(max-width: 640px) 320px, 350px"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   src="/my.webp"
                 />

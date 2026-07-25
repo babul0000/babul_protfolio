@@ -42,7 +42,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative bg-themeBg pt-20 pb-28 md:pb-36 font-sans antialiased text-themeText border-b border-themeBorder transition-colors duration-300" ref={ref}>
+    <section id="contact" className="relative bg-themeBg pt-20 pb-28 md:pb-36 font-sans antialiased text-themeText border-b border-themeBorder" ref={ref}>
       
       {/* Background glowing orb */}
       <div className="absolute top-[20%] left-[-10%] w-[350px] h-[350px] bg-themeAccent/5 rounded-full blur-[90px] pointer-events-none" />

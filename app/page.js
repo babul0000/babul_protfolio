@@ -1,15 +1,18 @@
 "use client";
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Skills from "../components/Skills";
-import Workflow from "../components/Workflow";
-import Projects from "../components/Projects";
-import Experience from "../components/Experience";
-import About from "../components/About";
-import Contact from "../components/Contact";
-import Footer from "../components/Footer";
 import SkeletonLoader from "../components/SkeletonLoader";
+
+// Dynamic imports for below-the-fold components to improve Mobile TBT
+const Workflow = dynamic(() => import("../components/Workflow"), { ssr: false });
+const Projects = dynamic(() => import("../components/Projects"), { ssr: false });
+const Experience = dynamic(() => import("../components/Experience"), { ssr: false });
+const About = dynamic(() => import("../components/About"), { ssr: false });
+const Contact = dynamic(() => import("../components/Contact"), { ssr: false });
+const Footer = dynamic(() => import("../components/Footer"), { ssr: false });
 
 export default function Home() {
   const [theme, setTheme] = useState("dark");
@@ -55,7 +58,7 @@ export default function Home() {
   }
 
   return (
-    <main className="relative min-h-screen bg-themeBg overflow-hidden font-sans antialiased text-themeText transition-colors duration-300">
+    <main className="relative min-h-screen bg-themeBg overflow-hidden font-sans antialiased text-themeText">
       {/* Dark background glowing meshes */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-themeAccent/5 rounded-full blur-[120px]" />

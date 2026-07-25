@@ -16,7 +16,7 @@ export default function Ecosystem() {
   const marqueeItems = [...techStack, ...techStack, ...techStack];
 
   return (
-    <section className="py-12 bg-themeBg border-y border-themeBorder overflow-hidden relative font-sans antialiased text-themeText transition-colors duration-300">
+    <section className="py-12 bg-themeBg border-y border-themeBorder overflow-hidden relative font-sans antialiased text-themeText">
       
       {/* Background glowing orb meshes matching Hero */}
       <div className="absolute top-1/2 left-[-10%] -translate-y-1/2 w-[250px] h-[250px] bg-themeAccent/5 rounded-full blur-[60px] pointer-events-none" />
