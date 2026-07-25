@@ -70,30 +70,11 @@ portfolio/
 
 ---
 
-## 🚀 Local Development Setup
+## 🚀 Live Site Link
 
-Follow these steps to run the portfolio locally on your machine:
+You can view the live portfolio website at the following production URL:
 
-1. **Clone or Navigate to the Directory**:
-   ```bash
-   cd portfolio
-   ```
-
-2. **Install Package Dependencies**:
-   ```bash
-   npm install
-   ```
-
-3. **Run the Next.js Local Dev Server**:
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) in your browser to view the portfolio.
-
-4. **Verify Production Compilation**:
-   ```bash
-   npm run build
-   ```
+👉 **[https://babul-portfolio.vercel.app](https://babul-portfolio.vercel.app)**
 
 ---
 
