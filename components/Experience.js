@@ -5,9 +5,9 @@ import { useScrollReveal } from "./useScrollReveal";
 const timelineEvents = [
   {
     year: "2025 — Present",
-    title: "Mern Stack Developer (Programming Hero Level 1 + Self Learning)",
+    title: "Full Stack MERN Developer (Bootcamp & Project Experience)",
     org: "Programming Hero & Personal Projects",
-    desc: "Currently learning full stack web development through Programming Hero Level 1 course while building real-world projects. Working with frontend and backend technologies including React, Next.js, Node.js, Express.js, and MongoDB. Focused on UI/UX, API development, authentication, and performance optimization.",
+    desc: "Engineered responsive and scalable full-stack applications using React, Next.js, Node.js, Express, and MongoDB. Focused on developing robust RESTful APIs, securing routes with modern auth models, optimizing database queries, and styling with premium, pixel-perfect Tailwind CSS components. Actively building modular MERN projects with emphasis on performance, clean state management, and UX design.",
     skills: ["React", "Next.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "Git"],
     badge: "Software"
   },
@@ -15,7 +15,7 @@ const timelineEvents = [
     year: "2018 — Present",
     title: "Technical Operations Specialist (Cross-Functional Coordination)",
     org: "Manufacturing & Buying House Operations",
-    desc: "Diagnosed and resolved complex technical issues under tight deadlines, coordinating across design, quality, and production teams to deliver projects on schedule. Led end-to-end project execution for international clients. Served as primary technical point of contact, translating requirements into execution plans—a skill directly transferable to client-facing engineering roles.",
+    desc: "Leveraged analytical problem-solving skills to diagnose and resolve complex technical issues under tight client deadlines. Coordinated deliverables across design, quality control, and production pipelines, ensuring project compliance for international stakeholders. Translating complex technical specifications into structured execution processes directly parallels core software engineering values of team alignment, clean documentation, and robust troubleshooting.",
     skills: ["Project Coordination", "Quality Control", "Client Relations", "Workflow Optimization"],
     badge: "Buying House"
   }

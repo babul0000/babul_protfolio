@@ -32,18 +32,19 @@ export default function About() {
                 My Story &amp; <span className="gradient-text">Expertise</span>
               </h2>
               <p className="text-xs font-bold uppercase text-themeAccent tracking-wider mt-2.5">
-                Frontend Developer &rarr; Future Full Stack
+                Full Stack Mern Developer
               </p>
             </div>
 
             <div className="space-y-4 text-themeTextSecondary text-sm md:text-base leading-relaxed font-normal">
               <p>
-                I am a Software Engineer with professional technical operations and cross-functional coordination experience.
-                Through this career path, I have refined my attention to detail, execution speed, and team alignment.
+                I am a Software Engineer with a background in technical operations and cross-functional coordination. My journey into programming was driven by a clear purpose: <strong>to solve real-world human problems through code</strong>. I believe that software is at its best when it makes people&apos;s lives easier, and that motivation pushes me to build robust, efficient, and user-centric solutions.
               </p>
               <p>
-                Now, I combine my process discipline with hands-on full-stack development skills in Next.js, React, Node.js, Express, and MongoDB.
-                I bring strong problem-solving abilities, fast learning, and stakeholder communication to engineering teams.
+                Currently, I specialize in full-stack MERN development (Next.js, React, Node.js, Express, and MongoDB). I enjoy designing elegant user interfaces, optimization, and structuring efficient backend architectures.
+              </p>
+              <p>
+                Outside of coding, I am passionate about <strong>travelling</strong> to explore new environments, <strong>learning new things</strong> to expand my horizons, and <strong>building meaningful connections</strong> with people from different walks of life.
               </p>
             </div>
 

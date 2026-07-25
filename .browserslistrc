@@ -1,0 +1,9 @@
+# Targets only modern browsers to omit legacy polyfills
+
+chrome >= 90
+firefox >= 90
+safari >= 15
+edge >= 90
+ios_saf >= 15
+opera >= 75
+node >= 18

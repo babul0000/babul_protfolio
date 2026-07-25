@@ -74,7 +74,7 @@ export default function Navbar({ theme, toggleTheme }) {
           </a>
 
           {/* DESKTOP NAV PILL */}
-          <div className="hidden md:flex items-center gap-1.5 bg-themeCard/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-themeBorder shadow-md">
+          <div className="hidden md:flex items-center gap-1.5 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-themeBorder shadow-md">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -86,7 +86,7 @@ export default function Navbar({ theme, toggleTheme }) {
                 className={`px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
                   active === link.href
                     ? "bg-themeAccent text-themeAccentText shadow-md shadow-themeAccent/10"
-                    : "text-themeTextMuted hover:text-themeText"
+                    : "text-themeTextSecondary hover:text-themeText"
                 }`}
               >
                 {link.label}
@@ -99,7 +99,7 @@ export default function Navbar({ theme, toggleTheme }) {
             {/* Theme Switcher */}
             <button
               onClick={toggleTheme}
-              className="p-2.5 text-themeTextSecondary hover:text-themeAccent bg-themeCard/60 border border-themeBorder hover:border-themeAccent/30 rounded-xl transition duration-300 shadow-sm flex items-center justify-center"
+              className="p-2.5 text-themeTextSecondary hover:text-themeAccent bg-white/60 dark:bg-slate-900/60 border border-themeBorder hover:border-themeAccent/30 rounded-xl transition duration-300 shadow-sm flex items-center justify-center"
               aria-label="Toggle Theme"
             >
               {theme === "dark" ? (
@@ -150,7 +150,7 @@ export default function Navbar({ theme, toggleTheme }) {
 
             <button
               onClick={() => setShowModal(true)}
-              className="px-4 py-2 text-xs font-bold text-themeTextSecondary rounded-xl bg-themeCard/60 border border-themeBorder hover:border-themeAccent/30 hover:text-themeText transition duration-300 shadow-sm"
+              className="px-4 py-2 text-xs font-bold text-themeTextSecondary rounded-xl bg-white/60 dark:bg-slate-900/60 border border-themeBorder hover:border-themeAccent/30 hover:text-themeText transition duration-300 shadow-sm"
             >
               RESUME
             </button>
@@ -204,7 +204,7 @@ export default function Navbar({ theme, toggleTheme }) {
 
         {/* Drawer container */}
         <div
-          className={`absolute top-24 left-4 right-4 rounded-2xl bg-themeCard/95 border border-themeBorder p-6 shadow-2xl backdrop-blur-md transition-all duration-300 ${
+          className={`absolute top-24 left-4 right-4 rounded-2xl bg-white/95 dark:bg-slate-900/95 border border-themeBorder p-6 shadow-2xl backdrop-blur-md transition-all duration-300 ${
             menuOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
           }`}
         >
@@ -220,7 +220,7 @@ export default function Navbar({ theme, toggleTheme }) {
                 className={`px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition ${
                   active === link.href
                     ? "text-themeAccent bg-themeAccent/10"
-                    : "text-themeTextMuted hover:text-themeText"
+                    : "text-themeTextSecondary hover:text-themeText"
                 }`}
               >
                 {link.label}
@@ -253,7 +253,7 @@ export default function Navbar({ theme, toggleTheme }) {
             <div className="mt-6 flex justify-end gap-3">
               <button
                 onClick={() => setShowModal(false)}
-                className="px-4 py-2 text-xs font-bold rounded-xl text-themeTextMuted bg-themeBg hover:bg-themeCard/80 transition"
+                className="px-4 py-2 text-xs font-bold rounded-xl text-themeTextMuted bg-themeBg hover:bg-themeCardHover transition"
               >
                 Cancel
               </button>

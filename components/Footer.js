@@ -60,7 +60,20 @@ export default function Footer() {
               </svg>
             </a>
             <a
+              href="https://www.facebook.com/clik00"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="w-8 h-8 rounded-lg bg-themeCard border border-themeBorder flex items-center justify-center text-themeTextMuted hover:text-themeAccent hover:border-themeAccent/20 hover:bg-themeCardHover transition-all shadow-sm"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 8H7v3h2v9h4v-9h3.6l.4-3H13V6c0-.5.5-1 1-1h2V1h-3c-3 0-5 2-5 5v2z" />
+              </svg>
+            </a>
+            <a
               href="mailto:babulhossan.info@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Email"
               className="w-8 h-8 rounded-lg bg-themeCard border border-themeBorder flex items-center justify-center text-themeTextMuted hover:text-themeAccent hover:border-themeAccent/20 hover:bg-themeCardHover transition-all shadow-sm"
             >

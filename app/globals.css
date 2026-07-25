@@ -1,11 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .signature-logo {
-  font-family: 'Caveat', cursive;
+  font-family: var(--font-caveat), cursive;
 }
 
 :root {
@@ -14,7 +12,7 @@
   --bg-tertiary: #f1f5f9;      /* Slate-100 hover */
   --text-primary: #0f172a;     /* Slate-900 */
   --text-secondary: #475569;   /* Slate-600 */
-  --text-muted: #64748b;       /* Slate-500 */
+  --text-muted: #57687d;       /* Slate-600 for WCAG AA contrast */
   --accent: #059669;           /* Emerald-600 */
   --accent-hover: #047857;     /* Emerald-700 */
   --accent-text: #ffffff;      /* White text on dark green */
@@ -37,7 +35,7 @@
   --bg-tertiary: #1e293b;      /* Solid Slate-800 hover */
   --text-primary: #e2e8f0;     /* Slate-200 */
   --text-secondary: #94a3b8;   /* Slate-400 */
-  --text-muted: #64748b;       /* Slate-500 */
+  --text-muted: #94a3b8;       /* Slate-400 for WCAG AA contrast */
   --accent: #10b981;           /* Emerald-500 */
   --accent-hover: #34d399;     /* Emerald-400 */
   --accent-text: #090c0f;      /* Black/Dark Slate text on emerald accent */

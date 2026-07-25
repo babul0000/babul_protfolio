@@ -54,7 +54,7 @@ export default function Hero() {
 
               {/* Description */}
               <p className="text-themeTextMuted text-sm md:text-base max-w-xl font-normal leading-relaxed">
-                I am a Software Engineer specializing in full-stack MERN development (Next.js, React, Node.js, MongoDB) with 8+ years of technical operations and cross-functional coordination experience.
+                I am a Software Engineer specializing in full-stack MERN development (Next.js, React, Node.js, MongoDB). I blend my background in technical operations and cross-functional coordination to build high-performance, responsive, and scalable web solutions.
               </p>
             </div>
 
@@ -139,6 +139,51 @@ export default function Hero() {
                     <circle cx="4" cy="4" r="2"></circle>
                   </svg>
                 </a>
+
+                <a
+                  href="https://www.facebook.com/clik00"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-11 h-11 rounded-xl border border-themeBorder flex items-center justify-center bg-themeCard/60 hover:border-themeAccent/30 transition-all text-themeTextMuted hover:text-themeAccent shadow-sm"
+                  title="Facebook"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                  </svg>
+                </a>
+
+                <a
+                  href="mailto:babulhossan.info@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-11 h-11 rounded-xl border border-themeBorder flex items-center justify-center bg-themeCard/60 hover:border-themeAccent/30 transition-all text-themeTextMuted hover:text-themeAccent shadow-sm"
+                  title="Email"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
@@ -162,7 +207,7 @@ export default function Hero() {
                 />
                 <div className="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/85 via-black/40 to-transparent">
                   <div>
-                    <h3 className="text-xl font-bold tracking-wide text-white">Babul Hossan</h3>
+                    <span className="text-xl font-bold tracking-wide text-white block">Babul Hossan</span>
                     <p className="text-themeAccent font-mono text-[10px] tracking-widest uppercase mt-1 font-bold">
                       Mern-Stack Developer
                     </p>
@@ -170,18 +215,35 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* JS Tech Tag overlay */}
-              <div className="absolute -right-6 top-16 z-20 px-4 py-2.5 bg-themeCard/90 backdrop-blur-md border border-themeBorder rounded-2xl shadow-xl hidden md:block">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-themeAccent to-cyan-500 flex items-center justify-center text-white font-black text-xs">
+              {/* JS Tech Tag overlay (Right) */}
+              <div className="absolute -right-6 top-16 z-20 px-4 py-2 backdrop-blur-sm bg-white/5 dark:bg-black/40 border border-themeAccent/20 rounded-2xl shadow-xl hidden md:block transition-all hover:scale-105 duration-300">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-lg bg-themeAccent/20 border border-themeAccent/30 flex items-center justify-center text-themeAccent font-black text-xs">
                     JS
                   </div>
                   <div>
                     <p className="text-[8px] text-themeTextMuted font-bold uppercase tracking-wider leading-none">
                       Main Stack
                     </p>
-                    <p className="text-xs font-semibold text-themeText leading-none mt-1">
+                    <p className="text-[10px] font-semibold text-themeText leading-none mt-1">
                       Modern Web
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* MERN Stack overlay (Left) */}
+              <div className="absolute -left-8 bottom-20 z-20 px-4 py-2 backdrop-blur-sm bg-white/5 dark:bg-black/40 border border-emerald-500/20 rounded-2xl shadow-xl hidden md:block transition-all hover:scale-105 duration-300">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-xs">
+                    M
+                  </div>
+                  <div>
+                    <p className="text-[8px] text-themeTextMuted font-bold uppercase tracking-wider leading-none">
+                      Expertise
+                    </p>
+                    <p className="text-[10px] font-semibold text-themeText leading-none mt-1">
+                      MERN Stack
                     </p>
                   </div>
                 </div>
