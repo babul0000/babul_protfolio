@@ -93,12 +93,3 @@ This project is deployed directly using **Vercel CLI**:
    ```bash
    vercel --prod
    ```
-
-### GitHub Deployment
-
-The repository is hosted at [https://github.com/babul0000/babul_protfolio.git](https://github.com/babul0000/babul_protfolio.git). Pushing to the main branch will keep your source code updated:
-```bash
-git add .
-git commit -m "commit message"
-git push origin main
-```
