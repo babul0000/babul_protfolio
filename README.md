@@ -93,3 +93,9 @@ This project is deployed directly using **Vercel CLI**:
    ```bash
    vercel --prod
    ```
+
+---
+
+## 📅 Changelog & Updates
+
+- **July 27, 2026**: Updated the official developer resume (`public/resume.pdf`) with the latest career experiences and skills.
