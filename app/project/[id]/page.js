@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { projects } from "../../../components/projectsData";
+import { Star, AlertTriangle, Rocket } from "lucide-react";
 
 export default function ProjectDetails() {
   const params = useParams();
@@ -227,7 +228,7 @@ export default function ProjectDetails() {
             {/* Key Features List */}
             <div className="p-6 bg-themeCard border border-themeBorder rounded-3xl shadow-sm space-y-4">
               <h3 className="text-sm font-bold text-themeText uppercase tracking-wider flex items-center gap-2">
-                ⭐ Key Features
+                <Star className="w-4 h-4 text-amber-500 fill-amber-500" /> Key Features
               </h3>
               <ul className="list-disc pl-4 text-xs text-themeTextSecondary space-y-2.5 font-normal leading-relaxed">
                 {project.features.map((feature, fIdx) => (
@@ -241,7 +242,7 @@ export default function ProjectDetails() {
             {/* Challenges Faced Section */}
             <div className="p-6 bg-amber-500/5 border border-amber-500/20 dark:border-amber-500/10 rounded-3xl shadow-sm space-y-3">
               <h3 className="text-sm font-bold text-amber-500 dark:text-amber-400 uppercase tracking-wider flex items-center gap-2">
-                ⚠️ Challenges Faced
+                <AlertTriangle className="w-4 h-4 text-amber-500" /> Challenges Faced
               </h3>
               <p className="text-xs text-themeTextSecondary leading-relaxed font-normal">
                 {project.challenges}
@@ -251,7 +252,7 @@ export default function ProjectDetails() {
             {/* Future Plans Section */}
             <div className="p-6 bg-themeAccent/5 border border-themeAccent/20 dark:border-themeAccent/10 rounded-3xl shadow-sm space-y-3">
               <h3 className="text-sm font-bold text-themeAccent uppercase tracking-wider flex items-center gap-2">
-                🚀 Future Plans
+                <Rocket className="w-4 h-4 text-themeAccent" /> Future Plans
               </h3>
               <p className="text-xs text-themeTextSecondary leading-relaxed font-normal">
                 {project.futurePlans}

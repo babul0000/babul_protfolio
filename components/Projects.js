@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useScrollReveal } from "./useScrollReveal";
 import { projects } from "./projectsData";
+import { ExternalLink, Code2 } from "lucide-react";
 
 export default function Projects() {
   const ref = useScrollReveal();
@@ -131,7 +132,7 @@ export default function Projects() {
                       className="flex items-center justify-center gap-1.5 py-2 rounded-xl border border-themeBorder text-themeTextSecondary hover:text-white bg-themeCardHover/40 hover:bg-themeAccent hover:border-themeAccent text-[10px] font-bold transition-all shadow-sm uppercase tracking-wide"
                     >
                       <span>Live Demo</span>
-                      <span>🚀</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                     <a
                       href={project.github}
@@ -140,7 +141,7 @@ export default function Projects() {
                       className="flex items-center justify-center gap-1.5 py-2 rounded-xl border border-themeBorder text-themeTextSecondary hover:text-themeText hover:border-themeTextMuted bg-themeCardHover/40 hover:bg-themeCard text-[10px] font-bold transition-all shadow-sm uppercase tracking-wide"
                     >
                       <span>GitHub</span>
-                      <span>🔗</span>
+                      <Code2 className="w-3.5 h-3.5" />
                     </a>
                   </div>
 

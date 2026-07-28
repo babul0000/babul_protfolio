@@ -1,11 +1,12 @@
 "use client";
 import { useState } from "react";
 import { useScrollReveal } from "./useScrollReveal";
+import { Monitor, Settings, Wrench } from "lucide-react";
 
 const skillGroups = [
   {
     category: "Frontend",
-    icon: "💻",
+    icon: Monitor,
     skills: [
       {
         name: "TypeScript",
@@ -74,7 +75,7 @@ const skillGroups = [
   },
   {
     category: "Backend & DB",
-    icon: "⚙️",
+    icon: Settings,
     skills: [
       {
         name: "Node.js",
@@ -115,7 +116,7 @@ const skillGroups = [
   },
   {
     category: "Auth & Tools",
-    icon: "🛠️",
+    icon: Wrench,
     skills: [
       {
         name: "Better Auth & JWT",
@@ -199,7 +200,12 @@ export default function Skills() {
                   : "bg-themeCard border border-themeBorder hover:border-themeAccent/30 text-themeTextMuted hover:text-themeText"
               }`}
             >
-              <span>{group.icon}</span>
+              <span>
+                {(() => {
+                  const CategoryIcon = group.icon;
+                  return <CategoryIcon className="w-4 h-4" />;
+                })()}
+              </span>
               {group.category}
             </button>
           ))}
@@ -209,8 +215,11 @@ export default function Skills() {
         <div className="max-w-3xl mx-auto reveal" style={{ transitionDelay: "0.2s" }}>
           <div className="bg-themeCard border border-themeBorder rounded-3xl p-6 md:p-8 shadow-md">
             <h3 className="text-sm font-bold text-themeText mb-6 flex items-center gap-2 uppercase tracking-wider">
-              <span className="p-1.5 bg-themeAccent/10 border border-themeAccent/20 rounded-lg text-sm shrink-0">
-                {activeGroup?.icon}
+              <span className="p-1.5 bg-themeAccent/10 border border-themeAccent/20 rounded-lg shrink-0 flex items-center justify-center">
+                {activeGroup && (() => {
+                  const CategoryIcon = activeGroup.icon;
+                  return <CategoryIcon className="w-4 h-4 text-themeAccent" />;
+                })()}
               </span>
               {activeGroup?.category} Technologies
             </h3>

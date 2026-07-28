@@ -1,10 +1,11 @@
 "use client";
 import { useScrollReveal } from "./useScrollReveal";
+import { Brain, Layers, Zap, Rocket } from "lucide-react";
 
 const steps = [
   {
     num: "01",
-    emoji: "🧠",
+    icon: Brain,
     title: "Research",
     desc: "Understand the problem deeply, analyze requirements, and identify user needs before starting any solution.",
     color: "#6366f1",
@@ -12,7 +13,7 @@ const steps = [
   },
   {
     num: "02",
-    emoji: "🏗️",
+    icon: Layers,
     title: "Architect",
     desc: "Plan system structure, database schema, components, and overall application architecture for scalability.",
     color: "#a855f7",
@@ -20,7 +21,7 @@ const steps = [
   },
   {
     num: "03",
-    emoji: "⚡",
+    icon: Zap,
     title: "Develop",
     desc: "Build clean, reusable, and scalable code using modern frameworks and best practices.",
     color: "#06b6d4",
@@ -28,7 +29,7 @@ const steps = [
   },
   {
     num: "04",
-    emoji: "🚀",
+    icon: Rocket,
     title: "Optimize",
     desc: "Improve performance, fix issues, and ensure the application is fast, stable, and production-ready.",
     color: "#10b981",
@@ -89,13 +90,16 @@ export default function Workflow() {
               {/* Card Content */}
               <div className="relative z-10 flex flex-col gap-4">
                 <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl border transition-all duration-300 shadow-sm"
+                  className="w-14 h-14 rounded-2xl flex items-center justify-center border transition-all duration-300 shadow-sm"
                   style={{
                     background: `${step.color}15`,
                     borderColor: `${step.color}30`
                   }}
                 >
-                  {step.emoji}
+                  {(() => {
+                    const StepIcon = step.icon;
+                    return <StepIcon className="w-6 h-6" style={{ color: step.color }} />;
+                  })()}
                 </div>
                 <div>
                   <span className="text-[10px] font-mono font-bold uppercase tracking-widest" style={{ color: step.color }}>
