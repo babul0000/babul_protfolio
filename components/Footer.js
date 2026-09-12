@@ -3,6 +3,10 @@
 export default function Footer() {
   const year = new Date().getFullYear();
 
+  const handleOpenCommandPalette = () => {
+    window.dispatchEvent(new CustomEvent("open-command-palette"));
+  };
+
   return (
     <footer className="bg-themeBg border-t border-themeBorder py-12 text-themeText font-sans antialiased">
       <div className="max-w-7xl mx-auto px-6">
@@ -16,12 +20,14 @@ export default function Footer() {
           </div>
 
           {/* Links */}
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-5">
             {[
               { label: "Home", href: "#home" },
               { label: "Skills", href: "#skills" },
               { label: "Projects", href: "#projects" },
+              { label: "GitHub", href: "#github" },
               { label: "Journey", href: "#experience" },
+              { label: "Awards", href: "#certificates" },
               { label: "About", href: "#about" },
               { label: "Contact", href: "#contact" }
             ].map((link) => (
@@ -33,10 +39,16 @@ export default function Footer() {
                 {link.label}
               </a>
             ))}
+            <button
+              onClick={handleOpenCommandPalette}
+              className="text-xs font-semibold uppercase tracking-wider text-themeAccent hover:text-themeAccentHover transition-colors"
+            >
+              Ctrl+K Search
+            </button>
           </div>
 
-          {/* Social Socials */}
-          <div className="flex items-center gap-4">
+          {/* Social Icons */}
+          <div className="flex items-center gap-3">
             <a
               href="https://github.com/babul0000"
               target="_blank"

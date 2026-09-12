@@ -2,11 +2,35 @@
 import { useState } from "react";
 import { useScrollReveal } from "./useScrollReveal";
 import { toast } from "sonner";
+import { Mail, Phone, MessageSquare, Copy, Check, Send, ExternalLink } from "lucide-react";
 
 export default function Contact() {
   const ref = useScrollReveal();
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState("idle"); // idle, sending, sent
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
+
+  const emailAddress = "babulhossan.info@gmail.com";
+  const phoneNumber = "01952860053";
+
+  const handleCopyEmail = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText(emailAddress);
+    setCopiedEmail(true);
+    toast.success("Email copied to clipboard!");
+    setTimeout(() => setCopiedEmail(false), 2000);
+  };
+
+  const handleCopyPhone = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText(phoneNumber);
+    setCopiedPhone(true);
+    toast.success("Phone number copied to clipboard!");
+    setTimeout(() => setCopiedPhone(false), 2000);
+  };
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -65,125 +89,95 @@ export default function Contact() {
             </div>
             
             <p className="text-themeTextMuted text-sm md:text-base leading-relaxed max-w-md font-normal">
-              Have a project or idea? I’m ready to help you build it. Fill out the form or reach out via email or LinkedIn.
+              Have a project or opportunity? I’m ready to collaborate and engineer scalable solutions. Reach out via email, phone, or the contact form.
             </p>
 
             {/* Availability Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-400 w-fit uppercase tracking-wider">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-badge" />
-              Available for Work
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-bold text-emerald-400 w-fit uppercase tracking-wider">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 pulse-badge" />
+              Available for Full-time &amp; Freelance
             </div>
 
             {/* Email, Phone, and WhatsApp contact blocks */}
-            <div className="space-y-3 pt-4">
-              <a
-                href="mailto:babulhossan.info@gmail.com"
-                className="flex items-center gap-4 p-4 rounded-3xl border border-themeBorder bg-themeCard hover:border-themeAccent/20 hover:shadow-md transition-all duration-300 group"
-              >
-                <div className="w-10 h-10 rounded-xl bg-themeAccent/10 border border-themeAccent/20 flex items-center justify-center flex-shrink-0 group-hover:bg-themeAccent group-hover:text-white transition-all duration-300">
-                  <svg
-                    className="w-5 h-5 text-themeAccent group-hover:text-white transition-colors"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-[10px] text-themeTextMuted font-bold uppercase tracking-wider mb-0.5">Email</div>
-                  <div className="text-sm font-semibold text-themeTextSecondary">
-                    babulhossan.info@gmail.com
-                  </div>
-                </div>
-                <svg
-                  className="w-4 h-4 text-themeTextMuted ml-auto group-hover:text-themeAccent transition-colors"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2.5}
+            <div className="space-y-3 pt-2">
+              
+              {/* Email Card */}
+              <div className="flex items-center justify-between p-4 rounded-3xl border border-themeBorder bg-themeCard hover:border-themeAccent/30 hover:shadow-md transition-all duration-300 group">
+                <a
+                  href={`mailto:${emailAddress}`}
+                  className="flex items-center gap-4 flex-grow min-w-0"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
-
-              <a
-                href="tel:01952860053"
-                className="flex items-center gap-4 p-4 rounded-3xl border border-themeBorder bg-themeCard hover:border-themeAccent/20 hover:shadow-md transition-all duration-300 group"
-              >
-                <div className="w-10 h-10 rounded-xl bg-themeAccent/10 border border-themeAccent/20 flex items-center justify-center flex-shrink-0 group-hover:bg-themeAccent group-hover:text-white transition-all duration-300">
-                  <svg
-                    className="w-5 h-5 text-themeAccent group-hover:text-white transition-colors"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-[10px] text-themeTextMuted font-bold uppercase tracking-wider mb-0.5">Phone</div>
-                  <div className="text-sm font-semibold text-themeTextSecondary">
-                    01952860053
+                  <div className="w-10 h-10 rounded-xl bg-themeAccent/10 border border-themeAccent/20 flex items-center justify-center flex-shrink-0 group-hover:bg-themeAccent group-hover:text-white transition-all duration-300 text-themeAccent">
+                    <Mail className="w-5 h-5" />
                   </div>
-                </div>
-                <svg
-                  className="w-4 h-4 text-themeTextMuted ml-auto group-hover:text-themeAccent transition-colors"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2.5}
+                  <div className="min-w-0 truncate">
+                    <div className="text-[10px] text-themeTextMuted font-bold uppercase tracking-wider mb-0.5">Email (Click to Send)</div>
+                    <div className="text-xs sm:text-sm font-semibold text-themeTextSecondary truncate group-hover:text-themeAccent transition-colors">
+                      {emailAddress}
+                    </div>
+                  </div>
+                </a>
+                <button
+                  onClick={handleCopyEmail}
+                  title="Copy email to clipboard"
+                  className="p-2.5 rounded-xl border border-themeBorder bg-themeBg hover:border-themeAccent/40 hover:text-themeAccent transition-all shrink-0 ml-2 text-themeTextMuted"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
+                  {copiedEmail ? (
+                    <Check className="w-4 h-4 text-emerald-500" />
+                  ) : (
+                    <Copy className="w-4 h-4" />
+                  )}
+                </button>
+              </div>
 
+              {/* Phone Card */}
+              <div className="flex items-center justify-between p-4 rounded-3xl border border-themeBorder bg-themeCard hover:border-themeAccent/30 hover:shadow-md transition-all duration-300 group">
+                <a
+                  href={`tel:${phoneNumber}`}
+                  className="flex items-center gap-4 flex-grow min-w-0"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-themeAccent/10 border border-themeAccent/20 flex items-center justify-center flex-shrink-0 group-hover:bg-themeAccent group-hover:text-white transition-all duration-300 text-themeAccent">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div className="min-w-0 truncate">
+                    <div className="text-[10px] text-themeTextMuted font-bold uppercase tracking-wider mb-0.5">Phone (Click to Call)</div>
+                    <div className="text-xs sm:text-sm font-semibold text-themeTextSecondary truncate group-hover:text-themeAccent transition-colors">
+                      +880 1952-860053
+                    </div>
+                  </div>
+                </a>
+                <button
+                  onClick={handleCopyPhone}
+                  title="Copy phone number to clipboard"
+                  className="p-2.5 rounded-xl border border-themeBorder bg-themeBg hover:border-themeAccent/40 hover:text-themeAccent transition-all shrink-0 ml-2 text-themeTextMuted"
+                >
+                  {copiedPhone ? (
+                    <Check className="w-4 h-4 text-emerald-500" />
+                  ) : (
+                    <Copy className="w-4 h-4" />
+                  )}
+                </button>
+              </div>
+
+              {/* WhatsApp Card */}
               <a
                 href="https://wa.me/8801952860053"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-3xl border border-themeBorder bg-themeCard hover:border-themeAccent/20 hover:shadow-md transition-all duration-300 group"
+                className="flex items-center justify-between p-4 rounded-3xl border border-themeBorder bg-themeCard hover:border-emerald-500/30 hover:shadow-md transition-all duration-300 group"
               >
-                <div className="w-10 h-10 rounded-xl bg-themeAccent/10 border border-themeAccent/20 flex items-center justify-center flex-shrink-0 group-hover:bg-themeAccent group-hover:text-white transition-all duration-300">
-                  <svg
-                    className="w-5 h-5 text-themeAccent group-hover:text-white transition-colors"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-[10px] text-themeTextMuted font-bold uppercase tracking-wider mb-0.5">WhatsApp</div>
-                  <div className="text-sm font-semibold text-themeTextSecondary">
-                    +880 1952-860053
+                <div className="flex items-center gap-4 min-w-0">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300 text-emerald-400">
+                    <MessageSquare className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] text-themeTextMuted font-bold uppercase tracking-wider mb-0.5">WhatsApp Direct Chat</div>
+                    <div className="text-xs sm:text-sm font-semibold text-themeTextSecondary group-hover:text-emerald-400 transition-colors">
+                      +880 1952-860053
+                    </div>
                   </div>
                 </div>
-                <svg
-                  className="w-4 h-4 text-themeTextMuted ml-auto group-hover:text-themeAccent transition-colors"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2.5}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
+                <ExternalLink className="w-4 h-4 text-themeTextMuted group-hover:text-emerald-400 transition-colors shrink-0 mr-1" />
               </a>
 
               {/* Social icons */}
@@ -195,17 +189,7 @@ export default function Contact() {
                   className="w-10 h-10 rounded-xl border border-themeBorder flex items-center justify-center bg-themeCard hover:border-themeAccent/20 hover:text-themeAccent transition-colors text-themeTextMuted shadow-sm"
                   aria-label="GitHub"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
                     <path d="M9 18c-4.51 2-5-2-7-2"></path>
                   </svg>
@@ -217,17 +201,7 @@ export default function Contact() {
                   className="w-10 h-10 rounded-xl border border-themeBorder flex items-center justify-center bg-themeCard hover:border-themeAccent/20 hover:text-themeAccent transition-colors text-themeTextMuted shadow-sm"
                   aria-label="LinkedIn"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                     <rect width="4" height="12" x="2" y="9"></rect>
                     <circle cx="4" cy="4" r="2"></circle>
@@ -240,42 +214,19 @@ export default function Contact() {
                   className="w-10 h-10 rounded-xl border border-themeBorder flex items-center justify-center bg-themeCard hover:border-themeAccent/20 hover:text-themeAccent transition-colors text-themeTextMuted shadow-sm"
                   aria-label="Facebook"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                   </svg>
                 </a>
                 <a
-                  href="mailto:babulhossan.info@gmail.com"
+                  href={`mailto:${emailAddress}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-xl border border-themeBorder flex items-center justify-center bg-themeCard hover:border-themeAccent/20 hover:text-themeAccent transition-colors text-themeTextMuted shadow-sm"
                   aria-label="Email"
                   title="Email"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
-                  </svg>
+                  <Mail className="w-4 h-4" />
                 </a>
               </div>
             </div>
@@ -287,15 +238,7 @@ export default function Contact() {
               {status === "sent" ? (
                 <div className="flex flex-col items-center justify-center py-12 gap-4">
                   <div className="w-16 h-16 rounded-full bg-themeAccent/10 border border-themeAccent/20 flex items-center justify-center">
-                    <svg
-                      className="w-8 h-8 text-themeAccent"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
+                    <Check className="w-8 h-8 text-themeAccent" />
                   </div>
                   <div className="text-center">
                     <h3 className="text-lg font-bold text-themeText mb-1">Message sent!</h3>
@@ -357,7 +300,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-themeAccent hover:bg-themeAccentHover text-themeAccentText font-medium text-sm tracking-wide transition duration-300 disabled:opacity-60 disabled:cursor-not-allowed shadow-sm"
+                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-themeAccent hover:bg-themeAccentHover text-themeAccentText font-bold text-sm tracking-wide transition duration-300 disabled:opacity-60 disabled:cursor-not-allowed shadow-sm uppercase"
                   >
                     {status === "sending" ? (
                       <>
@@ -369,21 +312,8 @@ export default function Contact() {
                       </>
                     ) : (
                       <>
-                        Send Message
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="14"
-                          height="14"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <line x1="22" y1="2" x2="11" y2="13"></line>
-                          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                        </svg>
+                        <span>Send Message</span>
+                        <Send className="w-4 h-4" />
                       </>
                     )}
                   </button>

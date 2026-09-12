@@ -13,8 +13,19 @@ const caveat = Caveat({
 export const metadata = {
   title: "Babul Hossan — Full Stack Developer",
   description:
-    "Building smart & scalable web solutions. Full-stack developer specializing in React, Next.js, and modern web technologies.",
-  keywords: ["developer", "portfolio", "full stack developer", "react", "next.js", "web development", "MERN stack", "Node.js"],
+    "Building smart & scalable web solutions. Full-stack developer specializing in React, Next.js, TypeScript, and modern web technologies.",
+  keywords: [
+    "developer",
+    "portfolio",
+    "full stack developer",
+    "react",
+    "next.js",
+    "web development",
+    "MERN stack",
+    "Node.js",
+    "TypeScript",
+    "Bangladesh developer"
+  ],
   authors: [{ name: "Babul Hossan" }],
   creator: "Babul Hossan",
   metadataBase: new URL("https://babul-portfolio.vercel.app"),
@@ -50,9 +61,59 @@ export const metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://babul-portfolio.vercel.app/#person",
+      "name": "Babul Hossan",
+      "jobTitle": "Full Stack Software Engineer",
+      "url": "https://babul-portfolio.vercel.app",
+      "sameAs": [
+        "https://github.com/babul0000",
+        "https://www.linkedin.com/in/babul-hossan-09932837a/",
+        "https://www.facebook.com/clik00"
+      ],
+      "knowsAbout": [
+        "React",
+        "Next.js",
+        "Node.js",
+        "MongoDB",
+        "TypeScript",
+        "Express.js",
+        "Tailwind CSS",
+        "Full Stack Web Development"
+      ],
+      "image": "https://babul-portfolio.vercel.app/my.webp",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Dhaka",
+        "addressCountry": "Bangladesh"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://babul-portfolio.vercel.app/#website",
+      "url": "https://babul-portfolio.vercel.app",
+      "name": "Babul Hossan — Full Stack Developer Portfolio",
+      "description": "Building smart & scalable web solutions. Full-stack developer specializing in React, Next.js, and modern web technologies.",
+      "publisher": {
+        "@id": "https://babul-portfolio.vercel.app/#person"
+      }
+    }
+  ]
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`scroll-smooth ${caveat.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="font-sans antialiased text-themeText bg-themeBg">
         <Script id="microsoft-clarity" strategy="lazyOnload">
           {`
@@ -69,4 +130,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-

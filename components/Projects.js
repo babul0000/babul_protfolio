@@ -1,12 +1,26 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useScrollReveal } from "./useScrollReveal";
 import { projects } from "./projectsData";
-import { ExternalLink, Code2 } from "lucide-react";
+import { ExternalLink, Code2, Layers, Sparkles } from "lucide-react";
+
+const categories = [
+  { id: "all", label: "All Works" },
+  { id: "fullstack", label: "Full-Stack MERN" },
+  { id: "frontend", label: "Frontend & UI" },
+  { id: "typescript", label: "TypeScript" }
+];
 
 export default function Projects() {
   const ref = useScrollReveal();
+  const [activeFilter, setActiveFilter] = useState("all");
+
+  const filteredProjects = projects.filter((project) => {
+    if (activeFilter === "all") return true;
+    return project.category && project.category.includes(activeFilter);
+  });
 
   return (
     <section id="projects" className="section-padding bg-themeBg border-b border-themeBorder relative" ref={ref}>
@@ -17,7 +31,7 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 reveal">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 reveal">
           <div>
             <div className="inline-flex items-center gap-2 mb-4">
               <div className="w-1.5 h-4 rounded-full bg-themeAccent" />
@@ -30,13 +44,43 @@ export default function Projects() {
             </h2>
           </div>
           <p className="text-themeTextMuted text-sm max-w-xs font-normal">
-            Real-world applications built with clean code and verified user workflows.
+            Real-world applications built with clean code, scalable architecture, and verified user workflows.
           </p>
+        </div>
+
+        {/* Filter Category Tabs */}
+        <div className="flex flex-wrap items-center gap-2.5 mb-10 reveal">
+          {categories.map((cat) => {
+            const count = cat.id === "all" 
+              ? projects.length 
+              : projects.filter(p => p.category?.includes(cat.id)).length;
+
+            const isActive = activeFilter === cat.id;
+
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setActiveFilter(cat.id)}
+                className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 flex items-center gap-2 shadow-sm ${
+                  isActive
+                    ? "bg-themeAccent text-themeAccentText shadow-themeAccent/10"
+                    : "bg-themeCard border border-themeBorder text-themeTextMuted hover:text-themeText hover:border-themeAccent/30"
+                }`}
+              >
+                <span>{cat.label}</span>
+                <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
+                  isActive ? "bg-white/20 text-white" : "bg-themeCardHover text-themeTextMuted"
+                }`}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {/* Project Cards Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, idx) => (
+          {filteredProjects.map((project, idx) => (
             <div
               key={project.name}
               className="h-full bg-themeCard rounded-3xl border border-themeBorder overflow-hidden group transition-all duration-500 hover:border-themeAccent/20 flex flex-col justify-between reveal"
@@ -68,21 +112,21 @@ export default function Projects() {
                     className="object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
                   />
                 
-                {/* Overlay layer */}
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500" />
-                
-                {/* Glow highlights */}
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
-                  style={{
-                    background: `radial-gradient(ellipse at center, ${project.glow} 0%, transparent 70%)`
-                  }}
-                />
+                  {/* Overlay layer */}
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500" />
+                  
+                  {/* Glow highlights */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
+                    style={{
+                      background: `radial-gradient(ellipse at center, ${project.glow} 0%, transparent 70%)`
+                    }}
+                  />
+                </div>
               </div>
-            </div>
 
-            {/* Card Body */}
-            <div className="p-6 flex flex-col gap-4 flex-grow justify-between">
+              {/* Card Body */}
+              <div className="p-6 flex flex-col gap-4 flex-grow justify-between">
                 <div className="space-y-2">
                   <div className="flex items-start justify-between">
                     <h3 className="text-themeText font-bold text-base leading-tight group-hover:text-themeAccent transition-colors">

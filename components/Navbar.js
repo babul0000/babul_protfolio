@@ -1,11 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
+import { Search } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Journey", href: "#experience" },
+  { label: "Awards", href: "#certificates" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" }
 ];
@@ -39,7 +41,6 @@ export default function Navbar({ theme, toggleTheme }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
   const handleClick = (href) => {
     setActive(href);
     setMenuOpen(false);
@@ -47,6 +48,10 @@ export default function Navbar({ theme, toggleTheme }) {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const handleOpenCommandPalette = () => {
+    window.dispatchEvent(new CustomEvent("open-command-palette"));
   };
 
   const handleConfirmDownload = () => {
@@ -73,7 +78,7 @@ export default function Navbar({ theme, toggleTheme }) {
           </a>
 
           {/* DESKTOP NAV PILL */}
-          <div className="hidden md:flex items-center gap-1.5 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-themeBorder shadow-md">
+          <div className="hidden md:flex items-center gap-1 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-themeBorder shadow-md">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -82,8 +87,8 @@ export default function Navbar({ theme, toggleTheme }) {
                   e.preventDefault();
                   handleClick(link.href);
                 }}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${active === link.href
-                    ? "bg-themeAccent text-themeAccentText shadow-md shadow-themeAccent/10"
+                className={`px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${active === link.href
+                    ? "bg-themeAccent text-themeAccentText shadow-md shadow-themeAccent/10 font-bold"
                     : "text-themeTextSecondary hover:text-themeText"
                   }`}
               >
@@ -93,7 +98,17 @@ export default function Navbar({ theme, toggleTheme }) {
           </div>
 
           {/* ACTIONS */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
+            {/* Quick Search Button */}
+            <button
+              onClick={handleOpenCommandPalette}
+              className="p-2.5 text-themeTextSecondary hover:text-themeAccent bg-white/60 dark:bg-slate-900/60 border border-themeBorder hover:border-themeAccent/30 rounded-xl transition duration-300 shadow-sm flex items-center justify-center group"
+              aria-label="Open Command Search (Ctrl+K)"
+              title="Search (Ctrl+K)"
+            >
+              <Search className="w-4 h-4 group-hover:scale-110 transition-transform" />
+            </button>
+
             {/* Theme Switcher */}
             <button
               onClick={toggleTheme}
@@ -141,14 +156,14 @@ export default function Navbar({ theme, toggleTheme }) {
 
             <a
               href="mailto:babulhossan.info@gmail.com"
-              className="hidden md:flex px-5 py-2.5 rounded-full bg-themeAccent hover:bg-themeAccentHover text-themeAccentText font-bold tracking-wide transition duration-300 text-xs shadow-md shadow-themeAccent/10 hover:scale-[1.02]"
+              className="hidden md:flex px-4 py-2.5 rounded-full bg-themeAccent hover:bg-themeAccentHover text-themeAccentText font-bold tracking-wide transition duration-300 text-xs shadow-md shadow-themeAccent/10 hover:scale-[1.02]"
             >
               HIRE ME
             </a>
 
             <button
               onClick={() => setShowModal(true)}
-              className="px-4 py-2 text-xs font-bold text-themeTextSecondary rounded-xl bg-white/60 dark:bg-slate-900/60 border border-themeBorder hover:border-themeAccent/30 hover:text-themeText transition duration-300 shadow-sm"
+              className="px-3.5 py-2 text-xs font-bold text-themeTextSecondary rounded-xl bg-white/60 dark:bg-slate-900/60 border border-themeBorder hover:border-themeAccent/30 hover:text-themeText transition duration-300 shadow-sm uppercase"
             >
               RESUME
             </button>
@@ -205,6 +220,19 @@ export default function Navbar({ theme, toggleTheme }) {
             }`}
         >
           <div className="flex flex-col gap-2">
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                handleOpenCommandPalette();
+              }}
+              className="px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-left bg-themeCard border border-themeBorder text-themeAccent flex items-center justify-between"
+            >
+              <span>Search &amp; Commands</span>
+              <kbd className="px-2 py-0.5 rounded bg-themeBg border border-themeBorder text-[10px] font-mono">
+                Ctrl+K
+              </kbd>
+            </button>
+
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -214,7 +242,7 @@ export default function Navbar({ theme, toggleTheme }) {
                   handleClick(link.href);
                 }}
                 className={`px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition ${active === link.href
-                    ? "text-themeAccent bg-themeAccent/10"
+                    ? "text-themeAccent bg-themeAccent/10 font-black"
                     : "text-themeTextSecondary hover:text-themeText"
                   }`}
               >
