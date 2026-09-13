@@ -75,14 +75,12 @@ export default function Home() {
         
         <main>
           <Hero />
-          <Ecosystem />
-          <BentoSpecialties />
           <Projects />
-          <Skills />
-          <GithubActivity />
-          <Experience />
-          <Certificates />
           <About />
+          <Experience />
+          <Skills />
+          <Certificates />
+          <GithubActivity />
           <Contact />
         </main>
 

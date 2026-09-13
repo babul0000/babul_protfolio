@@ -1,8 +1,9 @@
 "use client";
-import React, { useState, FormEvent, ChangeEvent, MouseEvent } from "react";
+import React, { useState, FormEvent, ChangeEvent } from "react";
+import Image from "next/image";
 import { toast } from "sonner";
-import { Mail, MessageSquare, Copy, Check, Send, ArrowUpRight } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "./Icons";
+import { Mail, MessageSquare, Send, Check, FileText, ChevronDown, ChevronUp } from "lucide-react";
+import { GithubIcon, LinkedinIcon, WhatsAppIcon } from "./Icons";
 
 interface FormDataState {
   name: string;
@@ -12,21 +13,14 @@ interface FormDataState {
 }
 
 export default function Contact() {
+  const [showForm, setShowForm] = useState<boolean>(false);
   const [form, setForm] = useState<FormDataState>({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
-  const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
 
   const emailAddress = "babulhossan.dev@gmail.com";
-  const whatsappNumber = "+880 1934-825500";
-
-  const handleCopyEmail = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    navigator.clipboard.writeText(emailAddress);
-    setCopiedEmail(true);
-    toast.success("Email copied to clipboard!");
-    setTimeout(() => setCopiedEmail(false), 2000);
-  };
+  const whatsappUrl = "https://wa.me/8801934825500";
+  const linkedinUrl = "https://www.linkedin.com/in/babul-hossan-09932837a/";
+  const githubUrl = "https://github.com/babul0000";
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -49,150 +43,141 @@ export default function Contact() {
         toast.success("Message sent successfully! I will reply promptly.");
       } else {
         setStatus("idle");
-        toast.error("Failed to send message. Please reach out via direct email or WhatsApp.");
+        toast.error("Failed to send message. Please reach out via email or WhatsApp.");
       }
     } catch {
       setStatus("idle");
-      toast.error("An error occurred. Please reach out directly via email.");
+      toast.error("An error occurred. Please email babulhossan.dev@gmail.com directly.");
     }
   };
 
   return (
-    <section id="contact" className="py-20 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-grid-pattern">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="mb-12">
-          <div className="text-xs font-mono tracking-widest text-emerald-600 dark:text-emerald-400 font-semibold uppercase mb-2">
-            GET IN TOUCH
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-themeText tracking-tight">
-            Let&apos;s Build Something Together
-          </h2>
-          <p className="mt-2 text-sm sm:text-base text-themeTextSecondary max-w-2xl">
-            Open for full-time engineering roles, high-impact contract projects, and technical discussions.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          {/* Left Column (5 cols): Direct Contact Channels */}
-          <div className="lg:col-span-5 space-y-4">
-            {/* Email Card */}
-            <div className="bento-crosshair p-5 flex items-center justify-between">
-              <a href={`mailto:${emailAddress}`} className="flex items-center gap-3.5 min-w-0">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <div className="min-w-0">
-                  <div className="text-[11px] font-mono text-themeTextMuted">EMAIL ME</div>
-                  <div className="text-sm font-semibold text-themeText truncate hover:text-emerald-500 transition-colors">
-                    {emailAddress}
-                  </div>
-                </div>
-              </a>
-              <button
-                onClick={handleCopyEmail}
-                className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-themeTextMuted hover:text-emerald-500 transition-colors shrink-0 ml-2"
-                title="Copy email"
-                aria-label="Copy email to clipboard"
-              >
-                {copiedEmail ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
-              </button>
+    <section id="contact" className="py-20 md:py-28 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-black">
+      <div className="max-w-4xl mx-auto px-5 sm:px-8">
+        
+        {/* Centered NasirChy Exact Contact Card */}
+        <div className="rounded-3xl border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 p-8 sm:p-12 md:p-14 text-center backdrop-blur-sm shadow-xl relative overflow-hidden">
+          
+          {/* Avatar Header */}
+          <div className="flex flex-col items-center gap-2.5 mb-6">
+            <div className="relative w-16 h-16 rounded-full overflow-hidden shadow-md border-2 border-white dark:border-zinc-700 ring-2 ring-zinc-200 dark:ring-zinc-800">
+              <Image
+                src="/my.webp"
+                alt="Babul Hossan"
+                width={64}
+                height={64}
+                className="object-cover w-full h-full"
+              />
             </div>
+            <h3 className="font-semibold text-slate-900 dark:text-white text-base">
+              Babul Hossan
+            </h3>
+            <p className="text-xs sm:text-sm font-mono text-slate-500 dark:text-zinc-400">
+              Full Stack MERN Developer
+            </p>
+          </div>
 
-            {/* WhatsApp Card */}
+          {/* Bold Headline */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-slate-900 dark:text-white tracking-tight mb-4 leading-tight">
+            Building Something Amazing?<br />
+            <span className="text-slate-400 dark:text-zinc-500 font-normal">Let&apos;s chat.</span>
+          </h2>
+
+          {/* Subtitle Description */}
+          <p className="text-slate-600 dark:text-zinc-300 max-w-xl mx-auto mb-8 text-sm sm:text-base leading-relaxed">
+            I build fast, accessible, and scalable web apps with React, Next.js, TypeScript, Node.js, and PostgreSQL. Open for full-time frontend/full-stack engineering roles and high-impact freelance projects.
+          </p>
+
+          {/* Action Buttons Row 1 */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-3">
             <a
-              href="https://wa.me/8801934825500"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bento-crosshair p-5 flex items-center justify-between group block"
+              href={`mailto:${emailAddress}`}
+              className="bg-black text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200 px-5 py-2.5 rounded-full font-medium text-sm flex items-center gap-2 transition-all shadow-md hover:scale-105 active:scale-95"
             >
-              <div className="flex items-center gap-3.5 min-w-0">
-                <div className="w-10 h-10 rounded-xl bg-green-500/10 text-green-500 flex items-center justify-center shrink-0">
-                  <MessageSquare className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-[11px] font-mono text-themeTextMuted">WHATSAPP DIRECT</div>
-                  <div className="text-sm font-semibold text-themeText group-hover:text-emerald-500 transition-colors">
-                    {whatsappNumber}
-                  </div>
-                </div>
-              </div>
-              <ArrowUpRight className="w-4 h-4 text-themeTextMuted group-hover:text-emerald-500 transition-colors shrink-0" />
+              <Mail className="w-4 h-4" />
+              <span>Email me</span>
             </a>
 
-            {/* LinkedIn Card */}
             <a
-              href="https://www.linkedin.com/in/babul-hossan-09932837a/"
+              href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bento-crosshair p-5 flex items-center justify-between group block"
+              className="bg-white dark:bg-zinc-800 text-slate-900 dark:text-white border border-zinc-200 dark:border-zinc-700 px-5 py-2.5 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-all shadow-sm hover:scale-105 active:scale-95"
             >
-              <div className="flex items-center gap-3.5 min-w-0">
-                <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0">
-                  <LinkedinIcon className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-[11px] font-mono text-themeTextMuted">LINKEDIN PROFILE</div>
-                  <div className="text-sm font-semibold text-themeText group-hover:text-emerald-500 transition-colors">
-                    Babul Hossan
-                  </div>
-                </div>
-              </div>
-              <ArrowUpRight className="w-4 h-4 text-themeTextMuted group-hover:text-emerald-500 transition-colors shrink-0" />
+              <LinkedinIcon className="w-4 h-4" />
+              <span>LinkedIn</span>
             </a>
 
-            {/* GitHub Profile Card */}
             <a
-              href="https://github.com/babul0000"
+              href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bento-crosshair p-5 flex items-center justify-between group block"
+              className="bg-white dark:bg-zinc-800 text-slate-900 dark:text-white border border-zinc-200 dark:border-zinc-700 px-5 py-2.5 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-all shadow-sm hover:scale-105 active:scale-95"
             >
-              <div className="flex items-center gap-3.5 min-w-0">
-                <div className="w-10 h-10 rounded-xl bg-zinc-500/10 text-themeText flex items-center justify-center shrink-0">
-                  <GithubIcon className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-[11px] font-mono text-themeTextMuted">GITHUB REPOSITORIES</div>
-                  <div className="text-sm font-semibold text-themeText group-hover:text-emerald-500 transition-colors">
-                    @babul0000
-                  </div>
-                </div>
-              </div>
-              <ArrowUpRight className="w-4 h-4 text-themeTextMuted group-hover:text-emerald-500 transition-colors shrink-0" />
+              <GithubIcon className="w-4 h-4" />
+              <span>GitHub</span>
             </a>
           </div>
 
-          {/* Right Column (7 cols): Direct Message Form */}
-          <div className="lg:col-span-7">
-            <div className="bento-crosshair p-6 sm:p-8">
-              <span className="absolute -top-2 -left-2 text-zinc-400 dark:text-zinc-600 font-mono text-sm pointer-events-none">+</span>
-              <span className="absolute -top-2 -right-2 text-zinc-400 dark:text-zinc-600 font-mono text-sm pointer-events-none">+</span>
-              <span className="absolute -bottom-2 -left-2 text-zinc-400 dark:text-zinc-600 font-mono text-sm pointer-events-none">+</span>
-              <span className="absolute -bottom-2 -right-2 text-zinc-400 dark:text-zinc-600 font-mono text-sm pointer-events-none">+</span>
+          {/* Action Buttons Row 2 */}
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white dark:bg-zinc-800 text-slate-900 dark:text-white border border-zinc-200 dark:border-zinc-700 px-5 py-2.5 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-all shadow-sm hover:scale-105 active:scale-95"
+            >
+              <WhatsAppIcon className="w-4 h-4 text-green-500" />
+              <span>WhatsApp</span>
+            </a>
 
+            <a
+              href="/Babul_Hossan_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white dark:bg-zinc-800 text-slate-900 dark:text-white border border-zinc-200 dark:border-zinc-700 px-5 py-2.5 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-all shadow-sm hover:scale-105 active:scale-95"
+            >
+              <FileText className="w-4 h-4 text-emerald-500" />
+              <span>Resume</span>
+            </a>
+
+            <button
+              onClick={() => setShowForm(!showForm)}
+              className="bg-zinc-100 dark:bg-zinc-800/80 text-slate-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700 px-4 py-2.5 rounded-full font-medium text-sm flex items-center gap-1.5 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all shadow-sm"
+            >
+              <MessageSquare className="w-3.5 h-3.5 text-emerald-500" />
+              <span>{showForm ? "Hide Message Form" : "Send Quick Message"}</span>
+              {showForm ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+            </button>
+          </div>
+
+          {/* Expandable Direct Contact Form */}
+          {showForm && (
+            <div className="mt-8 pt-8 border-t border-zinc-200 dark:border-zinc-800 text-left animate-in fade-in slide-in-from-top-4">
               {status === "sent" ? (
-                <div className="py-12 text-center space-y-3">
-                  <div className="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center mx-auto">
-                    <Check className="w-6 h-6" />
+                <div className="py-6 text-center space-y-2">
+                  <div className="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center mx-auto">
+                    <Check className="w-5 h-5" />
                   </div>
-                  <h3 className="text-lg font-bold text-themeText">Message Sent Successfully!</h3>
-                  <p className="text-xs text-themeTextSecondary max-w-sm mx-auto">
-                    Thank you for reaching out. I&apos;ll review your inquiry and get back to you shortly.
+                  <h4 className="text-base font-semibold text-slate-900 dark:text-white">
+                    Message Sent Successfully!
+                  </h4>
+                  <p className="text-xs text-slate-600 dark:text-zinc-400 max-w-sm mx-auto">
+                    Thank you! I will review your note and respond as soon as possible.
                   </p>
                   <button
                     onClick={() => setStatus("idle")}
-                    className="text-xs font-mono text-emerald-600 dark:text-emerald-400 hover:underline pt-2 inline-block"
+                    className="text-xs font-mono text-emerald-500 hover:underline pt-2 inline-block"
                   >
                     Send another message
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <form onSubmit={handleSubmit} className="space-y-3 max-w-lg mx-auto">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-[11px] font-mono text-themeTextMuted mb-1.5 uppercase">
-                        Your Name
+                      <label className="block text-[11px] font-mono text-slate-500 dark:text-zinc-400 mb-1 uppercase">
+                        Name
                       </label>
                       <input
                         type="text"
@@ -201,12 +186,12 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         placeholder="John Doe"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/60 text-xs text-themeText focus:border-emerald-500 focus:outline-none transition-colors"
+                        className="w-full px-3.5 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                       />
                     </div>
                     <div>
-                      <label className="block text-[11px] font-mono text-themeTextMuted mb-1.5 uppercase">
-                        Your Email
+                      <label className="block text-[11px] font-mono text-slate-500 dark:text-zinc-400 mb-1 uppercase">
+                        Email
                       </label>
                       <input
                         type="email"
@@ -215,13 +200,13 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         placeholder="john@example.com"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/60 text-xs text-themeText focus:border-emerald-500 focus:outline-none transition-colors"
+                        className="w-full px-3.5 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-mono text-themeTextMuted mb-1.5 uppercase">
+                    <label className="block text-[11px] font-mono text-slate-500 dark:text-zinc-400 mb-1 uppercase">
                       Subject
                     </label>
                     <input
@@ -229,13 +214,13 @@ export default function Contact() {
                       name="subject"
                       value={form.subject}
                       onChange={handleChange}
-                      placeholder="Project Inquiry / Job Opportunity"
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/60 text-xs text-themeText focus:border-emerald-500 focus:outline-none transition-colors"
+                      placeholder="Project Inquiry / Hiring"
+                      className="w-full px-3.5 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-mono text-themeTextMuted mb-1.5 uppercase">
+                    <label className="block text-[11px] font-mono text-slate-500 dark:text-zinc-400 mb-1 uppercase">
                       Message
                     </label>
                     <textarea
@@ -243,16 +228,16 @@ export default function Contact() {
                       value={form.message}
                       onChange={handleChange}
                       required
-                      rows={4}
-                      placeholder="Hi Babul, I came across your portfolio and would like to discuss..."
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/60 text-xs text-themeText focus:border-emerald-500 focus:outline-none transition-colors resize-none"
+                      rows={3}
+                      placeholder="Hi Babul, I would like to discuss..."
+                      className="w-full px-3.5 py-2 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 resize-none"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="w-full py-3 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 text-xs font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                    className="w-full py-2.5 rounded-xl bg-black text-white dark:bg-white dark:text-black text-xs font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                   >
                     {status === "sending" ? (
                       <span>Sending Message...</span>
@@ -266,7 +251,8 @@ export default function Contact() {
                 </form>
               )}
             </div>
-          </div>
+          )}
+
         </div>
       </div>
     </section>

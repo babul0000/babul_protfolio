@@ -1,87 +1,132 @@
 "use client";
-import React from "react";
-import Image from "next/image";
-import { Mail, ArrowUp } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "./Icons";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { LinkedinIcon, FacebookIcon, GithubIcon, WhatsAppIcon } from "./Icons";
+
+const ACTION_WORDS = ["build", "engineer", "scale", "design"];
 
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % ACTION_WORDS.length);
+    }, 2500);
+    return () => clearInterval(timer);
+  }, []);
+
+  const socials = [
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/babul-hossan-09932837a/",
+      icon: <LinkedinIcon className="w-4 h-4" />,
+    },
+    {
+      name: "Facebook",
+      href: "https://www.facebook.com/babul.hossan.1",
+      icon: <FacebookIcon className="w-4 h-4" />,
+    },
+    {
+      name: "GitHub",
+      href: "https://github.com/babul0000",
+      icon: <GithubIcon className="w-4 h-4" />,
+    },
+    {
+      name: "WhatsApp",
+      href: "https://wa.me/8801934825500",
+      icon: <WhatsAppIcon className="w-4 h-4" />,
+    },
+  ];
 
   return (
-    <footer className="py-12 bg-white dark:bg-[#09090b] border-t border-zinc-200/80 dark:border-zinc-800/80 text-xs text-themeTextSecondary">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-zinc-200/80 dark:border-zinc-800/80">
-          {/* Brand */}
-          <div className="flex items-center gap-3">
-            <div className="w-7 h-7 rounded-full overflow-hidden ring-1 ring-emerald-500/50">
-              <Image
-                src="/my.webp"
-                alt="Babul Hossan"
-                width={28}
-                height={28}
-                className="object-cover w-full h-full"
-              />
-            </div>
-            <div>
-              <span className="font-semibold text-themeText block">Babul Hossan</span>
-              <span className="text-[11px] font-mono text-themeTextMuted">Full-Stack MERN Developer</span>
-            </div>
-          </div>
+    <footer className="bg-black text-white pt-20 sm:pt-28 pb-12 px-6 sm:px-10 md:px-16 relative overflow-hidden border-t border-zinc-900 select-none">
+      {/* Dynamic Cycling Headline (Exact NasirChy style) */}
+      <div className="max-w-4xl mb-16 md:mb-20">
+        <h2 className="text-4xl sm:text-6xl md:text-7xl font-light tracking-tight leading-[1.1] text-white">
+          Lets{" "}
+          <span className="inline-block relative overflow-hidden h-[1.15em] align-bottom font-medium text-emerald-400">
+            <span
+              key={ACTION_WORDS[wordIndex]}
+              className="inline-block transition-all duration-500 animate-in fade-in slide-in-from-bottom-6"
+            >
+              {ACTION_WORDS[wordIndex]}
+            </span>
+          </span>{" "}
+          <br />
+          <span className="text-zinc-400 font-light">incredible work together.</span>
+        </h2>
+      </div>
 
-          {/* Nav Links */}
-          <div className="flex flex-wrap items-center justify-center gap-4 text-themeTextSecondary">
-            <a href="#projects" className="hover:text-themeText transition-colors">Projects</a>
-            <a href="#skills" className="hover:text-themeText transition-colors">Skills</a>
-            <a href="#experience" className="hover:text-themeText transition-colors">Experience</a>
-            <a href="#certificates" className="hover:text-themeText transition-colors">Certifications</a>
-            <a href="#about" className="hover:text-themeText transition-colors">About</a>
-            <a href="#contact" className="hover:text-themeText transition-colors">Contact</a>
-          </div>
-
-          {/* Socials & Back to top */}
-          <div className="flex items-center gap-3">
-            <a
-              href="https://github.com/babul0000"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-themeTextSecondary hover:text-themeText transition-colors"
-              aria-label="GitHub"
-            >
-              <GithubIcon className="w-4 h-4" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/babul-hossan-09932837a/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-themeTextSecondary hover:text-themeText transition-colors"
-              aria-label="LinkedIn"
-            >
-              <LinkedinIcon className="w-4 h-4" />
-            </a>
-            <a
-              href="mailto:babulhossan.dev@gmail.com"
-              className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-themeTextSecondary hover:text-themeText transition-colors"
-              aria-label="Email"
-            >
-              <Mail className="w-4 h-4" />
-            </a>
-            <button
-              onClick={scrollToTop}
-              className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-themeTextSecondary hover:text-themeText transition-colors ml-2"
-              title="Back to top"
-              aria-label="Back to top"
-            >
-              <ArrowUp className="w-4 h-4" />
-            </button>
-          </div>
+      {/* Info Section Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8 pb-14 mb-12 border-b border-zinc-800/90">
+        {/* Email Column */}
+        <div>
+          <p className="text-xs font-mono uppercase tracking-widest text-zinc-400 mb-3">
+            Email
+          </p>
+          <a
+            href="mailto:babulhossan.dev@gmail.com"
+            className="text-lg sm:text-xl md:text-2xl font-normal text-white hover:text-emerald-400 transition-colors underline-offset-4 hover:underline"
+          >
+            babulhossan.dev@gmail.com
+          </a>
         </div>
 
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-themeTextMuted font-mono">
-          <p>© {new Date().getFullYear()} Babul Hossan. All rights reserved.</p>
-          <p>Built with Next.js 14, TypeScript &amp; Tailwind CSS</p>
+        {/* Socials Column */}
+        <div>
+          <p className="text-xs font-mono uppercase tracking-widest text-zinc-400 mb-3">
+            Socials
+          </p>
+          <div className="flex items-center gap-3">
+            {socials.map((soc) => (
+              <a
+                key={soc.name}
+                href={soc.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={soc.name}
+                className="w-11 h-11 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-800 hover:border-zinc-700 flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-sm"
+              >
+                {soc.icon}
+              </a>
+            ))}
+          </div>
         </div>
+      </div>
+
+      {/* Navigation & Metadata Row */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-sm text-zinc-400 mb-12">
+        {/* Navigation Links */}
+        <div className="flex flex-wrap items-center gap-6 font-medium">
+          <Link href="/" className="hover:text-white transition-colors">
+            Home
+          </Link>
+          <a href="#projects" className="hover:text-white transition-colors">
+            Projects
+          </a>
+          <a href="#about" className="hover:text-white transition-colors">
+            About
+          </a>
+          <a href="#experience" className="hover:text-white transition-colors">
+            Experience
+          </a>
+          <a href="#contact" className="hover:text-white transition-colors">
+            Contact
+          </a>
+        </div>
+
+        {/* Location & Copyright */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-xs text-zinc-400">
+          <span>
+            Based in <strong className="text-zinc-200 font-semibold">Dhaka, Bangladesh</strong>
+          </span>
+          <span>© {new Date().getFullYear()} Babul Hossan. All rights reserved.</span>
+        </div>
+      </div>
+
+      {/* Giant Background Watermark Text (Exact NasirChy style) */}
+      <div className="text-[13vw] font-bold tracking-tight text-white/[0.04] select-none pointer-events-none text-center leading-none mt-10 md:mt-16 uppercase">
+        BABUL . HOSSAN
       </div>
     </footer>
   );
