@@ -8,7 +8,9 @@ import { projects } from "./projectsData";
 
 export default function HeroProjects() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [scrollY, setScrollY] = useState<number>(0);
+  const targetProgressRef = useRef<number>(0);
+  const currentProgressRef = useRef<number>(0);
+  const [smoothProgress, setSmoothProgress] = useState<number>(0);
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
@@ -18,19 +20,36 @@ export default function HeroProjects() {
     checkMobile();
     window.addEventListener("resize", checkMobile);
 
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setScrollY(window.scrollY);
-          ticking = false;
-        });
-        ticking = true;
+    let animationFrameId: number;
+
+    // Continuous 60/120fps LERP loop for silky-smooth animation
+    const renderLoop = () => {
+      const diff = targetProgressRef.current - currentProgressRef.current;
+      if (Math.abs(diff) > 0.0005) {
+        currentProgressRef.current += diff * 0.12; // Buttery smooth spring dampening
+        setSmoothProgress(currentProgressRef.current);
+      } else if (currentProgressRef.current !== targetProgressRef.current) {
+        currentProgressRef.current = targetProgressRef.current;
+        setSmoothProgress(targetProgressRef.current);
       }
+      animationFrameId = requestAnimationFrame(renderLoop);
+    };
+
+    animationFrameId = requestAnimationFrame(renderLoop);
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      // Smooth travel from Hero (0) to Latest Projects 2x2 grid (1)
+      const p = Math.min(Math.max(scrollY / 460, 0), 1);
+      targetProgressRef.current = p;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    // Initialize initial scroll
+    handleScroll();
+
     return () => {
+      cancelAnimationFrame(animationFrameId);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", checkMobile);
     };
@@ -38,14 +57,14 @@ export default function HeroProjects() {
 
   const topProjects = projects.slice(0, 4);
 
-  // Scroll progress from 0 (at top of hero banner) to 1 (when cards reach 2x2 grid)
-  // Cards animate smoothly as scrollY progresses from 0 to 520px
-  const progress = isMobile ? 1 : Math.min(Math.max(scrollY / 500, 0), 1);
-  const factor = 1 - progress;
+  // factor goes from 1 (Hero stacked deck) down to 0 (2x2 grid settled)
+  const factor = isMobile ? 0 : 1 - smoothProgress;
 
-  // Compute exact transforms for the 4 cards so that at factor=1 (scrollY=0)
-  // they sit in the Hero banner right column, and at factor=0 (scrollY>=500px)
-  // they settle seamlessly in the 2x2 Latest Projects grid.
+  // Exact coordinates for buttery-smooth flight trajectory:
+  // Card 0 (Row 1, Col 1): Starts in Hero Right Column -> Flies smoothly to Row 1 Col 1
+  // Card 1 (Row 1, Col 2): Starts in Hero Right Column -> Straightens in Row 1 Col 2
+  // Card 2 (Row 2, Col 1): Starts in Hero Right Column -> Flies smoothly to Row 2 Col 1
+  // Card 3 (Row 2, Col 2): Starts in Hero Right Column -> Flies smoothly to Row 2 Col 2
   const getCardStyle = (index: number) => {
     if (isMobile) {
       return {
@@ -61,28 +80,24 @@ export default function HeroProjects() {
     let zIndex = 10;
 
     if (index === 0) {
-      // PromptForge (Row 1, Col 1): Starts in Hero Right Column -> Flies to Row 1 Col 1
       tx = `calc((100% + 2rem) * ${factor})`;
       ty = `calc(-135% * ${factor})`;
       rot = -5 * factor;
       sc = 0.88 + 0.12 * (1 - factor);
       zIndex = 40;
     } else if (index === 1) {
-      // BloodConnect (Row 1, Col 2): Starts in Hero Right Column -> Straightens in Row 1 Col 2
       tx = `calc(24px * ${factor})`;
       ty = `calc(-135% * ${factor})`;
       rot = 6 * factor;
       sc = 0.90 + 0.10 * (1 - factor);
       zIndex = 30;
     } else if (index === 2) {
-      // Tiles Gallery (Row 2, Col 1): Starts in Hero Right Column -> Flies to Row 2 Col 1
       tx = `calc((100% + 2rem) * ${factor})`;
       ty = `calc(-245% * ${factor})`;
       rot = -6 * factor;
       sc = 0.86 + 0.14 * (1 - factor);
       zIndex = 20;
     } else if (index === 3) {
-      // PixGen Studio (Row 2, Col 2): Starts in Hero Right Column -> Flies to Row 2 Col 2
       tx = `calc(32px * ${factor})`;
       ty = `calc(-245% * ${factor})`;
       rot = 5 * factor;
@@ -94,9 +109,10 @@ export default function HeroProjects() {
       transform: `translate3d(${tx}, ${ty}, 0) rotate(${rot}deg) scale(${sc})`,
       zIndex,
       willChange: "transform",
-      transition: factor === 0 ? "transform 0.3s ease" : "none",
+      transition: "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease",
+      backfaceVisibility: "hidden" as const,
       boxShadow: factor > 0.05
-        ? "0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 25px 0 rgba(16, 185, 129, 0.15)"
+        ? "0 30px 60px -15px rgba(0, 0, 0, 0.35), 0 0 25px 0 rgba(16, 185, 129, 0.18)"
         : undefined,
     };
   };
@@ -176,13 +192,13 @@ export default function HeroProjects() {
           </h2>
         </div>
 
-        {/* 2x2 Grid with Scroll-Linked Flight into Grid Slots */}
+        {/* 2x2 Grid with Silky Smooth Scroll-Linked Flight into Grid Slots */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 relative">
           {topProjects.map((project, idx) => (
             <div
               key={project.id}
               style={getCardStyle(idx)}
-              className="group relative rounded-2xl md:rounded-3xl overflow-hidden border border-gray-200 dark:border-zinc-800 bg-zinc-950 aspect-[16/10] shadow-md hover:shadow-2xl transition-all duration-300 will-change-transform"
+              className="group relative rounded-2xl md:rounded-3xl overflow-hidden border border-gray-200 dark:border-zinc-800 bg-zinc-950 aspect-[16/10] shadow-md hover:shadow-2xl transition-all duration-300 will-change-transform cursor-pointer"
             >
               {/* Project Image Preview */}
               <Image
