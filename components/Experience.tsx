@@ -36,7 +36,7 @@ export default function Experience() {
       description:
         "Architecting production-ready full-stack applications with Next.js 14 App Router, strict TypeScript type safety, scalable REST APIs, and dual database systems (PostgreSQL via Prisma ORM and MongoDB).",
       achievements: [
-        "Architected end-to-end full-stack web applications including PromptForge, BloodConnect, and Tiles Gallery utilizing Next.js 14 and TypeScript.",
+        "Architected end-to-end full-stack web applications including OnWear (E-Commerce Platform), BloodConnect, and Tiles Gallery utilizing Next.js 14 and TypeScript.",
         "Built modular backend RESTful APIs with Node.js and Express.js, implementing secure JWT authentication, HTTP-only cookies, and defensive request validation.",
         "Engineered structured relational database schemas in PostgreSQL using Prisma ORM alongside document aggregations in MongoDB.",
         "Delivered pixel-perfect, responsive UI experiences optimized for zero layout shifts and high Lighthouse audit scores.",

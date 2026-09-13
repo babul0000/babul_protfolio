@@ -17,24 +17,25 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "prompt-forge",
-    name: "PromptForge",
-    tagline: "AI Prompt Marketplace & Creator Platform",
-    category: ["fullstack", "nextjs", "mern"],
-    desc: "A full-stack marketplace where creators publish, discover, and monetize AI prompts for ChatGPT, Midjourney, Claude, and Gemini. Built with comprehensive authentication, clean database models, dynamic search, and responsive user dashboards.",
-    tech: ["Next.js 14", "React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
-    github: "https://github.com/babul0000/prompt-forge",
-    live: "https://promt-nexus.vercel.app/",
-    image: "/promptforge.webp",
-    glow: "rgba(168,85,247,0.18)",
-    color: "#a855f7",
+    id: "onwear",
+    name: "OnWear",
+    tagline: "Premium Men's E-Commerce Clothing Platform",
+    category: ["fullstack", "nextjs", "typescript", "mern"],
+    desc: "A full-featured modern e-commerce web application specializing in premium men's clothing and streetwear. Features an interactive Smart Fit & Size Calculator, category filtering, shopping cart drawer, live order tracking, promotional discounts, and seamless checkout.",
+    tech: ["Next.js 14", "TypeScript", "React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
+    github: "https://github.com/babul0000/onwear",
+    live: "https://onwear.vercel.app",
+    image: "/onwear.webp",
+    glow: "rgba(16,185,129,0.18)",
+    color: "#10b981",
     features: [
-      "User authentication and protected dashboard routes.",
-      "Dynamic prompt marketplace catalog with category and model filtering.",
-      "Optimized MongoDB data schemas for fast listing queries."
+      "Interactive Smart Fit Calculator computing personalized chest, length, and shoulder size recommendations based on height & weight.",
+      "Dynamic product catalog with multi-category filtering, inventory badges, and live shopping cart drawer.",
+      "Comprehensive order tracking system (/orders/track) and WhatsApp live customer support integration.",
+      "Optimized responsive UI with dark mode aesthetics and zero layout shifts."
     ],
-    challenges: "Coordinating client-side state with backend API endpoints and designing flexible MongoDB schemas for multi-modal AI prompt variations.",
-    futurePlans: "Integrating Stripe payment gateway for creator monetization and adding automated prompt test runs using Gemini API."
+    challenges: "Engineering an accurate sizing calculation algorithm for varied body builds and synchronizing complex cart state with backend order processing.",
+    futurePlans: "Integrating automated SMS notification gateways for real-time parcel dispatch alerts and SSLCommerz payment gateway."
   },
   {
     id: "bloodconnect",
