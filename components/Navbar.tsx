@@ -2,7 +2,12 @@
 import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 
-const navLinks = [
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+const navLinks: NavLink[] = [
   { label: "Home", href: "#home" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
@@ -12,18 +17,23 @@ const navLinks = [
   { label: "Contact", href: "#contact" }
 ];
 
-export default function Navbar({ theme, toggleTheme }) {
-  const [active, setActive] = useState("#home");
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+interface NavbarProps {
+  theme: string;
+  toggleTheme: () => void;
+}
+
+export default function Navbar({ theme, toggleTheme }: NavbarProps) {
+  const [active, setActive] = useState<string>("#home");
+  const [scrolled, setScrolled] = useState<boolean>(false);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
       // Active section highlight
-      const sections = navLinks.map(l => document.querySelector(l.href));
+      const sections = navLinks.map(l => document.querySelector(l.href) as HTMLElement | null);
       const scrollPos = window.scrollY + 200;
 
       sections.forEach((sec, idx) => {
@@ -41,7 +51,7 @@ export default function Navbar({ theme, toggleTheme }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleClick = (href) => {
+  const handleClick = (href: string) => {
     setActive(href);
     setMenuOpen(false);
     const element = document.querySelector(href);

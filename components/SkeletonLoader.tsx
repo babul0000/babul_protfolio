@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 
 export default function SkeletonLoader() {
   return (
@@ -62,19 +63,10 @@ export default function SkeletonLoader() {
           <div className="w-20 h-4 rounded-full skeleton-shimmer" />
           <div className="w-48 h-8 rounded-xl skeleton-shimmer" />
         </div>
-        <div className="flex justify-center gap-3">
-          <div className="w-24 h-9 rounded-full skeleton-shimmer" />
-          <div className="w-24 h-9 rounded-full skeleton-shimmer" />
-          <div className="w-24 h-9 rounded-full skeleton-shimmer" />
-          <div className="w-24 h-9 rounded-full skeleton-shimmer" />
-        </div>
-        <div className="max-w-3xl mx-auto p-8 border border-themeBorder bg-themeCard rounded-3xl space-y-4">
-          <div className="w-40 h-6 rounded-md skeleton-shimmer" />
-          <div className="grid sm:grid-cols-2 gap-4">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="p-4 border border-themeBorder bg-themeBg rounded-2xl h-14 skeleton-shimmer" />
-            ))}
-          </div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4">
+          {Array.from({ length: 7 }).map((_, i) => (
+            <div key={i} className="p-4 border border-themeBorder bg-themeCard rounded-2xl h-24 skeleton-shimmer" />
+          ))}
         </div>
       </div>
     </div>

@@ -1,20 +1,27 @@
 "use client";
-import { useState } from "react";
+import React, { useState, FormEvent, ChangeEvent, MouseEvent } from "react";
 import { useScrollReveal } from "./useScrollReveal";
 import { toast } from "sonner";
 import { Mail, Phone, MessageSquare, Copy, Check, Send, ExternalLink } from "lucide-react";
 
+interface FormDataState {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
 export default function Contact() {
-  const ref = useScrollReveal();
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [status, setStatus] = useState("idle"); // idle, sending, sent
-  const [copiedEmail, setCopiedEmail] = useState(false);
-  const [copiedPhone, setCopiedPhone] = useState(false);
+  const ref = useScrollReveal<HTMLElement>();
+  const [form, setForm] = useState<FormDataState>({ name: "", email: "", subject: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
+  const [copiedPhone, setCopiedPhone] = useState<boolean>(false);
 
   const emailAddress = "babulhossan.info@gmail.com";
   const phoneNumber = "01952860053";
 
-  const handleCopyEmail = (e) => {
+  const handleCopyEmail = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
     navigator.clipboard.writeText(emailAddress);
@@ -23,7 +30,7 @@ export default function Contact() {
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
-  const handleCopyPhone = (e) => {
+  const handleCopyPhone = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
     navigator.clipboard.writeText(phoneNumber);
@@ -32,11 +39,11 @@ export default function Contact() {
     setTimeout(() => setCopiedPhone(false), 2000);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("sending");
     

@@ -1,4 +1,21 @@
-export const projects = [
+export interface Project {
+  id: string;
+  name: string;
+  tagline: string;
+  category: string[];
+  desc: string;
+  tech: string[];
+  github: string;
+  live: string;
+  image: string;
+  glow: string;
+  color: string;
+  features: string[];
+  challenges: string;
+  futurePlans: string;
+}
+
+export const projects: Project[] = [
   {
     id: "prompt-forge",
     name: "PromptForge",

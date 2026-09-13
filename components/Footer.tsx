@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -100,7 +101,7 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-2">
           <p className="text-xs text-themeTextMuted font-normal">
-            © {year} Babul Hossan. Designed &amp; built with Next.js + Tailwind CSS.
+            © {year} Babul Hossan. Designed &amp; built with Next.js + TypeScript + Tailwind CSS.
           </p>
           <p className="text-xs text-themeTextMuted/70 font-semibold tracking-wide">
             AVAILABLE FOR PROJECTS · OPEN TO OPPORTUNITIES

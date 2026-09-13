@@ -1,28 +1,44 @@
 "use client";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useScrollReveal } from "./useScrollReveal";
 
-// Seeded pseudorandom function to keep graph consistent (Fallback)
-function getSeededRandom(seed) {
-  const x = Math.sin(seed++) * 10000;
+interface ContributionCell {
+  level: number;
+  count: number;
+  date: string;
+}
+
+interface ApiResponseContribution {
+  date: string;
+  count: number;
+  level: number;
+}
+
+interface ApiResponseData {
+  total: Record<string, number>;
+  contributions: ApiResponseContribution[];
+}
+
+function getSeededRandom(seed: number): number {
+  const x = Math.sin(seed) * 10000;
   return x - Math.floor(x);
 }
 
 export default function GithubActivity() {
-  const ref = useScrollReveal();
-  const [gridCells, setGridCells] = useState([]);
-  const [totalContributions, setTotalContributions] = useState("Loading...");
-  const [months, setMonths] = useState(["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"]);
+  const ref = useScrollReveal<HTMLElement>();
+  const [gridCells, setGridCells] = useState<ContributionCell[][]>([]);
+  const [totalContributions, setTotalContributions] = useState<string>("Loading...");
+  const [months, setMonths] = useState<string[]>(["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"]);
 
   useEffect(() => {
     // Generate fallback mock grid initially
     const columns = 36;
     const days = 7;
-    const fallbackGrid = [];
+    const fallbackGrid: ContributionCell[][] = [];
     let seed = 12345;
     
     for (let c = 0; c < columns; c++) {
-      const columnCells = [];
+      const columnCells: ContributionCell[] = [];
       for (let d = 0; d < days; d++) {
         const rand = getSeededRandom(seed++);
         let level = 0;
@@ -41,14 +57,12 @@ export default function GithubActivity() {
     fetch("https://github-contributions-api.jogruber.de/v4/babul0000")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch");
-        return res.json();
+        return res.json() as Promise<ApiResponseData>;
       })
       .then((data) => {
         if (data && data.contributions && data.contributions.length > 0) {
-          // Sort contributions chronologically because API returns descending years
           const sortedContribs = data.contributions.sort((a, b) => a.date.localeCompare(b.date));
 
-          // Filter out future dates to only show actual past/present activity
           const localDate = new Date();
           const year = localDate.getFullYear();
           const month = String(localDate.getMonth() + 1).padStart(2, '0');
@@ -56,11 +70,11 @@ export default function GithubActivity() {
           const todayStr = `${year}-${month}-${day}`;
 
           const pastContribs = sortedContribs.filter((item) => item.date <= todayStr);
-          // Take the last 252 days (36 weeks * 7 days) of active history
           const recentContribs = pastContribs.slice(-252);
-          const liveGrid = [];
+          const liveGrid: ContributionCell[][] = [];
+          
           for (let c = 0; c < 36; c++) {
-            const columnCells = [];
+            const columnCells: ContributionCell[] = [];
             for (let d = 0; d < 7; d++) {
               const index = c * 7 + d;
               const item = recentContribs[index];
@@ -74,8 +88,7 @@ export default function GithubActivity() {
           }
           setGridCells(liveGrid);
           
-          // Calculate dynamic months labels based on retrieved dates
-          const uniqueMonths = [];
+          const uniqueMonths: string[] = [];
           const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
           recentContribs.forEach((item, index) => {
             if (index % 30 === 0) {
@@ -90,7 +103,6 @@ export default function GithubActivity() {
             setMonths(uniqueMonths.slice(0, 8));
           }
 
-          // Calculate dynamic total contributions across all years
           const sumTotal = Object.values(data.total).reduce((a, b) => a + b, 0);
           setTotalContributions(sumTotal.toLocaleString());
         } else {
@@ -104,7 +116,7 @@ export default function GithubActivity() {
   }, []);
 
   return (
-    <section id="github" className="section-padding bg-themeBg border-b border-themeBorder relative transition-colors duration-300" ref={ref}>
+    <section id="github" className="section-padding bg-themeBg border-b border-themeBorder relative transition-colors duration-300 font-sans antialiased text-themeText" ref={ref}>
       
       {/* Background glowing orb */}
       <div className="absolute top-[20%] right-[-10%] w-[300px] h-[300px] bg-themeAccent/5 rounded-full blur-[80px] pointer-events-none" />

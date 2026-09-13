@@ -1,6 +1,7 @@
 "use client";
+import React from "react";
 
-const techStack = [
+const techStack: string[] = [
   "React",
   "Next.js",
   "Node.js",
@@ -9,7 +10,8 @@ const techStack = [
   "JavaScript",
   "MERN Stack",
   "Express",
-  "HeroUI"
+  "TypeScript",
+  "REST APIs"
 ];
 
 export default function Ecosystem() {
@@ -18,7 +20,7 @@ export default function Ecosystem() {
   return (
     <section className="py-12 bg-themeBg border-y border-themeBorder overflow-hidden relative font-sans antialiased text-themeText">
       
-      {/* Background glowing orb meshes matching Hero */}
+      {/* Background glowing orb meshes */}
       <div className="absolute top-1/2 left-[-10%] -translate-y-1/2 w-[250px] h-[250px] bg-themeAccent/5 rounded-full blur-[60px] pointer-events-none" />
       <div className="absolute top-1/2 right-[-10%] -translate-y-1/2 w-[250px] h-[250px] bg-emerald-500/5 rounded-full blur-[60px] pointer-events-none" />
 

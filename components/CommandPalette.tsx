@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { projects } from "./projectsData";
@@ -15,16 +15,32 @@ import {
   Mail,
   Phone,
   ArrowRight,
-  ExternalLink,
   Award
 } from "lucide-react";
 
-export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }) {
+interface PaletteItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  category: string;
+  icon: React.ReactNode;
+  badge?: string;
+  action: () => void;
+}
+
+interface CommandPaletteProps {
+  isOpen: boolean;
+  onClose: () => void;
+  theme: string;
+  toggleTheme: () => void;
+}
+
+export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: CommandPaletteProps) {
   const router = useRouter();
-  const [query, setQuery] = useState("");
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const inputRef = useRef(null);
-  const listRef = useRef(null);
+  const [query, setQuery] = useState<string>("");
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const listRef = useRef<HTMLDivElement | null>(null);
 
   // Focus input on open
   useEffect(() => {
@@ -39,7 +55,7 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }) 
 
   // Global Ctrl+K / Cmd+K listener
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
         if (isOpen) {
@@ -58,7 +74,7 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }) 
   }, [isOpen, onClose]);
 
   // Build items list
-  const allItems = [
+  const allItems: PaletteItem[] = [
     // Navigation
     {
       id: "nav-home",
@@ -254,7 +270,7 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }) 
   });
 
   // Handle keyboard list navigation
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (filteredItems.length === 0) return;
 
     if (e.key === "ArrowDown") {

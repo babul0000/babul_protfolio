@@ -1,8 +1,17 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useScrollReveal } from "./useScrollReveal";
 
-const timelineEvents = [
+interface TimelineEvent {
+  year: string;
+  title: string;
+  org: string;
+  desc: string;
+  skills: string[];
+  badge: string;
+}
+
+const timelineEvents: TimelineEvent[] = [
   {
     year: "2025 — Present",
     title: "Full Stack MERN Developer (Bootcamp & Project Experience)",
@@ -22,9 +31,9 @@ const timelineEvents = [
 ];
 
 export default function Experience() {
-  const ref = useScrollReveal();
-  const timelineRef = useRef(null);
-  const [progressHeight, setProgressHeight] = useState(0);
+  const ref = useScrollReveal<HTMLElement>();
+  const timelineRef = useRef<HTMLDivElement | null>(null);
+  const [progressHeight, setProgressHeight] = useState<number>(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,8 +41,7 @@ export default function Experience() {
       const rect = timelineRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       
-      // Calculate scroll progress percentage based on the viewport center trigger
-      const triggerPoint = windowHeight * 0.75; // Starts filling when it enters the lower 75% of the screen
+      const triggerPoint = windowHeight * 0.75;
       const totalHeight = rect.height;
       const scrolled = triggerPoint - rect.top;
       
@@ -45,7 +53,7 @@ export default function Experience() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll);
-    handleScroll(); // Initial call
+    handleScroll();
     
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -54,7 +62,7 @@ export default function Experience() {
   }, []);
 
   return (
-    <section id="experience" className="section-padding bg-themeBg border-b border-themeBorder relative" ref={ref}>
+    <section id="experience" className="section-padding bg-themeBg border-b border-themeBorder relative font-sans antialiased text-themeText" ref={ref}>
       
       {/* Background glowing orb */}
       <div className="absolute top-[20%] left-[-10%] w-[350px] h-[350px] bg-themeAccent/5 rounded-full blur-[90px] pointer-events-none" />
@@ -90,7 +98,6 @@ export default function Experience() {
           />
           
           {timelineEvents.map((event, idx) => {
-            // Determine if the laser line has scrolled past this event node
             const isNodeActive = progressHeight >= (idx / (timelineEvents.length - 1 || 1)) * 95;
 
             return (

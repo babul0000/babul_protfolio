@@ -1,4 +1,12 @@
-export default function SectionHeader({ label, title, subtitle }) {
+import React from "react";
+
+interface SectionHeaderProps {
+  label: string;
+  title: React.ReactNode;
+  subtitle?: string;
+}
+
+export default function SectionHeader({ label, title, subtitle }: SectionHeaderProps) {
   return (
     <div className="reveal mb-16">
       <div className="inline-flex items-center gap-2 mb-4">

@@ -1,28 +1,25 @@
 "use client";
 import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Ecosystem from "../components/Ecosystem";
 import Skills from "../components/Skills";
+import Workflow from "../components/Workflow";
+import Projects from "../components/Projects";
+import GithubActivity from "../components/GithubActivity";
+import Experience from "../components/Experience";
+import Certificates from "../components/Certificates";
+import About from "../components/About";
+import Contact from "../components/Contact";
+import Footer from "../components/Footer";
 import SkeletonLoader from "../components/SkeletonLoader";
 import CommandPalette from "../components/CommandPalette";
 import ScrollToTop from "../components/ScrollToTop";
 
-// Dynamic imports for below-the-fold components to improve performance
-const Workflow = dynamic(() => import("../components/Workflow"), { ssr: false });
-const Projects = dynamic(() => import("../components/Projects"), { ssr: false });
-const GithubActivity = dynamic(() => import("../components/GithubActivity"), { ssr: false });
-const Experience = dynamic(() => import("../components/Experience"), { ssr: false });
-const Certificates = dynamic(() => import("../components/Certificates"), { ssr: false });
-const About = dynamic(() => import("../components/About"), { ssr: false });
-const Contact = dynamic(() => import("../components/Contact"), { ssr: false });
-const Footer = dynamic(() => import("../components/Footer"), { ssr: false });
-
 export default function Home() {
-  const [theme, setTheme] = useState("dark");
-  const [isLoading, setIsLoading] = useState(true);
-  const [isPaletteOpen, setIsPaletteOpen] = useState(false);
+  const [theme, setTheme] = useState<string>("dark");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isPaletteOpen, setIsPaletteOpen] = useState<boolean>(false);
 
   useEffect(() => {
     // Determine initial theme
@@ -44,7 +41,7 @@ export default function Home() {
 
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 700);
+    }, 400);
 
     return () => {
       clearTimeout(timer);

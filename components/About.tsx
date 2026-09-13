@@ -1,17 +1,24 @@
 "use client";
+import React from "react";
 import { useScrollReveal } from "./useScrollReveal";
 
+interface StatItem {
+  label: string;
+  value: string;
+  sub: string;
+}
+
 export default function About() {
-  const ref = useScrollReveal();
+  const ref = useScrollReveal<HTMLElement>();
   const resumeLink = "/resume.pdf";
 
-  const stats = [
-    { label: "Focus", value: "Frontend Dev", sub: "React, Next.js" },
+  const stats: StatItem[] = [
+    { label: "Focus", value: "Frontend & Full-Stack", sub: "React, Next.js" },
     { label: "Status", value: "Open to Work", sub: "MERN Stack" }
   ];
 
   return (
-    <section id="about" className="section-padding bg-themeBg border-b border-themeBorder relative" ref={ref}>
+    <section id="about" className="section-padding bg-themeBg border-b border-themeBorder relative font-sans antialiased text-themeText" ref={ref}>
       
       {/* Background glow orb */}
       <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-themeAccent/5 rounded-full blur-[100px] pointer-events-none" />
@@ -77,7 +84,7 @@ export default function About() {
 
           {/* Right Column: Metric Stats */}
           <div className="lg:col-span-5 space-y-4 reveal" style={{ transitionDelay: "0.2s" }}>
-            {stats.map((stat, idx) => (
+            {stats.map((stat) => (
               <div
                 key={stat.label}
                 className="p-6 bg-themeCard border border-themeBorder rounded-3xl hover:border-themeAccent/20 hover:shadow-md transition-all duration-300 shadow-sm flex items-center justify-between"

@@ -1,12 +1,17 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useScrollReveal } from "./useScrollReveal";
-import { projects } from "./projectsData";
-import { ExternalLink, Code2, Layers, Sparkles } from "lucide-react";
+import { projects, Project } from "./projectsData";
+import { ExternalLink, Code2 } from "lucide-react";
 
-const categories = [
+interface CategoryTab {
+  id: string;
+  label: string;
+}
+
+const categories: CategoryTab[] = [
   { id: "all", label: "All Works" },
   { id: "fullstack", label: "Full-Stack MERN" },
   { id: "frontend", label: "Frontend & UI" },
@@ -14,16 +19,16 @@ const categories = [
 ];
 
 export default function Projects() {
-  const ref = useScrollReveal();
-  const [activeFilter, setActiveFilter] = useState("all");
+  const ref = useScrollReveal<HTMLElement>();
+  const [activeFilter, setActiveFilter] = useState<string>("all");
 
-  const filteredProjects = projects.filter((project) => {
+  const filteredProjects: Project[] = projects.filter((project) => {
     if (activeFilter === "all") return true;
     return project.category && project.category.includes(activeFilter);
   });
 
   return (
-    <section id="projects" className="section-padding bg-themeBg border-b border-themeBorder relative" ref={ref}>
+    <section id="projects" className="section-padding bg-themeBg border-b border-themeBorder relative font-sans antialiased text-themeText" ref={ref}>
       
       {/* Background glowing orb */}
       <div className="absolute top-[30%] right-[-10%] w-[400px] h-[400px] bg-themeAccent/5 rounded-full blur-[100px] pointer-events-none" />
@@ -63,7 +68,7 @@ export default function Projects() {
                 onClick={() => setActiveFilter(cat.id)}
                 className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 flex items-center gap-2 shadow-sm ${
                   isActive
-                    ? "bg-themeAccent text-themeAccentText shadow-themeAccent/10"
+                    ? "bg-themeAccent text-themeAccentText shadow-themeAccent/10 font-black"
                     : "bg-themeCard border border-themeBorder text-themeTextMuted hover:text-themeText hover:border-themeAccent/30"
                 }`}
               >
@@ -99,7 +104,7 @@ export default function Projects() {
                   <div className="h-5 w-44 max-w-[55%] bg-themeBg/80 border border-themeBorder/85 rounded-md flex items-center justify-center text-[8px] font-mono text-themeTextMuted truncate px-2 select-none">
                     {project.live.replace("https://", "")}
                   </div>
-                  <div className="w-8" /> {/* Spacer */}
+                  <div className="w-8" />
                 </div>
 
                 {/* Banner with wallpaper image */}

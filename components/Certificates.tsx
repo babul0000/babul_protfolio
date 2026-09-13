@@ -1,8 +1,21 @@
 "use client";
+import React from "react";
 import { useScrollReveal } from "./useScrollReveal";
-import { Award, CheckCircle2, ExternalLink, Sparkles } from "lucide-react";
+import { Award, CheckCircle2, ExternalLink } from "lucide-react";
 
-const certificates = [
+interface Certificate {
+  id: string;
+  title: string;
+  issuer: string;
+  year: string;
+  desc: string;
+  skills: string[];
+  badge: string;
+  color: string;
+  link: string;
+}
+
+const certificates: Certificate[] = [
   {
     id: "ph-mern",
     title: "Complete Web Development (MERN Stack)",
@@ -39,7 +52,7 @@ const certificates = [
 ];
 
 export default function Certificates() {
-  const ref = useScrollReveal();
+  const ref = useScrollReveal<HTMLElement>();
 
   return (
     <section id="certificates" className="section-padding bg-themeBg border-b border-themeBorder relative font-sans antialiased text-themeText" ref={ref}>

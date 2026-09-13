@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Caveat } from "next/font/google";
 import Script from "next/script";
 import { Toaster } from "sonner";
@@ -10,7 +11,7 @@ const caveat = Caveat({
   display: "swap",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Babul Hossan — Full Stack Developer",
   description:
     "Building smart & scalable web solutions. Full-stack developer specializing in React, Next.js, TypeScript, and modern web technologies.",
@@ -105,7 +106,11 @@ const jsonLd = {
   ]
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className={`scroll-smooth ${caveat.variable}`}>
       <head>
