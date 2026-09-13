@@ -65,23 +65,20 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-100 dark:bg-black font-sans antialiased text-themeText selection:bg-emerald-500/20 selection:text-emerald-500">
-      {/* Outer Framed Canvas with NasirChy style side border guidelines */}
-      <div className="max-w-6xl mx-auto border-x border-zinc-200/80 dark:border-zinc-800/80 min-h-screen bg-white dark:bg-[#09090b] relative shadow-2xl">
-        <Navbar theme={theme} toggleTheme={toggleTheme} />
-        
-        <main>
-          <HeroProjects />
-          <About />
-          <Experience />
-          <Skills />
-          <Certificates />
-          <GithubActivity />
-          <Contact />
-        </main>
+    <div className="min-h-screen w-full bg-white dark:bg-[#09090b] font-sans antialiased text-themeText selection:bg-emerald-500/20 selection:text-emerald-500 overflow-x-hidden">
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
+      
+      <main className="w-full">
+        <HeroProjects />
+        <About />
+        <Experience />
+        <Skills />
+        <Certificates />
+        <GithubActivity />
+        <Contact />
+      </main>
 
-        <Footer />
-      </div>
+      <Footer />
 
       {/* Command Palette & Scroll to Top */}
       <CommandPalette

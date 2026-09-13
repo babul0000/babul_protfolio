@@ -12,8 +12,8 @@ export default function GithubActivity() {
   ];
 
   return (
-    <section id="github" className="py-16 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-grid-pattern">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="github" className="py-16 md:py-20 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/20 dark:bg-zinc-950/20">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-14 lg:px-16">
         <div className="bento-crosshair p-6 sm:p-8">
           <span className="absolute -top-2 -left-2 text-zinc-400 dark:text-zinc-600 font-mono text-sm pointer-events-none">+</span>
           <span className="absolute -top-2 -right-2 text-zinc-400 dark:text-zinc-600 font-mono text-sm pointer-events-none">+</span>

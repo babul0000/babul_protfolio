@@ -27,8 +27,8 @@ export default function Certificates() {
   ];
 
   return (
-    <section id="certificates" className="py-20 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-grid-pattern">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="certificates" className="py-20 md:py-28 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/20 dark:bg-zinc-950/30">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-14 lg:px-16">
         {/* Section Header */}
         <div className="mb-12">
           <div className="text-xs font-mono tracking-widest text-emerald-600 dark:text-emerald-400 font-semibold uppercase mb-2">

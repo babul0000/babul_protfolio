@@ -110,7 +110,7 @@ export default function HeroProjects() {
       {/* Background Radial Glow */}
       <div className="pointer-events-none absolute inset-y-0 left-1/3 -z-1 hidden w-full bg-radial from-emerald-500/5 via-transparent to-transparent blur-3xl md:block" />
 
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 md:px-11">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-14 lg:px-16">
         
         {/* Hero Banner Header Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start mb-16 md:mb-20 min-h-[360px] sm:min-h-[400px]">

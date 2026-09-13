@@ -39,10 +39,11 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-black text-white pt-20 sm:pt-28 pb-12 px-6 sm:px-10 md:px-16 relative overflow-hidden border-t border-zinc-900 select-none">
-      {/* Dynamic Cycling Headline (Exact NasirChy style) */}
-      <div className="max-w-4xl mb-16 md:mb-20">
-        <h2 className="text-4xl sm:text-6xl md:text-7xl font-light tracking-tight leading-[1.1] text-white">
+    <footer className="w-full bg-black text-white pt-20 sm:pt-28 pb-12 relative overflow-hidden border-t border-zinc-900 select-none">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-14 lg:px-16">
+        {/* Dynamic Cycling Headline (Exact NasirChy style) */}
+        <div className="max-w-4xl mb-16 md:mb-20">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl font-light tracking-tight leading-[1.1] text-white">
           Lets{" "}
           <span className="inline-block relative overflow-hidden h-[1.15em] align-bottom font-medium text-emerald-400">
             <span
@@ -122,6 +123,7 @@ export default function Footer() {
           </span>
           <span>© {new Date().getFullYear()} Babul Hossan. All rights reserved.</span>
         </div>
+      </div>
       </div>
 
       {/* Giant Background Watermark Text (Exact NasirChy style) */}
