@@ -1,279 +1,225 @@
 "use client";
 import React from "react";
-import { Sparkles } from "lucide-react";
 
-interface TechSkill {
+interface TechItem {
   name: string;
-  category: string;
   icon: React.ReactNode;
-  color: string;
-  borderHover: string;
 }
 
 export default function Skills() {
-  const techSkills: TechSkill[] = [
-    // Frontend
+  const technologies: TechItem[] = [
     {
-      name: "React.js",
-      category: "Frontend",
-      color: "#61DAFB",
-      borderHover: "hover:border-[#61DAFB]/50",
+      name: "HTML",
       icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
-          <ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" strokeWidth="1.5" />
-          <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" stroke="#61DAFB" strokeWidth="1.5" />
-          <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" stroke="#61DAFB" strokeWidth="1.5" />
-          <circle cx="12" cy="12" r="1.5" fill="#61DAFB" />
+        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none">
+          <path d="M4 3l1.5 15.5L12 21l6.5-2.5L20 3H4z" fill="#E34F26" />
+          <path d="M12 4.5v14.5l5-2 1-12.5H12z" fill="#EF652A" />
+          <path d="M7.5 7.5h9l-.4 3.5H8l.2 3 3.8 1 3.8-1 .3-3.5h2.2l-.5 5.5L12 18.5 7 17l-.5-6h10.5l.2-1.5H6.5L7.5 7.5z" fill="#FFFFFF" />
         </svg>
       ),
     },
     {
-      name: "Next.js 14",
-      category: "Full Stack",
-      color: "#000000",
-      borderHover: "hover:border-zinc-400 dark:hover:border-white/50",
+      name: "CSS",
       icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6 text-slate-900 dark:text-white" fill="currentColor">
-          <path d="M12 2L2 19.5h20L12 2zm0 4.5l6.5 11.5h-13L12 6.5z" />
-        </svg>
-      ),
-    },
-    {
-      name: "TypeScript",
-      category: "Language",
-      color: "#3178C6",
-      borderHover: "hover:border-[#3178C6]/50",
-      icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
-          <rect width="22" height="22" x="1" y="1" rx="4" fill="#3178C6" />
-          <path d="M5 8.5h6m-3 0v9m5-9h4c1 0 2 .5 2 1.5s-.5 1.5-1.5 1.5H15v3h3.5" stroke="#FFFFFF" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none">
+          <path d="M4 3l1.5 15.5L12 21l6.5-2.5L20 3H4z" fill="#1572B6" />
+          <path d="M12 4.5v14.5l5-2 1-12.5H12z" fill="#33A9DC" />
+          <path d="M7.5 7.5h9l-.4 3.5H8l.2 3 3.8 1 3.8-1 .3-3.5h2.2l-.5 5.5L12 18.5 7 17l-.5-6h10.5l.2-1.5H6.5L7.5 7.5z" fill="#FFFFFF" />
         </svg>
       ),
     },
     {
       name: "JavaScript",
-      category: "Language",
-      color: "#F7DF1E",
-      borderHover: "hover:border-[#F7DF1E]/50",
       icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
-          <rect width="22" height="22" x="1" y="1" rx="4" fill="#F7DF1E" />
-          <path d="M8 11.5v5c0 1-.5 1.5-1.5 1.5s-1.5-.5-1.5-1m9-5.5h3c.8 0 1.5.5 1.5 1.2s-.5 1.3-1.5 1.3h-1.5c-1 0-1.5.5-1.5 1.5s.5 1.5 1.5 1.5h3" stroke="#000000" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+        <svg viewBox="0 0 24 24" className="w-10 h-10 rounded-lg overflow-hidden" fill="none">
+          <rect width="24" height="24" fill="#F7DF1E" />
+          <path d="M7 11v6.5c0 1.2-.6 1.8-1.7 1.8s-1.6-.6-1.6-1.5m14.3-6.8h-3.8c-.8 0-1.4.5-1.4 1.3 0 1 .8 1.4 1.7 1.7l1.2.5c1.2.5 1.8 1.1 1.8 2.2 0 1.5-1.2 2.3-2.6 2.3-1.6 0-2.4-.8-2.6-2" stroke="#000000" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       ),
     },
     {
-      name: "Tailwind CSS",
-      category: "Styling",
-      color: "#38BDF8",
-      borderHover: "hover:border-[#38BDF8]/50",
+      name: "TypeScript",
       icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6" fill="#38BDF8">
-          <path d="M12 6c-3.3 0-5.3 1.7-6 5 1.3-1.7 3-2.3 5-2 1.1.2 2 1.1 2.9 2 1.5 1.5 3.2 3.3 6.1 3.3 3.3 0 5.3-1.7 6-5-1.3 1.7-3 2.3-5 2-1.1-.2-2-1.1-2.9-2-1.5-1.5-3.2-3.3-6.1-3.3zm-6 6c-3.3 0-5.3 1.7-6 5 1.3-1.7 3-2.3 5-2 1.1.2 2 1.1 2.9 2 1.5 1.5 3.2 3.3 6.1 3.3 3.3 0 5.3-1.7 6-5-1.3 1.7-3 2.3-5 2-1.1-.2-2-1.1-2.9-2-1.5-1.5-3.2-3.3-6.1-3.3z" />
+        <svg viewBox="0 0 24 24" className="w-10 h-10 rounded-lg overflow-hidden" fill="none">
+          <rect width="24" height="24" fill="#3178C6" />
+          <path d="M5 9h6m-3 0v9m5-9h4c1.2 0 2 .7 2 1.8s-.8 1.8-2 1.8h-2v3.5m0-7.1h4" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       ),
     },
     {
-      name: "HTML5 & CSS3",
-      category: "Frontend",
-      color: "#E34F26",
-      borderHover: "hover:border-[#E34F26]/50",
+      name: "React",
       icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor">
-          <path d="M4 3l1.5 15.5L12 21l6.5-2.5L20 3H4z" stroke="#E34F26" strokeWidth="1.5" />
-          <path d="M7.5 7.5h9l-.5 4.5H8l.3 3.5 3.7 1 3.7-1 .3-3" stroke="#E34F26" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      ),
-    },
-
-    // Backend
-    {
-      name: "Node.js",
-      category: "Backend",
-      color: "#5FA04E",
-      borderHover: "hover:border-[#5FA04E]/50",
-      icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
-          <path d="M12 2l9 5.2v10.4L12 23l-9-5.4V7.2L12 2z" stroke="#5FA04E" strokeWidth="1.7" />
-          <path d="M12 6.5v11M7.5 9l9 5.5M16.5 9l-9 5.5" stroke="#5FA04E" strokeWidth="1.5" />
+        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none">
+          <ellipse cx="12" cy="12" rx="10" ry="4" stroke="#61DAFB" strokeWidth="1.6" />
+          <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" stroke="#61DAFB" strokeWidth="1.6" />
+          <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" stroke="#61DAFB" strokeWidth="1.6" />
+          <circle cx="12" cy="12" r="1.8" fill="#61DAFB" />
         </svg>
       ),
     },
     {
-      name: "Express.js",
-      category: "Backend API",
-      color: "#000000",
-      borderHover: "hover:border-zinc-400 dark:hover:border-zinc-500",
+      name: "Next.js",
       icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6 text-slate-800 dark:text-zinc-200" fill="none" stroke="currentColor">
-          <rect x="3" y="4" width="18" height="16" rx="3" strokeWidth="1.5" />
-          <path d="M7 12h3m4 0h3m-7-3v6" strokeWidth="1.5" strokeLinecap="round" />
-        </svg>
-      ),
-    },
-    {
-      name: "REST APIs",
-      category: "Backend",
-      color: "#10B981",
-      borderHover: "hover:border-emerald-500/50",
-      icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" strokeWidth="1.7">
-          <path d="M4 12h16m-6-6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      ),
-    },
-
-    // Databases
-    {
-      name: "PostgreSQL",
-      category: "Database",
-      color: "#336791",
-      borderHover: "hover:border-[#336791]/50",
-      icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
-          <circle cx="12" cy="12" r="9.5" stroke="#336791" strokeWidth="1.5" />
-          <path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4c0 3-2 5-4 5s-3-1-3-2" stroke="#336791" strokeWidth="1.5" strokeLinecap="round" />
-        </svg>
-      ),
-    },
-    {
-      name: "Prisma ORM",
-      category: "ORM & SQL",
-      color: "#2D3748",
-      borderHover: "hover:border-indigo-400/50",
-      icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6 text-indigo-500 dark:text-indigo-400" fill="currentColor">
-          <path d="M11.5 2.5l9 17a1 1 0 01-.8 1.5H4.3a1 1 0 01-.9-1.4l7.2-17a1 1 0 011.8 0zm.5 4.5L6.5 18h11L12 7z" />
+        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none">
+          <circle cx="12" cy="12" r="11" fill="#000000" />
+          <path d="M7 7.5v9m0 0l10-10m-3 4.5v5.5" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       ),
     },
     {
       name: "MongoDB",
-      category: "Database",
-      color: "#47A248",
-      borderHover: "hover:border-[#47A248]/50",
       icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
-          <path d="M12 2C9 7 6 11 6 15c0 3.5 2.5 6 6 7 3.5-1 6-3.5 6-7 0-4-3-8-6-13z" stroke="#47A248" strokeWidth="1.5" />
-          <path d="M12 2v20" stroke="#47A248" strokeWidth="1.5" />
+        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none">
+          <path d="M12 2C8.5 7 5 11.5 5 15.5c0 3.8 3.1 6.5 7 7 3.9-.5 7-3.2 7-7C19 11.5 15.5 7 12 2z" fill="#47A248" />
+          <path d="M12 2.5v19.8" stroke="#13AA52" strokeWidth="1.5" />
+          <path d="M12 22.5c-.2 0-.4-.1-.5-.2-2.5-1.5-4.5-4-4.5-6.8 0-3.5 2.5-7.5 5-11.5v18.5z" fill="#13AA52" opacity="0.6" />
         </svg>
+      ),
+    },
+    {
+      name: "PostgreSQL",
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none">
+          <circle cx="12" cy="12" r="10" fill="#336791" />
+          <path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4c0 3-2 5-4 5s-3-1-3-2" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" />
+          <circle cx="10" cy="10" r="1" fill="#FFFFFF" />
+        </svg>
+      ),
+    },
+    {
+      name: "Prisma",
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-10 h-10 text-slate-900 dark:text-white" fill="currentColor">
+          <path d="M11.5 2.5l9 17a1 1 0 01-.8 1.5H4.3a1 1 0 01-.9-1.4l7.2-17a1 1 0 011.8 0zm.5 4.5L6.5 18h11L12 7z" />
+        </svg>
+      ),
+    },
+    {
+      name: "Node.js",
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none">
+          <path d="M12 2l9 5.2v10.4L12 23l-9-5.4V7.2L12 2z" fill="#5FA04E" />
+          <path d="M12 6.5v11M7.5 9l9 5.5M16.5 9l-9 5.5" stroke="#FFFFFF" strokeWidth="1.7" strokeLinecap="round" />
+        </svg>
+      ),
+    },
+    {
+      name: "Express.js",
+      icon: (
+        <div className="w-10 h-10 rounded-full border-2 border-slate-900 dark:border-white flex items-center justify-center font-mono font-bold text-base text-slate-900 dark:text-white">
+          ex
+        </div>
       ),
     },
 
-    // Tools & Ecosystem
+    // Row 2
     {
-      name: "Redux Toolkit",
-      category: "State Mgmt",
-      color: "#764ABC",
-      borderHover: "hover:border-[#764ABC]/50",
+      name: "Tailwind CSS",
       icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none">
+        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="#38BDF8">
+          <path d="M12 6c-3.3 0-5.3 1.7-6 5 1.3-1.7 3-2.3 5-2 1.1.2 2 1.1 2.9 2 1.5 1.5 3.2 3.3 6.1 3.3 3.3 0 5.3-1.7 6-5-1.3 1.7-3 2.3-5 2-1.1-.2-2-1.1-2.9-2-1.5-1.5-3.2-3.3-6.1-3.3zm-6 6c-3.3 0-5.3 1.7-6 5 1.3-1.7 3-2.3 5-2 1.1.2 2 1.1 2.9 2 1.5 1.5 3.2 3.3 6.1 3.3 3.3 0 5.3-1.7 6-5-1.3 1.7-3 2.3-5 2-1.1-.2-2-1.1-2.9-2-1.5-1.5-3.2-3.3-6.1-3.3z" />
+        </svg>
+      ),
+    },
+    {
+      name: "Redux",
+      icon: (
+        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none">
           <circle cx="12" cy="12" r="3" fill="#764ABC" />
-          <ellipse cx="12" cy="12" rx="9" ry="4" stroke="#764ABC" strokeWidth="1.5" transform="rotate(30 12 12)" />
-          <ellipse cx="12" cy="12" rx="9" ry="4" stroke="#764ABC" strokeWidth="1.5" transform="rotate(-30 12 12)" />
+          <ellipse cx="12" cy="12" rx="9" ry="4" stroke="#764ABC" strokeWidth="1.7" transform="rotate(30 12 12)" />
+          <ellipse cx="12" cy="12" rx="9" ry="4" stroke="#764ABC" strokeWidth="1.7" transform="rotate(-30 12 12)" />
         </svg>
       ),
     },
     {
-      name: "Git & GitHub",
-      category: "Version Control",
-      color: "#F05032",
-      borderHover: "hover:border-[#F05032]/50",
+      name: "Git",
       icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6 text-slate-800 dark:text-zinc-200" fill="none" stroke="currentColor" strokeWidth="1.7">
-          <circle cx="6" cy="6" r="3" />
-          <circle cx="6" cy="18" r="3" />
-          <circle cx="18" cy="9" r="3" />
-          <path d="M6 9v6M9 6h6a3 3 0 013 3" />
+        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none">
+          <rect width="18" height="18" x="3" y="3" rx="4" transform="rotate(45 12 12)" fill="#F05032" />
+          <circle cx="9" cy="15" r="1.8" fill="#FFFFFF" />
+          <circle cx="15" cy="9" r="1.8" fill="#FFFFFF" />
+          <circle cx="9" cy="9" r="1.8" fill="#FFFFFF" />
+          <path d="M9 10.8v2.4M10.8 9h2.4" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" />
         </svg>
       ),
     },
     {
-      name: "Postman",
-      category: "API Testing",
-      color: "#FF6C37",
-      borderHover: "hover:border-[#FF6C37]/50",
+      name: "GitHub",
       icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6 text-[#FF6C37]" fill="none" stroke="currentColor" strokeWidth="1.7">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" strokeLinecap="round" strokeLinejoin="round" />
+        <svg viewBox="0 0 24 24" className="w-10 h-10 text-slate-900 dark:text-white" fill="currentColor">
+          <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
         </svg>
       ),
     },
     {
       name: "Vercel",
-      category: "Deployment",
-      color: "#000000",
-      borderHover: "hover:border-zinc-400 dark:hover:border-white/50",
       icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6 text-slate-900 dark:text-white" fill="currentColor">
+        <svg viewBox="0 0 24 24" className="w-10 h-10 text-slate-900 dark:text-white" fill="currentColor">
           <path d="M12 2L24 22H0L12 2z" />
         </svg>
       ),
     },
     {
-      name: "VS Code",
-      category: "IDE",
-      color: "#007ACC",
-      borderHover: "hover:border-[#007ACC]/50",
+      name: "Postman",
       icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6 text-[#007ACC]" fill="none" stroke="currentColor" strokeWidth="1.7">
-          <path d="M16.5 3.5L8 10l-4-3.5L2 8l4 4-4 4 2 1.5 4-3.5 8.5 6.5 5.5-2.5V6z" strokeLinecap="round" strokeLinejoin="round" />
+        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none">
+          <circle cx="12" cy="12" r="10" fill="#FF6C37" />
+          <path d="M7 14l5-5 5 2-3 4-7-1z" fill="#FFFFFF" />
         </svg>
       ),
     },
     {
-      name: "JWT & Auth",
-      category: "Security",
-      color: "#10B981",
-      borderHover: "hover:border-emerald-500/50",
+      name: "VS Code",
       icon: (
-        <svg viewBox="0 0 24 24" className="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" strokeWidth="1.7">
-          <rect x="5" y="11" width="14" height="10" rx="2" />
-          <path d="M8 11V7a4 4 0 018 0v4" />
+        <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none">
+          <path d="M17 2l-7 6.5L4 4.5 2 6l5 6-5 6 2 1.5 6-4 7 6.5V2z" fill="#007ACC" />
+          <path d="M17 2v20l4.5-2.5V4.5L17 2z" fill="#1F9CF0" />
         </svg>
       ),
     },
   ];
 
   return (
-    <section id="skills" className="py-20 md:py-28 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-[#09090b]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-14 lg:px-16">
+    <section id="skills" className="py-20 md:py-28 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-[#09090b] relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-14 lg:px-16 text-center">
         
-        {/* Clean Minimal Section Header */}
-        <div className="mb-12">
-          <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-emerald-600 dark:text-emerald-400 font-semibold uppercase mb-2">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>CORE TOOLKIT</span>
+        {/* Header with Subtle Giant Watermark & Underline Accent (Exact Image Style) */}
+        <div className="relative mb-14 sm:mb-16">
+          {/* Giant Translucent Background Watermark */}
+          <div className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-slate-900/[0.03] dark:text-white/[0.04] tracking-[0.25em] select-none pointer-events-none uppercase absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 whitespace-nowrap">
+            TECHNOLOGIES
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 dark:text-white">
-            Technologies &amp; Skills
+
+          {/* Foreground Heading: TECHNO + LOGIES */}
+          <h2 className="relative text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            TECHNO<span className="text-emerald-500">LOGIES</span>
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-slate-600 dark:text-zinc-400 max-w-xl">
-            My primary stack for engineering responsive frontend interfaces, type-safe databases, and scalable backend APIs.
+
+          {/* Small Center Underline Bar */}
+          <div className="w-12 h-1 bg-emerald-500 rounded-full mx-auto mt-2.5" />
+
+          {/* Subtitle */}
+          <p className="mt-4 text-sm sm:text-base text-slate-600 dark:text-zinc-400 max-w-xl mx-auto">
+            Technologies I use to build fast, scalable, and user-friendly web applications.
           </p>
         </div>
 
-        {/* Clean, Tactile Icon Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5 sm:gap-4">
-          {techSkills.map((tech) => (
+        {/* Circular Pods Icon Grid (Exact Image Layout) */}
+        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 md:gap-10 max-w-5xl mx-auto">
+          {technologies.map((tech) => (
             <div
               key={tech.name}
-              className={`group relative rounded-2xl border border-zinc-200/90 dark:border-zinc-800/90 bg-zinc-50/60 dark:bg-zinc-900/50 p-4 flex flex-col items-center justify-center text-center gap-2.5 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg ${tech.borderHover} cursor-pointer`}
+              className="group flex flex-col items-center justify-center cursor-pointer"
             >
-              {/* Icon Container with subtle hover zoom */}
-              <div className="w-12 h-12 rounded-xl bg-white dark:bg-zinc-800/90 border border-zinc-200/80 dark:border-zinc-700/60 flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform duration-300">
+              {/* Circular Bubble / Pod */}
+              <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-white dark:bg-zinc-800/90 border border-zinc-200/90 dark:border-zinc-700/80 flex items-center justify-center shadow-md hover:shadow-xl hover:border-emerald-500/50 dark:hover:border-emerald-500/50 transition-all duration-300 group-hover:-translate-y-2 group-hover:scale-105">
                 {tech.icon}
               </div>
 
-              {/* Technology Title */}
-              <div>
-                <h3 className="text-sm font-semibold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                  {tech.name}
-                </h3>
-                <span className="text-[10px] font-mono text-slate-500 dark:text-zinc-400 block mt-0.5">
-                  {tech.category}
-                </span>
-              </div>
+              {/* Technology Name Label */}
+              <span className="text-xs sm:text-sm font-medium text-slate-700 dark:text-zinc-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors mt-3 text-center">
+                {tech.name}
+              </span>
             </div>
           ))}
         </div>
