@@ -67,6 +67,19 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
           </li>
           <li>
             <a
+              href="/Babul_Hossan_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download="Babul_Hossan_Resume.pdf"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30 font-semibold text-xs transition-all shadow-xs hover:scale-105 active:scale-95"
+              title="Download Babul Hossan's Resume (PDF)"
+            >
+              <FileText className="w-3.5 h-3.5 text-emerald-500" />
+              <span>Resume</span>
+            </a>
+          </li>
+          <li>
+            <a
               href="#contact"
               className="rounded-full border border-gray-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-3 py-1 text-xs font-semibold text-zinc-900 dark:text-white shadow-xs duration-300 hover:translate-y-0.5 hover:shadow-none transition-all"
             >

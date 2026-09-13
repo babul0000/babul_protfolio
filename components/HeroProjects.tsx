@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight, ArrowRight, FileText } from "lucide-react";
 import { GithubIcon } from "./Icons";
 import { projects } from "./projectsData";
 
@@ -153,8 +153,8 @@ export default function HeroProjects() {
               Full-Stack MERN Developer | Creating clean, responsive, and production-ready, high-quality web systems
             </p>
 
-            {/* GitHub Bubble CTA Button */}
-            <div className="pt-2">
+            {/* Action Buttons: GitHub + Download Resume */}
+            <div className="pt-2 flex flex-wrap items-center gap-3">
               <a
                 href="https://github.com/babul0000"
                 target="_blank"
@@ -177,6 +177,19 @@ export default function HeroProjects() {
                   </div>
                 </div>
                 <span>See My Github</span>
+              </a>
+
+              {/* Download Resume Button */}
+              <a
+                href="/Babul_Hossan_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                download="Babul_Hossan_Resume.pdf"
+                className="inline-flex items-center gap-2 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-slate-900 dark:text-white px-5 py-3 text-base font-medium tracking-tight hover:bg-zinc-50 dark:hover:bg-zinc-800 shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+                title="Download Babul Hossan's Resume PDF"
+              >
+                <FileText className="w-4 h-4 text-emerald-500" />
+                <span>Download Resume</span>
               </a>
             </div>
           </div>
