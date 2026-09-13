@@ -98,14 +98,18 @@ export default function Terminal({
           <div className="text-xs text-slate-300 space-y-2 font-mono">
             <div>
               <span className="text-amber-400 font-bold">Frontend: </span>
-              <span>React.js, Next.js (App Router), TypeScript, Tailwind CSS, Redux/Zustand, HTML5/CSS3</span>
+              <span>React.js, Next.js 14 (App Router), TypeScript, Tailwind CSS, HTML5/CSS3</span>
             </div>
             <div>
-              <span className="text-emerald-400 font-bold">Backend &amp; DB: </span>
+              <span className="text-emerald-400 font-bold">Backend &amp; MERN: </span>
               <span>Node.js, Express.js, MongoDB, Mongoose, RESTful APIs, Next.js API Routes</span>
             </div>
             <div>
-              <span className="text-cyan-400 font-bold">Tools &amp; DevOps: </span>
+              <span className="text-cyan-400 font-bold">Relational DB &amp; ORM: </span>
+              <span>PostgreSQL, Prisma ORM, SQL Relational Schemas &amp; Migrations</span>
+            </div>
+            <div>
+              <span className="text-purple-400 font-bold">Tools &amp; DevOps: </span>
               <span>Git, GitHub, Vercel, VS Code, Postman, Sonner, JWT Auth, Sharp</span>
             </div>
           </div>

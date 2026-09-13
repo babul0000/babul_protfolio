@@ -13,8 +13,10 @@ export default function About() {
   const resumeLink = "/resume.pdf";
 
   const stats: StatItem[] = [
-    { label: "Focus", value: "Frontend & Full-Stack", sub: "React, Next.js" },
-    { label: "Status", value: "Open to Work", sub: "MERN Stack" }
+    { label: "Core Specialization", value: "Full-Stack MERN", sub: "Next.js & Node.js" },
+    { label: "Databases & ORM", value: "MongoDB & PostgreSQL", sub: "Prisma ORM" },
+    { label: "Code Architecture", value: "Strict Type-Safety", sub: "TypeScript & REST" },
+    { label: "Work Availability", value: "Ready to Join", sub: "Full-Time / Remote" }
   ];
 
   return (
@@ -32,37 +34,37 @@ export default function About() {
               <div className="inline-flex items-center gap-2 mb-4">
                 <div className="w-1.5 h-4 rounded-full bg-themeAccent" />
                 <span className="text-xs font-bold text-themeAccent uppercase tracking-widest">
-                  Biography
+                  Engineering Philosophy
                 </span>
               </div>
               <h2 className="text-3xl md:text-4xl font-black text-themeText leading-tight uppercase tracking-tight">
-                My Story &amp; <span className="gradient-text">Expertise</span>
+                My Journey &amp; <span className="gradient-text">Core Expertise</span>
               </h2>
               <p className="text-xs font-bold uppercase text-themeAccent tracking-wider mt-2.5">
-                Full Stack Mern Developer
+                Full Stack MERN Developer • TypeScript • PostgreSQL &amp; Prisma
               </p>
             </div>
 
             <div className="space-y-4 text-themeTextSecondary text-sm md:text-base leading-relaxed font-normal">
               <p>
-                I am a Software Engineer with a background in technical operations and cross-functional coordination. My journey into programming was driven by a clear purpose: <strong>to solve real-world human problems through code</strong>. I believe that software is at its best when it makes people&apos;s lives easier, and that motivation pushes me to build robust, efficient, and user-centric solutions.
+                I am a dedicated Full-Stack Software Engineer who recently completed comprehensive engineering in the <strong>MERN Stack (MongoDB, Express.js, React.js, Node.js)</strong> and <strong>Next.js 14 App Router</strong>. To expand my backend and data modeling capabilities, I am actively architecting projects with <strong>PostgreSQL</strong> and <strong>Prisma ORM</strong>, building type-safe relational schemas alongside NoSQL document databases.
               </p>
               <p>
-                Currently, I specialize in full-stack MERN development (Next.js, React, Node.js, Express, and MongoDB). I enjoy designing elegant user interfaces, optimization, and structuring efficient backend architectures.
+                My professional background in technical operations and precision quality control gives me an exceptional <strong>engineering discipline</strong>: I approach software with a zero-defect mindset, deep root-cause troubleshooting, and a commitment to meeting production deadlines.
               </p>
               <p>
-                Outside of coding, I am passionate about <strong>travelling</strong> to explore new environments, <strong>learning new things</strong> to expand my horizons, and <strong>building meaningful connections</strong> with people from different walks of life.
+                My guiding mission is simple: <strong>to build reliable, high-performance software that solves real human problems</strong>. Whether designing clean user interfaces or engineering robust REST APIs, I focus on clean code, scalability, and measurable user impact.
               </p>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-2 flex flex-wrap items-center gap-3">
               <a
                 href={resumeLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-themeAccent hover:bg-themeAccentHover text-themeAccentText font-medium rounded-xl shadow-lg shadow-themeAccent/10 transition-all text-sm tracking-wide hover:scale-[1.02]"
+                className="inline-flex items-center gap-2 px-6 py-3.5 bg-themeAccent hover:bg-themeAccentHover text-themeAccentText font-bold rounded-xl shadow-lg shadow-themeAccent/10 transition-all text-xs uppercase tracking-wider hover:scale-[1.02]"
               >
-                Get Resume
+                <span>Download Resume</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="14"
@@ -79,21 +81,28 @@ export default function About() {
                   <line x1="12" x2="12" y1="15" y2="3"></line>
                 </svg>
               </a>
+
+              <button
+                onClick={() => window.dispatchEvent(new CustomEvent("open-recruiter-snapshot"))}
+                className="inline-flex items-center gap-2 px-5 py-3.5 border border-themeBorder bg-themeCard hover:border-themeAccent/40 text-themeText font-bold rounded-xl transition-all text-xs uppercase tracking-wider"
+              >
+                <span>Recruiter Snapshot</span>
+              </button>
             </div>
           </div>
 
           {/* Right Column: Metric Stats */}
-          <div className="lg:col-span-5 space-y-4 reveal" style={{ transitionDelay: "0.2s" }}>
+          <div className="lg:col-span-5 space-y-3.5 reveal" style={{ transitionDelay: "0.2s" }}>
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="p-6 bg-themeCard border border-themeBorder rounded-3xl hover:border-themeAccent/20 hover:shadow-md transition-all duration-300 shadow-sm flex items-center justify-between"
+                className="p-5 bg-themeCard border border-themeBorder rounded-2xl hover:border-themeAccent/20 hover:shadow-md transition-all duration-300 shadow-sm flex items-center justify-between"
               >
                 <div>
                   <p className="text-[10px] text-themeTextMuted font-bold uppercase tracking-wider">
                     {stat.label}
                   </p>
-                  <p className="text-xl font-black text-themeText mt-1.5">
+                  <p className="text-base sm:text-lg font-black text-themeText mt-1">
                     {stat.value}
                   </p>
                 </div>

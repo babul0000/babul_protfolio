@@ -169,6 +169,16 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
       }
     },
     {
+      id: "action-recruiter-snapshot",
+      title: "Recruiter & Hiring Fast-Track",
+      subtitle: "30-second executive summary & candidate highlights",
+      category: "Quick Actions",
+      icon: <Sparkles className="w-4 h-4 text-emerald-400" />,
+      action: () => {
+        window.dispatchEvent(new CustomEvent("open-recruiter-snapshot"));
+      }
+    },
+    {
       id: "action-terminal",
       title: "Open Developer Terminal",
       subtitle: "Interactive UNIX CLI console (>_)",

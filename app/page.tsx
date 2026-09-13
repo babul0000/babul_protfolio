@@ -20,6 +20,7 @@ import ScrollToTop from "../components/ScrollToTop";
 import ReadingProgressBar from "../components/ReadingProgressBar";
 import Terminal from "../components/Terminal";
 import BookingModal from "../components/BookingModal";
+import RecruiterSnapshot from "../components/RecruiterSnapshot";
 
 export default function Home() {
   const [theme, setTheme] = useState<string>("dark");
@@ -27,6 +28,7 @@ export default function Home() {
   const [isPaletteOpen, setIsPaletteOpen] = useState<boolean>(false);
   const [isTerminalOpen, setIsTerminalOpen] = useState<boolean>(false);
   const [isBookingOpen, setIsBookingOpen] = useState<boolean>(false);
+  const [isRecruiterOpen, setIsRecruiterOpen] = useState<boolean>(false);
 
   useEffect(() => {
     // Determine initial theme
@@ -46,10 +48,12 @@ export default function Home() {
     const handleOpenPalette = () => setIsPaletteOpen(true);
     const handleOpenTerminal = () => setIsTerminalOpen(true);
     const handleOpenBooking = () => setIsBookingOpen(true);
+    const handleOpenRecruiter = () => setIsRecruiterOpen(true);
 
     window.addEventListener("open-command-palette", handleOpenPalette);
     window.addEventListener("open-terminal", handleOpenTerminal);
     window.addEventListener("open-booking-modal", handleOpenBooking);
+    window.addEventListener("open-recruiter-snapshot", handleOpenRecruiter);
 
     // Global keyboard shortcut for terminal (`~` or `Alt+T`)
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -69,6 +73,7 @@ export default function Home() {
       window.removeEventListener("open-command-palette", handleOpenPalette);
       window.removeEventListener("open-terminal", handleOpenTerminal);
       window.removeEventListener("open-booking-modal", handleOpenBooking);
+      window.removeEventListener("open-recruiter-snapshot", handleOpenRecruiter);
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
@@ -137,6 +142,11 @@ export default function Home() {
       <BookingModal
         isOpen={isBookingOpen}
         onClose={() => setIsBookingOpen(false)}
+      />
+
+      <RecruiterSnapshot
+        isOpen={isRecruiterOpen}
+        onClose={() => setIsRecruiterOpen(false)}
       />
 
       <ScrollToTop />

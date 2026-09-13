@@ -2,16 +2,18 @@
 import React from "react";
 
 const techStack: string[] = [
-  "React",
+  "MERN Stack",
+  "React.js",
   "Next.js",
   "Node.js",
+  "Express.js",
   "MongoDB",
-  "Tailwind",
-  "JavaScript",
-  "MERN Stack",
-  "Express",
   "TypeScript",
-  "REST APIs"
+  "PostgreSQL",
+  "Prisma ORM",
+  "Tailwind CSS",
+  "REST APIs",
+  "JavaScript ES6+"
 ];
 
 export default function Ecosystem() {

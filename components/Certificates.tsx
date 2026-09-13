@@ -21,11 +21,22 @@ const certificates: Certificate[] = [
     title: "Complete Web Development (MERN Stack)",
     issuer: "Programming Hero",
     year: "2025",
-    desc: "Comprehensive training covering full-stack web engineering: React, Next.js, Node.js, Express.js, MongoDB, TypeScript, REST APIs, and Secure Authentication.",
-    skills: ["Next.js", "React.js", "Node.js", "MongoDB", "Express.js", "TypeScript"],
+    desc: "Comprehensive engineering curriculum covering full-stack web development: React.js, Next.js 14, Node.js, Express.js, MongoDB, TypeScript, REST APIs, and Secure Authentication.",
+    skills: ["MERN Stack", "Next.js 14", "React.js", "Node.js", "MongoDB", "TypeScript", "Express.js"],
     badge: "Verified Credential",
     color: "#10b981",
     link: "https://programming-hero.com"
+  },
+  {
+    id: "sql-prisma",
+    title: "Relational Database Design & Prisma ORM",
+    issuer: "Full-Stack Project & Architecture Practice",
+    year: "2025 — Present",
+    desc: "Hands-on implementation of relational SQL schemas, entity relations, migration workflows, and type-safe database queries with PostgreSQL and Prisma ORM.",
+    skills: ["PostgreSQL", "Prisma ORM", "Relational Schemas", "Database Migrations", "Type Safety"],
+    badge: "Active Practice",
+    color: "#a855f7",
+    link: "https://github.com/babul0000"
   },
   {
     id: "tech-ops",
@@ -37,17 +48,6 @@ const certificates: Certificate[] = [
     badge: "Professional Experience",
     color: "#38bdf8",
     link: "#experience"
-  },
-  {
-    id: "js-mastery",
-    title: "Modern JavaScript & Full-Stack Architecture",
-    issuer: "Self-Directed & Project Mastery",
-    year: "2024 — Present",
-    desc: "Deep dive into ES6+, asynchronous JavaScript, RESTful architectural design patterns, database indexing, and responsive UI engineering.",
-    skills: ["JavaScript ES6+", "REST APIs", "Tailwind CSS", "Clean Code Architecture"],
-    badge: "Continuous Learning",
-    color: "#a855f7",
-    link: "https://github.com/babul0000"
   }
 ];
 

@@ -85,20 +85,20 @@ export default function Hero() {
             {/* Main Headline */}
             <div className="space-y-4">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-themeText leading-[1.1]">
-                Full Stack Developer <br />
+                Full Stack MERN Developer <br />
                 <span className="gradient-text">
-                  Crafting Scalable Web Solutions
+                  Scalable Web &amp; API Solutions
                 </span>
               </h1>
 
               {/* Bio description */}
               <p className="text-themeTextSecondary text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
-                Hi, I&apos;m <span className="text-themeText font-semibold">Babul Hossan</span>. I build modern, high-performance web applications using <span className="text-themeText font-semibold">Next.js, React, Node.js, Express, MongoDB</span>, and <span className="text-themeText font-semibold">TypeScript</span>. Focused on clean architecture, intuitive UX, and robust APIs.
+                Hi, I&apos;m <span className="text-themeText font-semibold">Babul Hossan</span>. I specialize in the <span className="text-themeText font-semibold">MERN Stack (MongoDB, Express, React, Node.js)</span>, <span className="text-themeText font-semibold">Next.js 14</span>, and <span className="text-themeText font-semibold">TypeScript</span>. Actively building robust full-stack applications with <span className="text-themeText font-semibold">PostgreSQL &amp; Prisma ORM</span> for type-safe relational architecture.
               </p>
             </div>
 
             {/* Action Buttons & Quick Search */}
-            <div className="flex flex-wrap items-center gap-3.5 pt-1">
+            <div className="flex flex-wrap items-center gap-3 pt-1">
               <a
                 href="#projects"
                 className="px-6 py-3.5 bg-themeAccent hover:bg-themeAccentHover text-themeAccentText font-bold rounded-2xl shadow-lg shadow-themeAccent/20 hover:scale-[1.02] active:scale-[0.98] transition-all text-sm tracking-wide flex items-center gap-2"
@@ -107,9 +107,18 @@ export default function Hero() {
                 <ArrowRight className="w-4 h-4" />
               </a>
 
+              {/* Recruiter Fast-Track Button */}
+              <button
+                onClick={() => window.dispatchEvent(new CustomEvent("open-recruiter-snapshot"))}
+                className="px-5 py-3.5 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-bold rounded-2xl shadow-sm transition-all text-sm flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <Sparkles className="w-4 h-4 text-emerald-500" />
+                <span>Recruiter Snapshot</span>
+              </button>
+
               <button
                 onClick={() => window.dispatchEvent(new CustomEvent("open-booking-modal"))}
-                className="px-5 py-3.5 bg-themeCard/90 hover:bg-themeCard border border-themeBorder hover:border-themeAccent/40 text-themeText font-semibold rounded-2xl shadow-sm hover:shadow-md transition-all text-sm flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm"
+                className="px-4 py-3.5 bg-themeCard/90 hover:bg-themeCard border border-themeBorder hover:border-themeAccent/40 text-themeText font-semibold rounded-2xl shadow-sm hover:shadow-md transition-all text-sm flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm"
               >
                 <Calendar className="w-4 h-4 text-themeAccent" />
                 <span>Book Call</span>
@@ -119,7 +128,7 @@ export default function Hero() {
                 href={resumeLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-3.5 bg-themeCard/90 hover:bg-themeCard border border-themeBorder hover:border-themeAccent/40 text-themeText font-semibold rounded-2xl shadow-sm hover:shadow-md transition-all text-sm flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm"
+                className="px-4 py-3.5 bg-themeCard/90 hover:bg-themeCard border border-themeBorder hover:border-themeAccent/40 text-themeText font-semibold rounded-2xl shadow-sm hover:shadow-md transition-all text-sm flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm"
               >
                 <span>Resume</span>
                 <Download className="w-4 h-4 text-themeTextSecondary" />
@@ -128,11 +137,10 @@ export default function Hero() {
               {/* Spotlight Palette Button */}
               <button
                 onClick={openPalette}
-                className="px-4 py-3 bg-themeCard/60 hover:bg-themeCard border border-themeBorder hover:border-themeAccent/40 text-themeTextSecondary hover:text-themeText rounded-2xl text-xs font-semibold flex items-center gap-2 transition-all shadow-sm group backdrop-blur-sm"
+                className="px-3.5 py-3 bg-themeCard/60 hover:bg-themeCard border border-themeBorder hover:border-themeAccent/40 text-themeTextSecondary hover:text-themeText rounded-2xl text-xs font-semibold flex items-center gap-2 transition-all shadow-sm group backdrop-blur-sm"
                 title="Search (Ctrl+K)"
               >
                 <Search className="w-4 h-4 text-themeAccent group-hover:scale-110 transition-transform" />
-                <span className="hidden sm:inline">Commands</span>
                 <kbd className="px-1.5 py-0.5 rounded bg-themeBg border border-themeBorder text-[10px] font-mono font-bold text-themeTextMuted">
                   ⌘K
                 </kbd>
