@@ -6,20 +6,27 @@ import Ecosystem from "../components/Ecosystem";
 import Skills from "../components/Skills";
 import Workflow from "../components/Workflow";
 import Projects from "../components/Projects";
+import ProjectEstimator from "../components/ProjectEstimator";
 import GithubActivity from "../components/GithubActivity";
 import Experience from "../components/Experience";
 import Certificates from "../components/Certificates";
+import Testimonials from "../components/Testimonials";
 import About from "../components/About";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import SkeletonLoader from "../components/SkeletonLoader";
 import CommandPalette from "../components/CommandPalette";
 import ScrollToTop from "../components/ScrollToTop";
+import ReadingProgressBar from "../components/ReadingProgressBar";
+import Terminal from "../components/Terminal";
+import BookingModal from "../components/BookingModal";
 
 export default function Home() {
   const [theme, setTheme] = useState<string>("dark");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isPaletteOpen, setIsPaletteOpen] = useState<boolean>(false);
+  const [isTerminalOpen, setIsTerminalOpen] = useState<boolean>(false);
+  const [isBookingOpen, setIsBookingOpen] = useState<boolean>(false);
 
   useEffect(() => {
     // Determine initial theme
@@ -35,9 +42,23 @@ export default function Home() {
       document.documentElement.setAttribute("data-theme", "light");
     }
 
-    // Custom event listener to open command palette from any button
+    // Custom event listeners
     const handleOpenPalette = () => setIsPaletteOpen(true);
+    const handleOpenTerminal = () => setIsTerminalOpen(true);
+    const handleOpenBooking = () => setIsBookingOpen(true);
+
     window.addEventListener("open-command-palette", handleOpenPalette);
+    window.addEventListener("open-terminal", handleOpenTerminal);
+    window.addEventListener("open-booking-modal", handleOpenBooking);
+
+    // Global keyboard shortcut for terminal (`~` or `Alt+T`)
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.altKey && e.key.toLowerCase() === "t") || (e.ctrlKey && e.key === "`")) {
+        e.preventDefault();
+        setIsTerminalOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
 
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -46,6 +67,9 @@ export default function Home() {
     return () => {
       clearTimeout(timer);
       window.removeEventListener("open-command-palette", handleOpenPalette);
+      window.removeEventListener("open-terminal", handleOpenTerminal);
+      window.removeEventListener("open-booking-modal", handleOpenBooking);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
 
@@ -69,6 +93,9 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen bg-themeBg overflow-hidden font-sans antialiased text-themeText">
+      {/* Top Reading Scroll Progress Bar */}
+      <ReadingProgressBar />
+
       {/* Background glowing meshes */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-themeAccent/5 rounded-full blur-[120px]" />
@@ -84,21 +111,34 @@ export default function Home() {
         <Skills />
         <Workflow />
         <Projects />
+        <ProjectEstimator />
         <GithubActivity />
         <Experience />
         <Certificates />
+        <Testimonials />
         <About />
         <Contact />
         <Footer />
       </div>
 
-      {/* Global Interactive Command Palette & Scroll to Top */}
+      {/* Global Interactive Overlays */}
       <CommandPalette
         isOpen={isPaletteOpen}
         onClose={() => setIsPaletteOpen(false)}
         theme={theme}
         toggleTheme={toggleTheme}
       />
+      
+      <Terminal
+        isOpen={isTerminalOpen}
+        onClose={() => setIsTerminalOpen(false)}
+      />
+
+      <BookingModal
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+      />
+
       <ScrollToTop />
     </main>
   );

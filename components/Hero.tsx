@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { ArrowRight, Download, Search, Mail, ExternalLink, Sparkles } from "lucide-react";
+import VoiceIntroPlayer from "./VoiceIntroPlayer";
+import { ArrowRight, Download, Search, Mail, ExternalLink, Sparkles, Calendar } from "lucide-react";
 
 export default function Hero() {
   const resumeLink = "/resume.pdf";
@@ -56,25 +57,29 @@ export default function Hero() {
           {/* Left Column: Hero Copy & Actions */}
           <div className="lg:col-span-7 space-y-7 text-left">
             
-            {/* Live Status & Location Pill */}
-            <div className="inline-flex flex-wrap items-center gap-2 p-1.5 pr-4 rounded-full bg-themeCard/80 border border-themeBorder shadow-sm backdrop-blur-md">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            {/* Live Status & Voice Intro Row */}
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="inline-flex flex-wrap items-center gap-2 p-1.5 pr-4 rounded-full bg-themeCard/80 border border-themeBorder shadow-sm backdrop-blur-md">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  </span>
+                  Available for hire
                 </span>
-                Available for hire
-              </span>
-              
-              <span className="text-xs text-themeTextSecondary font-medium flex items-center gap-1.5">
-                <span>Dhaka, BD</span>
-                {currentTime && (
-                  <>
-                    <span className="text-themeBorder">•</span>
-                    <span className="text-[11px] font-mono text-themeTextMuted">{currentTime}</span>
-                  </>
-                )}
-              </span>
+                
+                <span className="text-xs text-themeTextSecondary font-medium flex items-center gap-1.5">
+                  <span>Dhaka, BD</span>
+                  {currentTime && (
+                    <>
+                      <span className="text-themeBorder">•</span>
+                      <span className="text-[11px] font-mono text-themeTextMuted">{currentTime}</span>
+                    </>
+                  )}
+                </span>
+              </div>
+
+              <VoiceIntroPlayer />
             </div>
 
             {/* Main Headline */}
@@ -102,11 +107,19 @@ export default function Hero() {
                 <ArrowRight className="w-4 h-4" />
               </a>
 
+              <button
+                onClick={() => window.dispatchEvent(new CustomEvent("open-booking-modal"))}
+                className="px-5 py-3.5 bg-themeCard/90 hover:bg-themeCard border border-themeBorder hover:border-themeAccent/40 text-themeText font-semibold rounded-2xl shadow-sm hover:shadow-md transition-all text-sm flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm"
+              >
+                <Calendar className="w-4 h-4 text-themeAccent" />
+                <span>Book Call</span>
+              </button>
+
               <a
                 href={resumeLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3.5 bg-themeCard/90 hover:bg-themeCard border border-themeBorder hover:border-themeAccent/40 text-themeText font-semibold rounded-2xl shadow-sm hover:shadow-md transition-all text-sm flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm"
+                className="px-5 py-3.5 bg-themeCard/90 hover:bg-themeCard border border-themeBorder hover:border-themeAccent/40 text-themeText font-semibold rounded-2xl shadow-sm hover:shadow-md transition-all text-sm flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm"
               >
                 <span>Resume</span>
                 <Download className="w-4 h-4 text-themeTextSecondary" />

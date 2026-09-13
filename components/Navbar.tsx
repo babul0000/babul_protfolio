@@ -109,6 +109,16 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
 
           {/* ACTIONS */}
           <div className="flex items-center gap-2.5">
+            {/* Terminal Launcher */}
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent("open-terminal"))}
+              className="p-2.5 text-themeTextSecondary hover:text-themeAccent bg-white/60 dark:bg-slate-900/60 border border-themeBorder hover:border-themeAccent/30 rounded-xl transition duration-300 shadow-sm flex items-center justify-center font-mono text-xs"
+              aria-label="Open Developer Terminal"
+              title="Open Terminal (>_)"
+            >
+              <span className="font-bold text-[11px] text-emerald-400">&gt;_</span>
+            </button>
+
             {/* Quick Search Button */}
             <button
               onClick={handleOpenCommandPalette}
@@ -164,12 +174,12 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
               )}
             </button>
 
-            <a
-              href="mailto:babulhossan.info@gmail.com"
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent("open-booking-modal"))}
               className="hidden md:flex px-4 py-2.5 rounded-full bg-themeAccent hover:bg-themeAccentHover text-themeAccentText font-bold tracking-wide transition duration-300 text-xs shadow-md shadow-themeAccent/10 hover:scale-[1.02]"
             >
-              HIRE ME
-            </a>
+              BOOK A CALL
+            </button>
 
             <button
               onClick={() => setShowModal(true)}

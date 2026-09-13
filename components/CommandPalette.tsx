@@ -147,14 +147,45 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
       }
     },
     {
-      id: "nav-about",
-      title: "About Me",
-      subtitle: "Background story & stats",
-      category: "Navigation",
-      icon: <Navigation className="w-4 h-4 text-themeAccent" />,
+      id: "nav-estimator",
+      title: "Project Cost & Timeline Estimator",
+      subtitle: "Instant project scope & budget calculator",
+      category: "Tools",
+      icon: <Sparkles className="w-4 h-4 text-emerald-400" />,
       action: () => {
-        router.push("/#about");
-        document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
+        router.push("/#estimator");
+        document.querySelector("#estimator")?.scrollIntoView({ behavior: "smooth" });
+      }
+    },
+    {
+      id: "nav-testimonials",
+      title: "Recommendations & Peer Reviews",
+      subtitle: "Verified endorsements & feedback",
+      category: "Navigation",
+      icon: <Award className="w-4 h-4 text-themeAccent" />,
+      action: () => {
+        router.push("/#testimonials");
+        document.querySelector("#testimonials")?.scrollIntoView({ behavior: "smooth" });
+      }
+    },
+    {
+      id: "action-terminal",
+      title: "Open Developer Terminal",
+      subtitle: "Interactive UNIX CLI console (>_)",
+      category: "Quick Actions",
+      icon: <span className="font-mono font-bold text-emerald-400 text-xs">&gt;_</span>,
+      action: () => {
+        window.dispatchEvent(new CustomEvent("open-terminal"));
+      }
+    },
+    {
+      id: "action-book-call",
+      title: "Schedule a 1-on-1 Meeting",
+      subtitle: "Book a 15-30 min discovery call with Babul",
+      category: "Quick Actions",
+      icon: <Mail className="w-4 h-4 text-themeAccent" />,
+      action: () => {
+        window.dispatchEvent(new CustomEvent("open-booking-modal"));
       }
     },
     {
