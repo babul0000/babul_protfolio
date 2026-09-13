@@ -1,8 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import VoiceIntroPlayer from "./VoiceIntroPlayer";
-import { ArrowRight, Download, Search, Mail, ExternalLink, Sparkles, Calendar } from "lucide-react";
+import { ArrowRight, Download, Mail, Sparkles, MessageSquare } from "lucide-react";
 
 export default function Hero() {
   const resumeLink = "/resume.pdf";
@@ -28,16 +27,12 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
-  const openPalette = () => {
-    window.dispatchEvent(new CustomEvent("open-command-palette"));
-  };
-
   return (
     <section
       id="home"
-      className="relative min-h-[92vh] flex flex-col justify-center pt-28 pb-16 overflow-hidden bg-themeBg text-themeText font-sans antialiased"
+      className="relative min-h-[90vh] flex flex-col justify-center pt-28 pb-16 overflow-hidden bg-themeBg text-themeText font-sans antialiased"
     >
-      {/* Dynamic ambient background glow meshes */}
+      {/* Ambient background glow meshes */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-32 left-1/4 w-[550px] h-[550px] bg-emerald-500/10 rounded-full blur-[140px]" />
         <div className="absolute top-1/3 -right-20 w-[480px] h-[480px] bg-cyan-500/10 rounded-full blur-[130px]" />
@@ -57,29 +52,25 @@ export default function Hero() {
           {/* Left Column: Hero Copy & Actions */}
           <div className="lg:col-span-7 space-y-7 text-left">
             
-            {/* Live Status & Voice Intro Row */}
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="inline-flex flex-wrap items-center gap-2 p-1.5 pr-4 rounded-full bg-themeCard/80 border border-themeBorder shadow-sm backdrop-blur-md">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                  </span>
-                  Available for hire
+            {/* Live Status & Location Pill */}
+            <div className="inline-flex flex-wrap items-center gap-2 p-1.5 pr-4 rounded-full bg-themeCard/80 border border-themeBorder shadow-sm backdrop-blur-md">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-semibold">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
-                
-                <span className="text-xs text-themeTextSecondary font-medium flex items-center gap-1.5">
-                  <span>Dhaka, BD</span>
-                  {currentTime && (
-                    <>
-                      <span className="text-themeBorder">•</span>
-                      <span className="text-[11px] font-mono text-themeTextMuted">{currentTime}</span>
-                    </>
-                  )}
-                </span>
-              </div>
-
-              <VoiceIntroPlayer />
+                Available for hire
+              </span>
+              
+              <span className="text-xs text-themeTextSecondary font-medium flex items-center gap-1.5">
+                <span>Dhaka, Bangladesh</span>
+                {currentTime && (
+                  <>
+                    <span className="text-themeBorder">•</span>
+                    <span className="text-[11px] font-mono text-themeTextMuted">{currentTime}</span>
+                  </>
+                )}
+              </span>
             </div>
 
             {/* Main Headline */}
@@ -93,61 +84,40 @@ export default function Hero() {
 
               {/* Bio description */}
               <p className="text-themeTextSecondary text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
-                Hi, I&apos;m <span className="text-themeText font-semibold">Babul Hossan</span>. I specialize in the <span className="text-themeText font-semibold">MERN Stack (MongoDB, Express, React, Node.js)</span>, <span className="text-themeText font-semibold">Next.js 14</span>, and <span className="text-themeText font-semibold">TypeScript</span>. Actively building robust full-stack applications with <span className="text-themeText font-semibold">PostgreSQL &amp; Prisma ORM</span> for type-safe relational architecture.
+                Hi, I&apos;m <span className="text-themeText font-semibold">Babul Hossan</span>. I specialize in the <span className="text-themeText font-semibold">MERN Stack (MongoDB, Express, React, Node.js)</span>, <span className="text-themeText font-semibold">Next.js 14</span>, and <span className="text-themeText font-semibold">TypeScript</span>. Passionate about building clean, performant web applications and expanding backend architecture with <span className="text-themeText font-semibold">PostgreSQL &amp; Prisma ORM</span>.
               </p>
             </div>
 
-            {/* Action Buttons & Quick Search */}
-            <div className="flex flex-wrap items-center gap-3 pt-1">
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3.5 pt-1">
               <a
                 href="#projects"
                 className="px-6 py-3.5 bg-themeAccent hover:bg-themeAccentHover text-themeAccentText font-bold rounded-2xl shadow-lg shadow-themeAccent/20 hover:scale-[1.02] active:scale-[0.98] transition-all text-sm tracking-wide flex items-center gap-2"
               >
-                <span>View My Work</span>
+                <span>View Projects</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
-
-              {/* Recruiter Fast-Track Button */}
-              <button
-                onClick={() => window.dispatchEvent(new CustomEvent("open-recruiter-snapshot"))}
-                className="px-5 py-3.5 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-bold rounded-2xl shadow-sm transition-all text-sm flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98]"
-              >
-                <Sparkles className="w-4 h-4 text-emerald-500" />
-                <span>Recruiter Snapshot</span>
-              </button>
-
-              <button
-                onClick={() => window.dispatchEvent(new CustomEvent("open-booking-modal"))}
-                className="px-4 py-3.5 bg-themeCard/90 hover:bg-themeCard border border-themeBorder hover:border-themeAccent/40 text-themeText font-semibold rounded-2xl shadow-sm hover:shadow-md transition-all text-sm flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm"
-              >
-                <Calendar className="w-4 h-4 text-themeAccent" />
-                <span>Book Call</span>
-              </button>
 
               <a
                 href={resumeLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-3.5 bg-themeCard/90 hover:bg-themeCard border border-themeBorder hover:border-themeAccent/40 text-themeText font-semibold rounded-2xl shadow-sm hover:shadow-md transition-all text-sm flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm"
+                className="px-6 py-3.5 bg-themeCard/90 hover:bg-themeCard border border-themeBorder hover:border-themeAccent/40 text-themeText font-semibold rounded-2xl shadow-sm hover:shadow-md transition-all text-sm flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] backdrop-blur-sm"
               >
-                <span>Resume</span>
+                <span>Download Resume</span>
                 <Download className="w-4 h-4 text-themeTextSecondary" />
               </a>
 
-              {/* Spotlight Palette Button */}
-              <button
-                onClick={openPalette}
-                className="px-3.5 py-3 bg-themeCard/60 hover:bg-themeCard border border-themeBorder hover:border-themeAccent/40 text-themeTextSecondary hover:text-themeText rounded-2xl text-xs font-semibold flex items-center gap-2 transition-all shadow-sm group backdrop-blur-sm"
-                title="Search (Ctrl+K)"
+              <a
+                href="#contact"
+                className="px-5 py-3.5 bg-themeCard/60 hover:bg-themeCard border border-themeBorder hover:border-themeAccent/40 text-themeTextSecondary hover:text-themeText rounded-2xl text-sm font-semibold flex items-center gap-2 transition-all shadow-sm backdrop-blur-sm"
               >
-                <Search className="w-4 h-4 text-themeAccent group-hover:scale-110 transition-transform" />
-                <kbd className="px-1.5 py-0.5 rounded bg-themeBg border border-themeBorder text-[10px] font-mono font-bold text-themeTextMuted">
-                  ⌘K
-                </kbd>
-              </button>
+                <Mail className="w-4 h-4 text-themeAccent" />
+                <span>Contact Me</span>
+              </a>
             </div>
 
-            {/* Social Links & Trust Badges */}
+            {/* Social Links & Highlights */}
             <div className="flex flex-wrap items-center gap-6 pt-3 border-t border-themeBorder/60">
               <div className="flex items-center gap-2.5">
                 <a
@@ -181,11 +151,20 @@ export default function Hero() {
                 >
                   <Mail className="w-4 h-4" />
                 </a>
+
+                <a
+                  href="https://wa.me/8801952860053"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-xl border border-themeBorder bg-themeCard/80 hover:bg-themeCard hover:border-emerald-500/40 flex items-center justify-center text-emerald-400 transition-all shadow-sm hover:scale-105"
+                  title="WhatsApp Direct"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                </a>
               </div>
 
               <div className="h-4 w-px bg-themeBorder hidden sm:block" />
 
-              {/* Quick Tech Highlights */}
               <div className="flex items-center gap-2 text-xs font-medium text-themeTextMuted">
                 <Sparkles className="w-3.5 h-3.5 text-themeAccent" />
                 <span>Specialized in MERN &amp; Next.js Ecosystem</span>
@@ -194,7 +173,7 @@ export default function Hero() {
 
           </div>
 
-          {/* Right Column: Ultra-Modern Avatar Showcase with Floating Tech Badges */}
+          {/* Right Column: Avatar Showcase with Floating Tech Badges */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <div className="relative w-full max-w-[340px] sm:max-w-[370px]">
               
@@ -214,7 +193,7 @@ export default function Hero() {
                     src="/my.webp"
                   />
 
-                  {/* Modern Subtle Bottom Gradient */}
+                  {/* Subtle Bottom Card Overlay */}
                   <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-black/80 via-black/40 to-transparent backdrop-blur-[2px]">
                     <div className="flex items-center justify-between">
                       <div>
@@ -222,7 +201,7 @@ export default function Hero() {
                           Babul Hossan
                         </span>
                         <span className="text-emerald-400 font-mono text-xs font-semibold block">
-                          Full-Stack Engineer
+                          Full-Stack MERN Developer
                         </span>
                       </div>
                       <div className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white">

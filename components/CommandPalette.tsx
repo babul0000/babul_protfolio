@@ -42,7 +42,6 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
 
-  // Focus input on open
   useEffect(() => {
     if (isOpen) {
       setQuery("");
@@ -53,7 +52,6 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
     }
   }, [isOpen]);
 
-  // Global Ctrl+K / Cmd+K listener
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
@@ -73,7 +71,6 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
-  // Build items list
   const allItems: PaletteItem[] = [
     // Navigation
     {
@@ -90,7 +87,7 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
     {
       id: "nav-skills",
       title: "Skills & Toolkit",
-      subtitle: "Explore technologies & stack",
+      subtitle: "Explore MERN & full-stack technologies",
       category: "Navigation",
       icon: <Navigation className="w-4 h-4 text-themeAccent" />,
       action: () => {
@@ -101,7 +98,7 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
     {
       id: "nav-projects",
       title: "Featured Projects",
-      subtitle: "View full-stack portfolio works",
+      subtitle: "View production web applications",
       category: "Navigation",
       icon: <FolderGit2 className="w-4 h-4 text-themeAccent" />,
       action: () => {
@@ -127,7 +124,7 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
     {
       id: "nav-experience",
       title: "Career Journey",
-      subtitle: "Transition and timeline",
+      subtitle: "Technical background and timeline",
       category: "Navigation",
       icon: <Navigation className="w-4 h-4 text-themeAccent" />,
       action: () => {
@@ -137,8 +134,8 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
     },
     {
       id: "nav-certificates",
-      title: "Certificates & Achievements",
-      subtitle: "View verified certifications",
+      title: "Credentials & Certificates",
+      subtitle: "View verified MERN qualifications",
       category: "Navigation",
       icon: <Award className="w-4 h-4 text-themeAccent" />,
       action: () => {
@@ -147,61 +144,20 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
       }
     },
     {
-      id: "nav-estimator",
-      title: "Project Cost & Timeline Estimator",
-      subtitle: "Instant project scope & budget calculator",
-      category: "Tools",
-      icon: <Sparkles className="w-4 h-4 text-emerald-400" />,
-      action: () => {
-        router.push("/#estimator");
-        document.querySelector("#estimator")?.scrollIntoView({ behavior: "smooth" });
-      }
-    },
-    {
-      id: "nav-testimonials",
-      title: "Recommendations & Peer Reviews",
-      subtitle: "Verified endorsements & feedback",
+      id: "nav-about",
+      title: "About Me",
+      subtitle: "Background story & philosophy",
       category: "Navigation",
-      icon: <Award className="w-4 h-4 text-themeAccent" />,
+      icon: <Navigation className="w-4 h-4 text-themeAccent" />,
       action: () => {
-        router.push("/#testimonials");
-        document.querySelector("#testimonials")?.scrollIntoView({ behavior: "smooth" });
-      }
-    },
-    {
-      id: "action-recruiter-snapshot",
-      title: "Recruiter & Hiring Fast-Track",
-      subtitle: "30-second executive summary & candidate highlights",
-      category: "Quick Actions",
-      icon: <Sparkles className="w-4 h-4 text-emerald-400" />,
-      action: () => {
-        window.dispatchEvent(new CustomEvent("open-recruiter-snapshot"));
-      }
-    },
-    {
-      id: "action-terminal",
-      title: "Open Developer Terminal",
-      subtitle: "Interactive UNIX CLI console (>_)",
-      category: "Quick Actions",
-      icon: <span className="font-mono font-bold text-emerald-400 text-xs">&gt;_</span>,
-      action: () => {
-        window.dispatchEvent(new CustomEvent("open-terminal"));
-      }
-    },
-    {
-      id: "action-book-call",
-      title: "Schedule a 1-on-1 Meeting",
-      subtitle: "Book a 15-30 min discovery call with Babul",
-      category: "Quick Actions",
-      icon: <Mail className="w-4 h-4 text-themeAccent" />,
-      action: () => {
-        window.dispatchEvent(new CustomEvent("open-booking-modal"));
+        router.push("/#about");
+        document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
       }
     },
     {
       id: "nav-contact",
       title: "Contact",
-      subtitle: "Send a message or hire me",
+      subtitle: "Send a message or get in touch",
       category: "Navigation",
       icon: <Mail className="w-4 h-4 text-themeAccent" />,
       action: () => {
@@ -210,7 +166,7 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
       }
     },
 
-    // Projects (Case Studies & Live Demos)
+    // Projects (Case Studies)
     ...projects.map((p) => ({
       id: `proj-${p.id}`,
       title: p.name,
@@ -227,7 +183,7 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
     {
       id: "action-theme",
       title: theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode",
-      subtitle: "Toggle application visual appearance",
+      subtitle: "Toggle application appearance",
       category: "Quick Actions",
       icon: theme === "dark" ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-400" />,
       action: () => {
@@ -238,7 +194,7 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
     {
       id: "action-resume",
       title: "Download Resume",
-      subtitle: "Get latest PDF resume",
+      subtitle: "Get latest PDF resume document",
       category: "Quick Actions",
       icon: <Download className="w-4 h-4 text-emerald-500" />,
       action: () => {
@@ -298,7 +254,6 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
     }
   ];
 
-  // Filter items based on user query
   const filteredItems = allItems.filter((item) => {
     const q = query.toLowerCase().trim();
     if (!q) return true;
@@ -310,7 +265,6 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
     );
   });
 
-  // Handle keyboard list navigation
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (filteredItems.length === 0) return;
 
@@ -357,7 +311,7 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
               setSelectedIndex(0);
             }}
             onKeyDown={handleKeyDown}
-            placeholder="Type a command, project, or section... (e.g. Projects, Theme, Email)"
+            placeholder="Type a section or project name... (e.g. Projects, Skills, Resume)"
             className="w-full bg-transparent text-sm md:text-base text-themeText placeholder-themeTextMuted outline-none font-medium"
           />
           {query && (

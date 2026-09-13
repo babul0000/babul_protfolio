@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { projects, Project } from "../../../components/projectsData";
-import { Star, AlertTriangle, Rocket } from "lucide-react";
+import { Star, AlertTriangle, Rocket, ExternalLink, Code2 } from "lucide-react";
 
 export default function ProjectDetails() {
   const params = useParams();
@@ -49,7 +49,7 @@ export default function ProjectDetails() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-themeBg text-themeText flex-col gap-4">
         <div className="w-12 h-12 rounded-full border-4 border-themeBorder border-t-themeAccent animate-spin" />
-        <p className="text-xs font-bold uppercase tracking-wider text-themeTextMuted">Loading Project Case Study...</p>
+        <p className="text-xs font-bold uppercase tracking-wider text-themeTextMuted">Loading Project Details...</p>
       </div>
     );
   }
@@ -85,7 +85,7 @@ export default function ProjectDetails() {
               <line x1="19" y1="12" x2="5" y2="12"></line>
               <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
-            Back to Home
+            Back to Projects
           </Link>
 
           <Link href="/" className="flex items-center gap-1 group py-1">
@@ -117,16 +117,16 @@ export default function ProjectDetails() {
       <section className="relative z-10 max-w-5xl mx-auto px-6 pt-12 md:pt-16 space-y-10">
 
         {/* Title Block */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div className="inline-flex items-center gap-2">
             <span className="text-[10px] font-mono font-bold px-3 py-1 bg-themeAccent/10 text-themeAccent border border-themeAccent/20 rounded-full uppercase tracking-wider">
-              Project Case Study
+              Featured Case Study
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl font-black tracking-tight text-themeText uppercase">
             {project.name}
           </h1>
-          <p className="text-lg text-themeTextSecondary font-bold leading-normal">
+          <p className="text-base sm:text-lg text-themeTextSecondary font-semibold leading-normal">
             {project.tagline}
           </p>
         </div>
@@ -159,15 +159,15 @@ export default function ProjectDetails() {
           </div>
         </div>
 
-        {/* Dynamic Detail Sections Grid */}
+        {/* Detail Sections Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 pt-4">
 
           {/* Left Column: Tech Stack, Description, & Buttons */}
           <div className="md:col-span-7 space-y-8">
             <div className="space-y-4">
-              <h3 className="text-lg font-bold text-themeText uppercase tracking-tight flex items-center gap-2">
+              <h3 className="text-base font-bold text-themeText uppercase tracking-tight flex items-center gap-2">
                 <span className="w-1.5 h-4 bg-themeAccent rounded-full" />
-                Overview
+                Project Overview
               </h3>
               <p className="text-sm md:text-base text-themeTextSecondary leading-relaxed font-normal">
                 {project.desc}
@@ -177,7 +177,7 @@ export default function ProjectDetails() {
             {/* Tech Stack Chips */}
             <div className="space-y-3">
               <h4 className="text-xs font-bold text-themeTextMuted uppercase tracking-wider">
-                Technology Stack Used
+                Technologies &amp; Libraries
               </h4>
               <div className="flex flex-wrap gap-2">
                 {project.tech.map((t) => (
@@ -199,12 +199,8 @@ export default function ProjectDetails() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-themeAccent hover:bg-themeAccentHover text-themeAccentText font-bold text-sm tracking-wide transition duration-300 shadow-md shadow-themeAccent/10 hover:scale-[1.02]"
               >
-                Launch Live Site
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" x2="21" y1="14" y2="3"></line>
-                </svg>
+                <span>Launch Live Site</span>
+                <ExternalLink className="w-4 h-4" />
               </a>
 
               <a
@@ -213,46 +209,13 @@ export default function ProjectDetails() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-themeBorder bg-themeCard hover:border-themeAccent/20 hover:text-themeAccent text-themeTextSecondary font-bold text-sm tracking-wide transition duration-300 hover:scale-[1.02] shadow-sm"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                  <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                </svg>
-                GitHub Client Repo
+                <Code2 className="w-4 h-4" />
+                <span>GitHub Repository</span>
               </a>
             </div>
-
-            {/* Lighthouse Performance Score Card */}
-            <div className="p-6 bg-themeCard border border-themeBorder rounded-3xl shadow-sm space-y-4">
-              <div className="flex items-center justify-between">
-                <h3 className="text-xs font-bold text-themeText uppercase tracking-wider">
-                  Lighthouse Audit Benchmarks
-                </h3>
-                <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                  PASSED (100)
-                </span>
-              </div>
-              <div className="grid grid-cols-4 gap-2 text-center">
-                {[
-                  { label: "Performance", score: "99" },
-                  { label: "Accessibility", score: "100" },
-                  { label: "Best Practices", score: "100" },
-                  { label: "SEO", score: "100" }
-                ].map((item) => (
-                  <div key={item.label} className="p-2.5 rounded-2xl bg-themeBg border border-themeBorder flex flex-col items-center gap-1">
-                    <div className="w-10 h-10 rounded-full border-2 border-emerald-500 text-emerald-500 font-mono font-bold text-xs flex items-center justify-center shadow-[0_0_8px_rgba(16,185,129,0.2)]">
-                      {item.score}
-                    </div>
-                    <span className="text-[10px] font-semibold text-themeTextMuted leading-tight mt-1">
-                      {item.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
           </div>
 
-          {/* Right Column: Features, Challenges, and Plans */}
+          {/* Right Column: Key Features, Challenges, and Future Plans */}
           <div className="md:col-span-5 space-y-6">
 
             {/* Key Features List */}
@@ -272,7 +235,7 @@ export default function ProjectDetails() {
             {/* Challenges Faced Section */}
             <div className="p-6 bg-amber-500/5 border border-amber-500/20 dark:border-amber-500/10 rounded-3xl shadow-sm space-y-3">
               <h3 className="text-sm font-bold text-amber-500 dark:text-amber-400 uppercase tracking-wider flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 text-amber-500" /> Challenges Faced
+                <AlertTriangle className="w-4 h-4 text-amber-500" /> Challenges Faced &amp; Solutions
               </h3>
               <p className="text-xs text-themeTextSecondary leading-relaxed font-normal">
                 {project.challenges}
@@ -282,7 +245,7 @@ export default function ProjectDetails() {
             {/* Future Plans Section */}
             <div className="p-6 bg-themeAccent/5 border border-themeAccent/20 dark:border-themeAccent/10 rounded-3xl shadow-sm space-y-3">
               <h3 className="text-sm font-bold text-themeAccent uppercase tracking-wider flex items-center gap-2">
-                <Rocket className="w-4 h-4 text-themeAccent" /> Future Plans
+                <Rocket className="w-4 h-4 text-themeAccent" /> Future Improvements
               </h3>
               <p className="text-xs text-themeTextSecondary leading-relaxed font-normal">
                 {project.futurePlans}
@@ -291,73 +254,6 @@ export default function ProjectDetails() {
 
           </div>
 
-        </div>
-
-        {/* System Architecture Flowchart */}
-        <div className="p-8 bg-themeCard border border-themeBorder rounded-3xl shadow-md space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-themeBorder pb-4">
-            <div>
-              <span className="text-[10px] font-mono font-bold text-themeAccent uppercase tracking-widest">
-                High-Level System Design
-              </span>
-              <h3 className="text-lg font-bold text-themeText mt-1">
-                Data Flow &amp; Full-Stack Pipeline Architecture
-              </h3>
-            </div>
-            <span className="text-xs font-mono text-themeTextMuted">
-              Production Verified
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
-            {/* Stage 1 */}
-            <div className="p-4 rounded-2xl bg-themeBg border border-themeBorder space-y-2 relative">
-              <div className="flex items-center justify-between">
-                <span className="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-400 font-mono text-xs font-bold flex items-center justify-center">01</span>
-                <span className="text-[10px] font-mono text-themeTextMuted">Frontend</span>
-              </div>
-              <h4 className="text-xs font-bold text-themeText">Client Layer</h4>
-              <p className="text-[11px] text-themeTextMuted leading-relaxed">
-                Next.js / React SSR &amp; CSR with Tailwind design tokens and debounced state mutations.
-              </p>
-            </div>
-
-            {/* Stage 2 */}
-            <div className="p-4 rounded-2xl bg-themeBg border border-themeBorder space-y-2 relative">
-              <div className="flex items-center justify-between">
-                <span className="w-6 h-6 rounded-lg bg-cyan-500/10 text-cyan-400 font-mono text-xs font-bold flex items-center justify-center">02</span>
-                <span className="text-[10px] font-mono text-themeTextMuted">API Gateway</span>
-              </div>
-              <h4 className="text-xs font-bold text-themeText">Node / Express</h4>
-              <p className="text-[11px] text-themeTextMuted leading-relaxed">
-                RESTful controller endpoints, JWT/session authentication, and request payload schema sanitization.
-              </p>
-            </div>
-
-            {/* Stage 3 */}
-            <div className="p-4 rounded-2xl bg-themeBg border border-themeBorder space-y-2 relative">
-              <div className="flex items-center justify-between">
-                <span className="w-6 h-6 rounded-lg bg-amber-500/10 text-amber-400 font-mono text-xs font-bold flex items-center justify-center">03</span>
-                <span className="text-[10px] font-mono text-themeTextMuted">Persistence</span>
-              </div>
-              <h4 className="text-xs font-bold text-themeText">MongoDB Atlas</h4>
-              <p className="text-[11px] text-themeTextMuted leading-relaxed">
-                Indexed document collections, aggregation pipelines, and atomic transactions.
-              </p>
-            </div>
-
-            {/* Stage 4 */}
-            <div className="p-4 rounded-2xl bg-themeBg border border-themeBorder space-y-2 relative">
-              <div className="flex items-center justify-between">
-                <span className="w-6 h-6 rounded-lg bg-purple-500/10 text-purple-400 font-mono text-xs font-bold flex items-center justify-center">04</span>
-                <span className="text-[10px] font-mono text-themeTextMuted">Edge Delivery</span>
-              </div>
-              <h4 className="text-xs font-bold text-themeText">Vercel &amp; CDN</h4>
-              <p className="text-[11px] text-themeTextMuted leading-relaxed">
-                Global Edge network caching, automated CI/CD pipeline, and asset image optimization.
-              </p>
-            </div>
-          </div>
         </div>
 
       </section>

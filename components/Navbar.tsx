@@ -12,7 +12,7 @@ const navLinks: NavLink[] = [
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Journey", href: "#experience" },
-  { label: "Awards", href: "#certificates" },
+  { label: "Credentials", href: "#certificates" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" }
 ];
@@ -33,7 +33,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
       setScrolled(window.scrollY > 20);
 
       // Active section highlight
-      const sections = navLinks.map(l => document.querySelector(l.href) as HTMLElement | null);
+      const sections = navLinks.map((l) => document.querySelector(l.href) as HTMLElement | null);
       const scrollPos = window.scrollY + 200;
 
       sections.forEach((sec, idx) => {
@@ -47,7 +47,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
       });
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -66,17 +66,17 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
 
   const handleConfirmDownload = () => {
     setShowModal(false);
-    const resumeLink = "/resume.pdf";
-    window.open(resumeLink, "_blank");
+    window.open("/resume.pdf", "_blank");
   };
 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-            ? "py-3 bg-themeBg/85 backdrop-blur-md border-b border-themeBorder shadow-sm"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "py-3 bg-themeBg/90 backdrop-blur-md border-b border-themeBorder shadow-sm"
             : "py-5 bg-transparent"
-          }`}
+        }`}
       >
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           {/* LOGO */}
@@ -97,10 +97,11 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                   e.preventDefault();
                   handleClick(link.href);
                 }}
-                className={`px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${active === link.href
+                className={`px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
+                  active === link.href
                     ? "bg-themeAccent text-themeAccentText shadow-md shadow-themeAccent/10 font-bold"
                     : "text-themeTextSecondary hover:text-themeText"
-                  }`}
+                }`}
               >
                 {link.label}
               </a>
@@ -109,21 +110,11 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
 
           {/* ACTIONS */}
           <div className="flex items-center gap-2.5">
-            {/* Terminal Launcher */}
-            <button
-              onClick={() => window.dispatchEvent(new CustomEvent("open-terminal"))}
-              className="p-2.5 text-themeTextSecondary hover:text-themeAccent bg-white/60 dark:bg-slate-900/60 border border-themeBorder hover:border-themeAccent/30 rounded-xl transition duration-300 shadow-sm flex items-center justify-center font-mono text-xs"
-              aria-label="Open Developer Terminal"
-              title="Open Terminal (>_)"
-            >
-              <span className="font-bold text-[11px] text-emerald-400">&gt;_</span>
-            </button>
-
             {/* Quick Search Button */}
             <button
               onClick={handleOpenCommandPalette}
               className="p-2.5 text-themeTextSecondary hover:text-themeAccent bg-white/60 dark:bg-slate-900/60 border border-themeBorder hover:border-themeAccent/30 rounded-xl transition duration-300 shadow-sm flex items-center justify-center group"
-              aria-label="Open Command Search (Ctrl+K)"
+              aria-label="Open Search (Ctrl+K)"
               title="Search (Ctrl+K)"
             >
               <Search className="w-4 h-4 group-hover:scale-110 transition-transform" />
@@ -134,6 +125,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
               onClick={toggleTheme}
               className="p-2.5 text-themeTextSecondary hover:text-themeAccent bg-white/60 dark:bg-slate-900/60 border border-themeBorder hover:border-themeAccent/30 rounded-xl transition duration-300 shadow-sm flex items-center justify-center"
               aria-label="Toggle Theme"
+              title="Toggle Light/Dark Theme"
             >
               {theme === "dark" ? (
                 <svg
@@ -174,12 +166,12 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
               )}
             </button>
 
-            <button
-              onClick={() => window.dispatchEvent(new CustomEvent("open-booking-modal"))}
+            <a
+              href="#contact"
               className="hidden md:flex px-4 py-2.5 rounded-full bg-themeAccent hover:bg-themeAccentHover text-themeAccentText font-bold tracking-wide transition duration-300 text-xs shadow-md shadow-themeAccent/10 hover:scale-[1.02]"
             >
-              BOOK A CALL
-            </button>
+              HIRE ME
+            </a>
 
             <button
               onClick={() => setShowModal(true)}
@@ -225,8 +217,9 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
 
       {/* MOBILE MENU */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
+          menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
       >
         {/* Backdrop overlay */}
         <div
@@ -236,8 +229,9 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
 
         {/* Drawer container */}
         <div
-          className={`absolute top-24 left-4 right-4 rounded-2xl bg-white/95 dark:bg-slate-900/95 border border-themeBorder p-6 shadow-2xl backdrop-blur-md transition-all duration-300 ${menuOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
-            }`}
+          className={`absolute top-24 left-4 right-4 rounded-2xl bg-white/95 dark:bg-slate-900/95 border border-themeBorder p-6 shadow-2xl backdrop-blur-md transition-all duration-300 ${
+            menuOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
+          }`}
         >
           <div className="flex flex-col gap-2">
             <button
@@ -247,7 +241,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
               }}
               className="px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-left bg-themeCard border border-themeBorder text-themeAccent flex items-center justify-between"
             >
-              <span>Search &amp; Commands</span>
+              <span>Search &amp; Navigation</span>
               <kbd className="px-2 py-0.5 rounded bg-themeBg border border-themeBorder text-[10px] font-mono">
                 Ctrl+K
               </kbd>
@@ -261,19 +255,21 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                   e.preventDefault();
                   handleClick(link.href);
                 }}
-                className={`px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition ${active === link.href
+                className={`px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition ${
+                  active === link.href
                     ? "text-themeAccent bg-themeAccent/10 font-black"
                     : "text-themeTextSecondary hover:text-themeText"
-                  }`}
+                }`}
               >
                 {link.label}
               </a>
             ))}
             <a
-              href="mailto:babulhossan.info@gmail.com"
-              className="mt-4 px-4 py-3 rounded-xl text-xs font-bold text-center text-themeAccentText bg-themeAccent hover:bg-themeAccentHover transition"
+              href="#contact"
+              onClick={() => setMenuOpen(false)}
+              className="mt-4 px-4 py-3 rounded-xl text-xs font-bold text-center text-themeAccentText bg-themeAccent hover:bg-themeAccentHover transition uppercase tracking-wider"
             >
-              HIRE ME
+              Contact / Hire Me
             </a>
           </div>
         </div>
@@ -281,16 +277,16 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
 
       {/* MODAL */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div
             onClick={() => setShowModal(false)}
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
           />
 
-          <div className="relative z-10 w-[90%] max-w-sm rounded-3xl bg-themeCard border border-themeBorder p-6 shadow-2xl text-left">
+          <div className="relative z-10 w-full max-w-sm rounded-3xl bg-themeCard border border-themeBorder p-6 shadow-2xl text-left">
             <h2 className="text-lg font-bold text-themeText">Download Resume</h2>
             <p className="mt-2 text-xs text-themeTextMuted leading-relaxed font-normal">
-              Do you want to download my resume containing details of my transition and MERN stack certifications?
+              Download Babul Hossan&apos;s verified developer resume containing full-stack MERN &amp; Next.js credentials.
             </p>
 
             <div className="mt-6 flex justify-end gap-3">
@@ -304,7 +300,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                 onClick={handleConfirmDownload}
                 className="px-4 py-2 text-xs font-bold rounded-xl text-themeAccentText bg-themeAccent hover:bg-themeAccentHover transition shadow-md shadow-themeAccent/10"
               >
-                Confirm
+                Download PDF
               </button>
             </div>
           </div>
