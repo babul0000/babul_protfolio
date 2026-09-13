@@ -3,12 +3,13 @@ import React from "react";
 import Image from "next/image";
 import { ArrowRight, Mail, MapPin, CheckCircle2 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./Icons";
+import HeroProjectStack from "./HeroProjectStack";
 
 export default function Hero() {
   return (
-    <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-20 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-grid-pattern">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none -z-10" />
+    <section id="home" className="relative pt-24 pb-16 sm:pt-32 sm:pb-20 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-grid-pattern overflow-hidden">
+      {/* Background ambient lighting & radial glow */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-emerald-500/10 rounded-full blur-[110px] pointer-events-none -z-10" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Status Pill (NasirChy style) */}
@@ -22,10 +23,11 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Main Grid: Typography Left + Monospace Sidebar & Avatar Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
-          {/* Left Column (7 cols): Heading, Bio, Actions */}
-          <div className="lg:col-span-7 space-y-6">
+        {/* Main Grid: Typography Left (6 cols) + Animated 3D Projects Stack Right (6 cols) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          
+          {/* Left Column (6 cols): Heading, Bio, Actions */}
+          <div className="lg:col-span-6 space-y-6">
             <div className="space-y-2">
               <div className="text-xs font-mono tracking-widest text-emerald-600 dark:text-emerald-400 font-semibold uppercase">
                 PORTFOLIO / 2026
@@ -39,7 +41,7 @@ export default function Hero() {
               </p>
             </div>
 
-            <p className="text-base sm:text-lg text-themeTextSecondary leading-relaxed max-w-xl">
+            <p className="text-base sm:text-lg text-themeTextSecondary leading-relaxed">
               I build fast, production-ready web applications using the{" "}
               <strong className="font-semibold text-themeText">MERN Stack</strong>,{" "}
               <strong className="font-semibold text-themeText">Next.js 14</strong>, and{" "}
@@ -47,8 +49,8 @@ export default function Hero() {
               <strong className="font-semibold text-themeText">PostgreSQL &amp; Prisma ORM</strong>.
             </p>
 
-            {/* Action Buttons (NasirChy + Shakeeb hybrid) */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            {/* Action Buttons (NasirChy style) */}
+            <div className="flex flex-wrap items-center gap-3 pt-1">
               {/* GitHub Button with Avatar chip */}
               <a
                 href="https://github.com/babul0000"
@@ -88,8 +90,8 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Quick Badges */}
-            <div className="flex flex-wrap items-center gap-2 pt-2 text-xs text-themeTextMuted">
+            {/* Quick Badges & Profile details */}
+            <div className="flex flex-wrap items-center gap-3 pt-2 text-xs text-themeTextMuted">
               <span className="flex items-center gap-1">
                 <MapPin className="w-3.5 h-3.5 text-emerald-500" /> Dhaka, Bangladesh
               </span>
@@ -100,78 +102,11 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column (5 cols): Photo & Shakeeb-style Monospace Meta Box */}
-          <div className="lg:col-span-5 flex flex-col gap-4">
-            {/* Profile Avatar Card */}
-            <div className="relative rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 p-4 shadow-sm">
-              <div className="flex items-center gap-4">
-                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden ring-2 ring-emerald-500/40 shrink-0 shadow-md">
-                  <Image
-                    src="/my.webp"
-                    alt="Babul Hossan"
-                    width={96}
-                    height={96}
-                    priority
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <div className="text-xs font-mono text-themeTextMuted uppercase">DEVELOPER PROFILE</div>
-                  <h3 className="text-base font-semibold text-themeText">Babul Hossan</h3>
-                  <p className="text-xs text-themeTextSecondary">MERN • Next.js • PostgreSQL • Prisma</p>
-                  <div className="flex items-center gap-2 pt-1">
-                    <a
-                      href="https://www.linkedin.com/in/babul-hossan-09932837a/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-1.5 rounded-lg bg-zinc-200/70 dark:bg-zinc-800 text-themeText hover:text-emerald-500 transition-colors"
-                      aria-label="LinkedIn"
-                    >
-                      <LinkedinIcon className="w-3.5 h-3.5" />
-                    </a>
-                    <a
-                      href="https://github.com/babul0000"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-1.5 rounded-lg bg-zinc-200/70 dark:bg-zinc-800 text-themeText hover:text-emerald-500 transition-colors"
-                      aria-label="GitHub"
-                    >
-                      <GithubIcon className="w-3.5 h-3.5" />
-                    </a>
-                    <a
-                      href="mailto:babulhossan.dev@gmail.com"
-                      className="p-1.5 rounded-lg bg-zinc-200/70 dark:bg-zinc-800 text-themeText hover:text-emerald-500 transition-colors"
-                      aria-label="Email"
-                    >
-                      <Mail className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Shakeeb-style Monospace Meta Info Box */}
-            <div className="p-4 rounded-2xl border border-dashed border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-zinc-900/30 space-y-3 font-mono text-xs">
-              <div>
-                <span className="text-themeTextMuted block text-[11px] mb-1">CURRENTLY:</span>
-                <span className="text-themeText font-semibold">Full Stack Developer</span>
-                <span className="text-themeTextMuted block text-[11px]">Building scalable full-stack web apps</span>
-              </div>
-              <div className="pt-2 border-t border-zinc-200/60 dark:border-zinc-800/60">
-                <span className="text-themeTextMuted block text-[11px] mb-1.5">CORE FOCUS:</span>
-                <div className="flex flex-wrap gap-1.5">
-                  {["React", "Next.js 14", "TypeScript", "Node.js", "Express", "MongoDB", "PostgreSQL", "Prisma", "Tailwind CSS"].map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-[11px] text-themeTextSecondary"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
+          {/* Right Column (6 cols): NasirChy-style 3D Animated Project Stack Deck */}
+          <div className="lg:col-span-6 w-full flex justify-center lg:justify-end">
+            <HeroProjectStack />
           </div>
+
         </div>
       </div>
     </section>
