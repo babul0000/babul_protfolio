@@ -8,7 +8,7 @@ import { projects } from "./projectsData";
 
 export default function HeroProjects() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState<number>(0);
+  const [scrollY, setScrollY] = useState<number>(0);
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
@@ -22,13 +22,7 @@ export default function HeroProjects() {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          if (!containerRef.current) return;
-          const rect = containerRef.current.getBoundingClientRect();
-          // Calculate scroll progress relative to the container
-          // 0 = at top of Hero, 1 = scrolled enough to fully expand the 2x2 grid
-          const scrollDistance = -rect.top;
-          const p = Math.min(Math.max(scrollDistance / 380, 0), 1);
-          setProgress(p);
+          setScrollY(window.scrollY);
           ticking = false;
         });
         ticking = true;
@@ -44,14 +38,14 @@ export default function HeroProjects() {
 
   const topProjects = projects.slice(0, 4);
 
-  // factor goes from 1 (Hero initial stacked state) down to 0 (Full 2x2 grid settled state)
-  const factor = isMobile ? 0 : 1 - progress;
+  // Scroll progress from 0 (at top of hero banner) to 1 (when cards reach 2x2 grid)
+  // Cards animate smoothly as scrollY progresses from 0 to 520px
+  const progress = isMobile ? 1 : Math.min(Math.max(scrollY / 500, 0), 1);
+  const factor = 1 - progress;
 
-  // Initial card stack transforms when in Hero banner (factor = 1):
-  // Card 0 (Row 1, Col 1 in DOM): starts over Card 1 (Row 1, Col 2) -> tx: 100% + gap, ty: -25px, rot: -5deg
-  // Card 1 (Row 1, Col 2 in DOM): starts in Col 2 -> tx: 0px, ty: 0px, rot: 6deg
-  // Card 2 (Row 2, Col 1 in DOM): starts over Card 1 (Row 1, Col 2) -> tx: 100% + gap, ty: -100% - gap, rot: -6deg
-  // Card 3 (Row 2, Col 2 in DOM): starts over Card 1 (Row 1, Col 2) -> tx: 0px, ty: -100% - gap, rot: 5deg
+  // Compute exact transforms for the 4 cards so that at factor=1 (scrollY=0)
+  // they sit in the Hero banner right column, and at factor=0 (scrollY>=500px)
+  // they settle seamlessly in the 2x2 Latest Projects grid.
   const getCardStyle = (index: number) => {
     if (isMobile) {
       return {
@@ -60,48 +54,49 @@ export default function HeroProjects() {
       };
     }
 
-    let tx = 0;
-    let ty = 0;
+    let tx = "0px";
+    let ty = "0px";
     let rot = 0;
     let sc = 1;
     let zIndex = 10;
 
     if (index === 0) {
-      // PromptForge (Row 1, Col 1) -> moves from top-right stack to top-left grid
-      tx = 104 * factor;
-      ty = -20 * factor;
+      // PromptForge (Row 1, Col 1): Starts in Hero Right Column -> Flies to Row 1 Col 1
+      tx = `calc((100% + 2rem) * ${factor})`;
+      ty = `calc(-135% * ${factor})`;
       rot = -5 * factor;
-      sc = 0.90 + 0.10 * (1 - factor);
+      sc = 0.88 + 0.12 * (1 - factor);
       zIndex = 40;
     } else if (index === 1) {
-      // BloodConnect (Row 1, Col 2) -> base card in top-right
-      tx = 25 * factor;
-      ty = -10 * factor;
+      // BloodConnect (Row 1, Col 2): Starts in Hero Right Column -> Straightens in Row 1 Col 2
+      tx = `calc(24px * ${factor})`;
+      ty = `calc(-135% * ${factor})`;
       rot = 6 * factor;
-      sc = 0.92 + 0.08 * (1 - factor);
+      sc = 0.90 + 0.10 * (1 - factor);
       zIndex = 30;
     } else if (index === 2) {
-      // Tiles Gallery (Row 2, Col 1) -> moves from top-right stack to bottom-left grid
-      tx = 104 * factor;
-      ty = -108 * factor;
+      // Tiles Gallery (Row 2, Col 1): Starts in Hero Right Column -> Flies to Row 2 Col 1
+      tx = `calc((100% + 2rem) * ${factor})`;
+      ty = `calc(-245% * ${factor})`;
       rot = -6 * factor;
-      sc = 0.88 + 0.12 * (1 - factor);
+      sc = 0.86 + 0.14 * (1 - factor);
       zIndex = 20;
     } else if (index === 3) {
-      // PixGen Studio (Row 2, Col 2) -> moves from top-right stack to bottom-right grid
-      tx = 20 * factor;
-      ty = -108 * factor;
+      // PixGen Studio (Row 2, Col 2): Starts in Hero Right Column -> Flies to Row 2 Col 2
+      tx = `calc(32px * ${factor})`;
+      ty = `calc(-245% * ${factor})`;
       rot = 5 * factor;
-      sc = 0.86 + 0.14 * (1 - factor);
+      sc = 0.84 + 0.16 * (1 - factor);
       zIndex = 10;
     }
 
     return {
-      transform: `translate3d(${tx}%, ${ty}%, 0) rotate(${rot}deg) scale(${sc})`,
+      transform: `translate3d(${tx}, ${ty}, 0) rotate(${rot}deg) scale(${sc})`,
       zIndex,
-      transition: "transform 0.08s ease-out, box-shadow 0.3s ease",
+      willChange: "transform",
+      transition: factor === 0 ? "transform 0.3s ease" : "none",
       boxShadow: factor > 0.05
-        ? "0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 20px 0 rgba(16, 185, 129, 0.15)"
+        ? "0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 25px 0 rgba(16, 185, 129, 0.15)"
         : undefined,
     };
   };
@@ -112,15 +107,15 @@ export default function HeroProjects() {
       id="projects"
       className="relative pt-24 sm:pt-28 md:pt-32 pb-20 md:pb-28 border-b border-gray-200 dark:border-zinc-800/80 overflow-hidden bg-white dark:bg-[#09090b]"
     >
-      {/* Background Radial Glow (NasirChy style) */}
+      {/* Background Radial Glow */}
       <div className="pointer-events-none absolute inset-y-0 left-1/3 -z-1 hidden w-full bg-radial from-emerald-500/5 via-transparent to-transparent blur-3xl md:block" />
 
       <div className="max-w-6xl mx-auto px-5 sm:px-8 md:px-11">
         
-        {/* Top Hero Row: Left Column is Hero Text; Right Column is the Initial Deck of 4 Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start mb-12 sm:mb-16">
+        {/* Hero Banner Header Row */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start mb-16 md:mb-20 min-h-[360px] sm:min-h-[400px]">
           
-          {/* Hero Left Column (Exact NasirChy typography and GitHub bubble button) */}
+          {/* Left Column: NasirChy typography and GitHub bubble button */}
           <div className="flex flex-col gap-6 z-20">
             {/* Status Badge */}
             <span className="inline-flex items-center gap-2 self-start rounded-full border border-gray-200/80 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3.5 py-1.5 text-xs font-medium text-slate-800 dark:text-zinc-200 shadow-sm">
@@ -170,18 +165,18 @@ export default function HeroProjects() {
             </div>
           </div>
 
-          {/* Spacer on desktop so the cards stack neatly in the right column */}
-          <div className="hidden md:block h-32 pointer-events-none" />
+          {/* Right Column: Placeholder space where cards are situated when factor=1 */}
+          <div className="relative aspect-[16/10] hidden md:block select-none pointer-events-none" />
         </div>
 
-        {/* "Latest Projects" Heading */}
+        {/* "Latest Projects" Section Title */}
         <div className="mb-10 sm:mb-14">
           <h2 className="text-4xl sm:text-6xl md:text-7xl font-medium tracking-tight text-slate-900 dark:text-white">
             Latest Projects
           </h2>
         </div>
 
-        {/* 2x2 Grid of Project Cards with Scroll-Linked Flight Transition */}
+        {/* 2x2 Grid with Scroll-Linked Flight into Grid Slots */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 relative">
           {topProjects.map((project, idx) => (
             <div
@@ -189,7 +184,7 @@ export default function HeroProjects() {
               style={getCardStyle(idx)}
               className="group relative rounded-2xl md:rounded-3xl overflow-hidden border border-gray-200 dark:border-zinc-800 bg-zinc-950 aspect-[16/10] shadow-md hover:shadow-2xl transition-all duration-300 will-change-transform"
             >
-              {/* Project Image */}
+              {/* Project Image Preview */}
               <Image
                 src={project.image}
                 alt={project.name}
@@ -198,14 +193,14 @@ export default function HeroProjects() {
                 className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
               />
 
-              {/* Top Category Badge */}
+              {/* Category Pill Badge */}
               <div className="absolute top-3.5 left-3.5 z-20">
                 <span className="rounded-full border border-gray-700/80 bg-black/85 px-3.5 py-1.5 text-xs font-medium text-white shadow-md backdrop-blur-md">
                   {project.tagline}
                 </span>
               </div>
 
-              {/* Bottom Gradient Overlay (Exact NasirChy design) */}
+              {/* Bottom Gradient Overlay (Exact NasirChy style) */}
               <div
                 className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-95 group-hover:opacity-100 transition-opacity p-5 sm:p-6 flex items-end justify-between text-white z-10"
                 style={{
@@ -244,7 +239,7 @@ export default function HeroProjects() {
           ))}
         </div>
 
-        {/* View More Projects Footer Link */}
+        {/* View More Projects on GitHub */}
         <div className="mt-12 text-center">
           <a
             href="https://github.com/babul0000"
