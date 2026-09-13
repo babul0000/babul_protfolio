@@ -1,10 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
-import Ecosystem from "../components/Ecosystem";
-import BentoSpecialties from "../components/BentoSpecialties";
-import Projects from "../components/Projects";
+import HeroProjects from "../components/HeroProjects";
 import Skills from "../components/Skills";
 import GithubActivity from "../components/GithubActivity";
 import Experience from "../components/Experience";
@@ -74,8 +71,7 @@ export default function Home() {
         <Navbar theme={theme} toggleTheme={toggleTheme} />
         
         <main>
-          <Hero />
-          <Projects />
+          <HeroProjects />
           <About />
           <Experience />
           <Skills />
