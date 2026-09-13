@@ -1,11 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Ecosystem from "../components/Ecosystem";
-import Skills from "../components/Skills";
-import Workflow from "../components/Workflow";
+import BentoSpecialties from "../components/BentoSpecialties";
 import Projects from "../components/Projects";
+import Skills from "../components/Skills";
 import GithubActivity from "../components/GithubActivity";
 import Experience from "../components/Experience";
 import Certificates from "../components/Certificates";
@@ -41,7 +41,7 @@ export default function Home() {
 
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 300);
+    }, 250);
 
     return () => {
       clearTimeout(timer);
@@ -68,27 +68,24 @@ export default function Home() {
   }
 
   return (
-    <main className="relative min-h-screen bg-themeBg overflow-hidden font-sans antialiased text-themeText">
-      {/* Background glowing meshes */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-themeAccent/5 rounded-full blur-[120px]" />
-        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[100px]" />
-        <div className="absolute bottom-1/4 left-0 w-[450px] h-[450px] bg-cyan-500/5 rounded-full blur-[110px]" />
-      </div>
-
-      {/* Main Page Content */}
-      <div className="relative z-10">
+    <div className="min-h-screen bg-zinc-100 dark:bg-black font-sans antialiased text-themeText selection:bg-emerald-500/20 selection:text-emerald-500">
+      {/* Outer Framed Canvas with NasirChy style side border guidelines */}
+      <div className="max-w-6xl mx-auto border-x border-zinc-200/80 dark:border-zinc-800/80 min-h-screen bg-white dark:bg-[#09090b] relative shadow-2xl">
         <Navbar theme={theme} toggleTheme={toggleTheme} />
-        <Hero />
-        <Ecosystem />
-        <Skills />
-        <Workflow />
-        <Projects />
-        <GithubActivity />
-        <Experience />
-        <Certificates />
-        <About />
-        <Contact />
+        
+        <main>
+          <Hero />
+          <Ecosystem />
+          <BentoSpecialties />
+          <Projects />
+          <Skills />
+          <GithubActivity />
+          <Experience />
+          <Certificates />
+          <About />
+          <Contact />
+        </main>
+
         <Footer />
       </div>
 
@@ -100,6 +97,6 @@ export default function Home() {
         toggleTheme={toggleTheme}
       />
       <ScrollToTop />
-    </main>
+    </div>
   );
 }

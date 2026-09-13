@@ -1,10 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { projects, Project } from "../../../components/projectsData";
-import { Star, AlertTriangle, Rocket, ExternalLink, Code2 } from "lucide-react";
+import { ArrowLeft, ExternalLink, Sparkles, CheckCircle2, AlertTriangle, Rocket, Sun, Moon } from "lucide-react";
+import { GithubIcon } from "../../../components/Icons";
 
 export default function ProjectDetails() {
   const params = useParams();
@@ -12,7 +13,6 @@ export default function ProjectDetails() {
   const [project, setProject] = useState<Project | null>(null);
 
   useEffect(() => {
-    // Sync theme on mount
     const savedTheme = localStorage.getItem("theme") || "dark";
     setTheme(savedTheme);
     if (savedTheme === "dark") {
@@ -23,7 +23,6 @@ export default function ProjectDetails() {
       document.documentElement.setAttribute("data-theme", "light");
     }
 
-    // Load project data
     const projectId = typeof params?.id === "string" ? params.id : Array.isArray(params?.id) ? params.id[0] : undefined;
     const foundProject = projects.find((p) => p.id === projectId);
     if (foundProject) {
@@ -47,216 +46,172 @@ export default function ProjectDetails() {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-themeBg text-themeText flex-col gap-4">
-        <div className="w-12 h-12 rounded-full border-4 border-themeBorder border-t-themeAccent animate-spin" />
-        <p className="text-xs font-bold uppercase tracking-wider text-themeTextMuted">Loading Project Details...</p>
+      <div className="min-h-screen flex items-center justify-center bg-zinc-50 dark:bg-black text-themeText flex-col gap-4">
+        <div className="w-10 h-10 rounded-full border-2 border-emerald-500 border-t-transparent animate-spin" />
+        <p className="text-xs font-mono uppercase tracking-wider text-themeTextMuted">Loading Project Details...</p>
       </div>
     );
   }
 
   return (
-    <main className="min-h-screen bg-themeBg text-themeText font-sans antialiased relative overflow-hidden pb-20">
-
-      {/* Background glowing meshes */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div
-          className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full blur-[120px] opacity-75"
-          style={{ backgroundColor: `${project.color}08` }}
-        />
-        <div className="absolute bottom-1/4 right-0 w-[450px] h-[450px] bg-themeAccent/5 rounded-full blur-[110px]" />
-      </div>
-
-      {/* Top Header */}
-      <header className="relative z-10 border-b border-themeBorder bg-themeBg/85 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <Link href="/#projects" className="flex items-center gap-2 group text-xs font-bold uppercase tracking-widest text-themeTextMuted hover:text-themeAccent transition-colors">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="group-hover:-translate-x-1 transition-transform"
-            >
-              <line x1="19" y1="12" x2="5" y2="12"></line>
-              <polyline points="12 19 5 12 12 5"></polyline>
-            </svg>
-            Back to Projects
+    <div className="min-h-screen bg-zinc-100 dark:bg-black font-sans antialiased text-themeText selection:bg-emerald-500/20 selection:text-emerald-500">
+      <div className="max-w-6xl mx-auto border-x border-zinc-200/80 dark:border-zinc-800/80 min-h-screen bg-white dark:bg-[#09090b] relative shadow-2xl pb-20">
+        
+        {/* Navigation Header */}
+        <header className="sticky top-0 z-50 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-white/80 dark:bg-[#09090b]/80 backdrop-blur-md px-4 sm:px-8 py-3.5 flex items-center justify-between">
+          <Link
+            href="/#projects"
+            className="inline-flex items-center gap-2 text-xs font-mono font-medium text-themeTextSecondary hover:text-themeText transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Projects</span>
           </Link>
 
-          <Link href="/" className="flex items-center gap-1 group py-1">
-            <span className="signature-logo text-3xl font-bold tracking-wide text-themeText group-hover:text-themeAccent transition-colors duration-300">
-              Babul
-            </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-themeAccent group-hover:bg-emerald-400 transition-colors self-end mb-2"></span>
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-full overflow-hidden ring-1 ring-emerald-500/60">
+              <Image
+                src="/my.webp"
+                alt="Babul Hossan"
+                width={28}
+                height={28}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <span className="text-sm font-semibold text-themeText hidden sm:inline">Babul Hossan</span>
           </Link>
 
           <button
             onClick={toggleTheme}
-            className="p-2.5 text-themeTextSecondary hover:text-themeAccent bg-white/60 dark:bg-slate-900/60 border border-themeBorder hover:border-themeAccent/30 rounded-xl transition duration-300 shadow-sm flex items-center justify-center"
+            className="w-8 h-8 rounded-full flex items-center justify-center text-themeTextSecondary hover:text-themeText bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 transition-colors"
             aria-label="Toggle Theme"
           >
-            {theme === "dark" ? (
-              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-              </svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-              </svg>
-            )}
+            {theme === "dark" ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-zinc-700" />}
           </button>
-        </div>
-      </header>
+        </header>
 
-      {/* Main Content Body */}
-      <section className="relative z-10 max-w-5xl mx-auto px-6 pt-12 md:pt-16 space-y-10">
-
-        {/* Title Block */}
-        <div className="space-y-3">
-          <div className="inline-flex items-center gap-2">
-            <span className="text-[10px] font-mono font-bold px-3 py-1 bg-themeAccent/10 text-themeAccent border border-themeAccent/20 rounded-full uppercase tracking-wider">
-              Featured Case Study
-            </span>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-black tracking-tight text-themeText uppercase">
-            {project.name}
-          </h1>
-          <p className="text-base sm:text-lg text-themeTextSecondary font-semibold leading-normal">
-            {project.tagline}
-          </p>
-        </div>
-
-        {/* Browser Mockup Screen */}
-        <div className="bg-themeCard border border-themeBorder rounded-3xl overflow-hidden shadow-2xl">
-          {/* Header */}
-          <div className="bg-themeCard border-b border-themeBorder px-4 py-3 flex items-center justify-between select-none">
-            <div className="flex gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
-              <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
-              <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+        {/* Case Study Body */}
+        <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 space-y-10">
+          {/* Header Title */}
+          <div className="space-y-3">
+            <div className="text-xs font-mono tracking-widest text-emerald-600 dark:text-emerald-400 font-semibold uppercase">
+              CASE STUDY &amp; ARCHITECTURE
             </div>
-            <div className="h-6 w-72 max-w-[60%] bg-themeBg border border-themeBorder/85 rounded-md flex items-center justify-center text-[10px] font-mono text-themeTextMuted truncate px-3">
-              {project.live}
-            </div>
-            <div className="w-8" />
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-themeText tracking-tight">
+              {project.name}
+            </h1>
+            <p className="text-base sm:text-lg text-themeTextSecondary font-medium">
+              {project.tagline}
+            </p>
           </div>
 
-          {/* Screenshot Container */}
-          <div className="aspect-[16/9] w-full relative bg-slate-900">
+          {/* Screenshot Preview */}
+          <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-900 shadow-xl">
             <Image
               src={project.image}
               alt={project.name}
               fill
               priority
-              sizes="(max-width: 1024px) 100vw, 1000px"
-              className="object-cover object-top opacity-95"
+              className="object-cover object-top"
             />
           </div>
-        </div>
 
-        {/* Detail Sections Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 pt-4">
+          {/* Quick Action Links */}
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-md transition-all"
+            >
+              <span>Launch Live Site</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
 
-          {/* Left Column: Tech Stack, Description, & Buttons */}
-          <div className="md:col-span-7 space-y-8">
-            <div className="space-y-4">
-              <h3 className="text-base font-bold text-themeText uppercase tracking-tight flex items-center gap-2">
-                <span className="w-1.5 h-4 bg-themeAccent rounded-full" />
-                Project Overview
-              </h3>
-              <p className="text-sm md:text-base text-themeTextSecondary leading-relaxed font-normal">
-                {project.desc}
-              </p>
-            </div>
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-300 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-themeText text-xs font-semibold hover:border-emerald-500 transition-all"
+            >
+              <GithubIcon className="w-3.5 h-3.5" />
+              <span>GitHub Source Code</span>
+            </a>
+          </div>
 
-            {/* Tech Stack Chips */}
-            <div className="space-y-3">
-              <h4 className="text-xs font-bold text-themeTextMuted uppercase tracking-wider">
-                Technologies &amp; Libraries
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((t) => (
-                  <span
-                    key={t}
-                    className="text-xs font-mono px-3.5 py-1 rounded-full border border-themeBorder bg-themeCard/60 text-themeTextSecondary font-bold shadow-sm"
-                  >
-                    {t}
-                  </span>
-                ))}
+          {/* Content Sections */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pt-4">
+            {/* Left 7 cols: Overview & Tech */}
+            <div className="md:col-span-7 space-y-8">
+              <div className="space-y-3">
+                <h2 className="text-lg font-bold text-themeText flex items-center gap-2">
+                  <span className="w-1.5 h-4 bg-emerald-500 rounded-full" />
+                  Project Overview
+                </h2>
+                <p className="text-sm sm:text-base text-themeTextSecondary leading-relaxed">
+                  {project.desc}
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="text-xs font-mono text-themeTextMuted uppercase">
+                  Technologies Used
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="text-xs font-mono px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-themeTextSecondary"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-wrap gap-4 pt-2">
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-themeAccent hover:bg-themeAccentHover text-themeAccentText font-bold text-sm tracking-wide transition duration-300 shadow-md shadow-themeAccent/10 hover:scale-[1.02]"
-              >
-                <span>Launch Live Site</span>
-                <ExternalLink className="w-4 h-4" />
-              </a>
+            {/* Right 5 cols: Features, Challenges, Future */}
+            <div className="md:col-span-5 space-y-5">
+              {/* Features Card */}
+              <div className="bento-crosshair p-5 space-y-3">
+                <h3 className="text-sm font-bold text-themeText flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-emerald-500" />
+                  Key Features
+                </h3>
+                <ul className="space-y-2 text-xs text-themeTextSecondary">
+                  {project.features.map((f, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-themeBorder bg-themeCard hover:border-themeAccent/20 hover:text-themeAccent text-themeTextSecondary font-bold text-sm tracking-wide transition duration-300 hover:scale-[1.02] shadow-sm"
-              >
-                <Code2 className="w-4 h-4" />
-                <span>GitHub Repository</span>
-              </a>
+              {/* Challenges Card */}
+              <div className="bento-crosshair p-5 space-y-2 border-amber-500/30">
+                <h3 className="text-sm font-bold text-amber-600 dark:text-amber-400 flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4" />
+                  Challenges &amp; Solutions
+                </h3>
+                <p className="text-xs text-themeTextSecondary leading-relaxed">
+                  {project.challenges}
+                </p>
+              </div>
+
+              {/* Future Improvements Card */}
+              <div className="bento-crosshair p-5 space-y-2 border-blue-500/30">
+                <h3 className="text-sm font-bold text-blue-600 dark:text-blue-400 flex items-center gap-2">
+                  <Rocket className="w-4 h-4" />
+                  Future Roadmap
+                </h3>
+                <p className="text-xs text-themeTextSecondary leading-relaxed">
+                  {project.futurePlans}
+                </p>
+              </div>
             </div>
           </div>
-
-          {/* Right Column: Key Features, Challenges, and Future Plans */}
-          <div className="md:col-span-5 space-y-6">
-
-            {/* Key Features List */}
-            <div className="p-6 bg-themeCard border border-themeBorder rounded-3xl shadow-sm space-y-4">
-              <h3 className="text-sm font-bold text-themeText uppercase tracking-wider flex items-center gap-2">
-                <Star className="w-4 h-4 text-amber-500 fill-amber-500" /> Key Features
-              </h3>
-              <ul className="list-disc pl-4 text-xs text-themeTextSecondary space-y-2.5 font-normal leading-relaxed">
-                {project.features.map((feature, fIdx) => (
-                  <li key={fIdx}>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Challenges Faced Section */}
-            <div className="p-6 bg-amber-500/5 border border-amber-500/20 dark:border-amber-500/10 rounded-3xl shadow-sm space-y-3">
-              <h3 className="text-sm font-bold text-amber-500 dark:text-amber-400 uppercase tracking-wider flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 text-amber-500" /> Challenges Faced &amp; Solutions
-              </h3>
-              <p className="text-xs text-themeTextSecondary leading-relaxed font-normal">
-                {project.challenges}
-              </p>
-            </div>
-
-            {/* Future Plans Section */}
-            <div className="p-6 bg-themeAccent/5 border border-themeAccent/20 dark:border-themeAccent/10 rounded-3xl shadow-sm space-y-3">
-              <h3 className="text-sm font-bold text-themeAccent uppercase tracking-wider flex items-center gap-2">
-                <Rocket className="w-4 h-4 text-themeAccent" /> Future Improvements
-              </h3>
-              <p className="text-xs text-themeTextSecondary leading-relaxed font-normal">
-                {project.futurePlans}
-              </p>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-    </main>
+        </main>
+      </div>
+    </div>
   );
 }

@@ -1,155 +1,91 @@
 "use client";
 import React from "react";
-import { useScrollReveal } from "./useScrollReveal";
-import { Award, CheckCircle2, ExternalLink } from "lucide-react";
-
-interface Certificate {
-  id: string;
-  title: string;
-  issuer: string;
-  year: string;
-  desc: string;
-  skills: string[];
-  badge: string;
-  color: string;
-  link: string;
-}
-
-const certificates: Certificate[] = [
-  {
-    id: "ph-mern",
-    title: "Complete Web Development (MERN Stack)",
-    issuer: "Programming Hero",
-    year: "2025",
-    desc: "Comprehensive engineering curriculum covering full-stack web development: React.js, Next.js 14, Node.js, Express.js, MongoDB, TypeScript, REST APIs, and Secure Authentication.",
-    skills: ["MERN Stack", "Next.js 14", "React.js", "Node.js", "MongoDB", "TypeScript", "Express.js"],
-    badge: "Verified Credential",
-    color: "#10b981",
-    link: "https://programming-hero.com"
-  },
-  {
-    id: "sql-prisma",
-    title: "Relational Database Design & Prisma ORM",
-    issuer: "Full-Stack Project & Architecture Practice",
-    year: "2025 — Present",
-    desc: "Hands-on implementation of relational SQL schemas, entity relations, migration workflows, and type-safe database queries with PostgreSQL and Prisma ORM.",
-    skills: ["PostgreSQL", "Prisma ORM", "Relational Schemas", "Database Migrations", "Type Safety"],
-    badge: "Active Practice",
-    color: "#a855f7",
-    link: "https://github.com/babul0000"
-  },
-  {
-    id: "tech-ops",
-    title: "Technical Operations & Process Optimization",
-    issuer: "Industrial & Manufacturing Operations",
-    year: "2018 — Present",
-    desc: "Analytical troubleshooting, precision quality control, and cross-functional technical management under demanding client production deadlines.",
-    skills: ["Quality Control", "Technical Troubleshooting", "Root Cause Analysis", "Project Delivery"],
-    badge: "Professional Experience",
-    color: "#38bdf8",
-    link: "#experience"
-  }
-];
+import { Award, CheckCircle2, ExternalLink, BookOpen, GraduationCap } from "lucide-react";
 
 export default function Certificates() {
-  const ref = useScrollReveal<HTMLElement>();
+  const credentials = [
+    {
+      title: "Complete Web Development (MERN Stack)",
+      issuer: "Programming Hero",
+      status: "Verified Completion",
+      date: "2024",
+      desc: "Intensive 6-month full-stack development program covering React.js, Next.js, Node.js, Express.js, MongoDB, REST APIs, Tailwind CSS, and full-stack software lifecycle.",
+      skills: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "Firebase", "REST APIs"],
+      verified: true,
+      badgeColor: "#10b981"
+    },
+    {
+      title: "PostgreSQL & Prisma ORM Relational Engineering",
+      issuer: "Active Practical Specialization",
+      status: "Active Project Practice",
+      date: "2024 — Present",
+      desc: "Hands-on implementation of relational database schemas, complex SQL queries, type-safe migrations, relational modeling, and full-stack integration with TypeScript.",
+      skills: ["PostgreSQL", "Prisma ORM", "Relational Modeling", "Type Safety", "SQL Queries"],
+      verified: true,
+      badgeColor: "#6366f1"
+    }
+  ];
 
   return (
-    <section id="certificates" className="section-padding bg-themeBg border-b border-themeBorder relative font-sans antialiased text-themeText" ref={ref}>
-      
-      {/* Ambient background glow */}
-      <div className="absolute top-[20%] right-[-10%] w-[350px] h-[350px] bg-themeAccent/5 rounded-full blur-[90px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        
-        {/* Header */}
-        <div className="text-center mb-14 reveal">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-1.5 h-4 rounded-full bg-themeAccent" />
-            <span className="text-xs font-bold text-themeAccent uppercase tracking-widest">
-              Achievements
-            </span>
+    <section id="certificates" className="py-20 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-grid-pattern">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="mb-12">
+          <div className="text-xs font-mono tracking-widest text-emerald-600 dark:text-emerald-400 font-semibold uppercase mb-2">
+            CREDENTIALS & TRAINING
           </div>
-          <h2 className="text-3xl md:text-4xl font-black text-themeText mt-1 uppercase tracking-tight">
-            Certifications &amp; <span className="gradient-text">Credentials</span>
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-themeText tracking-tight">
+            Verified Certifications
           </h2>
-          <p className="text-themeTextMuted text-sm mt-3 max-w-md mx-auto font-normal">
-            Verified qualifications and recognized expertise demonstrating rigorous technical competencies.
+          <p className="mt-2 text-sm sm:text-base text-themeTextSecondary max-w-2xl">
+            Formal technical education, MERN stack accreditation, and database specialization.
           </p>
         </div>
 
-        {/* Certificates Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {certificates.map((cert, idx) => (
+        {/* Credentials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {credentials.map((cred, idx) => (
             <div
-              key={cert.id}
-              className="bg-themeCard rounded-3xl border border-themeBorder p-6 md:p-7 flex flex-col justify-between hover:border-themeAccent/30 hover:shadow-lg transition-all duration-300 group reveal relative overflow-hidden"
-              style={{ transitionDelay: `${0.1 * (idx + 1)}s` }}
+              key={idx}
+              className="bento-crosshair p-6 sm:p-8 flex flex-col justify-between"
             >
-              {/* Top ambient highlight on hover */}
-              <div
-                className="absolute top-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ backgroundColor: cert.color }}
-              />
-
-              <div className="space-y-4">
-                {/* Header Badge */}
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-[9px] font-mono font-bold px-2.5 py-1 bg-themeAccent/10 text-themeAccent border border-themeAccent/20 rounded-full uppercase tracking-wider flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3 h-3 text-themeAccent" />
-                    {cert.badge}
-                  </span>
-                  <span className="text-xs font-bold text-themeTextMuted">
-                    {cert.year}
+              <div>
+                <div className="flex items-center justify-between gap-4 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+                    <GraduationCap className="w-5 h-5" />
+                  </div>
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-mono font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    {cred.status}
                   </span>
                 </div>
 
-                {/* Title & Issuer */}
-                <div>
-                  <h3 className="text-base font-bold text-themeText group-hover:text-themeAccent transition-colors leading-snug">
-                    {cert.title}
-                  </h3>
-                  <p className="text-xs font-bold text-themeTextMuted mt-1">
-                    {cert.issuer}
-                  </p>
+                <h3 className="text-lg font-bold text-themeText mb-1">
+                  {cred.title}
+                </h3>
+                <div className="text-xs font-mono text-themeTextMuted mb-3">
+                  {cred.issuer} • {cred.date}
                 </div>
-
-                {/* Description */}
-                <p className="text-xs text-themeTextMuted leading-relaxed font-normal">
-                  {cert.desc}
+                <p className="text-sm text-themeTextSecondary leading-relaxed mb-6">
+                  {cred.desc}
                 </p>
+              </div>
 
-                {/* Skills tags */}
-                <div className="flex flex-wrap gap-1.5 pt-2">
-                  {cert.skills.map((skill) => (
+              <div>
+                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-dashed border-zinc-200 dark:border-zinc-800">
+                  {cred.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="text-[9px] font-mono px-2 py-0.5 rounded bg-themeCardHover border border-themeBorder text-themeTextMuted font-semibold"
+                      className="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-themeTextSecondary font-mono"
                     >
                       {skill}
                     </span>
                   ))}
                 </div>
               </div>
-
-              {/* Action Link */}
-              <div className="pt-6 mt-4 border-t border-themeBorder flex items-center justify-between">
-                <a
-                  href={cert.link}
-                  target={cert.link.startsWith("http") ? "_blank" : "_self"}
-                  rel="noopener noreferrer"
-                  className="text-xs font-bold text-themeTextSecondary hover:text-themeAccent inline-flex items-center gap-1.5 transition-colors uppercase tracking-wider"
-                >
-                  <span>Verify / Details</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-                <Award className="w-5 h-5 text-themeTextMuted group-hover:text-themeAccent transition-colors" />
-              </div>
-
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

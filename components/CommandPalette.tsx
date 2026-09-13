@@ -15,7 +15,9 @@ import {
   Mail,
   Phone,
   ArrowRight,
-  Award
+  Award,
+  Layers,
+  GraduationCap
 } from "lucide-react";
 
 interface PaletteItem {
@@ -75,58 +77,54 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
     // Navigation
     {
       id: "nav-home",
-      title: "Home",
-      subtitle: "Jump to hero introduction",
+      title: "Hero & Introduction",
+      subtitle: "Jump to top introduction & developer bio",
       category: "Navigation",
-      icon: <Navigation className="w-4 h-4 text-themeAccent" />,
+      icon: <Navigation className="w-4 h-4 text-emerald-500" />,
       action: () => {
         router.push("/#home");
-        document.querySelector("#home")?.scrollIntoView({ behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     },
     {
-      id: "nav-skills",
-      title: "Skills & Toolkit",
-      subtitle: "Explore MERN & full-stack technologies",
+      id: "nav-specialties",
+      title: "Engineering Specialties",
+      subtitle: "Frontend architecture, APIs & database design",
       category: "Navigation",
-      icon: <Navigation className="w-4 h-4 text-themeAccent" />,
+      icon: <Layers className="w-4 h-4 text-emerald-500" />,
       action: () => {
-        router.push("/#skills");
-        document.querySelector("#skills")?.scrollIntoView({ behavior: "smooth" });
+        router.push("/#specialties");
+        document.querySelector("#specialties")?.scrollIntoView({ behavior: "smooth" });
       }
     },
     {
       id: "nav-projects",
       title: "Featured Projects",
-      subtitle: "View production web applications",
+      subtitle: "View production web applications & case studies",
       category: "Navigation",
-      icon: <FolderGit2 className="w-4 h-4 text-themeAccent" />,
+      icon: <FolderGit2 className="w-4 h-4 text-emerald-500" />,
       action: () => {
         router.push("/#projects");
         document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
       }
     },
     {
-      id: "nav-github",
-      title: "GitHub Activity",
-      subtitle: "View live commit contributions",
+      id: "nav-skills",
+      title: "Skills & Toolkit",
+      subtitle: "Explore MERN, TypeScript, PostgreSQL & Prisma",
       category: "Navigation",
-      icon: (
-        <svg className="w-4 h-4 text-themeAccent" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-        </svg>
-      ),
+      icon: <Navigation className="w-4 h-4 text-emerald-500" />,
       action: () => {
-        router.push("/#github");
-        document.querySelector("#github")?.scrollIntoView({ behavior: "smooth" });
+        router.push("/#skills");
+        document.querySelector("#skills")?.scrollIntoView({ behavior: "smooth" });
       }
     },
     {
       id: "nav-experience",
-      title: "Career Journey",
-      subtitle: "Technical background and timeline",
+      title: "Career & Experience",
+      subtitle: "Technical background and track record",
       category: "Navigation",
-      icon: <Navigation className="w-4 h-4 text-themeAccent" />,
+      icon: <Navigation className="w-4 h-4 text-emerald-500" />,
       action: () => {
         router.push("/#experience");
         document.querySelector("#experience")?.scrollIntoView({ behavior: "smooth" });
@@ -134,10 +132,10 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
     },
     {
       id: "nav-certificates",
-      title: "Credentials & Certificates",
-      subtitle: "View verified MERN qualifications",
+      title: "Certifications & Credentials",
+      subtitle: "Verified Programming Hero MERN certificate",
       category: "Navigation",
-      icon: <Award className="w-4 h-4 text-themeAccent" />,
+      icon: <GraduationCap className="w-4 h-4 text-emerald-500" />,
       action: () => {
         router.push("/#certificates");
         document.querySelector("#certificates")?.scrollIntoView({ behavior: "smooth" });
@@ -145,10 +143,10 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
     },
     {
       id: "nav-about",
-      title: "About Me",
-      subtitle: "Background story & philosophy",
+      title: "About Babul",
+      subtitle: "Background story, philosophy & values",
       category: "Navigation",
-      icon: <Navigation className="w-4 h-4 text-themeAccent" />,
+      icon: <Navigation className="w-4 h-4 text-emerald-500" />,
       action: () => {
         router.push("/#about");
         document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
@@ -157,9 +155,9 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
     {
       id: "nav-contact",
       title: "Contact",
-      subtitle: "Send a message or get in touch",
+      subtitle: "Direct email, WhatsApp and inquiry form",
       category: "Navigation",
-      icon: <Mail className="w-4 h-4 text-themeAccent" />,
+      icon: <Mail className="w-4 h-4 text-emerald-500" />,
       action: () => {
         router.push("/#contact");
         document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
@@ -172,7 +170,7 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
       title: p.name,
       subtitle: `Case Study: ${p.tagline}`,
       category: "Projects",
-      icon: <Sparkles className="w-4 h-4 text-amber-500" />,
+      icon: <Sparkles className="w-4 h-4 text-emerald-500" />,
       badge: p.tech.slice(0, 2).join(", "),
       action: () => {
         router.push(`/project/${p.id}`);
@@ -183,9 +181,9 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
     {
       id: "action-theme",
       title: theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode",
-      subtitle: "Toggle application appearance",
+      subtitle: "Toggle color theme appearance",
       category: "Quick Actions",
-      icon: theme === "dark" ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-400" />,
+      icon: theme === "dark" ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-zinc-700" />,
       action: () => {
         toggleTheme();
         toast.success(`Switched to ${theme === "dark" ? "Light" : "Dark"} mode`);
@@ -205,23 +203,12 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
     {
       id: "action-copy-email",
       title: "Copy Email Address",
-      subtitle: "babulhossan.info@gmail.com",
+      subtitle: "babulhossan.dev@gmail.com",
       category: "Quick Actions",
-      icon: <Copy className="w-4 h-4 text-cyan-500" />,
+      icon: <Copy className="w-4 h-4 text-emerald-500" />,
       action: () => {
-        navigator.clipboard.writeText("babulhossan.info@gmail.com");
+        navigator.clipboard.writeText("babulhossan.dev@gmail.com");
         toast.success("Email copied to clipboard!");
-      }
-    },
-    {
-      id: "action-copy-phone",
-      title: "Copy Phone Number",
-      subtitle: "+880 1952-860053",
-      category: "Quick Actions",
-      icon: <Phone className="w-4 h-4 text-green-500" />,
-      action: () => {
-        navigator.clipboard.writeText("+8801952860053");
-        toast.success("Phone number copied to clipboard!");
       }
     },
     {
@@ -229,11 +216,7 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
       title: "Open GitHub Profile",
       subtitle: "github.com/babul0000",
       category: "Social & Links",
-      icon: (
-        <svg className="w-4 h-4 text-themeText" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-        </svg>
-      ),
+      icon: <Navigation className="w-4 h-4 text-themeText" />,
       action: () => {
         window.open("https://github.com/babul0000", "_blank");
       }
@@ -243,11 +226,7 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
       title: "Open LinkedIn Profile",
       subtitle: "linkedin.com/in/babul-hossan-09932837a",
       category: "Social & Links",
-      icon: (
-        <svg className="w-4 h-4 text-[#0a66c2]" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-        </svg>
-      ),
+      icon: <Navigation className="w-4 h-4 text-[#0a66c2]" />,
       action: () => {
         window.open("https://www.linkedin.com/in/babul-hossan-09932837a/", "_blank");
       }
@@ -296,12 +275,12 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
 
       {/* Palette Container */}
       <div
-        className="relative w-full max-w-2xl bg-themeCard/95 border border-themeBorder/90 rounded-3xl shadow-2xl overflow-hidden backdrop-blur-xl z-10 transition-all transform animate-scale-up"
+        className="relative w-full max-w-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl shadow-2xl overflow-hidden backdrop-blur-xl z-10"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input Box */}
-        <div className="flex items-center gap-3 px-5 py-4 border-b border-themeBorder bg-themeCard/60">
-          <Search className="w-5 h-5 text-themeAccent shrink-0" />
+        <div className="flex items-center gap-3 px-5 py-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50">
+          <Search className="w-5 h-5 text-emerald-500 shrink-0" />
           <input
             ref={inputRef}
             type="text"
@@ -311,24 +290,24 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
               setSelectedIndex(0);
             }}
             onKeyDown={handleKeyDown}
-            placeholder="Type a section or project name... (e.g. Projects, Skills, Resume)"
+            placeholder="Search sections or projects... (e.g. Projects, Skills, Resume)"
             className="w-full bg-transparent text-sm md:text-base text-themeText placeholder-themeTextMuted outline-none font-medium"
           />
           {query && (
             <button
               onClick={() => setQuery("")}
-              className="text-[10px] font-bold text-themeTextMuted hover:text-themeText px-2 py-1 rounded-md bg-themeBg border border-themeBorder"
+              className="text-[10px] font-mono text-themeTextMuted hover:text-themeText px-2 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700"
             >
               CLEAR
             </button>
           )}
-          <span className="hidden sm:inline-flex text-[10px] font-mono font-bold text-themeTextMuted px-2 py-1 rounded-lg bg-themeBg border border-themeBorder">
+          <span className="hidden sm:inline-flex text-[10px] font-mono text-themeTextMuted px-2 py-1 rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
             ESC
           </span>
         </div>
 
         {/* Results List */}
-        <div ref={listRef} className="max-h-[60vh] overflow-y-auto p-3 space-y-1.5 scrollbar-thin">
+        <div ref={listRef} className="max-h-[55vh] overflow-y-auto p-3 space-y-1">
           {filteredItems.length === 0 ? (
             <div className="py-12 text-center text-themeTextMuted space-y-2">
               <Search className="w-8 h-8 mx-auto opacity-40" />
@@ -348,45 +327,45 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
                   onMouseEnter={() => setSelectedIndex(index)}
                   className={`flex items-center justify-between p-3 rounded-2xl cursor-pointer transition-all duration-150 ${
                     isSelected
-                      ? "bg-themeAccent/15 border border-themeAccent/40 shadow-sm text-themeText"
-                      : "hover:bg-themeCardHover/60 border border-transparent text-themeTextSecondary"
+                      ? "bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/30 text-themeText"
+                      : "hover:bg-zinc-100 dark:hover:bg-zinc-800/60 border border-transparent text-themeTextSecondary"
                   }`}
                 >
                   <div className="flex items-center gap-3.5 min-w-0">
                     <div
-                      className={`w-9 h-9 rounded-xl flex items-center justify-center border transition-colors shrink-0 ${
+                      className={`w-8 h-8 rounded-xl flex items-center justify-center border transition-colors shrink-0 ${
                         isSelected
-                          ? "bg-themeAccent text-white border-themeAccent"
-                          : "bg-themeBg border-themeBorder text-themeTextMuted"
+                          ? "bg-emerald-500 text-white border-emerald-500"
+                          : "bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 text-themeTextMuted"
                       }`}
                     >
                       {item.icon}
                     </div>
                     <div className="truncate">
                       <div className="flex items-center gap-2">
-                        <span className={`text-xs font-bold truncate ${isSelected ? "text-themeAccent font-black" : "text-themeText"}`}>
+                        <span className={`text-xs font-semibold truncate ${isSelected ? "text-emerald-600 dark:text-emerald-400 font-bold" : "text-themeText"}`}>
                           {item.title}
                         </span>
                         {item.badge && (
-                          <span className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-themeBg border border-themeBorder text-themeTextMuted font-semibold shrink-0">
+                          <span className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-themeTextMuted shrink-0">
                             {item.badge}
                           </span>
                         )}
                       </div>
-                      <p className="text-[11px] text-themeTextMuted truncate mt-0.5 font-normal">
+                      <p className="text-[11px] text-themeTextMuted truncate mt-0.5">
                         {item.subtitle}
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2 shrink-0 ml-3">
-                    <span className="text-[9px] uppercase tracking-wider font-bold text-themeTextMuted hidden md:inline-block">
+                    <span className="text-[9px] font-mono uppercase text-themeTextMuted hidden md:inline-block">
                       {item.category}
                     </span>
                     {isSelected ? (
-                      <ArrowRight className="w-4 h-4 text-themeAccent animate-pulse" />
+                      <ArrowRight className="w-3.5 h-3.5 text-emerald-500" />
                     ) : (
-                      <div className="w-4 h-4" />
+                      <div className="w-3.5 h-3.5" />
                     )}
                   </div>
                 </div>
@@ -396,17 +375,17 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
         </div>
 
         {/* Footer info & keyboard tips */}
-        <div className="flex items-center justify-between px-5 py-3 border-t border-themeBorder bg-themeCard/90 text-[11px] text-themeTextMuted">
+        <div className="flex items-center justify-between px-5 py-3 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-900/80 text-[11px] text-themeTextMuted font-mono">
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 rounded bg-themeBg border border-themeBorder text-[10px] font-mono">↑</kbd>
-              <kbd className="px-1.5 py-0.5 rounded bg-themeBg border border-themeBorder text-[10px] font-mono">↓</kbd> to navigate
+              <kbd className="px-1.5 py-0.5 rounded bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-[10px]">↑</kbd>
+              <kbd className="px-1.5 py-0.5 rounded bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-[10px]">↓</kbd> to navigate
             </span>
             <span className="hidden sm:inline-flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 rounded bg-themeBg border border-themeBorder text-[10px] font-mono">↵</kbd> to select
+              <kbd className="px-1.5 py-0.5 rounded bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-[10px]">↵</kbd> to select
             </span>
           </div>
-          <span className="text-[10px] font-bold text-themeAccent uppercase tracking-widest">
+          <span className="text-emerald-600 dark:text-emerald-400 font-semibold">
             Babul Hossan
           </span>
         </div>

@@ -2,246 +2,171 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useScrollReveal } from "./useScrollReveal";
+import { ExternalLink, ArrowUpRight, Sparkles } from "lucide-react";
+import { GithubIcon } from "./Icons";
 import { projects, Project } from "./projectsData";
-import { ExternalLink, Code2 } from "lucide-react";
-
-interface CategoryTab {
-  id: string;
-  label: string;
-}
-
-const categories: CategoryTab[] = [
-  { id: "all", label: "All Works" },
-  { id: "fullstack", label: "Full-Stack MERN" },
-  { id: "frontend", label: "Frontend & UI" },
-  { id: "typescript", label: "TypeScript" }
-];
 
 export default function Projects() {
-  const ref = useScrollReveal<HTMLElement>();
   const [activeFilter, setActiveFilter] = useState<string>("all");
 
-  const filteredProjects: Project[] = projects.filter((project) => {
-    if (activeFilter === "all") return true;
-    return project.category && project.category.includes(activeFilter);
-  });
+  const filterTabs = [
+    { id: "all", label: "All Projects" },
+    { id: "mern", label: "MERN Stack" },
+    { id: "nextjs", label: "Next.js 14" },
+    { id: "typescript", label: "TypeScript" },
+  ];
+
+  const filteredProjects = activeFilter === "all"
+    ? projects
+    : projects.filter((p) => p.category.includes(activeFilter));
 
   return (
-    <section id="projects" className="section-padding bg-themeBg border-b border-themeBorder relative font-sans antialiased text-themeText" ref={ref}>
-      
-      {/* Background glowing orb */}
-      <div className="absolute top-[30%] right-[-10%] w-[400px] h-[400px] bg-themeAccent/5 rounded-full blur-[100px] pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 reveal">
+    <section id="projects" className="py-20 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-grid-pattern">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 mb-4">
-              <div className="w-1.5 h-4 rounded-full bg-themeAccent" />
-              <span className="text-xs font-bold text-themeAccent uppercase tracking-widest">
-                Portfolio
-              </span>
+            <div className="text-xs font-mono tracking-widest text-emerald-600 dark:text-emerald-400 font-semibold uppercase mb-2">
+              FEATURED WORK
             </div>
-            <h2 className="text-3xl md:text-4xl font-black text-themeText mt-1 uppercase tracking-tight">
-              Featured <span className="gradient-text font-extrabold">Projects</span>
+            <h2 className="text-3xl sm:text-4xl font-heading font-bold text-themeText tracking-tight">
+              Latest Web Projects
             </h2>
+            <p className="mt-2 text-sm sm:text-base text-themeTextSecondary max-w-xl">
+              Real-world full-stack and frontend applications with public source code and live deployments.
+            </p>
           </div>
-          <p className="text-themeTextMuted text-sm max-w-xs font-normal">
-            Real-world applications built with clean code, scalable architecture, and verified user workflows.
-          </p>
-        </div>
 
-        {/* Filter Category Tabs */}
-        <div className="flex flex-wrap items-center gap-2.5 mb-10 reveal">
-          {categories.map((cat) => {
-            const count = cat.id === "all" 
-              ? projects.length 
-              : projects.filter(p => p.category?.includes(cat.id)).length;
-
-            const isActive = activeFilter === cat.id;
-
-            return (
+          {/* Filter Tabs (Shakeeb style) */}
+          <div className="flex flex-wrap gap-1.5 p-1 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800">
+            {filterTabs.map((tab) => (
               <button
-                key={cat.id}
-                onClick={() => setActiveFilter(cat.id)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 flex items-center gap-2 shadow-sm ${
-                  isActive
-                    ? "bg-themeAccent text-themeAccentText shadow-themeAccent/10 font-black"
-                    : "bg-themeCard border border-themeBorder text-themeTextMuted hover:text-themeText hover:border-themeAccent/30"
+                key={tab.id}
+                onClick={() => setActiveFilter(tab.id)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                  activeFilter === tab.id
+                    ? "bg-white dark:bg-zinc-800 text-emerald-600 dark:text-emerald-400 shadow-xs"
+                    : "text-themeTextMuted hover:text-themeText"
                 }`}
               >
-                <span>{cat.label}</span>
-                <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
-                  isActive ? "bg-white/20 text-white" : "bg-themeCardHover text-themeTextMuted"
-                }`}>
-                  {count}
-                </span>
+                {tab.label}
               </button>
-            );
-          })}
+            ))}
+          </div>
         </div>
 
-        {/* Project Cards Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project, idx) => (
+        {/* 2x2 / 3x2 Grid Visual Showcase (NasirChy style) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {filteredProjects.map((project) => (
             <div
-              key={project.name}
-              className="h-full bg-themeCard rounded-3xl border border-themeBorder overflow-hidden group transition-all duration-500 hover:border-themeAccent/20 flex flex-col justify-between reveal"
-              style={{ transitionDelay: `${0.1 * (idx + 1)}s` }}
+              key={project.id}
+              className="project-card-container group flex flex-col justify-between"
             >
-              <div>
-                {/* Browser Mockup Header */}
-                <div className="bg-themeCard border-b border-themeBorder p-3.5 flex items-center justify-between z-20 select-none">
-                  {/* Red, Yellow, Green mock buttons */}
-                  <div className="flex gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-[#ff5f56]" />
-                    <span className="w-2 h-2 rounded-full bg-[#ffbd2e]" />
-                    <span className="w-2 h-2 rounded-full bg-[#27c93f]" />
-                  </div>
-                  {/* Address bar mockup */}
-                  <div className="h-5 w-44 max-w-[55%] bg-themeBg/80 border border-themeBorder/85 rounded-md flex items-center justify-center text-[8px] font-mono text-themeTextMuted truncate px-2 select-none">
-                    {project.live.replace("https://", "")}
-                  </div>
-                  <div className="w-8" />
+              {/* Image Preview Container with Gradient Mask */}
+              <div className="relative w-full aspect-[16/10] overflow-hidden bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800">
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  fill
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
+
+                {/* Top Category Badge */}
+                <div className="absolute top-3 left-3 z-10">
+                  <span className="px-2.5 py-1 rounded-full text-[11px] font-mono font-medium bg-zinc-900/80 text-white backdrop-blur-md border border-white/10 shadow-sm">
+                    {project.name}
+                  </span>
                 </div>
 
-                {/* Banner with wallpaper image */}
-                <div className="aspect-video w-full relative overflow-hidden flex items-center justify-center bg-slate-900 border-b border-themeBorder">
-                  <Image
-                    src={project.image}
-                    alt={project.name}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
-                  />
-                
-                  {/* Overlay layer */}
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500" />
-                  
-                  {/* Glow highlights */}
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
-                    style={{
-                      background: `radial-gradient(ellipse at center, ${project.glow} 0%, transparent 70%)`
-                    }}
-                  />
+                {/* Bottom Overlay Gradient on Hover (NasirChy style) */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                  <div className="flex items-center justify-between w-full text-white text-xs">
+                    <span className="font-mono text-emerald-400 font-medium flex items-center gap-1">
+                      <Sparkles className="w-3.5 h-3.5" /> Case Study Available
+                    </span>
+                    <span className="inline-flex items-center gap-1 bg-white/20 backdrop-blur-sm px-2.5 py-1 rounded-full text-[11px]">
+                      View Live <ArrowUpRight className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
                 </div>
               </div>
 
-              {/* Card Body */}
-              <div className="p-6 flex flex-col gap-4 flex-grow justify-between">
-                <div className="space-y-2">
-                  <div className="flex items-start justify-between">
-                    <h3 className="text-themeText font-bold text-base leading-tight group-hover:text-themeAccent transition-colors">
-                      {project.name}
-                    </h3>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="15"
-                      height="15"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="text-themeTextMuted group-hover:text-themeAccent transition-colors shrink-0 mt-0.5"
-                    >
-                      <path d="M7 7h10v10"></path>
-                      <path d="M7 17 17 7"></path>
-                    </svg>
-                  </div>
-
-                  <p className="text-themeTextMuted text-xs leading-relaxed font-normal">
+              {/* Project Details */}
+              <div className="p-6 flex flex-col justify-between flex-1">
+                <div>
+                  <h3 className="text-xl font-heading font-bold text-themeText group-hover:text-emerald-500 transition-colors">
+                    {project.name}
+                  </h3>
+                  <p className="text-xs font-mono text-emerald-600 dark:text-emerald-400 mt-0.5 mb-2">
+                    {project.tagline}
+                  </p>
+                  <p className="text-sm text-themeTextSecondary leading-relaxed line-clamp-3 mb-4">
                     {project.desc}
                   </p>
                 </div>
 
-                <div className="space-y-4 pt-1">
-                  {/* Tech chips */}
-                  <div className="flex flex-wrap gap-1.5">
+                <div>
+                  {/* Tech Stack Chips */}
+                  <div className="flex flex-wrap gap-1.5 mb-5">
                     {project.tech.map((t) => (
                       <span
                         key={t}
-                        className="text-[9px] font-mono px-2.5 py-0.5 rounded-full border border-themeBorder bg-themeCardHover/60 text-themeTextMuted font-semibold"
+                        className="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/60 text-themeTextSecondary"
                       >
                         {t}
                       </span>
                     ))}
                   </div>
 
-                  {/* Direct Visible Action Buttons */}
-                  <div className="grid grid-cols-2 gap-2 pt-1">
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-1.5 py-2 rounded-xl border border-themeBorder text-themeTextSecondary hover:text-white bg-themeCardHover/40 hover:bg-themeAccent hover:border-themeAccent text-[10px] font-bold transition-all shadow-sm uppercase tracking-wide"
-                    >
-                      <span>Live Demo</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-1.5 py-2 rounded-xl border border-themeBorder text-themeTextSecondary hover:text-themeText hover:border-themeTextMuted bg-themeCardHover/40 hover:bg-themeCard text-[10px] font-bold transition-all shadow-sm uppercase tracking-wide"
-                    >
-                      <span>GitHub</span>
-                      <Code2 className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-
-                  {/* View Details Action */}
-                  <div>
+                  {/* Actions Footer */}
+                  <div className="flex items-center justify-between pt-3 border-t border-zinc-200 dark:border-zinc-800 text-xs font-medium">
                     <Link
                       href={`/project/${project.id}`}
-                      className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl border border-themeBorder hover:border-themeAccent/20 text-themeTextSecondary hover:text-themeAccent bg-themeCardHover/40 hover:bg-themeCard text-xs font-bold transition-all group/btn"
+                      className="inline-flex items-center gap-1 text-themeText hover:text-emerald-500 transition-colors"
                     >
-                      <span>View More / Details</span>
-                      <svg
-                        className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                      </svg>
+                      <span>Read Case Study</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
                     </Link>
+
+                    <div className="flex items-center gap-3">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-themeTextSecondary hover:text-themeText transition-colors"
+                        aria-label="GitHub Repository"
+                      >
+                        <GithubIcon className="w-3.5 h-3.5" />
+                        <span className="hidden sm:inline">Code</span>
+                      </a>
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 hover:underline font-semibold"
+                        aria-label="Live Demo"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        <span>Live Demo</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
-
               </div>
             </div>
           ))}
         </div>
 
-        {/* View all on Github button */}
-        <div className="text-center mt-14 reveal">
+        {/* Bottom CTA Link to GitHub */}
+        <div className="mt-12 text-center">
           <a
             href="https://github.com/babul0000"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-themeBorder text-themeTextSecondary text-xs font-bold bg-themeCard hover:bg-themeCardHover hover:border-themeAccent/30 hover:text-themeAccent transition-colors tracking-wide uppercase"
+            className="inline-flex items-center gap-2 text-sm font-medium text-themeTextSecondary hover:text-themeText group transition-colors"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-              <path d="M9 18c-4.51 2-5-2-7-2"></path>
-            </svg>
-            View all on GitHub
+            <span>Explore all repositories on GitHub</span>
+            <GithubIcon className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </a>
         </div>
       </div>

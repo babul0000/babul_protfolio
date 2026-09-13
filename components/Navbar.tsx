@@ -1,21 +1,8 @@
 "use client";
-import { useState, useEffect } from "react";
-import { Search } from "lucide-react";
-
-interface NavLink {
-  label: string;
-  href: string;
-}
-
-const navLinks: NavLink[] = [
-  { label: "Home", href: "#home" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Journey", href: "#experience" },
-  { label: "Credentials", href: "#certificates" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" }
-];
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Sun, Moon, Search, FileText, Menu, X } from "lucide-react";
 
 interface NavbarProps {
   theme: string;
@@ -23,289 +10,146 @@ interface NavbarProps {
 }
 
 export default function Navbar({ theme, toggleTheme }: NavbarProps) {
-  const [active, setActive] = useState<string>("#home");
-  const [scrolled, setScrolled] = useState<boolean>(false);
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-
-      // Active section highlight
-      const sections = navLinks.map((l) => document.querySelector(l.href) as HTMLElement | null);
-      const scrollPos = window.scrollY + 200;
-
-      sections.forEach((sec, idx) => {
-        if (sec) {
-          const top = sec.offsetTop;
-          const height = sec.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActive(navLinks[idx].href);
-          }
-        }
-      });
+      setIsScrolled(window.scrollY > 20);
     };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleClick = (href: string) => {
-    setActive(href);
-    setMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const handleOpenCommandPalette = () => {
+  const openPalette = () => {
     window.dispatchEvent(new CustomEvent("open-command-palette"));
   };
 
-  const handleConfirmDownload = () => {
-    setShowModal(false);
-    window.open("/resume.pdf", "_blank");
-  };
+  const navLinks = [
+    { name: "Projects", href: "#projects" },
+    { name: "Skills", href: "#skills" },
+    { name: "Experience", href: "#experience" },
+    { name: "About", href: "#about" },
+    { name: "Contact", href: "#contact" },
+  ];
 
   return (
-    <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "py-3 bg-themeBg/90 backdrop-blur-md border-b border-themeBorder shadow-sm"
-            : "py-5 bg-transparent"
-        }`}
-      >
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          {/* LOGO */}
-          <a href="#home" className="flex items-center gap-1 group select-none relative py-1">
-            <span className="signature-logo text-3xl font-bold tracking-wide text-themeText group-hover:text-themeAccent transition-colors duration-300 transform group-hover:rotate-[-2deg] inline-block">
-              Babul
-            </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-themeAccent group-hover:bg-emerald-400 transition-colors self-end mb-2"></span>
-          </a>
+    <header className="fixed top-3 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+      <div className="w-full max-w-4xl pointer-events-auto">
+        <nav className="floating-navbar rounded-full px-3 py-2 sm:px-4 sm:py-2.5 transition-all duration-300 flex items-center justify-between shadow-lg">
+          {/* Brand with Avatar */}
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 group pr-2"
+          >
+            <div className="relative w-8 h-8 rounded-full overflow-hidden ring-1.5 ring-emerald-500/60 shadow-sm shrink-0">
+              <Image
+                src="/my.webp"
+                alt="Babul Hossan"
+                width={32}
+                height={32}
+                className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold tracking-tight text-themeText flex items-center gap-1.5">
+                Babul Hossan
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              </span>
+              <span className="text-[10px] text-themeTextMuted font-mono leading-none hidden sm:inline">
+                Full Stack MERN
+              </span>
+            </div>
+          </Link>
 
-          {/* DESKTOP NAV PILL */}
-          <div className="hidden md:flex items-center gap-1 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-themeBorder shadow-md">
+          {/* Desktop Nav Links */}
+          <div className="hidden md:flex items-center gap-1 text-xs font-medium text-themeTextSecondary">
             {navLinks.map((link) => (
               <a
-                key={link.label}
+                key={link.name}
                 href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleClick(link.href);
-                }}
-                className={`px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
-                  active === link.href
-                    ? "bg-themeAccent text-themeAccentText shadow-md shadow-themeAccent/10 font-bold"
-                    : "text-themeTextSecondary hover:text-themeText"
-                }`}
+                className="px-3 py-1.5 rounded-full hover:text-themeText hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
               >
-                {link.label}
+                {link.name}
               </a>
             ))}
           </div>
 
-          {/* ACTIONS */}
-          <div className="flex items-center gap-2.5">
-            {/* Quick Search Button */}
+          {/* Right Controls: Search, Resume, Theme & Mobile Menu */}
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            {/* Quick Search Palette Trigger */}
             <button
-              onClick={handleOpenCommandPalette}
-              className="p-2.5 text-themeTextSecondary hover:text-themeAccent bg-white/60 dark:bg-slate-900/60 border border-themeBorder hover:border-themeAccent/30 rounded-xl transition duration-300 shadow-sm flex items-center justify-center group"
-              aria-label="Open Search (Ctrl+K)"
-              title="Search (Ctrl+K)"
+              onClick={openPalette}
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs text-themeTextMuted bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700/60 hover:text-themeText hover:border-emerald-500/50 transition-all cursor-pointer"
+              title="Quick Search (Ctrl + K)"
+              aria-label="Open search command palette"
             >
-              <Search className="w-4 h-4 group-hover:scale-110 transition-transform" />
+              <Search className="w-3.5 h-3.5" />
+              <span className="hidden lg:inline text-[11px] font-mono">⌘K</span>
             </button>
+
+            {/* Resume Button */}
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-themeText bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700/60 hover:border-emerald-500/60 hover:text-emerald-500 transition-all shadow-xs"
+            >
+              <FileText className="w-3.5 h-3.5 text-emerald-500" />
+              <span>Resume</span>
+            </a>
 
             {/* Theme Switcher */}
             <button
               onClick={toggleTheme}
-              className="p-2.5 text-themeTextSecondary hover:text-themeAccent bg-white/60 dark:bg-slate-900/60 border border-themeBorder hover:border-themeAccent/30 rounded-xl transition duration-300 shadow-sm flex items-center justify-center"
-              aria-label="Toggle Theme"
-              title="Toggle Light/Dark Theme"
+              className="w-8 h-8 rounded-full flex items-center justify-center text-themeTextSecondary hover:text-themeText bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700/60 transition-colors cursor-pointer"
+              aria-label="Toggle theme mode"
             >
               {theme === "dark" ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="15"
-                  height="15"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="12" cy="12" r="5" />
-                  <line x1="12" y1="1" x2="12" y2="3" />
-                  <line x1="12" y1="21" x2="12" y2="23" />
-                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                  <line x1="1" y1="12" x2="3" y2="12" />
-                  <line x1="21" y1="12" x2="23" y2="12" />
-                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                </svg>
+                <Sun className="w-4 h-4 text-amber-400" />
               ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="15"
-                  height="15"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                </svg>
+                <Moon className="w-4 h-4 text-zinc-700" />
               )}
             </button>
 
-            <a
-              href="#contact"
-              className="hidden md:flex px-4 py-2.5 rounded-full bg-themeAccent hover:bg-themeAccentHover text-themeAccentText font-bold tracking-wide transition duration-300 text-xs shadow-md shadow-themeAccent/10 hover:scale-[1.02]"
-            >
-              HIRE ME
-            </a>
-
+            {/* Mobile Menu Toggle */}
             <button
-              onClick={() => setShowModal(true)}
-              className="px-3.5 py-2 text-xs font-bold text-themeTextSecondary rounded-xl bg-white/60 dark:bg-slate-900/60 border border-themeBorder hover:border-themeAccent/30 hover:text-themeText transition duration-300 shadow-sm uppercase"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden w-8 h-8 rounded-full flex items-center justify-center text-themeText bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700/60"
+              aria-label="Toggle mobile menu"
             >
-              RESUME
-            </button>
-
-            {/* MOBILE HAMBURGER BUTTON */}
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden text-themeTextSecondary p-2 hover:bg-themeCard/60 rounded-lg border border-themeBorder transition"
-              aria-label="Toggle Menu"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                {menuOpen ? (
-                  <>
-                    <line x1="18" y1="6" x2="6" y2="18" />
-                    <line x1="6" y1="6" x2="18" y2="18" />
-                  </>
-                ) : (
-                  <>
-                    <line x1="4" y1="12" x2="20" y2="12" />
-                    <line x1="4" y1="6" x2="20" y2="6" />
-                    <line x1="4" y1="18" x2="20" y2="18" />
-                  </>
-                )}
-              </svg>
+              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
-        </div>
-      </nav>
+        </nav>
 
-      {/* MOBILE MENU */}
-      <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
-          menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
-      >
-        {/* Backdrop overlay */}
-        <div
-          onClick={() => setMenuOpen(false)}
-          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-        />
-
-        {/* Drawer container */}
-        <div
-          className={`absolute top-24 left-4 right-4 rounded-2xl bg-white/95 dark:bg-slate-900/95 border border-themeBorder p-6 shadow-2xl backdrop-blur-md transition-all duration-300 ${
-            menuOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
-          }`}
-        >
-          <div className="flex flex-col gap-2">
-            <button
-              onClick={() => {
-                setMenuOpen(false);
-                handleOpenCommandPalette();
-              }}
-              className="px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-left bg-themeCard border border-themeBorder text-themeAccent flex items-center justify-between"
-            >
-              <span>Search &amp; Navigation</span>
-              <kbd className="px-2 py-0.5 rounded bg-themeBg border border-themeBorder text-[10px] font-mono">
-                Ctrl+K
-              </kbd>
-            </button>
-
+        {/* Mobile Dropdown */}
+        {mobileMenuOpen && (
+          <div className="md:hidden mt-2 p-3 rounded-2xl floating-navbar shadow-xl flex flex-col gap-1 text-sm font-medium animate-fade-in">
             {navLinks.map((link) => (
               <a
-                key={link.href}
+                key={link.name}
                 href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleClick(link.href);
-                }}
-                className={`px-4 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition ${
-                  active === link.href
-                    ? "text-themeAccent bg-themeAccent/10 font-black"
-                    : "text-themeTextSecondary hover:text-themeText"
-                }`}
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-4 py-2 rounded-xl text-themeTextSecondary hover:text-themeText hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
               >
-                {link.label}
+                {link.name}
               </a>
             ))}
-            <a
-              href="#contact"
-              onClick={() => setMenuOpen(false)}
-              className="mt-4 px-4 py-3 rounded-xl text-xs font-bold text-center text-themeAccentText bg-themeAccent hover:bg-themeAccentHover transition uppercase tracking-wider"
-            >
-              Contact / Hire Me
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* MODAL */}
-      {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div
-            onClick={() => setShowModal(false)}
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-          />
-
-          <div className="relative z-10 w-full max-w-sm rounded-3xl bg-themeCard border border-themeBorder p-6 shadow-2xl text-left">
-            <h2 className="text-lg font-bold text-themeText">Download Resume</h2>
-            <p className="mt-2 text-xs text-themeTextMuted leading-relaxed font-normal">
-              Download Babul Hossan&apos;s verified developer resume containing full-stack MERN &amp; Next.js credentials.
-            </p>
-
-            <div className="mt-6 flex justify-end gap-3">
-              <button
-                onClick={() => setShowModal(false)}
-                className="px-4 py-2 text-xs font-bold rounded-xl text-themeTextMuted bg-themeBg hover:bg-themeCardHover transition"
+            <div className="pt-2 border-t border-themeBorder flex items-center justify-between px-2">
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-medium text-emerald-500"
               >
-                Cancel
-              </button>
-              <button
-                onClick={handleConfirmDownload}
-                className="px-4 py-2 text-xs font-bold rounded-xl text-themeAccentText bg-themeAccent hover:bg-themeAccentHover transition shadow-md shadow-themeAccent/10"
-              >
-                Download PDF
-              </button>
+                <FileText className="w-3.5 h-3.5" />
+                Download Resume PDF
+              </a>
             </div>
           </div>
-        </div>
-      )}
-    </>
+        )}
+      </div>
+    </header>
   );
 }

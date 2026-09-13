@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, FormEvent, ChangeEvent, MouseEvent } from "react";
-import { useScrollReveal } from "./useScrollReveal";
 import { toast } from "sonner";
-import { Mail, Phone, MessageSquare, Copy, Check, Send, ExternalLink } from "lucide-react";
+import { Mail, MessageSquare, Copy, Check, Send, ArrowUpRight } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "./Icons";
 
 interface FormDataState {
   name: string;
@@ -12,14 +12,12 @@ interface FormDataState {
 }
 
 export default function Contact() {
-  const ref = useScrollReveal<HTMLElement>();
   const [form, setForm] = useState<FormDataState>({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
   const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
-  const [copiedPhone, setCopiedPhone] = useState<boolean>(false);
 
-  const emailAddress = "babulhossan.info@gmail.com";
-  const phoneNumber = "01952860053";
+  const emailAddress = "babulhossan.dev@gmail.com";
+  const whatsappNumber = "+880 1934-825500";
 
   const handleCopyEmail = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -30,15 +28,6 @@ export default function Contact() {
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
-  const handleCopyPhone = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    navigator.clipboard.writeText(phoneNumber);
-    setCopiedPhone(true);
-    toast.success("Phone number copied to clipboard!");
-    setTimeout(() => setCopiedPhone(false), 2000);
-  };
-
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -46,252 +35,207 @@ export default function Contact() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("sending");
-    
-    const promise = fetch("https://formspree.io/f/xkodpoyv", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
 
-    toast.promise(promise, {
-      loading: 'Sending your message...',
-      success: (res) => {
-        if (res.ok) {
-          setStatus("sent");
-          setForm({ name: "", email: "", subject: "", message: "" });
-          return 'Message sent successfully! I will get back to you soon.';
-        } else {
-          setStatus("idle");
-          throw new Error();
-        }
-      },
-      error: () => {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (res.ok) {
+        setStatus("sent");
+        setForm({ name: "", email: "", subject: "", message: "" });
+        toast.success("Message sent successfully! I will reply promptly.");
+      } else {
         setStatus("idle");
-        return 'Failed to send message. Please try again.';
-      },
-    });
+        toast.error("Failed to send message. Please reach out via direct email or WhatsApp.");
+      }
+    } catch {
+      setStatus("idle");
+      toast.error("An error occurred. Please reach out directly via email.");
+    }
   };
 
   return (
-    <section id="contact" className="relative bg-themeBg pt-20 pb-28 md:pb-36 font-sans antialiased text-themeText border-b border-themeBorder" ref={ref}>
-      
-      {/* Background glowing orb */}
-      <div className="absolute top-[20%] left-[-10%] w-[350px] h-[350px] bg-themeAccent/5 rounded-full blur-[90px] pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          
-          {/* Info Side */}
-          <div className="space-y-6 reveal">
-            <div>
-              <div className="inline-flex items-center gap-2 mb-4">
-                <div className="w-1.5 h-4 rounded-full bg-themeAccent" />
-                <span className="text-xs font-bold text-themeAccent uppercase tracking-widest">
-                  Contact
-                </span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-black text-themeText mt-1 leading-tight uppercase tracking-tight">
-                Let’s build something <span className="gradient-text">great</span>
-              </h2>
-            </div>
-            
-            <p className="text-themeTextMuted text-sm md:text-base leading-relaxed max-w-md font-normal">
-              Have a project or opportunity? I’m ready to collaborate and engineer scalable solutions. Reach out via email, phone, or the contact form.
-            </p>
+    <section id="contact" className="py-20 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-grid-pattern">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="mb-12">
+          <div className="text-xs font-mono tracking-widest text-emerald-600 dark:text-emerald-400 font-semibold uppercase mb-2">
+            GET IN TOUCH
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-themeText tracking-tight">
+            Let&apos;s Build Something Together
+          </h2>
+          <p className="mt-2 text-sm sm:text-base text-themeTextSecondary max-w-2xl">
+            Open for full-time engineering roles, high-impact contract projects, and technical discussions.
+          </p>
+        </div>
 
-            {/* Availability Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-bold text-emerald-400 w-fit uppercase tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 pulse-badge" />
-              Available for Full-time &amp; Freelance
-            </div>
-
-            {/* Email, Phone, and WhatsApp contact blocks */}
-            <div className="space-y-3 pt-2">
-              
-              {/* Email Card */}
-              <div className="flex items-center justify-between p-4 rounded-3xl border border-themeBorder bg-themeCard hover:border-themeAccent/30 hover:shadow-md transition-all duration-300 group">
-                <a
-                  href={`mailto:${emailAddress}`}
-                  className="flex items-center gap-4 flex-grow min-w-0"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-themeAccent/10 border border-themeAccent/20 flex items-center justify-center flex-shrink-0 group-hover:bg-themeAccent group-hover:text-white transition-all duration-300 text-themeAccent">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div className="min-w-0 truncate">
-                    <div className="text-[10px] text-themeTextMuted font-bold uppercase tracking-wider mb-0.5">Email (Click to Send)</div>
-                    <div className="text-xs sm:text-sm font-semibold text-themeTextSecondary truncate group-hover:text-themeAccent transition-colors">
-                      {emailAddress}
-                    </div>
-                  </div>
-                </a>
-                <button
-                  onClick={handleCopyEmail}
-                  title="Copy email to clipboard"
-                  className="p-2.5 rounded-xl border border-themeBorder bg-themeBg hover:border-themeAccent/40 hover:text-themeAccent transition-all shrink-0 ml-2 text-themeTextMuted"
-                >
-                  {copiedEmail ? (
-                    <Check className="w-4 h-4 text-emerald-500" />
-                  ) : (
-                    <Copy className="w-4 h-4" />
-                  )}
-                </button>
-              </div>
-
-              {/* Phone Card */}
-              <div className="flex items-center justify-between p-4 rounded-3xl border border-themeBorder bg-themeCard hover:border-themeAccent/30 hover:shadow-md transition-all duration-300 group">
-                <a
-                  href={`tel:${phoneNumber}`}
-                  className="flex items-center gap-4 flex-grow min-w-0"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-themeAccent/10 border border-themeAccent/20 flex items-center justify-center flex-shrink-0 group-hover:bg-themeAccent group-hover:text-white transition-all duration-300 text-themeAccent">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div className="min-w-0 truncate">
-                    <div className="text-[10px] text-themeTextMuted font-bold uppercase tracking-wider mb-0.5">Phone (Click to Call)</div>
-                    <div className="text-xs sm:text-sm font-semibold text-themeTextSecondary truncate group-hover:text-themeAccent transition-colors">
-                      +880 1952-860053
-                    </div>
-                  </div>
-                </a>
-                <button
-                  onClick={handleCopyPhone}
-                  title="Copy phone number to clipboard"
-                  className="p-2.5 rounded-xl border border-themeBorder bg-themeBg hover:border-themeAccent/40 hover:text-themeAccent transition-all shrink-0 ml-2 text-themeTextMuted"
-                >
-                  {copiedPhone ? (
-                    <Check className="w-4 h-4 text-emerald-500" />
-                  ) : (
-                    <Copy className="w-4 h-4" />
-                  )}
-                </button>
-              </div>
-
-              {/* WhatsApp Card */}
-              <a
-                href="https://wa.me/8801952860053"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between p-4 rounded-3xl border border-themeBorder bg-themeCard hover:border-emerald-500/30 hover:shadow-md transition-all duration-300 group"
-              >
-                <div className="flex items-center gap-4 min-w-0">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300 text-emerald-400">
-                    <MessageSquare className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-[10px] text-themeTextMuted font-bold uppercase tracking-wider mb-0.5">WhatsApp Direct Chat</div>
-                    <div className="text-xs sm:text-sm font-semibold text-themeTextSecondary group-hover:text-emerald-400 transition-colors">
-                      +880 1952-860053
-                    </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          {/* Left Column (5 cols): Direct Contact Channels */}
+          <div className="lg:col-span-5 space-y-4">
+            {/* Email Card */}
+            <div className="bento-crosshair p-5 flex items-center justify-between">
+              <a href={`mailto:${emailAddress}`} className="flex items-center gap-3.5 min-w-0">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-[11px] font-mono text-themeTextMuted">EMAIL ME</div>
+                  <div className="text-sm font-semibold text-themeText truncate hover:text-emerald-500 transition-colors">
+                    {emailAddress}
                   </div>
                 </div>
-                <ExternalLink className="w-4 h-4 text-themeTextMuted group-hover:text-emerald-400 transition-colors shrink-0 mr-1" />
               </a>
-
-              {/* Social icons */}
-              <div className="flex items-center gap-3 pt-2">
-                <a
-                  href="https://github.com/babul0000"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl border border-themeBorder flex items-center justify-center bg-themeCard hover:border-themeAccent/20 hover:text-themeAccent transition-colors text-themeTextMuted shadow-sm"
-                  aria-label="GitHub"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                    <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                  </svg>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/babul-hossan-09932837a/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl border border-themeBorder flex items-center justify-center bg-themeCard hover:border-themeAccent/20 hover:text-themeAccent transition-colors text-themeTextMuted shadow-sm"
-                  aria-label="LinkedIn"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                    <rect width="4" height="12" x="2" y="9"></rect>
-                    <circle cx="4" cy="4" r="2"></circle>
-                  </svg>
-                </a>
-                <a
-                  href="https://www.facebook.com/clik00"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl border border-themeBorder flex items-center justify-center bg-themeCard hover:border-themeAccent/20 hover:text-themeAccent transition-colors text-themeTextMuted shadow-sm"
-                  aria-label="Facebook"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                  </svg>
-                </a>
-                <a
-                  href={`mailto:${emailAddress}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl border border-themeBorder flex items-center justify-center bg-themeCard hover:border-themeAccent/20 hover:text-themeAccent transition-colors text-themeTextMuted shadow-sm"
-                  aria-label="Email"
-                  title="Email"
-                >
-                  <Mail className="w-4 h-4" />
-                </a>
-              </div>
+              <button
+                onClick={handleCopyEmail}
+                className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-themeTextMuted hover:text-emerald-500 transition-colors shrink-0 ml-2"
+                title="Copy email"
+                aria-label="Copy email to clipboard"
+              >
+                {copiedEmail ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
+              </button>
             </div>
+
+            {/* WhatsApp Card */}
+            <a
+              href="https://wa.me/8801934825500"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bento-crosshair p-5 flex items-center justify-between group block"
+            >
+              <div className="flex items-center gap-3.5 min-w-0">
+                <div className="w-10 h-10 rounded-xl bg-green-500/10 text-green-500 flex items-center justify-center shrink-0">
+                  <MessageSquare className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-[11px] font-mono text-themeTextMuted">WHATSAPP DIRECT</div>
+                  <div className="text-sm font-semibold text-themeText group-hover:text-emerald-500 transition-colors">
+                    {whatsappNumber}
+                  </div>
+                </div>
+              </div>
+              <ArrowUpRight className="w-4 h-4 text-themeTextMuted group-hover:text-emerald-500 transition-colors shrink-0" />
+            </a>
+
+            {/* LinkedIn Card */}
+            <a
+              href="https://www.linkedin.com/in/babul-hossan-09932837a/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bento-crosshair p-5 flex items-center justify-between group block"
+            >
+              <div className="flex items-center gap-3.5 min-w-0">
+                <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0">
+                  <LinkedinIcon className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-[11px] font-mono text-themeTextMuted">LINKEDIN PROFILE</div>
+                  <div className="text-sm font-semibold text-themeText group-hover:text-emerald-500 transition-colors">
+                    Babul Hossan
+                  </div>
+                </div>
+              </div>
+              <ArrowUpRight className="w-4 h-4 text-themeTextMuted group-hover:text-emerald-500 transition-colors shrink-0" />
+            </a>
+
+            {/* GitHub Profile Card */}
+            <a
+              href="https://github.com/babul0000"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bento-crosshair p-5 flex items-center justify-between group block"
+            >
+              <div className="flex items-center gap-3.5 min-w-0">
+                <div className="w-10 h-10 rounded-xl bg-zinc-500/10 text-themeText flex items-center justify-center shrink-0">
+                  <GithubIcon className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-[11px] font-mono text-themeTextMuted">GITHUB REPOSITORIES</div>
+                  <div className="text-sm font-semibold text-themeText group-hover:text-emerald-500 transition-colors">
+                    @babul0000
+                  </div>
+                </div>
+              </div>
+              <ArrowUpRight className="w-4 h-4 text-themeTextMuted group-hover:text-emerald-500 transition-colors shrink-0" />
+            </a>
           </div>
 
-          {/* Form Side */}
-          <div className="reveal w-full" style={{ transitionDelay: "0.2s" }}>
-            <div className="p-8 rounded-3xl border border-themeBorder bg-themeCard shadow-sm">
+          {/* Right Column (7 cols): Direct Message Form */}
+          <div className="lg:col-span-7">
+            <div className="bento-crosshair p-6 sm:p-8">
+              <span className="absolute -top-2 -left-2 text-zinc-400 dark:text-zinc-600 font-mono text-sm pointer-events-none">+</span>
+              <span className="absolute -top-2 -right-2 text-zinc-400 dark:text-zinc-600 font-mono text-sm pointer-events-none">+</span>
+              <span className="absolute -bottom-2 -left-2 text-zinc-400 dark:text-zinc-600 font-mono text-sm pointer-events-none">+</span>
+              <span className="absolute -bottom-2 -right-2 text-zinc-400 dark:text-zinc-600 font-mono text-sm pointer-events-none">+</span>
+
               {status === "sent" ? (
-                <div className="flex flex-col items-center justify-center py-12 gap-4">
-                  <div className="w-16 h-16 rounded-full bg-themeAccent/10 border border-themeAccent/20 flex items-center justify-center">
-                    <Check className="w-8 h-8 text-themeAccent" />
+                <div className="py-12 text-center space-y-3">
+                  <div className="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center mx-auto">
+                    <Check className="w-6 h-6" />
                   </div>
-                  <div className="text-center">
-                    <h3 className="text-lg font-bold text-themeText mb-1">Message sent!</h3>
-                    <p className="text-xs text-themeTextMuted">
-                      I&apos;ll get back to you within 24 hours.
-                    </p>
-                  </div>
+                  <h3 className="text-lg font-bold text-themeText">Message Sent Successfully!</h3>
+                  <p className="text-xs text-themeTextSecondary max-w-sm mx-auto">
+                    Thank you for reaching out. I&apos;ll review your inquiry and get back to you shortly.
+                  </p>
                   <button
                     onClick={() => setStatus("idle")}
-                    className="text-xs font-bold text-themeAccent hover:text-themeAccentHover mt-2 uppercase tracking-widest"
+                    className="text-xs font-mono text-emerald-600 dark:text-emerald-400 hover:underline pt-2 inline-block"
                   >
                     Send another message
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[11px] font-mono text-themeTextMuted mb-1.5 uppercase">
+                        Your Name
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={form.name}
+                        onChange={handleChange}
+                        required
+                        placeholder="John Doe"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/60 text-xs text-themeText focus:border-emerald-500 focus:outline-none transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-mono text-themeTextMuted mb-1.5 uppercase">
+                        Your Email
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={form.email}
+                        onChange={handleChange}
+                        required
+                        placeholder="john@example.com"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/60 text-xs text-themeText focus:border-emerald-500 focus:outline-none transition-colors"
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <label className="block text-[10px] font-bold text-themeTextMuted mb-2 uppercase tracking-wider">
-                      Name
+                    <label className="block text-[11px] font-mono text-themeTextMuted mb-1.5 uppercase">
+                      Subject
                     </label>
                     <input
                       type="text"
-                      name="name"
-                      value={form.name}
+                      name="subject"
+                      value={form.subject}
                       onChange={handleChange}
-                      required
-                      placeholder="Your full name"
-                      className="w-full px-4 py-3 rounded-xl border border-themeBorder bg-themeBg text-themeText text-xs placeholder-themeTextMuted focus:border-themeAccent focus:ring-2 focus:ring-themeAccent/10 outline-none transition shadow-sm"
+                      placeholder="Project Inquiry / Job Opportunity"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/60 text-xs text-themeText focus:border-emerald-500 focus:outline-none transition-colors"
                     />
                   </div>
+
                   <div>
-                    <label className="block text-[10px] font-bold text-themeTextMuted mb-2 uppercase tracking-wider">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      required
-                      placeholder="you@company.com"
-                      className="w-full px-4 py-3 rounded-xl border border-themeBorder bg-themeBg text-themeText text-xs placeholder-themeTextMuted focus:border-themeAccent focus:ring-2 focus:ring-themeAccent/10 outline-none transition shadow-sm"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[10px] font-bold text-themeTextMuted mb-2 uppercase tracking-wider">
+                    <label className="block text-[11px] font-mono text-themeTextMuted mb-1.5 uppercase">
                       Message
                     </label>
                     <textarea
@@ -300,27 +244,22 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       rows={4}
-                      placeholder="Tell me about the project or opportunity..."
-                      className="w-full px-4 py-3 rounded-xl border border-themeBorder bg-themeBg text-themeText text-xs placeholder-themeTextMuted focus:border-themeAccent focus:ring-2 focus:ring-themeAccent/10 outline-none transition resize-none shadow-sm"
+                      placeholder="Hi Babul, I came across your portfolio and would like to discuss..."
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/60 text-xs text-themeText focus:border-emerald-500 focus:outline-none transition-colors resize-none"
                     />
                   </div>
+
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-themeAccent hover:bg-themeAccentHover text-themeAccentText font-bold text-sm tracking-wide transition duration-300 disabled:opacity-60 disabled:cursor-not-allowed shadow-sm uppercase"
+                    className="w-full py-3 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 text-xs font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                   >
                     {status === "sending" ? (
-                      <>
-                        <svg className="w-4 h-4 animate-spin text-white" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                        </svg>
-                        Sending...
-                      </>
+                      <span>Sending Message...</span>
                     ) : (
                       <>
                         <span>Send Message</span>
-                        <Send className="w-4 h-4" />
+                        <Send className="w-3.5 h-3.5" />
                       </>
                     )}
                   </button>

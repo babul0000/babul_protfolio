@@ -1,160 +1,119 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
-import { useScrollReveal } from "./useScrollReveal";
-
-interface TimelineEvent {
-  year: string;
-  title: string;
-  org: string;
-  desc: string;
-  skills: string[];
-  badge: string;
-}
-
-const timelineEvents: TimelineEvent[] = [
-  {
-    year: "2025 — Present",
-    title: "Full Stack MERN Developer (Bootcamp & Project Experience)",
-    org: "Programming Hero & Personal Projects",
-    desc: "Engineered responsive and scalable full-stack applications using React, Next.js, Node.js, Express, and MongoDB. Focused on developing robust RESTful APIs, securing routes with modern auth models, optimizing database queries, and styling with premium, pixel-perfect Tailwind CSS components. Actively building modular MERN projects with emphasis on performance, clean state management, and UX design.",
-    skills: ["React", "Next.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "Git"],
-    badge: "Software"
-  },
-  {
-    year: "2018 — Present",
-    title: "Technical Operations Specialist (Cross-Functional Coordination)",
-    org: "Manufacturing & Buying House Operations",
-    desc: "Leveraged analytical problem-solving skills to diagnose and resolve complex technical issues under tight client deadlines. Coordinated deliverables across design, quality control, and production pipelines, ensuring project compliance for international stakeholders. Translating complex technical specifications into structured execution processes directly parallels core software engineering values of team alignment, clean documentation, and robust troubleshooting.",
-    skills: ["Project Coordination", "Quality Control", "Client Relations", "Workflow Optimization"],
-    badge: "Buying House"
-  }
-];
+import React from "react";
+import { Briefcase, Calendar, MapPin, CheckCircle2, ArrowRight } from "lucide-react";
 
 export default function Experience() {
-  const ref = useScrollReveal<HTMLElement>();
-  const timelineRef = useRef<HTMLDivElement | null>(null);
-  const [progressHeight, setProgressHeight] = useState<number>(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!timelineRef.current) return;
-      const rect = timelineRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      
-      const triggerPoint = windowHeight * 0.75;
-      const totalHeight = rect.height;
-      const scrolled = triggerPoint - rect.top;
-      
-      let progress = (scrolled / totalHeight) * 100;
-      progress = Math.min(Math.max(progress, 0), 100);
-      
-      setProgressHeight(progress);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
-    handleScroll();
-    
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
-  }, []);
+  const experiences = [
+    {
+      company: "Independent / Open-Source Projects",
+      role: "Full-Stack MERN Developer",
+      period: "2024 — Present",
+      location: "Dhaka, Bangladesh",
+      accent: "#10b981",
+      achievements: [
+        "Architected full-stack web applications like PromptForge, BloodConnect, and Tiles Gallery utilizing Next.js 14 App Router and TypeScript.",
+        "Built scalable RESTful APIs with Node.js and Express.js, implementing JWT authentication, secure cookies, and input validation.",
+        "Engineered document schemas in MongoDB and relational database tables using PostgreSQL with Prisma ORM.",
+        "Optimized frontend performance, delivering zero layout shifts and high Lighthouse audit scores."
+      ],
+      tags: ["Next.js 14", "React", "TypeScript", "Node.js", "Express.js", "MongoDB", "PostgreSQL", "Prisma ORM"]
+    },
+    {
+      company: "Industrial & Technical Operations",
+      role: "Quality Assurance & Production Engineering",
+      period: "Prior Experience",
+      location: "Bangladesh",
+      accent: "#0284c7",
+      achievements: [
+        "Executed systematic quality control processes, rigorous inspection workflows, and operational root-cause analysis.",
+        "Maintained high precision production standards, directly influencing my disciplined approach to clean, bug-free software engineering.",
+        "Collaborated with cross-functional technical teams to identify workflow bottlenecks and streamline procedural efficiency."
+      ],
+      tags: ["Quality Control", "Root Cause Analysis", "Process Optimization", "Systematic Workflow"]
+    }
+  ];
 
   return (
-    <section id="experience" className="section-padding bg-themeBg border-b border-themeBorder relative font-sans antialiased text-themeText" ref={ref}>
-      
-      {/* Background glowing orb */}
-      <div className="absolute top-[20%] left-[-10%] w-[350px] h-[350px] bg-themeAccent/5 rounded-full blur-[90px] pointer-events-none" />
-      
-      <div className="max-w-4xl mx-auto px-6 relative z-10">
-        
-        {/* Header */}
-        <div className="text-center mb-16 reveal">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-1.5 h-4 rounded-full bg-themeAccent" />
-            <span className="text-xs font-bold text-themeAccent uppercase tracking-widest">
-              My Journey
-            </span>
+    <section id="experience" className="py-20 border-b border-zinc-200/80 dark:border-zinc-800/80">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="mb-12">
+          <div className="text-xs font-mono tracking-widest text-emerald-600 dark:text-emerald-400 font-semibold uppercase mb-2">
+            CAREER & TRACK RECORD
           </div>
-          <h2 className="text-3xl md:text-4xl font-black text-themeText mt-1 uppercase tracking-tight">
-            Career Path &amp; <span className="gradient-text">Transition</span>
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-themeText tracking-tight">
+            Professional Experience
           </h2>
-          <p className="text-themeTextMuted text-sm mt-3 max-w-md mx-auto font-normal">
-            A chronological timeline of my professional journey from precision manufacturing to full stack software engineering.
+          <p className="mt-2 text-sm sm:text-base text-themeTextSecondary max-w-2xl">
+            My development journey, practical engineering milestones, and operational discipline.
           </p>
         </div>
 
-        {/* Timeline wrapper */}
-        <div ref={timelineRef} className="relative ml-3 md:ml-6 space-y-10 reveal" style={{ transitionDelay: "0.2s" }}>
-          
-          {/* Vertical Line Track (Background) */}
-          <div className="absolute left-0 top-2 bottom-2 w-[2px] bg-themeBorder pointer-events-none" />
-          
-          {/* Vertical Laser Line (Active progress overlay) */}
-          <div 
-            className="absolute left-0 top-2 w-[2px] bg-gradient-to-b from-themeAccent via-emerald-500 to-cyan-500 shadow-[0_0_10px_rgba(46,204,113,0.3)] transition-all duration-100 ease-out origin-top pointer-events-none" 
-            style={{ height: `${progressHeight}%`, maxHeight: "calc(100% - 16px)" }}
-          />
-          
-          {timelineEvents.map((event, idx) => {
-            const isNodeActive = progressHeight >= (idx / (timelineEvents.length - 1 || 1)) * 95;
+        {/* Experience Cards (NasirChy style) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {experiences.map((exp, idx) => (
+            <div
+              key={idx}
+              className="group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 p-6 sm:p-8 transition-all duration-300 hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-lg flex flex-col justify-between"
+            >
+              {/* Top Accent Strip */}
+              <div
+                className="absolute left-0 top-0 h-1 w-full"
+                style={{ backgroundColor: exp.accent }}
+              />
 
-            return (
-              <div key={idx} className="relative pl-8 md:pl-10">
-                
-                {/* Timeline indicator node */}
-                <span className={`absolute -left-[7px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-themeBg border-2 transition-all duration-300 z-10 ${
-                  isNodeActive 
-                    ? "border-themeAccent shadow-[0_0_8px_rgba(46,204,113,0.3)] scale-110" 
-                    : "border-themeBorder shadow-sm"
-                }`}>
-                  <span className={`h-1.5 w-1.5 rounded-full transition-all duration-300 ${
-                    isNodeActive ? "bg-themeAccent" : "bg-themeTextMuted"
-                  }`}></span>
-                </span>
-
-                {/* Event card details */}
-                <div className="bg-themeCard border border-themeBorder rounded-3xl p-6 md:p-8 hover:border-themeAccent/20 hover:shadow-md transition-all duration-300 shadow-sm space-y-4">
-                  
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <div>
-                      <span className="text-[9px] font-mono font-bold px-2.5 py-1 bg-themeAccent/10 text-themeAccent border border-themeAccent/20 rounded-full uppercase tracking-wider">
-                        {event.badge}
-                      </span>
-                      <h3 className="text-lg font-bold text-themeText mt-2">{event.title}</h3>
-                      <p className="text-xs font-bold text-themeTextMuted mt-0.5">{event.org}</p>
-                    </div>
-                    
-                    <span className="text-xs font-bold text-themeAccent sm:text-right shrink-0">
-                      {event.year}
-                    </span>
+              <div>
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <div>
+                    <h3 className="text-xl font-bold text-themeText group-hover:text-emerald-500 transition-colors">
+                      {exp.company}
+                    </h3>
+                    <p className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mt-0.5">
+                      {exp.role}
+                    </p>
                   </div>
-
-                  <p className="text-themeTextMuted text-xs leading-relaxed font-normal">
-                    {event.desc}
-                  </p>
-
-                  {/* Skills used */}
-                  <div className="flex flex-wrap gap-1.5 pt-3 border-t border-themeBorder">
-                    {event.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="text-[9px] font-mono px-2 py-0.5 rounded bg-themeCardHover border border-themeBorder text-themeTextMuted font-semibold"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-
                 </div>
 
+                <div className="flex items-center gap-4 text-xs font-mono text-themeTextMuted mb-6">
+                  <span className="flex items-center gap-1">
+                    <Calendar className="w-3.5 h-3.5" />
+                    {exp.period}
+                  </span>
+                  <span>•</span>
+                  <span className="flex items-center gap-1">
+                    <MapPin className="w-3.5 h-3.5" />
+                    {exp.location}
+                  </span>
+                </div>
+
+                {/* Key Achievements */}
+                <div className="space-y-2.5 mb-6">
+                  {exp.achievements.map((item, i) => (
+                    <div key={i} className="flex items-start gap-2.5 text-sm text-themeTextSecondary leading-relaxed">
+                      <div
+                        className="mt-1.5 h-1.5 w-1.5 rounded-full shrink-0"
+                        style={{ backgroundColor: exp.accent }}
+                      />
+                      <p>{item}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            );
-          })}
 
+              {/* Stack Tags */}
+              <div className="flex flex-wrap gap-1.5 pt-4 border-t border-zinc-100 dark:border-zinc-800/80">
+                {exp.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-themeTextSecondary font-mono"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
-
       </div>
     </section>
   );

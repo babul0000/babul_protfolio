@@ -9,33 +9,20 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: [
-          "system-ui",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          '"Segoe UI"',
-          "Roboto",
-          '"Helvetica Neue"',
-          "Arial",
-          "sans-serif"
-        ],
-        mono: ["monospace"],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        heading: ["var(--font-heading)", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"],
       },
       colors: {
-        accent: {
-          50: "#eff6ff",
-          100: "#dbeafe",
-          500: "#10b981",
-          600: "#059669",
-          700: "#047857",
-        },
         themeBg: "var(--bg-primary)",
-        themeCard: "var(--bg-secondary)",
+        themeCard: "var(--card-bg)",
+        themeCardBorder: "var(--card-border)",
         themeCardHover: "var(--bg-tertiary)",
         themeText: "var(--text-primary)",
-        themeTextMuted: "var(--text-muted)",
         themeTextSecondary: "var(--text-secondary)",
+        themeTextMuted: "var(--text-muted)",
         themeBorder: "var(--border)",
+        themeBorderDashed: "var(--border-dashed)",
         themeBorderLight: "var(--border-light)",
         themeAccent: "var(--accent)",
         themeAccentHover: "var(--accent-hover)",
@@ -44,8 +31,7 @@ module.exports = {
       animation: {
         "fade-up": "fadeUp 0.6s ease forwards",
         "fade-in": "fadeIn 0.5s ease forwards",
-        typing: "typing 3s steps(30) infinite",
-        blink: "blink 1s step-end infinite",
+        "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
       keyframes: {
         fadeUp: {
@@ -55,10 +41,6 @@ module.exports = {
         fadeIn: {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
-        },
-        blink: {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0" },
         },
       },
     },

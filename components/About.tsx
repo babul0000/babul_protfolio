@@ -1,120 +1,107 @@
 "use client";
 import React from "react";
-import { useScrollReveal } from "./useScrollReveal";
-
-interface StatItem {
-  label: string;
-  value: string;
-  sub: string;
-}
+import Image from "next/image";
+import { Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "./Icons";
 
 export default function About() {
-  const ref = useScrollReveal<HTMLElement>();
-  const resumeLink = "/resume.pdf";
-
-  const stats: StatItem[] = [
-    { label: "Core Specialization", value: "Full-Stack MERN", sub: "Next.js & Node.js" },
-    { label: "Databases & ORM", value: "MongoDB & PostgreSQL", sub: "Prisma ORM" },
-    { label: "Code Architecture", value: "Strict Type-Safety", sub: "TypeScript & REST" },
-    { label: "Work Availability", value: "Ready to Join", sub: "Full-Time / Remote" }
-  ];
-
   return (
-    <section id="about" className="section-padding bg-themeBg border-b border-themeBorder relative font-sans antialiased text-themeText" ref={ref}>
-      
-      {/* Background glow orb */}
-      <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-themeAccent/5 rounded-full blur-[100px] pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
-          {/* Left Column: Biography */}
-          <div className="lg:col-span-7 space-y-6 reveal">
-            <div>
-              <div className="inline-flex items-center gap-2 mb-4">
-                <div className="w-1.5 h-4 rounded-full bg-themeAccent" />
-                <span className="text-xs font-bold text-themeAccent uppercase tracking-widest">
-                  Engineering Philosophy
-                </span>
+    <section id="about" className="py-20 border-b border-zinc-200/80 dark:border-zinc-800/80">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="mb-12">
+          <div className="text-xs font-mono tracking-widest text-emerald-600 dark:text-emerald-400 font-semibold uppercase mb-2">
+            BIOGRAPHY &amp; PHILOSOPHY
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-heading font-bold text-themeText tracking-tight">
+            About Babul Hossan
+          </h2>
+        </div>
+
+        {/* NasirChy Editorial Layout: Photo Left + Philosophy Articles Right */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
+          {/* Left Column (4 cols): Photo + Social Links Overlay */}
+          <div className="md:col-span-5 lg:col-span-4 space-y-4">
+            <div className="relative aspect-[4/4.5] rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-lg group">
+              <Image
+                src="/my.webp"
+                alt="Babul Hossan"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
+                <div className="flex items-center gap-2">
+                  <a
+                    href="https://github.com/babul0000"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-md transition-colors"
+                    aria-label="GitHub"
+                  >
+                    <GithubIcon className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/babul-hossan-09932837a/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-md transition-colors"
+                    aria-label="LinkedIn"
+                  >
+                    <LinkedinIcon className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="mailto:babulhossan.dev@gmail.com"
+                    className="p-2 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-md transition-colors"
+                    aria-label="Email"
+                  >
+                    <Mail className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
-              <h2 className="text-3xl md:text-4xl font-black text-themeText leading-tight uppercase tracking-tight">
-                My Journey &amp; <span className="gradient-text">Core Expertise</span>
-              </h2>
-              <p className="text-xs font-bold uppercase text-themeAccent tracking-wider mt-2.5">
-                Full Stack MERN Developer • TypeScript • PostgreSQL &amp; Prisma
-              </p>
             </div>
 
-            <div className="space-y-4 text-themeTextSecondary text-sm md:text-base leading-relaxed font-normal">
-              <p>
-                I am a dedicated Full-Stack Software Engineer who recently completed comprehensive engineering in the <strong>MERN Stack (MongoDB, Express.js, React.js, Node.js)</strong> and <strong>Next.js 14 App Router</strong>. To expand my backend and data modeling capabilities, I am actively architecting projects with <strong>PostgreSQL</strong> and <strong>Prisma ORM</strong>, building type-safe relational schemas alongside NoSQL document databases.
-              </p>
-              <p>
-                My professional background in technical operations and precision quality control gives me an exceptional <strong>engineering discipline</strong>: I approach software with a zero-defect mindset, deep root-cause troubleshooting, and a commitment to meeting production deadlines.
-              </p>
-              <p>
-                My guiding mission is simple: <strong>to build reliable, high-performance software that solves real human problems</strong>. Whether designing clean user interfaces or engineering robust REST APIs, I focus on clean code, scalability, and measurable user impact.
-              </p>
-            </div>
-
-            <div className="pt-2 flex flex-wrap items-center gap-3">
-              <a
-                href={resumeLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3.5 bg-themeAccent hover:bg-themeAccentHover text-themeAccentText font-bold rounded-xl shadow-lg shadow-themeAccent/10 transition-all text-xs uppercase tracking-wider hover:scale-[1.02]"
-              >
-                <span>Download Resume</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="7 10 12 15 17 10"></polyline>
-                  <line x1="12" x2="12" y1="15" y2="3"></line>
-                </svg>
-              </a>
-
-              <button
-                onClick={() => window.dispatchEvent(new CustomEvent("open-recruiter-snapshot"))}
-                className="inline-flex items-center gap-2 px-5 py-3.5 border border-themeBorder bg-themeCard hover:border-themeAccent/40 text-themeText font-bold rounded-xl transition-all text-xs uppercase tracking-wider"
-              >
-                <span>Recruiter Snapshot</span>
-              </button>
+            <div className="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/40 text-xs font-mono text-themeTextSecondary space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span>Location:</span>
+                <span className="text-themeText font-semibold">Dhaka, Bangladesh</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Education:</span>
+                <span className="text-themeText font-semibold">Programming Hero MERN</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Focus:</span>
+                <span className="text-themeText font-semibold">Full-Stack Engineering</span>
+              </div>
             </div>
           </div>
 
-          {/* Right Column: Metric Stats */}
-          <div className="lg:col-span-5 space-y-3.5 reveal" style={{ transitionDelay: "0.2s" }}>
-            {stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="p-5 bg-themeCard border border-themeBorder rounded-2xl hover:border-themeAccent/20 hover:shadow-md transition-all duration-300 shadow-sm flex items-center justify-between"
-              >
-                <div>
-                  <p className="text-[10px] text-themeTextMuted font-bold uppercase tracking-wider">
-                    {stat.label}
-                  </p>
-                  <p className="text-base sm:text-lg font-black text-themeText mt-1">
-                    {stat.value}
-                  </p>
-                </div>
-                <div className="text-right">
-                  <span className="text-[9px] font-mono font-bold px-2.5 py-1 bg-themeAccent/10 text-themeAccent border border-themeAccent/20 rounded-full uppercase tracking-wider">
-                    {stat.sub}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
+          {/* Right Column (7 cols): Editorial Narrative */}
+          <div className="md:col-span-7 lg:col-span-8 space-y-6 text-base sm:text-lg text-themeTextSecondary leading-relaxed">
+            <p>
+              <strong className="font-semibold text-themeText">I build dependable, scalable web applications</strong> with a strong focus on clean architecture, responsive user interfaces, and robust backend services. My primary technical stack is the <strong className="font-semibold text-themeText">MERN Stack (MongoDB, Express, React, Node.js)</strong> and <strong className="font-semibold text-themeText">Next.js 14 App Router with TypeScript</strong>.
+            </p>
 
+            <p>
+              <strong className="font-semibold text-themeText">Expanding into Relational Databases</strong>: Recognizing the importance of type-safe relational modeling in enterprise applications, I have actively expanded my toolkit to include <strong className="font-semibold text-themeText">PostgreSQL and Prisma ORM</strong>. I design structured database schemas, write efficient queries, and implement relational constraints alongside document databases.
+            </p>
+
+            <p>
+              <strong className="font-semibold text-themeText">Industrial Quality Engineering Discipline</strong>: Before transitioning into full-time software development, I honed my skills in technical operations and quality assurance. This engineering background instills a relentless attention to detail, rigorous edge-case testing, and systematic problem-solving across every line of code I ship.
+            </p>
+
+            {/* Core Values / Philosophy Chips */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4">
+              <div className="p-3.5 rounded-xl border border-dashed border-zinc-200 dark:border-zinc-800 bg-white/40 dark:bg-zinc-900/30">
+                <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold block mb-1">01 / CLEAN CODE</span>
+                <p className="text-xs text-themeTextSecondary">Modular components, explicit TypeScript types, and maintainable folder hierarchies.</p>
+              </div>
+              <div className="p-3.5 rounded-xl border border-dashed border-zinc-200 dark:border-zinc-800 bg-white/40 dark:bg-zinc-900/30">
+                <span className="text-xs font-mono text-blue-600 dark:text-blue-400 font-bold block mb-1">02 / RELIABILITY</span>
+                <p className="text-xs text-themeTextSecondary">Defensive backend validation, secure auth flows, and optimal database indexing.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
