@@ -13,7 +13,7 @@ import {
   useLenis,
 } from "../../components/dennis";
 
-const categories = ["All", "Design & Development", "Full Stack Web App", "Other"];
+const categories = ["All"];
 
 export default function WorkPage() {
   useLenis();
@@ -106,17 +106,7 @@ export default function WorkPage() {
           {/* Category Chips */}
           <div className="flex flex-wrap items-center gap-3">
             {categories.map((cat) => {
-              const count =
-                cat === "All"
-                  ? dennisProjects.length
-                  : cat === "Other"
-                  ? dennisProjects.filter(
-                      (p) =>
-                        p.category !== "Design & Development" &&
-                        p.category !== "Full Stack Web App"
-                    ).length
-                  : dennisProjects.filter((p) => p.category === cat).length;
-
+              const count = dennisProjects.length;
               const isSelected = activeCategory === cat;
 
               return (
