@@ -108,12 +108,12 @@ export default function AboutPage() {
               <Magnetic strength={0.3}>
                 <Link
                   href="/contact"
-                  className="btn btn-normal group"
+                  className="btn btn-normal group block"
                 >
-                  <div className="btn-click px-8 py-4 rounded-full bg-[#1C1D20] text-white flex items-center justify-center relative overflow-hidden shadow-md">
+                  <div className="btn-click px-8 py-4 rounded-full !bg-[#1C1D20] !text-white flex items-center justify-center relative overflow-hidden shadow-md border !border-[#1C1D20]">
                     <div className="btn-fill !bg-[#455CE9]" />
                     <span className="btn-text">
-                      <span className="btn-text-inner text-base font-normal text-white">
+                      <span className="btn-text-inner !text-white text-base font-normal">
                         Get in touch
                       </span>
                     </span>
@@ -126,12 +126,13 @@ export default function AboutPage() {
                   href={personalInfo.resume}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-normal group"
+                  download="Babul_Hossan_Resume.pdf"
+                  className="btn btn-normal group block"
                 >
-                  <div className="btn-click px-8 py-4 rounded-full border border-[#1C1D20]/20 bg-transparent text-[#1C1D20] flex items-center justify-center relative overflow-hidden">
-                    <div className="btn-fill" />
+                  <div className="btn-click px-8 py-4 rounded-full !bg-transparent !text-[#1C1D20] border !border-[#1C1D20]/30 hover:!border-[#1C1D20] flex items-center justify-center relative overflow-hidden transition-colors">
+                    <div className="btn-fill !bg-[#455CE9]" />
                     <span className="btn-text">
-                      <span className="btn-text-inner text-base font-normal flex items-center gap-2">
+                      <span className="btn-text-inner text-base font-normal flex items-center gap-2 group-hover:!text-white transition-colors">
                         <span>Download CV</span>
                         <ArrowUpRight className="w-4 h-4" />
                       </span>
