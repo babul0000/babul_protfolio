@@ -78,6 +78,7 @@ export default function AboutPage() {
               src="/babul-about-editorial.webp"
               alt={personalInfo.name}
               fill
+              sizes="(max-width: 1024px) 100vw, 40vw"
               priority
               className="object-cover object-center filter contrast-[1.02] hover:scale-105 transition-transform duration-700 ease-out"
             />

@@ -66,6 +66,7 @@ export default function FooterContact() {
                   src="/icon.png"
                   alt={personalInfo.name}
                   fill
+                  sizes="128px"
                   className="object-cover object-center"
                 />
               </div>

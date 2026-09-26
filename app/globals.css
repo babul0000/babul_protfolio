@@ -1,7 +1,7 @@
+@import "./dennis.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "./dennis.css";
 
 .signature-logo {
   font-family: var(--font-caveat), cursive;

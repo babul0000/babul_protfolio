@@ -153,7 +153,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans antialiased text-themeText bg-themeBg selection:bg-emerald-500/20 selection:text-emerald-500">
+      <body suppressHydrationWarning className="font-sans antialiased text-themeText bg-themeBg selection:bg-emerald-500/20 selection:text-emerald-500">
         <Script id="microsoft-clarity" strategy="lazyOnload">
           {`
             (function(c,l,a,r,i,t,y){
