@@ -164,7 +164,7 @@ export default function HeroProjects() {
                       </span>
 
                       <span className="px-2.5 py-1 rounded-full bg-stone-900/80 text-white text-[10px] font-mono tracking-wider backdrop-blur-md uppercase">
-                        2024 Edition
+                        2026 Edition
                       </span>
                     </div>
 

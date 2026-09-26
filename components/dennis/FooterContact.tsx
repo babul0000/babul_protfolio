@@ -169,7 +169,7 @@ export default function FooterContact() {
                 <span className="text-[10px] uppercase text-white/40 block mb-1">
                   VERSION
                 </span>
-                <span className="text-white/85">2024 © Edition</span>
+                <span className="text-white/85">2026 © Edition</span>
               </div>
 
               <div>

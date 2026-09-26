@@ -369,7 +369,7 @@ export default function ContactPage() {
         {/* Bottom Credits Bar */}
         <div className="mt-28 pt-8 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-[#999D9E] gap-4">
           <div>
-            <span>VERSION 2024 © Edition</span>
+            <span>VERSION 2026 © Edition</span>
           </div>
           <div>
             <span>© Code by MD Babul Hossan</span>
