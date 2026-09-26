@@ -75,11 +75,11 @@ export default function AboutPage() {
           {/* Portrait Photo */}
           <div className="lg:col-span-5 relative w-full aspect-[4/5] rounded-3xl overflow-hidden bg-[#8e9394] shadow-xl">
             <Image
-              src="/babul-dennis-exact.webp"
+              src="/babul-about-editorial.webp"
               alt={personalInfo.name}
               fill
               priority
-              className="object-cover object-center filter contrast-[1.03]"
+              className="object-cover object-center filter contrast-[1.02] hover:scale-105 transition-transform duration-700 ease-out"
             />
             <div className="absolute bottom-6 left-6 right-6 bg-[#1C1D20]/80 backdrop-blur-md rounded-2xl p-4 text-white text-xs sm:text-sm font-mono flex items-center justify-between border border-white/10">
               <span>MD Babul Hossan</span>

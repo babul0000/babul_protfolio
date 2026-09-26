@@ -63,10 +63,10 @@ export default function FooterContact() {
             <div className="flex items-center gap-6 sm:gap-10">
               <div className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full overflow-hidden shrink-0 border border-white/20 shadow-2xl bg-zinc-800">
                 <Image
-                  src="/babul-dennis-exact.webp"
+                  src="/icon.png"
                   alt={personalInfo.name}
                   fill
-                  className="object-cover object-top"
+                  className="object-cover object-center"
                 />
               </div>
               <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-normal font-['Dennis_Sans',sans-serif] tracking-tight leading-none text-white">
