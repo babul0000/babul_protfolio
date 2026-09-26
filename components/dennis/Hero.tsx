@@ -2,6 +2,7 @@
 import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import { personalInfo } from "./data";
+import Magnetic from "./Magnetic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -72,9 +73,9 @@ export default function Hero() {
       </div>
 
       {/* ========================================================================= */}
-      {/* 2. Left Edge Hanger (Dennis Snellenberg Authentic SVG & 3D Rotating Globe)*/}
+      {/* 2. Left Edge Hanger (Dennis Snellenberg Authentic SVG & 3D Rotating Globe) + Floating Resume Badge */}
       {/* ========================================================================= */}
-      <div className="absolute left-0 top-[48%] -translate-y-1/2 z-20 hidden md:block select-none pointer-events-auto">
+      <div className="absolute left-0 top-[48%] -translate-y-1/2 z-20 hidden md:flex flex-col items-start gap-4 select-none pointer-events-auto">
         <div className="relative flex items-center">
           
           {/* Authentic Dennis Hanger Combined Shape SVG */}
@@ -114,6 +115,54 @@ export default function Hero() {
           </div>
 
         </div>
+
+        {/* Floating Magnetic Resume (CV) Badge beneath the Hanger */}
+        <div className="pl-8 pt-1">
+          <Magnetic strength={0.3}>
+            <a
+              href={personalInfo.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              download="Babul_Hossan_Resume.pdf"
+              className="btn btn-normal group block cursor-pointer"
+            >
+              <div className="btn-click px-5 py-3 rounded-full border border-white/20 bg-[#1C1D20]/90 backdrop-blur-md text-white flex items-center gap-2.5 shadow-xl hover:border-white/40 transition-colors">
+                <div className="btn-fill !bg-[#455CE9]" />
+                <span className="btn-text">
+                  <span className="btn-text-inner text-xs sm:text-sm font-['Dennis_Sans',sans-serif] font-normal flex items-center gap-2 text-white">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Download CV</span>
+                    <svg
+                      width="12px"
+                      height="12px"
+                      viewBox="0 0 14 14"
+                      className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    >
+                      <g stroke="#FFFFFF" strokeWidth="1.5" fill="none">
+                        <polyline points="4 2 12 2 12 10" />
+                        <line x1="2" y1="12" x2="12" y2="2" />
+                      </g>
+                    </svg>
+                  </span>
+                </span>
+              </div>
+            </a>
+          </Magnetic>
+        </div>
+      </div>
+
+      {/* Mobile Floating Resume Badge */}
+      <div className="absolute left-6 top-[20%] z-20 block md:hidden pointer-events-auto">
+        <a
+          href={personalInfo.resume}
+          target="_blank"
+          rel="noopener noreferrer"
+          download="Babul_Hossan_Resume.pdf"
+          className="px-4 py-2 rounded-full border border-white/25 bg-[#1C1D20]/85 backdrop-blur-md text-white flex items-center gap-2 text-xs shadow-lg active:scale-95 transition-transform"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span>Download CV ↗</span>
+        </a>
       </div>
 
       {/* ========================================================================= */}
