@@ -5,24 +5,34 @@ import { Award, CheckCircle2, ExternalLink, BookOpen, GraduationCap } from "luci
 export default function Certificates() {
   const credentials = [
     {
-      title: "Complete Web Development (MERN Stack)",
+      title: "MERN Stack Web Development",
       issuer: "Programming Hero",
-      status: "Verified Completion",
-      date: "2024",
-      desc: "Intensive 6-month full-stack development program covering React.js, Next.js, Node.js, Express.js, MongoDB, REST APIs, Tailwind CSS, and full-stack software lifecycle.",
-      skills: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "Firebase", "REST APIs"],
+      status: "Specialized Training",
+      date: "2026",
+      desc: "Comprehensive full-stack engineering program covering Next.js, React.js, Express.js, Node.js, MongoDB, Better Auth, REST APIs, and modern web application architecture.",
+      skills: ["Next.js", "React.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "REST APIs"],
       verified: true,
       badgeColor: "#10b981"
     },
     {
       title: "PostgreSQL & Prisma ORM Relational Engineering",
-      issuer: "Active Practical Specialization",
+      issuer: "Applied Specialization",
       status: "Active Project Practice",
       date: "2024 — Present",
-      desc: "Hands-on implementation of relational database schemas, complex SQL queries, type-safe migrations, relational modeling, and full-stack integration with TypeScript.",
-      skills: ["PostgreSQL", "Prisma ORM", "Relational Modeling", "Type Safety", "SQL Queries"],
+      desc: "Hands-on implementation of relational database schemas, type-safe migrations, relational modeling, and full-stack integration with Next.js and TypeScript.",
+      skills: ["PostgreSQL", "Prisma ORM", "Relational Modeling", "Type Safety", "SQL Schemas"],
       verified: true,
       badgeColor: "#6366f1"
+    },
+    {
+      title: "Higher Secondary Certificate (HSC)",
+      issuer: "Satkhira Government College",
+      status: "Formal Education",
+      date: "Completed",
+      desc: "Higher Secondary Certificate education providing a disciplined academic foundation in analytical thinking and problem solving.",
+      skills: ["Higher Secondary Education", "Analytical Thinking", "Communication"],
+      verified: true,
+      badgeColor: "#3b82f6"
     }
   ];
 
@@ -32,18 +42,18 @@ export default function Certificates() {
         {/* Section Header */}
         <div className="mb-12">
           <div className="text-xs font-mono tracking-widest text-emerald-600 dark:text-emerald-400 font-semibold uppercase mb-2">
-            CREDENTIALS & TRAINING
+            EDUCATION &amp; ACCREDITATIONS
           </div>
           <h2 className="text-3xl sm:text-4xl font-heading font-bold text-themeText tracking-tight">
-            Verified Certifications
+            Education &amp; Credentials
           </h2>
           <p className="mt-2 text-sm sm:text-base text-themeTextSecondary max-w-2xl">
-            Formal technical education, MERN stack accreditation, and database specialization.
+            Formal educational background, MERN stack web development certification, and relational engineering.
           </p>
         </div>
 
         {/* Credentials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {credentials.map((cred, idx) => (
             <div
               key={idx}

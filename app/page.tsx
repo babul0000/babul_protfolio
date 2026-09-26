@@ -1,93 +1,42 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
-import HeroProjects from "../components/HeroProjects";
-import Skills from "../components/Skills";
-import GithubActivity from "../components/GithubActivity";
-import Experience from "../components/Experience";
-import Certificates from "../components/Certificates";
-import About from "../components/About";
-import Contact from "../components/Contact";
-import Footer from "../components/Footer";
-import SkeletonLoader from "../components/SkeletonLoader";
-import CommandPalette from "../components/CommandPalette";
-import ScrollToTop from "../components/ScrollToTop";
+import React from "react";
+import {
+  Preloader,
+  Navbar,
+  Hero,
+  Description,
+  RecentWork,
+  FooterContact,
+  useLenis,
+} from "../components/dennis";
 
 export default function Home() {
-  const [theme, setTheme] = useState<string>("dark");
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isPaletteOpen, setIsPaletteOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    // Determine initial theme from localStorage
-    const savedTheme = localStorage.getItem("theme");
-    const initialTheme = savedTheme || "dark";
-    setTheme(initialTheme);
-    
-    if (initialTheme === "dark") {
-      document.documentElement.classList.add("dark");
-      document.documentElement.setAttribute("data-theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      document.documentElement.setAttribute("data-theme", "light");
-    }
-
-    // Command palette custom event listener
-    const handleOpenPalette = () => setIsPaletteOpen(true);
-    window.addEventListener("open-command-palette", handleOpenPalette);
-
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 250);
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener("open-command-palette", handleOpenPalette);
-    };
-  }, []);
-
-  const toggleTheme = () => {
-    const nextTheme = theme === "dark" ? "light" : "dark";
-    setTheme(nextTheme);
-    localStorage.setItem("theme", nextTheme);
-    
-    if (nextTheme === "dark") {
-      document.documentElement.classList.add("dark");
-      document.documentElement.setAttribute("data-theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      document.documentElement.setAttribute("data-theme", "light");
-    }
-  };
-
-  if (isLoading) {
-    return <SkeletonLoader />;
-  }
+  // Initialize Lenis smooth inertia scrolling
+  useLenis();
 
   return (
-    <div className="min-h-screen w-full bg-white dark:bg-[#09090b] font-sans antialiased text-themeText selection:bg-emerald-500/20 selection:text-emerald-500 overflow-x-hidden">
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
+    <div className="relative min-h-screen w-full bg-[#f4f4f4] text-[#1C1D20] font-['Dennis_Sans',sans-serif] antialiased selection:bg-[#455CE9] selection:text-white overflow-x-hidden">
       
+      {/* Dennis Snellenberg Greeting Preloader with Curved SVG Exit */}
+      <Preloader />
+
+      {/* Dennis Snellenberg Navigation & Floating Magnetic Hamburger */}
+      <Navbar />
+
+      {/* Main Page Flow */}
       <main className="w-full">
-        <HeroProjects />
-        <About />
-        <Experience />
-        <Skills />
-        <Certificates />
-        <GithubActivity />
-        <Contact />
+        {/* Hero Section with Infinite Marquee, 3D Globe & Cutout Portrait */}
+        <Hero />
+
+        {/* Editorial Intro & Core Technical Pillars */}
+        <Description />
+
+        {/* Recent Work with GSAP Floating Mouse Cursor Preview & View Pill */}
+        <RecentWork />
       </main>
 
-      <Footer />
-
-      {/* Command Palette & Scroll to Top */}
-      <CommandPalette
-        isOpen={isPaletteOpen}
-        onClose={() => setIsPaletteOpen(false)}
-        theme={theme}
-        toggleTheme={toggleTheme}
-      />
-      <ScrollToTop />
+      {/* Signature Curved Top Footer & Magnetic Contact Experience */}
+      <FooterContact />
     </div>
   );
 }

@@ -12,6 +12,8 @@ export default function ProjectDetails() {
   const [theme, setTheme] = useState<string>("dark");
   const [project, setProject] = useState<Project | null>(null);
 
+  const [isNotFound, setIsNotFound] = useState<boolean>(false);
+
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "dark";
     setTheme(savedTheme);
@@ -27,6 +29,8 @@ export default function ProjectDetails() {
     const foundProject = projects.find((p) => p.id === projectId);
     if (foundProject) {
       setProject(foundProject);
+    } else {
+      setIsNotFound(true);
     }
   }, [params]);
 
@@ -43,6 +47,25 @@ export default function ProjectDetails() {
       document.documentElement.setAttribute("data-theme", "light");
     }
   };
+
+  if (isNotFound) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-zinc-50 dark:bg-[#09090b] text-themeText flex-col gap-4 p-6 text-center">
+        <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-xl font-bold">
+          !
+        </div>
+        <h2 className="text-2xl font-bold tracking-tight">Project Case Study Not Found</h2>
+        <p className="text-sm text-zinc-500 max-w-sm">The project identifier is invalid or has been updated.</p>
+        <Link
+          href="/#projects"
+          className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-md transition-all"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>Back to All Projects</span>
+        </Link>
+      </div>
+    );
+  }
 
   if (!project) {
     return (
@@ -178,7 +201,7 @@ export default function ProjectDetails() {
                   Key Features
                 </h3>
                 <ul className="space-y-2 text-xs text-themeTextSecondary">
-                  {project.features.map((f, idx) => (
+                  {(project.bulletPoints || project.features || []).map((f, idx) => (
                     <li key={idx} className="flex items-start gap-2">
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
                       <span>{f}</span>

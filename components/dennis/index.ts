@@ -1,0 +1,12 @@
+export { default as Preloader } from "./Preloader";
+export { default as Navbar } from "./Navbar";
+export { default as OffcanvasMenu } from "./OffcanvasMenu";
+export { default as Hero } from "./Hero";
+export { default as Description } from "./Description";
+export { default as RecentWork } from "./RecentWork";
+export { default as SlidingProjects } from "./SlidingProjects";
+export { default as FooterContact } from "./FooterContact";
+export { default as PageTransition } from "./PageTransition";
+export { default as Magnetic } from "./Magnetic";
+export { useLenis } from "./hooks/useLenis";
+export * from "./data";

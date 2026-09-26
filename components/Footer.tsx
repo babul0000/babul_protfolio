@@ -24,7 +24,7 @@ export default function Footer() {
     },
     {
       name: "Facebook",
-      href: "https://www.facebook.com/babul.hossan.1",
+      href: "https://www.facebook.com/clik00",
       icon: <FacebookIcon className="w-4 h-4" />,
     },
     {
@@ -34,7 +34,7 @@ export default function Footer() {
     },
     {
       name: "WhatsApp",
-      href: "https://wa.me/8801934825500",
+      href: "https://wa.me/8801952860053",
       icon: <WhatsAppIcon className="w-4 h-4" />,
     },
   ];
@@ -67,11 +67,11 @@ export default function Footer() {
               Email Directly
             </p>
             <a
-              href="mailto:babulhossan.dev@gmail.com"
+              href="mailto:babulhossan.info@gmail.com"
               className="group inline-flex items-center gap-1.5 text-base sm:text-lg font-medium text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
             >
               <span className="underline underline-offset-4 decoration-zinc-300 dark:decoration-zinc-700 group-hover:decoration-emerald-500">
-                babulhossan.dev@gmail.com
+                babulhossan.info@gmail.com
               </span>
               <ArrowUpRight className="w-4 h-4 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
             </a>

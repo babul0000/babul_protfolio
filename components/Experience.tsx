@@ -78,8 +78,8 @@ export default function Experience() {
                   : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
-              <ShoppingBag className="w-4 h-4" />
-              <span>Full-Stack &amp; E-Commerce (Self-Learned)</span>
+              <Laptop className="w-4 h-4" />
+              <span>Full-Stack Software Engineering</span>
             </button>
 
             <button
@@ -90,8 +90,8 @@ export default function Experience() {
                   : "text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
-              <Wrench className="w-4 h-4" />
-              <span>Garments Technician (8 Years)</span>
+              <ShieldCheck className="w-4 h-4" />
+              <span>Technical Operations Specialist (2018 – Present)</span>
             </button>
 
           </div>
@@ -340,16 +340,16 @@ export default function Experience() {
                     <div className="flex flex-wrap items-center gap-2 mb-1">
                       <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-xs font-mono font-semibold text-amber-600 dark:text-amber-400 bg-amber-500/10 border border-amber-500/30">
                         <ShieldCheck className="w-3.5 h-3.5" />
-                        <span>ADDITIONAL EXPERIENCE // 8 YEARS TRACK RECORD</span>
+                        <span>PROFESSIONAL EXPERIENCE // 2018 – PRESENT</span>
                       </span>
 
                       <span className="text-xs font-mono text-slate-500 dark:text-zinc-400">
-                        Garments &amp; Industrial Technical Operations
+                        Technical Operations &amp; Structured Workflows
                       </span>
                     </div>
 
                     <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
-                      Garments Technical Specialist &amp; Quality Technician
+                      Technical Operations Specialist
                     </h3>
                   </div>
                 </div>
@@ -357,7 +357,7 @@ export default function Experience() {
                 <div className="flex sm:flex-col items-start sm:items-end gap-1 text-xs font-mono text-slate-500 dark:text-zinc-400 shrink-0">
                   <span className="flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5 text-amber-500" />
-                    8 Years Experience
+                    2018 — Present
                   </span>
                   <span className="flex items-center gap-1.5">
                     <MapPin className="w-3.5 h-3.5 text-slate-400" />
@@ -366,13 +366,13 @@ export default function Experience() {
                 </div>
               </div>
 
-              {/* Narrative Summary */}
+              {/* Narrative Summary matching Resume */}
               <div className="mt-6 space-y-3 text-sm sm:text-base text-slate-600 dark:text-zinc-300 leading-relaxed">
                 <p>
-                  Possess an extensive <strong className="text-slate-900 dark:text-white">8-year career background as a technical specialist and quality technician in the garments and apparel manufacturing industry</strong> in Bangladesh.
+                  Extensive <strong className="text-slate-900 dark:text-white">track record in technical operations, quality systems, and precision equipment inspection</strong> since 2018.
                 </p>
                 <p>
-                  Responsible for precision technical equipment operations, rigorous quality assurance inspection protocols, root-cause defect analysis, standard operating procedures (SOP) compliance, and production line optimization.
+                  Developed strong technical problem-solving, defect root-cause analysis, and cross-functional collaboration skills. Adapted rapidly to new technical tooling and standard operating procedures (SOP) across structured production environments.
                 </p>
               </div>
 
@@ -402,14 +402,14 @@ export default function Experience() {
               <div className="mt-8 pt-6 border-t border-zinc-100 dark:border-zinc-800 space-y-4">
                 <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-zinc-400 flex items-center gap-1.5">
                   <Cpu className="w-4 h-4 text-amber-500" />
-                  <span>How 8 Years of Garments Technical Experience Transfers to Software Engineering</span>
+                  <span>How Technical Operations Experience Transfers to Software Engineering</span>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
                     {
                       title: "Relentless Attention to Detail",
-                      desc: "8 years of zero-defect quality inspection translates directly into spotting UI discrepancies, CSS layout shifts, and subtle logic bugs before shipping.",
+                      desc: "Extensive background in zero-defect quality inspection translates directly into spotting UI discrepancies, CSS layout shifts, and subtle logic bugs before shipping.",
                     },
                     {
                       title: "Root-Cause Defect Analysis",

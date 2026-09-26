@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono, Caveat } from "next/font/google";
 import Script from "next/script";
 import { Toaster } from "sonner";
+import { PageTransition } from "../components/dennis";
 import "./globals.css";
 
 const inter = Inter({
@@ -30,10 +31,12 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Babul Hossan — Full Stack MERN Developer | Next.js, TypeScript & PostgreSQL",
+  title: "MD Babul Hossan • Freelance Designer & Developer",
   description:
-    "Production-focused Full-Stack MERN Developer specializing in React, Next.js 14, Node.js, Express, MongoDB, TypeScript, and PostgreSQL with Prisma ORM.",
+    "Helping brands thrive in the digital world. Located in Dhaka, Bangladesh. Delivering tailor-made digital designs and building interactive web systems from scratch. © Code by Babul",
   keywords: [
+    "MD Babul Hossan",
+    "Babul Hossan",
     "MERN stack developer",
     "full stack developer",
     "Next.js developer",
@@ -44,20 +47,22 @@ export const metadata: Metadata = {
     "PostgreSQL",
     "Prisma ORM",
     "TypeScript",
+    "Better Auth",
+    "Tailwind CSS",
     "web development",
     "Bangladesh developer"
   ],
-  authors: [{ name: "Babul Hossan" }],
-  creator: "Babul Hossan",
+  authors: [{ name: "MD Babul Hossan" }],
+  creator: "MD Babul Hossan",
   metadataBase: new URL("https://babul-portfolio.vercel.app"),
   icons: {
     icon: "/icon.png",
     apple: "/icon.png",
   },
   openGraph: {
-    title: "Babul Hossan — Full Stack MERN Developer",
-    description: "Building smart & scalable web solutions. Full-stack MERN developer specializing in Next.js 14, TypeScript, MongoDB, and PostgreSQL.",
-    siteName: "Babul Hossan Portfolio",
+    title: "MD Babul Hossan — MERN Stack Developer",
+    description: "MERN Stack Developer building scalable, responsive web applications using Next.js, React.js, Express.js, and MongoDB.",
+    siteName: "MD Babul Hossan Portfolio",
     locale: "en_US",
     type: "website",
     url: "https://babul-portfolio.vercel.app",
@@ -66,14 +71,14 @@ export const metadata: Metadata = {
         url: "/my.webp",
         width: 1200,
         height: 630,
-        alt: "Babul Hossan — Full Stack MERN Developer",
+        alt: "MD Babul Hossan — MERN Stack Developer",
       }
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Babul Hossan — Full Stack MERN Developer",
-    description: "Building smart & scalable web solutions. Full-stack MERN developer specializing in Next.js 14, TypeScript, MongoDB, and PostgreSQL.",
+    title: "MD Babul Hossan — MERN Stack Developer",
+    description: "MERN Stack Developer building scalable, responsive web applications using Next.js, React.js, Express.js, and MongoDB.",
     images: ["/my.webp"],
   },
   robots: {
@@ -88,9 +93,11 @@ const jsonLd = {
     {
       "@type": "Person",
       "@id": "https://babul-portfolio.vercel.app/#person",
-      "name": "Babul Hossan",
-      "jobTitle": "Full Stack MERN Developer",
+      "name": "MD Babul Hossan",
+      "jobTitle": "MERN Stack Developer",
       "url": "https://babul-portfolio.vercel.app",
+      "email": "babulhossan.info@gmail.com",
+      "telephone": "+8801952860053",
       "sameAs": [
         "https://github.com/babul0000",
         "https://www.linkedin.com/in/babul-hossan-09932837a/",
@@ -99,7 +106,7 @@ const jsonLd = {
       "knowsAbout": [
         "MERN Stack",
         "React.js",
-        "Next.js 14",
+        "Next.js",
         "Node.js",
         "Express.js",
         "MongoDB",
@@ -107,7 +114,8 @@ const jsonLd = {
         "PostgreSQL",
         "Prisma ORM",
         "Tailwind CSS",
-        "REST APIs"
+        "REST APIs",
+        "Better Auth"
       ],
       "image": "https://babul-portfolio.vercel.app/my.webp",
       "address": {
@@ -120,8 +128,8 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": "https://babul-portfolio.vercel.app/#website",
       "url": "https://babul-portfolio.vercel.app",
-      "name": "Babul Hossan — Full Stack MERN Developer Portfolio",
-      "description": "Building smart & scalable web solutions. Full-stack MERN developer specializing in Next.js 14, TypeScript, MongoDB, and PostgreSQL.",
+      "name": "MD Babul Hossan — MERN Stack Developer Portfolio",
+      "description": "MERN Stack Developer building scalable, responsive web applications using Next.js, React.js, Express.js, and MongoDB.",
       "publisher": {
         "@id": "https://babul-portfolio.vercel.app/#person"
       }
@@ -137,7 +145,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`scroll-smooth ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${caveat.variable}`}
+      className={`scroll-smooth dark ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${caveat.variable}`}
     >
       <head>
         <script
@@ -155,6 +163,8 @@ export default function RootLayout({
             })(window, document, "clarity", "script", "xrj9ikq3pl");
           `}
         </Script>
+        {/* Dennis Snellenberg Route Transition Curtain */}
+        <PageTransition />
         {children}
         <Toaster richColors position="top-right" closeButton />
       </body>

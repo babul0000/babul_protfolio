@@ -50,7 +50,7 @@ export default function About() {
                     <LinkedinIcon className="w-4 h-4" />
                   </a>
                   <a
-                    href="mailto:babulhossan.dev@gmail.com"
+                    href="mailto:babulhossan.info@gmail.com"
                     className="p-2 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-md transition-colors"
                     aria-label="Email"
                   >
@@ -67,11 +67,19 @@ export default function About() {
               </div>
               <div className="flex items-center justify-between">
                 <span>Education:</span>
-                <span className="text-themeText font-semibold">Programming Hero MERN</span>
+                <span className="text-themeText font-semibold">Programming Hero (2026)</span>
               </div>
               <div className="flex items-center justify-between">
-                <span>Focus:</span>
-                <span className="text-themeText font-semibold">Full-Stack Engineering</span>
+                <span>College:</span>
+                <span className="text-themeText font-semibold">Satkhira Gov. College (HSC)</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Experience:</span>
+                <span className="text-themeText font-semibold">Technical Operations (2018–Pres.)</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Languages:</span>
+                <span className="text-themeText font-semibold">Bengali &amp; English</span>
               </div>
             </div>
           </div>

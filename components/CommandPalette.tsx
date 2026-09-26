@@ -87,14 +87,14 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
       }
     },
     {
-      id: "nav-specialties",
-      title: "Engineering Specialties",
-      subtitle: "Frontend architecture, APIs & database design",
+      id: "nav-github",
+      title: "GitHub Live Momentum",
+      subtitle: "Live contribution heatmap & active repositories",
       category: "Navigation",
-      icon: <Layers className="w-4 h-4 text-emerald-500" />,
+      icon: <FolderGit2 className="w-4 h-4 text-emerald-500" />,
       action: () => {
-        router.push("/#specialties");
-        document.querySelector("#specialties")?.scrollIntoView({ behavior: "smooth" });
+        router.push("/#github");
+        document.querySelector("#github")?.scrollIntoView({ behavior: "smooth" });
       }
     },
     {
@@ -196,18 +196,18 @@ export default function CommandPalette({ isOpen, onClose, theme, toggleTheme }: 
       category: "Quick Actions",
       icon: <Download className="w-4 h-4 text-emerald-500" />,
       action: () => {
-        window.open("/resume.pdf", "_blank");
+        window.open("/Babul_Hossan_Resume.pdf", "_blank");
         toast.success("Opening resume in new tab");
       }
     },
     {
       id: "action-copy-email",
       title: "Copy Email Address",
-      subtitle: "babulhossan.dev@gmail.com",
+      subtitle: "babulhossan.info@gmail.com",
       category: "Quick Actions",
       icon: <Copy className="w-4 h-4 text-emerald-500" />,
       action: () => {
-        navigator.clipboard.writeText("babulhossan.dev@gmail.com");
+        navigator.clipboard.writeText("babulhossan.info@gmail.com");
         toast.success("Email copied to clipboard!");
       }
     },

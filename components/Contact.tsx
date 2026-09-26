@@ -17,8 +17,8 @@ export default function Contact() {
   const [form, setForm] = useState<FormDataState>({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
 
-  const emailAddress = "babulhossan.dev@gmail.com";
-  const whatsappUrl = "https://wa.me/8801934825500";
+  const emailAddress = "babulhossan.info@gmail.com";
+  const whatsappUrl = "https://wa.me/8801952860053";
   const linkedinUrl = "https://www.linkedin.com/in/babul-hossan-09932837a/";
   const githubUrl = "https://github.com/babul0000";
 
@@ -47,7 +47,7 @@ export default function Contact() {
       }
     } catch {
       setStatus("idle");
-      toast.error("An error occurred. Please email babulhossan.dev@gmail.com directly.");
+      toast.error("An error occurred. Please email babulhossan.info@gmail.com directly.");
     }
   };
 

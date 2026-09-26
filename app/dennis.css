@@ -1,0 +1,542 @@
+/* -------------------------------------------------------------------------
+   Dennis Snellenberg Authentic Design Engine & Styleguide
+   Adapted for MD Babul Hossan Portfolio
+   ------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: 'Dennis Sans';
+  src: url('/fonts/NeueMontreal-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Dennis Sans';
+  src: url('/fonts/NeueMontreal-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Dennis Sans';
+  src: url('/fonts/NeueMontreal-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --color-dark: #1C1D20;
+  --color-dark-dark: #141517;
+  --color-light: #FFFFFF;
+  --color-blue: #455CE9;
+  --color-blue-dark: #334BD3;
+  --color-gray: #999D9E;
+  --color-lightgray: #E9EAEB;
+  --color-white: #FFFFFF;
+  
+  --color-border: rgba(28, 29, 32, 0.175);
+  --color-border-solid: #D2D2D2;
+  --color-border-light: rgba(255, 255, 255, 0.2);
+  --color-border-solid-light: #545557;
+
+  --color-text: #1C1D20;
+  --color-text-light: #FFF;
+
+  --animation-primary: all .5s cubic-bezier(.7, 0, .3, 1);
+  --animation-fast: all .3s cubic-bezier(.7, 0, .3, 1);
+  --animation-smooth: all .7s cubic-bezier(.7, 0, .3, 1);
+  --animation-slow: all .9s cubic-bezier(.7, 0, .3, 1);
+
+  --section-padding: clamp(5em, 21vh, 12em);
+  --container-padding: clamp(2.5em, 8vw, 8em);
+  --gap-padding: clamp(1.5em, 4vw, 2.5em);
+}
+
+.dennis-font {
+  font-family: 'Dennis Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* -------------------------------------------------------------------------
+   Magnetic Buttons (Dennis Snellenberg Signature)
+   ------------------------------------------------------------------------- */
+.btn {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-click {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.btn-fill {
+  background: var(--color-blue);
+  position: absolute;
+  width: 150%;
+  height: 200%;
+  border-radius: 50%;
+  top: -50%;
+  left: -25%;
+  transform: translate3d(0, 75%, 0);
+  transition: transform 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+  pointer-events: none;
+}
+
+.btn:hover .btn-fill {
+  transform: translate3d(0, 0%, 0);
+}
+
+.btn-text {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+  pointer-events: none;
+}
+
+.btn-text-inner {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Dennis Sans', sans-serif;
+}
+
+/* Large Round Magnetic Button (e.g. About me, Get in touch) */
+.btn-round .btn-click {
+  width: clamp(9em, 12vw, 11em);
+  height: clamp(9em, 12vw, 11em);
+  border-radius: 50%;
+  border: 0;
+  background: var(--color-dark);
+}
+
+.btn-round .btn-text-inner {
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 400;
+}
+
+.btn-round .btn-fill {
+  background: var(--color-blue);
+}
+
+.theme-dark .btn-round .btn-click {
+  background: var(--color-blue);
+}
+
+.theme-dark .btn-round .btn-fill {
+  background: var(--color-blue-dark);
+}
+
+/* Pill / Normal Magnetic Button (e.g. Email, Phone, More Work) */
+.btn-normal .btn-click {
+  padding: 1.25em 2.2em;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text);
+  box-shadow: inset 0px 0px 0px 1px var(--color-border);
+}
+
+.theme-dark .btn-normal .btn-click {
+  border-color: var(--color-border-light);
+  box-shadow: inset 0px 0px 0px 1px var(--color-border-light);
+  color: #fff;
+}
+
+.btn-normal .btn-text-inner {
+  font-size: 1rem;
+  font-weight: 400;
+  transition: color 0.3s;
+}
+
+.btn-normal:hover .btn-text-inner {
+  color: #fff !important;
+}
+
+/* Link Button (Header / Nav / Footer links) */
+.btn-link .btn-click {
+  padding: 0.6em 1em;
+  background: transparent;
+  color: inherit;
+}
+
+.btn-link .btn-text-inner {
+  font-size: 1.05rem;
+  font-weight: 400;
+  position: relative;
+}
+
+.btn-link .btn-text-inner::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 1.5px;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.btn-link:hover .btn-text-inner::after {
+  width: 100%;
+}
+
+/* Floating Hamburger Button (Fixed top right) */
+.btn-hamburger {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 100;
+}
+
+.btn-hamburger .btn-click {
+  width: clamp(4.5em, 5vw, 5.25em);
+  height: clamp(4.5em, 5vw, 5.25em);
+  border-radius: 50%;
+  background: var(--color-dark);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.btn-hamburger .btn-bars {
+  position: relative;
+  width: 1.6em;
+  height: 2px;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.btn-hamburger .btn-bars::before,
+.btn-hamburger .btn-bars::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.btn-hamburger .btn-bars::before {
+  top: -6px;
+}
+
+.btn-hamburger .btn-bars::after {
+  top: 6px;
+}
+
+.btn-hamburger.menu-open .btn-bars {
+  background: transparent;
+}
+
+.btn-hamburger.menu-open .btn-bars::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.btn-hamburger.menu-open .btn-bars::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* -------------------------------------------------------------------------
+   3D Wireframe Rotating Globe (Dennis Snellenberg Header)
+   ------------------------------------------------------------------------- */
+.digital-ball {
+  position: relative;
+  width: 3.8em;
+  height: 3.8em;
+  display: inline-block;
+}
+
+.globe {
+  width: 3.8em;
+  height: 3.8em;
+  position: relative;
+}
+
+.globe-wrap {
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(25deg);
+  animation: dennisGlobe 6s cubic-bezier(0.35, 0, 0.65, 1) infinite;
+  overflow: hidden;
+  box-shadow: inset 0px 0px 0px 1.5px rgba(255, 255, 255, 0.85);
+}
+
+.globe .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: inset 1px 0px 0px 1px rgba(255, 255, 255, 0.7);
+  animation: dennisCircle 3s linear infinite;
+}
+
+.globe .circle-hor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.globe .circle-hor-middle {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translateY(-50%);
+}
+
+@keyframes dennisGlobe {
+  0% { transform: translate(-50%, -50%) rotate(25deg); }
+  50% { transform: translate(-50%, -50%) rotate(-15deg); }
+  100% { transform: translate(-50%, -50%) rotate(25deg); }
+}
+
+@keyframes dennisCircle {
+  0% { transform: translate(-50%, -50%) scaleX(1); opacity: 0.8; }
+  50% { transform: translate(-50%, -50%) scaleX(0.1); opacity: 0.4; }
+  100% { transform: translate(-50%, -50%) scaleX(1); opacity: 0.8; }
+}
+
+/* -------------------------------------------------------------------------
+   Infinite Horizontal Marquee (Hero Section)
+   ------------------------------------------------------------------------- */
+.big-name {
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  bottom: 8vh;
+  left: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.name-h1 {
+  display: flex;
+  white-space: nowrap;
+  width: max-content;
+  will-change: transform;
+}
+
+.name-wrap {
+  display: flex;
+  align-items: center;
+  animation: dennisMarquee 25s linear infinite;
+}
+
+.big-name h1 {
+  font-family: 'Dennis Sans', sans-serif;
+  font-size: clamp(4.5rem, 12vw, 12.5rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.big-name .spacer {
+  padding: 0 clamp(1rem, 2.5vw, 3rem);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@keyframes dennisMarquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+/* -------------------------------------------------------------------------
+   Signature Curved Transitions (Hero Bottom & Footer Top)
+   ------------------------------------------------------------------------- */
+.rounded-div-wrap {
+  width: 100%;
+  position: relative;
+  height: clamp(40px, 8vh, 100px);
+  overflow: hidden;
+  z-index: 10;
+}
+
+.rounded-div-wrap.bottom {
+  transform: translateY(-1px);
+}
+
+.rounded-div {
+  width: 150%;
+  content: "";
+  display: block;
+  position: absolute;
+  background: #f4f4f4;
+  height: 750%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -86.666%);
+  z-index: 1;
+}
+
+/* Footer Curved Transition */
+.footer-rounded-div {
+  width: 100%;
+  position: relative;
+  height: clamp(50px, 10vh, 120px);
+  overflow: hidden;
+  z-index: 10;
+  background: transparent;
+}
+
+.footer-rounded-div .rounded-div {
+  background: var(--color-dark);
+  transform: translate(-50%, 0%);
+  top: 0;
+}
+
+/* -------------------------------------------------------------------------
+   Recent Work List & Floating Cursor Preview
+   ------------------------------------------------------------------------- */
+.work-grid .work-item-row {
+  border-top: 1px solid var(--color-border);
+  padding: clamp(2rem, 3.5vw, 3.8rem) 0;
+  transition: all 0.35s cubic-bezier(0.7, 0, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.work-grid .work-item-row:hover {
+  opacity: 0.45;
+  transform: translateX(12px);
+}
+
+.work-grid .work-item-row:hover .project-title {
+  transform: translateX(8px);
+}
+
+/* Floating Image Modal following cursor */
+.mouse-pos-list-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: clamp(260px, 28vw, 420px);
+  height: clamp(260px, 28vw, 420px);
+  pointer-events: none;
+  z-index: 50;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.4s cubic-bezier(0.34, 1, 0.64, 1), opacity 0.3s ease;
+  opacity: 0;
+  will-change: transform, left, top;
+}
+
+.mouse-pos-list-image.active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+/* Floating "View" circle button following cursor */
+.mouse-pos-list-btn {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--color-blue);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Dennis Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  pointer-events: none;
+  z-index: 55;
+  box-shadow: 0 10px 25px rgba(69, 92, 233, 0.45);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.35s cubic-bezier(0.34, 1.3, 0.64, 1), opacity 0.25s ease;
+  opacity: 0;
+  will-change: transform, left, top;
+}
+
+.mouse-pos-list-btn.active {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+/* -------------------------------------------------------------------------
+   Sliding Project Marquee Rows (Work in Motion)
+   ------------------------------------------------------------------------- */
+.sliding-row {
+  display: flex;
+  gap: clamp(1rem, 2vw, 2.5rem);
+  width: max-content;
+  will-change: transform;
+}
+
+.sliding-row.left {
+  animation: slideLeft 35s linear infinite;
+}
+
+.sliding-row.right {
+  animation: slideRight 35s linear infinite;
+}
+
+@keyframes slideLeft {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes slideRight {
+  0% { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+.sliding-card {
+  width: clamp(280px, 32vw, 440px);
+  aspect-ratio: 16 / 10;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  transition: transform 0.4s ease;
+}
+
+.sliding-card:hover {
+  transform: scale(1.03);
+}

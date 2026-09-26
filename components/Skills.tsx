@@ -177,51 +177,136 @@ export default function Skills() {
         </svg>
       ),
     },
+    {
+      name: "Better Auth",
+      icon: (
+        <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center font-mono font-bold text-xs text-emerald-500">
+          BA
+        </div>
+      ),
+    },
+    {
+      name: "JWT",
+      icon: (
+        <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center font-mono font-bold text-xs text-purple-400">
+          JWT
+        </div>
+      ),
+    },
+    {
+      name: "HeroUI",
+      icon: (
+        <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center font-mono font-bold text-xs text-cyan-400">
+          HUI
+        </div>
+      ),
+    },
+    {
+      name: "DaisyUI",
+      icon: (
+        <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center font-mono font-bold text-xs text-amber-400">
+          🌼
+        </div>
+      ),
+    },
   ];
 
   return (
     <section id="skills" className="py-20 md:py-28 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-white dark:bg-[#09090b] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 md:px-14 lg:px-16 text-center">
         
-        {/* Header with Subtle Giant Watermark & Underline Accent (Exact Image Style) */}
+        {/* Header with Subtle Giant Watermark & Underline Accent */}
         <div className="relative mb-14 sm:mb-16">
-          {/* Giant Translucent Background Watermark */}
           <div className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-slate-900/[0.03] dark:text-white/[0.04] tracking-[0.25em] select-none pointer-events-none uppercase absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 whitespace-nowrap">
             TECHNOLOGIES
           </div>
 
-          {/* Foreground Heading: TECHNO + LOGIES */}
           <h2 className="relative text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
             TECHNO<span className="text-emerald-500">LOGIES</span>
           </h2>
 
-          {/* Small Center Underline Bar */}
           <div className="w-12 h-1 bg-emerald-500 rounded-full mx-auto mt-2.5" />
 
-          {/* Subtitle */}
           <p className="mt-4 text-sm sm:text-base text-slate-600 dark:text-zinc-400 max-w-xl mx-auto">
-            Technologies I use to build fast, scalable, and user-friendly web applications.
+            Production-tested stack used to build high-performance, responsive full-stack applications.
           </p>
         </div>
 
-        {/* Circular Pods Icon Grid (Exact Image Layout) */}
-        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 md:gap-10 max-w-5xl mx-auto">
+        {/* Circular Pods Icon Grid */}
+        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 md:gap-10 max-w-5xl mx-auto mb-16">
           {technologies.map((tech) => (
             <div
               key={tech.name}
               className="group flex flex-col items-center justify-center cursor-pointer"
             >
-              {/* Circular Bubble / Pod */}
               <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-white dark:bg-zinc-800/90 border border-zinc-200/90 dark:border-zinc-700/80 flex items-center justify-center shadow-md hover:shadow-xl hover:border-emerald-500/50 dark:hover:border-emerald-500/50 transition-all duration-300 group-hover:-translate-y-2 group-hover:scale-105">
                 {tech.icon}
               </div>
 
-              {/* Technology Name Label */}
               <span className="text-xs sm:text-sm font-medium text-slate-700 dark:text-zinc-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors mt-3 text-center">
                 {tech.name}
               </span>
             </div>
           ))}
+        </div>
+
+        {/* Structured Resume Skills Matrix (Exact Categories from PDF Resume) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left pt-8 border-t border-zinc-200/80 dark:border-zinc-800/80">
+          {/* Frontend */}
+          <div className="p-5 rounded-2xl bg-zinc-50/70 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-zinc-800">
+            <span className="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider block mb-2.5">
+              Frontend Development
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              {["React.js", "Next.js", "JavaScript (ES6+)", "TypeScript", "HTML5", "CSS3", "Tailwind CSS", "DaisyUI", "HeroUI"].map((s) => (
+                <span key={s} className="text-xs font-mono px-2 py-1 rounded bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-slate-700 dark:text-zinc-300">
+                  {s}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Backend & Database */}
+          <div className="p-5 rounded-2xl bg-zinc-50/70 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-zinc-800">
+            <span className="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider block mb-2.5">
+              Backend &amp; Database
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              {["Node.js", "Express.js", "MongoDB", "REST APIs", "PostgreSQL", "Prisma ORM"].map((s) => (
+                <span key={s} className="text-xs font-mono px-2 py-1 rounded bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-slate-700 dark:text-zinc-300">
+                  {s}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Tools & Auth */}
+          <div className="p-5 rounded-2xl bg-zinc-50/70 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-zinc-800">
+            <span className="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider block mb-2.5">
+              Tools &amp; Authentication
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              {["Better Auth", "JWT", "Git", "GitHub", "VS Code", "Vercel", "Context API"].map((s) => (
+                <span key={s} className="text-xs font-mono px-2 py-1 rounded bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-slate-700 dark:text-zinc-300">
+                  {s}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Soft Skills */}
+          <div className="p-5 rounded-2xl bg-zinc-50/70 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-zinc-800">
+            <span className="text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider block mb-2.5">
+              Professional Soft Skills
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              {["Problem Solving", "Teamwork", "Communication", "Time Management", "Attention to Detail"].map((s) => (
+                <span key={s} className="text-xs font-mono px-2 py-1 rounded bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-slate-700 dark:text-zinc-300">
+                  {s}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
       </div>
