@@ -59,14 +59,15 @@ export default function AboutPage() {
       {/* Navigation */}
       <Navbar />
 
-      <main className="w-full pt-36 sm:pt-48 md:pt-56 pb-24 px-6 sm:px-12 md:px-20 max-w-7xl mx-auto">
+      <main className="w-full pt-28 sm:pt-44 md:pt-56 pb-20 sm:pb-24 px-6 sm:px-12 md:px-20 max-w-7xl mx-auto">
         {/* Dennis Signature Hero Title */}
-        <div className="mb-14 sm:mb-20">
-          <span className="text-xs sm:text-sm font-mono uppercase tracking-widest text-[#999D9E] block mb-4">
-            About • MD Babul Hossan
+        <div className="mb-10 sm:mb-20">
+          <span className="text-xs sm:text-sm font-mono uppercase tracking-widest text-[#999D9E] block mb-3 sm:mb-4">
+            About • Babul Hossan
           </span>
-          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[100px] font-normal font-['Dennis_Sans',sans-serif] tracking-tight leading-[1.05] text-[#1C1D20] max-w-5xl">
+          <h1 className="text-4xl sm:text-7xl md:text-8xl lg:text-[100px] font-normal font-['Dennis_Sans',sans-serif] tracking-tight leading-[1.1] text-[#1C1D20] max-w-5xl">
             Helping brands thrive in the digital world
+            <span className="sr-only"> — Babul Hossan, Full Stack &amp; MERN Stack Developer in Dhaka</span>
           </h1>
         </div>
 
@@ -76,14 +77,14 @@ export default function AboutPage() {
           <div className="lg:col-span-5 relative w-full aspect-[4/5] rounded-3xl overflow-hidden bg-[#8e9394] shadow-xl">
             <Image
               src="/babul-about-editorial.webp"
-              alt={personalInfo.name}
+              alt="Babul Hossan — Full Stack & MERN Stack Developer in Dhaka"
               fill
               sizes="(max-width: 1024px) 100vw, 40vw"
               priority
               className="object-cover object-center filter contrast-[1.02] hover:scale-105 transition-transform duration-700 ease-out"
             />
             <div className="absolute bottom-6 left-6 right-6 bg-[#1C1D20]/80 backdrop-blur-md rounded-2xl p-4 text-white text-xs sm:text-sm font-mono flex items-center justify-between border border-white/10">
-              <span>MD Babul Hossan</span>
+              <span>Babul Hossan</span>
               <span className="text-emerald-400">Dhaka, Bangladesh</span>
             </div>
           </div>

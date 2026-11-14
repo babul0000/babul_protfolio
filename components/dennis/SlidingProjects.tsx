@@ -29,7 +29,7 @@ export default function SlidingProjects() {
             >
               <Image
                 src={project.image}
-                alt={project.title}
+                alt={`${project.title} — Portfolio Project by Babul Hossan`}
                 fill
                 sizes="(max-width: 640px) 300px, 420px"
                 className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
@@ -62,7 +62,7 @@ export default function SlidingProjects() {
             >
               <Image
                 src={project.image}
-                alt={project.title}
+                alt={`${project.title} — Portfolio Project by Babul Hossan`}
                 fill
                 sizes="(max-width: 640px) 300px, 420px"
                 className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
@@ -134,7 +134,7 @@ export default function SlidingProjects() {
                   <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-black">
                     <Image
                       src={p.image}
-                      alt={p.title}
+                      alt={`${p.title} — Portfolio Project by Babul Hossan`}
                       fill
                       className="object-cover object-top"
                     />

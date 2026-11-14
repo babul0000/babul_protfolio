@@ -10,12 +10,18 @@ import { personalInfo } from "./data";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showHamburger, setShowHamburger] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const pathname = usePathname();
 
-  // Check if current page is light background (e.g. /work, /about)
+  // Check if current page has light background (e.g. /work, /about)
   const isLightPage = pathname === "/work" || pathname === "/about";
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+
     const handleScroll = () => {
       if (window.scrollY > 150) {
         setShowHamburger(true);
@@ -24,15 +30,19 @@ export default function Navbar() {
       }
     };
 
+    window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
     <>
       {/* Top Main Navbar Bar */}
       <header
-        className={`absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-6 sm:px-12 md:px-16 py-8 select-none ${
+        className={`absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-6 sm:px-12 md:px-16 py-6 sm:py-8 select-none ${
           isLightPage ? "text-[#1C1D20]" : "text-white"
         }`}
       >
@@ -40,7 +50,7 @@ export default function Navbar() {
         <Magnetic strength={0.25}>
           <Link
             href="/"
-            className="group flex items-center gap-2 text-base sm:text-lg tracking-tight hover:opacity-80 transition-opacity"
+            className="group flex items-center gap-2 text-sm sm:text-base md:text-lg tracking-tight hover:opacity-80 transition-opacity"
           >
             <span
               className={`w-5 h-5 rounded-full border flex items-center justify-center text-xs ${
@@ -58,8 +68,8 @@ export default function Navbar() {
           </Link>
         </Magnetic>
 
-        {/* Desktop Nav Links */}
-        <nav className="flex items-center gap-2 sm:gap-4">
+        {/* Desktop-Only Nav Links (Dennis Snellenberg hides these on mobile in favor of the persistent hamburger) */}
+        <nav className="hidden md:flex items-center gap-2 sm:gap-4">
           <Magnetic strength={0.2}>
             <Link
               href="/work"
@@ -116,34 +126,34 @@ export default function Navbar() {
         </nav>
       </header>
 
-      {/* Floating Magnetic Hamburger Button (Dennis Signature) */}
+      {/* Floating Magnetic Hamburger Button (Dennis Signature: Always on Mobile, Scroll-activated on Desktop) */}
       <AnimatePresence>
-        {(showHamburger || isMenuOpen) && (
+        {(isMobile || showHamburger || isMenuOpen) && (
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed top-6 right-6 sm:top-8 sm:right-10 z-[100]"
+            className="fixed top-5 right-5 sm:top-8 sm:right-10 z-[100]"
           >
             <Magnetic strength={0.35}>
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label="Toggle Navigation Menu"
-                className={`relative w-16 h-16 sm:w-20 sm:h-20 rounded-full flex flex-col items-center justify-center gap-1.5 transition-colors duration-300 shadow-2xl cursor-pointer ${
+                className={`relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex flex-col items-center justify-center gap-1.5 transition-colors duration-300 shadow-2xl cursor-pointer ${
                   isMenuOpen
                     ? "bg-white text-[#1C1D20]"
                     : "bg-[#1C1D20] text-white border border-white/10"
                 }`}
               >
                 <span
-                  className={`w-6 sm:w-7 h-[2px] transition-all duration-300 ${
-                    isMenuOpen ? "bg-[#1C1D20] rotate-45 translate-y-[4px]" : "bg-white"
+                  className={`w-5 sm:w-6 md:w-7 h-[2px] transition-all duration-300 ${
+                    isMenuOpen ? "bg-[#1C1D20] rotate-45 translate-y-[3.5px] sm:translate-y-[4px]" : "bg-white"
                   }`}
                 />
                 <span
-                  className={`w-6 sm:w-7 h-[2px] transition-all duration-300 ${
-                    isMenuOpen ? "bg-[#1C1D20] -rotate-45 -translate-y-[4px]" : "bg-white"
+                  className={`w-5 sm:w-6 md:w-7 h-[2px] transition-all duration-300 ${
+                    isMenuOpen ? "bg-[#1C1D20] -rotate-45 -translate-y-[3.5px] sm:-translate-y-[4px]" : "bg-white"
                   }`}
                 />
               </button>

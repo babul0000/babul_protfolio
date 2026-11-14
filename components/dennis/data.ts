@@ -92,7 +92,7 @@ export const preloaderGreetings = [
 ];
 
 export const personalInfo = {
-  name: "MD Babul Hossan",
+  name: "Babul Hossan",
   brandName: "Babul",
   role: "Freelance",
   subtitle: "Designer & Developer",

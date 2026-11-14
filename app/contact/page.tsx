@@ -115,17 +115,18 @@ export default function ContactPage() {
       {/* Navigation */}
       <Navbar />
 
-      <main className="w-full pt-36 sm:pt-48 md:pt-56 pb-20 px-6 sm:px-12 md:px-20 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
+      <main className="w-full pt-28 sm:pt-44 md:pt-56 pb-20 px-6 sm:px-12 md:px-20 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           
           {/* Left Column: Title & Credentials */}
-          <div className="lg:col-span-5 flex flex-col justify-between gap-12">
+          <div className="lg:col-span-5 flex flex-col justify-between gap-10">
             <div>
-              <span className="text-xs sm:text-sm font-mono uppercase tracking-widest text-[#999D9E] block mb-4">
+              <span className="text-xs sm:text-sm font-mono uppercase tracking-widest text-[#999D9E] block mb-3 sm:mb-4">
                 Contact • Let&apos;s Connect
               </span>
-              <h1 className="text-5xl sm:text-7xl md:text-8xl font-normal font-['Dennis_Sans',sans-serif] tracking-tight leading-[1.05] text-white mb-8">
+              <h1 className="text-4xl sm:text-7xl md:text-8xl font-normal font-['Dennis_Sans',sans-serif] tracking-tight leading-[1.08] text-white mb-6 sm:mb-8">
                 Let’s start a project together
+                <span className="sr-only"> — Contact Babul Hossan, Full Stack &amp; MERN Stack Developer in Dhaka</span>
               </h1>
 
               {/* Portrait & Subtitle */}
@@ -133,7 +134,7 @@ export default function ContactPage() {
                 <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-zinc-800 border border-white/20 shrink-0">
                   <Image
                     src="/babul-dennis-exact.webp"
-                    alt={personalInfo.name}
+                    alt="Babul Hossan — MERN Stack Developer in Dhaka"
                     fill
                     className="object-cover object-top"
                   />
@@ -372,7 +373,7 @@ export default function ContactPage() {
             <span>VERSION 2026 © Edition</span>
           </div>
           <div>
-            <span>© Code by MD Babul Hossan</span>
+            <span>© Code by Babul Hossan</span>
           </div>
         </div>
       </main>

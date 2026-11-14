@@ -64,7 +64,7 @@ export default function OffcanvasMenu({ isOpen, onClose }: OffcanvasMenuProps) {
           initial="initial"
           animate="enter"
           exit="exit"
-          className="fixed top-0 right-0 h-screen w-full sm:w-[480px] bg-[#1C1D20] text-white z-[90] flex flex-col justify-between p-12 sm:p-20 shadow-2xl"
+          className="fixed top-0 right-0 h-screen w-full sm:w-[480px] bg-[#1C1D20] text-white z-[90] flex flex-col justify-between px-8 py-12 sm:p-16 md:p-20 shadow-2xl overflow-y-auto"
         >
           {/* Curved Left Border SVG */}
           <svg className="absolute top-0 -left-[99px] w-[100px] h-full fill-[#1C1D20] stroke-none pointer-events-none">

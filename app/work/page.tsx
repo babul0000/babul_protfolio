@@ -90,21 +90,22 @@ export default function WorkPage() {
       {/* Navigation */}
       <Navbar />
 
-      <main className="w-full pt-36 sm:pt-48 md:pt-56 pb-24 px-6 sm:px-12 md:px-20 max-w-7xl mx-auto">
+      <main className="w-full pt-28 sm:pt-44 md:pt-56 pb-20 sm:pb-24 px-6 sm:px-12 md:px-20 max-w-7xl mx-auto">
         {/* Dennis Signature Hero Title */}
-        <div className="mb-14 sm:mb-20">
-          <span className="text-xs sm:text-sm font-mono uppercase tracking-widest text-[#999D9E] block mb-4">
+        <div className="mb-10 sm:mb-20">
+          <span className="text-xs sm:text-sm font-mono uppercase tracking-widest text-[#999D9E] block mb-3 sm:mb-4">
             Archive • Selected Works
           </span>
-          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[100px] font-normal font-['Dennis_Sans',sans-serif] tracking-tight leading-[1.05] text-[#1C1D20] max-w-5xl">
+          <h1 className="text-4xl sm:text-7xl md:text-8xl lg:text-[100px] font-normal font-['Dennis_Sans',sans-serif] tracking-tight leading-[1.08] text-[#1C1D20] max-w-5xl">
             Creating next level digital products
+            <span className="sr-only"> — Portfolio by Babul Hossan, Full Stack &amp; MERN Stack Developer in Dhaka</span>
           </h1>
         </div>
 
         {/* Filter Pills & View Toggle */}
-        <div className="flex flex-wrap items-center justify-between gap-6 pb-8 border-b border-[#D2D2D2] mb-6">
-          {/* Category Chips */}
-          <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-[#D2D2D2] mb-6">
+          {/* Category Chips - Horizontally scrollable on mobile */}
+          <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto pb-2 sm:pb-0 scrollbar-none w-full sm:w-auto">
             {categories.map((cat) => {
               const count = dennisProjects.length;
               const isSelected = activeCategory === cat;
@@ -181,14 +182,25 @@ export default function WorkPage() {
                 rel="noopener noreferrer"
                 onMouseEnter={() => setModalState({ active: true, index: idx })}
                 onMouseLeave={() => setModalState({ active: false, index: idx })}
-                className="group relative flex flex-col sm:grid sm:grid-cols-12 sm:items-center py-10 sm:py-14 border-t sm:border-t-0 sm:border-b border-[#D2D2D2] transition-all duration-500 ease-out cursor-pointer hover:px-4"
+                className="group relative flex flex-col sm:grid sm:grid-cols-12 sm:items-center py-8 sm:py-14 border-t sm:border-t-0 sm:border-b border-[#D2D2D2] transition-all duration-500 ease-out cursor-pointer hover:px-0 sm:hover:px-4"
               >
+                {/* Mobile In-line Preview Card (< sm only) */}
+                <div className="block sm:hidden w-full aspect-[16/10] rounded-xl overflow-hidden mb-3 bg-[#E1E1E1] shadow-sm relative">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} — Web Development Project by Babul Hossan`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 420px"
+                    className="object-cover object-top"
+                  />
+                </div>
+
                 {/* Client / Title */}
-                <div className="sm:col-span-6 flex items-baseline gap-4 sm:gap-6">
+                <div className="sm:col-span-6 flex items-baseline gap-3 sm:gap-6">
                   <span className="text-xs sm:text-sm font-mono text-[#999D9E]">
                     0{idx + 1}
                   </span>
-                  <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-[70px] font-normal font-['Dennis_Sans',sans-serif] tracking-tight text-[#1C1D20] group-hover:text-[#1C1D20]/40 transition-colors duration-500">
+                  <h2 className="text-2xl sm:text-5xl md:text-6xl lg:text-[70px] font-normal font-['Dennis_Sans',sans-serif] tracking-tight text-[#1C1D20] group-hover:text-[#1C1D20]/40 transition-colors duration-500">
                     {project.title}
                   </h2>
                 </div>
@@ -232,7 +244,7 @@ export default function WorkPage() {
                   <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl bg-black/80">
                     <Image
                       src={project.image}
-                      alt={project.title}
+                      alt={`${project.title} — Web Development Project by Babul Hossan`}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
@@ -322,7 +334,7 @@ export default function WorkPage() {
         <div className="relative w-full h-full rounded overflow-hidden bg-black/90">
           <Image
             src={activeProject.image}
-            alt={activeProject.title}
+            alt={`${activeProject.title} — Project Showcase by Babul Hossan`}
             fill
             sizes="420px"
             className="object-cover object-top"

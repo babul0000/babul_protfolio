@@ -54,26 +54,40 @@ export default function Hero() {
   return (
     <header
       id="home"
-      className="relative min-h-screen lg:min-h-[115vh] w-full bg-[#8e9394] text-white overflow-hidden flex items-center justify-center select-none"
+      className="relative h-[86svh] min-h-[86svh] sm:h-[90svh] sm:min-h-[90svh] lg:h-auto lg:min-h-[115vh] w-full bg-[#8e9394] text-white overflow-hidden flex items-center justify-center select-none"
     >
+      {/* Primary Semantic H1 for SEO (Screen Readers & Google Crawler) */}
+      <h1 className="sr-only">Babul Hossan — Full Stack &amp; MERN Stack Developer in Dhaka</h1>
+
       {/* ========================================================================= */}
-      {/* 1. Center Portrait of MD Babul Hossan (Dennis Snellenberg Authentic)      */}
+      {/* 1. Center Portrait of Babul Hossan (Dennis Snellenberg Authentic)          */}
       {/* ========================================================================= */}
-      <div className="absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden pointer-events-none z-[1]">
-        <div className="relative w-full h-[110%] -top-[5%] flex items-center justify-center">
+      <div className="absolute inset-0 w-full h-full flex items-end sm:items-center justify-center overflow-hidden pointer-events-none z-[1]">
+        <div className="relative w-full h-[75svh] sm:h-[82vh] md:h-[110%] flex items-end justify-center">
           <Image
             src="/babul-dennis-exact.webp"
-            alt={personalInfo.name}
+            alt="Babul Hossan — Full Stack & MERN Stack Developer in Dhaka"
             width={720}
             height={980}
             priority
-            className="h-full w-auto max-w-none object-cover object-center filter contrast-[1.03]"
+            className="h-full w-auto max-w-none object-cover object-[center_top] lg:object-center filter contrast-[1.03]"
           />
         </div>
       </div>
 
       {/* ========================================================================= */}
-      {/* 2. Left Edge Hanger (Dennis Snellenberg Authentic SVG & 3D Rotating Globe) + Floating Resume Badge */}
+      {/* 2. Subtle Gradient Contrast Overlays (Top for Subtitle, Bottom for Marquee)*/}
+      {/* ========================================================================= */}
+      <div className="absolute inset-0 pointer-events-none z-[5] flex flex-col justify-between">
+        {/* Top subtle fade for header and subtitle legibility */}
+        <div className="w-full h-36 sm:h-44 bg-gradient-to-b from-black/35 via-black/10 to-transparent" />
+        {/* Bottom fade with black/40 as requested for marquee contrast */}
+        <div className="w-full h-44 sm:h-56 bg-gradient-to-t from-black/40 via-black/15 to-transparent" />
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 3. Left Edge Hanger (Dennis Snellenberg Authentic SVG & 3D Rotating Globe) */}
+      {/* Desktop only (Dennis Snellenberg hides this on mobile for clean breathing room) */}
       {/* ========================================================================= */}
       <div className="absolute left-0 top-[48%] -translate-y-1/2 z-20 hidden md:flex flex-col items-start gap-4 select-none pointer-events-auto">
         <div className="relative flex items-center">
@@ -151,30 +165,15 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Mobile Floating Resume Badge */}
-      <div className="absolute left-6 top-[20%] z-20 block md:hidden pointer-events-auto">
-        <a
-          href={personalInfo.resume}
-          target="_blank"
-          rel="noopener noreferrer"
-          download="Babul_Hossan_Resume.pdf"
-          className="px-4 py-2 rounded-full border border-white/25 bg-[#1C1D20]/85 backdrop-blur-md text-white flex items-center gap-2 text-xs shadow-lg active:scale-95 transition-transform"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span>Download CV ↗</span>
-        </a>
-      </div>
-
       {/* ========================================================================= */}
-      {/* 3. Right Subtitle & Downward Arrow (Dennis Snellenberg Authentic)         */}
+      {/* 4. Subtitle & Downward Arrow (Dennis Snellenberg Authentic Mobile & Desktop) */}
+      {/* On Mobile: Top-left below navbar. On Desktop: Middle-right.                */}
       {/* ========================================================================= */}
-      <div className="absolute right-8 sm:right-16 md:right-24 lg:right-32 top-[46%] -translate-y-1/2 z-20 flex flex-col items-start gap-4 select-none pointer-events-none">
+      <div className="absolute top-20 left-6 sm:left-12 sm:top-24 md:top-[46%] md:left-auto md:right-24 lg:right-32 md:-translate-y-1/2 z-20 flex flex-col items-start gap-2 sm:gap-4 select-none pointer-events-none">
         
         {/* Downward Right Arrow ↘ (Dennis Snellenberg Authentic) */}
-        <div className="w-8 h-8 text-white">
+        <div className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white">
           <svg
-            width="28px"
-            height="28px"
             viewBox="0 0 14 14"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -188,25 +187,25 @@ export default function Hero() {
         </div>
 
         {/* Subtitle */}
-        <h4 className="text-2xl sm:text-3xl md:text-[34px] font-light font-['Dennis_Sans',sans-serif] leading-[1.25] text-white">
+        <h4 className="text-lg sm:text-2xl md:text-[34px] font-light font-['Dennis_Sans',sans-serif] leading-[1.25] text-white">
           <span className="block font-normal">Freelance</span>
           <span className="block text-white/95 font-light">Designer &amp; Developer</span>
         </h4>
       </div>
 
       {/* ========================================================================= */}
-      {/* 4. Infinite Horizontal Marquee (In Front of Portrait at z-[15])           */}
+      {/* 5. Infinite Horizontal Marquee (In Front of Portrait at z-[15])           */}
       {/* ========================================================================= */}
-      <div className="big-name absolute bottom-[8vh] sm:bottom-[10vh] left-0 w-full overflow-hidden pointer-events-none z-[15]">
+      <div className="big-name absolute bottom-[3.5vh] sm:bottom-[6vh] md:bottom-[10vh] left-0 w-full overflow-hidden pointer-events-none z-[15]">
         <div ref={slider} className="relative flex w-max whitespace-nowrap">
-          <div ref={firstText} className="flex items-center shrink-0 pr-16 sm:pr-24">
-            <p className="m-0 text-white font-['Dennis_Sans',sans-serif] font-normal text-[clamp(6rem,16vw,15rem)] leading-none tracking-tight select-none">
-              {personalInfo.name} <span className="px-6 text-white/70">—</span>
+          <div ref={firstText} className="flex items-center shrink-0 pr-10 sm:pr-16 md:pr-24">
+            <p className="m-0 text-white font-['Dennis_Sans',sans-serif] font-normal text-[clamp(3.75rem,15vw,6.5rem)] lg:text-[clamp(6rem,16vw,15rem)] leading-none tracking-tight select-none">
+              {personalInfo.name} <span className="px-4 sm:px-6 text-white/70">—</span>
             </p>
           </div>
-          <div ref={secondText} className="flex items-center shrink-0 pr-16 sm:pr-24">
-            <p className="m-0 text-white font-['Dennis_Sans',sans-serif] font-normal text-[clamp(6rem,16vw,15rem)] leading-none tracking-tight select-none">
-              {personalInfo.name} <span className="px-6 text-white/70">—</span>
+          <div ref={secondText} className="flex items-center shrink-0 pr-10 sm:pr-16 md:pr-24">
+            <p className="m-0 text-white font-['Dennis_Sans',sans-serif] font-normal text-[clamp(3.75rem,15vw,6.5rem)] lg:text-[clamp(6rem,16vw,15rem)] leading-none tracking-tight select-none">
+              {personalInfo.name} <span className="px-4 sm:px-6 text-white/70">—</span>
             </p>
           </div>
         </div>

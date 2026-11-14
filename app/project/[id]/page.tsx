@@ -94,7 +94,7 @@ export default function ProjectDetails() {
             <div className="w-7 h-7 rounded-full overflow-hidden ring-1 ring-emerald-500/60">
               <Image
                 src="/my.webp"
-                alt="Babul Hossan"
+                alt="Babul Hossan — Full Stack Developer"
                 width={28}
                 height={28}
                 className="object-cover w-full h-full"
@@ -131,7 +131,7 @@ export default function ProjectDetails() {
           <div className="relative aspect-[16/9] rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-900 shadow-xl">
             <Image
               src={project.image}
-              alt={project.name}
+              alt={`${project.name} — Project Case Study by Babul Hossan`}
               fill
               priority
               className="object-cover object-top"

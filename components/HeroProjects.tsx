@@ -60,7 +60,7 @@ export default function HeroProjects() {
                   MERN Stack &amp; Next.js Developer
                 </span>
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.08]">
-                  MD Babul Hossan
+                  Babul Hossan
                 </h1>
               </div>
 
@@ -89,7 +89,7 @@ export default function HeroProjects() {
                   rel="noopener noreferrer"
                   download="Babul_Hossan_Resume.pdf"
                   className="inline-flex items-center gap-2 rounded-full border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-slate-900 dark:text-white px-5 py-3 text-sm font-medium tracking-tight hover:bg-zinc-50 dark:hover:bg-zinc-800 shadow-xs hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
-                  title="Download MD Babul Hossan's Resume PDF"
+                  title="Download Babul Hossan's Resume PDF"
                 >
                   <FileText className="w-4 h-4 text-emerald-500" />
                   <span>Download Resume</span>
@@ -146,7 +146,7 @@ export default function HeroProjects() {
                   <div className="relative aspect-[3/4] w-full rounded-[1.6rem] overflow-hidden bg-[#F0EEEB] shadow-inner border border-stone-200/60 dark:border-zinc-800/80">
                     <Image
                       src="/hero-poster.webp"
-                      alt="MD Babul Hossan - Creative Developer Showcase Poster"
+                      alt="Babul Hossan - Creative Developer Showcase Poster"
                       fill
                       priority
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
@@ -175,7 +175,7 @@ export default function HeroProjects() {
                           Developer Showcase
                         </p>
                         <p className="text-sm font-bold tracking-tight text-white drop-shadow-sm">
-                          MD Babul Hossan
+                          Babul Hossan
                         </p>
                       </div>
 

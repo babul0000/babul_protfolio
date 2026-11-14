@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk, JetBrains_Mono, Caveat } from "next/font/google";
 import Script from "next/script";
 import { Toaster } from "sonner";
 import { PageTransition } from "../components/dennis";
+import { siteUrl, siteConfig } from "../lib/siteConfig";
 import "./globals.css";
 
 const inter = Inter({
@@ -31,59 +32,60 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "MD Babul Hossan • Freelance Designer & Developer",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Babul Hossan | Full Stack & MERN Stack Developer in Dhaka",
+    template: "%s | Babul Hossan",
+  },
   description:
-    "Helping brands thrive in the digital world. Located in Dhaka, Bangladesh. Delivering tailor-made digital designs and building interactive web systems from scratch. © Code by Babul",
-  keywords: [
-    "MD Babul Hossan",
-    "Babul Hossan",
-    "MERN stack developer",
-    "full stack developer",
-    "Next.js developer",
-    "React developer",
-    "Node.js developer",
-    "Express.js",
-    "MongoDB",
-    "PostgreSQL",
-    "Prisma ORM",
-    "TypeScript",
-    "Better Auth",
-    "Tailwind CSS",
-    "web development",
-    "Bangladesh developer"
-  ],
-  authors: [{ name: "MD Babul Hossan" }],
-  creator: "MD Babul Hossan",
-  metadataBase: new URL("https://babul-portfolio.vercel.app"),
+    "Babul Hossan is a Full Stack & MERN Stack Developer based in Dhaka, Bangladesh, building modern, high-performance web applications with Next.js, React, Node.js, and TypeScript.",
+  keywords: siteConfig.keywords,
+  authors: [{ name: siteConfig.author, url: siteUrl }],
+  creator: siteConfig.author,
+  alternates: {
+    canonical: siteUrl,
+  },
   icons: {
     icon: "/icon.png",
     apple: "/icon.png",
   },
+  verification: {
+    google: "yTOeLLn-BWwvmfrCdNGscdNBwlzTH6qgp_-sQJQJ5_U",
+  },
   openGraph: {
-    title: "MD Babul Hossan — MERN Stack Developer",
-    description: "MERN Stack Developer building scalable, responsive web applications using Next.js, React.js, Express.js, and MongoDB.",
-    siteName: "MD Babul Hossan Portfolio",
+    title: "Babul Hossan | Full Stack & MERN Stack Developer in Dhaka",
+    description:
+      "Full Stack & MERN Stack Developer based in Dhaka building scalable, interactive web applications using Next.js, React, Node.js, and TypeScript.",
+    siteName: "Babul Hossan Portfolio",
     locale: "en_US",
     type: "website",
-    url: "https://babul-portfolio.vercel.app",
+    url: siteUrl,
     images: [
       {
         url: "/my.webp",
         width: 1200,
         height: 630,
-        alt: "MD Babul Hossan — MERN Stack Developer",
+        alt: "Babul Hossan — Full Stack & MERN Stack Developer in Dhaka",
       }
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "MD Babul Hossan — MERN Stack Developer",
-    description: "MERN Stack Developer building scalable, responsive web applications using Next.js, React.js, Express.js, and MongoDB.",
+    title: "Babul Hossan | Full Stack & MERN Stack Developer in Dhaka",
+    description:
+      "Full Stack & MERN Stack Developer based in Dhaka building scalable, interactive web applications using Next.js, React, Node.js, and TypeScript.",
     images: ["/my.webp"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -92,18 +94,19 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Person",
-      "@id": "https://babul-portfolio.vercel.app/#person",
-      "name": "MD Babul Hossan",
-      "jobTitle": "MERN Stack Developer",
-      "url": "https://babul-portfolio.vercel.app",
-      "email": "babulhossan.info@gmail.com",
-      "telephone": "+8801952860053",
+      "@id": `${siteUrl}/#person`,
+      "name": "Babul Hossan",
+      "jobTitle": "Full Stack & MERN Stack Developer",
+      "url": siteUrl,
+      "email": siteConfig.email,
+      "telephone": siteConfig.phone,
       "sameAs": [
-        "https://github.com/babul0000",
-        "https://www.linkedin.com/in/babul-hossan-09932837a/",
-        "https://www.facebook.com/clik00"
+        siteConfig.socials.github,
+        siteConfig.socials.linkedin,
+        siteConfig.socials.facebook,
       ],
       "knowsAbout": [
+        "Full Stack Development",
         "MERN Stack",
         "React.js",
         "Next.js",
@@ -117,7 +120,7 @@ const jsonLd = {
         "REST APIs",
         "Better Auth"
       ],
-      "image": "https://babul-portfolio.vercel.app/my.webp",
+      "image": `${siteUrl}/my.webp`,
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Dhaka",
@@ -126,12 +129,13 @@ const jsonLd = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://babul-portfolio.vercel.app/#website",
-      "url": "https://babul-portfolio.vercel.app",
-      "name": "MD Babul Hossan — MERN Stack Developer Portfolio",
-      "description": "MERN Stack Developer building scalable, responsive web applications using Next.js, React.js, Express.js, and MongoDB.",
+      "@id": `${siteUrl}/#website`,
+      "url": siteUrl,
+      "name": "Babul Hossan — Full Stack & MERN Stack Developer Portfolio",
+      "description":
+        "Full Stack & MERN Stack Developer in Dhaka building scalable, interactive web applications using Next.js, React, Node.js, and TypeScript.",
       "publisher": {
-        "@id": "https://babul-portfolio.vercel.app/#person"
+        "@id": `${siteUrl}/#person`
       }
     }
   ]

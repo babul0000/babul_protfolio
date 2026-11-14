@@ -15,7 +15,7 @@ export default function Home() {
   useLenis();
 
   return (
-    <div className="relative min-h-screen w-full bg-[#f4f4f4] text-[#1C1D20] font-['Dennis_Sans',sans-serif] antialiased selection:bg-[#455CE9] selection:text-white overflow-x-hidden">
+    <div className="relative min-h-screen w-full bg-[#f4f4f4] text-[#1C1D20] font-['Dennis_Sans',sans-serif] antialiased selection:bg-[#455CE9] selection:text-white overflow-x-clip">
       
       {/* Dennis Snellenberg Greeting Preloader with Curved SVG Exit */}
       <Preloader />
