@@ -186,13 +186,24 @@ export default function WorkPage() {
               >
                 {/* Mobile In-line Preview Card (< sm only) */}
                 <div className="block sm:hidden w-full aspect-[16/10] rounded-xl overflow-hidden mb-3 bg-[#E1E1E1] shadow-sm relative">
-                  <Image
-                    src={project.image}
-                    alt={`${project.title} — Web Development Project by Babul Hossan`}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 420px"
-                    className="object-cover object-top"
-                  />
+                  {project.video ? (
+                    <video
+                      src={project.video}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover object-top"
+                    />
+                  ) : (
+                    <Image
+                      src={project.image}
+                      alt={`${project.title} — Web Development Project by Babul Hossan`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 420px"
+                      className="object-cover object-top"
+                    />
+                  )}
                 </div>
 
                 {/* Client / Title */}
@@ -242,13 +253,24 @@ export default function WorkPage() {
                   className="relative w-full aspect-[4/3] rounded-2xl sm:rounded-3xl bg-[#E1E1E1] p-6 sm:p-10 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:bg-[#d8d8d8] shadow-sm group-hover:shadow-xl"
                 >
                   <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl bg-black/80">
-                    <Image
-                      src={project.image}
-                      alt={`${project.title} — Web Development Project by Babul Hossan`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-                    />
+                    {project.video ? (
+                      <video
+                        src={project.video}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover object-top"
+                      />
+                    ) : (
+                      <Image
+                        src={project.image}
+                        alt={`${project.title} — Web Development Project by Babul Hossan`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                      />
+                    )}
                   </div>
 
                   {/* Hover Floating Blue View Pill in Grid Mode */}
@@ -332,13 +354,25 @@ export default function WorkPage() {
         }`}
       >
         <div className="relative w-full h-full rounded overflow-hidden bg-black/90">
-          <Image
-            src={activeProject.image}
-            alt={`${activeProject.title} — Project Showcase by Babul Hossan`}
-            fill
-            sizes="420px"
-            className="object-cover object-top"
-          />
+          {activeProject.video ? (
+            <video
+              key={activeProject.id}
+              src={activeProject.video}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover object-top"
+            />
+          ) : (
+            <Image
+              src={activeProject.image}
+              alt={`${activeProject.title} — Project Showcase by Babul Hossan`}
+              fill
+              sizes="420px"
+              className="object-cover object-top"
+            />
+          )}
         </div>
       </div>
 

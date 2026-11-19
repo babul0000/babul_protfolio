@@ -216,7 +216,7 @@ export default function Experience() {
 
                     <div className="flex items-center gap-3 pt-3 border-t border-zinc-200/60 dark:border-zinc-800/80">
                       <a
-                        href="https://onwear.vercel.app"
+                        href="https://www.onwearbd.com"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 text-xs font-mono font-bold text-emerald-600 dark:text-emerald-400 hover:underline"

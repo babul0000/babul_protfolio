@@ -46,8 +46,12 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   icons: {
-    icon: "/icon.png",
-    apple: "/icon.png",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
   verification: {
     google: "yTOeLLn-BWwvmfrCdNGscdNBwlzTH6qgp_-sQJQJ5_U",

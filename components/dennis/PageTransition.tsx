@@ -26,7 +26,7 @@ export default function PageTransition() {
         setIsTransitioning(true);
         const timer = setTimeout(() => {
           setIsTransitioning(false);
-        }, 850);
+        }, 350);
         return () => clearTimeout(timer);
       }
       return;
@@ -38,7 +38,7 @@ export default function PageTransition() {
 
     const timer = setTimeout(() => {
       setIsTransitioning(false);
-    }, 850);
+    }, 350);
 
     return () => clearTimeout(timer);
   }, [pathname, mounted]);
@@ -52,7 +52,7 @@ export default function PageTransition() {
           animate={{ y: "-100%" }}
           exit={{ y: "-100%" }}
           transition={{
-            duration: 0.85,
+            duration: 0.38,
             ease: [0.76, 0, 0.24, 1],
           }}
           className="fixed inset-0 z-[999] pointer-events-none flex flex-col items-center justify-center bg-[#1C1D20]"

@@ -143,17 +143,28 @@ export default function RecentWork() {
                 }}
                 className="sticky w-full rounded-3xl bg-white text-[#1C1D20] p-5 sm:p-7 shadow-[0_12px_36px_rgba(0,0,0,0.06)] border border-[#E5E5E5] mb-12 will-change-transform"
               >
-                {/* Visual Image Preview with Dennis Light Frame */}
+                {/* Visual Image / Video Preview with Dennis Light Frame */}
                 <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden bg-[#F2F2F2] border border-[#E5E5E5] shadow-inner mb-4">
-                  <Image
-                    src={project.image}
-                    alt={`${project.title} — Web Development Project by Babul Hossan`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 420px"
-                    priority={isFirst}
-                    loading={isFirst ? "eager" : "lazy"}
-                    className="object-cover object-top"
-                  />
+                  {project.video ? (
+                    <video
+                      src={project.video}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover object-top"
+                    />
+                  ) : (
+                    <Image
+                      src={project.image}
+                      alt={`${project.title} — Web Development Project by Babul Hossan`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 420px"
+                      priority={isFirst}
+                      loading={isFirst ? "eager" : "lazy"}
+                      className="object-cover object-top"
+                    />
+                  )}
                 </div>
 
                 {/* Card Header & Title */}
@@ -257,7 +268,7 @@ export default function RecentWork() {
 
       </div>
 
-      {/* Floating Project Image Modal (Active on desktop >= md) */}
+      {/* Floating Project Image / Video Modal (Active on desktop >= md) */}
       <div
         ref={modalRef}
         style={{
@@ -273,13 +284,25 @@ export default function RecentWork() {
         }`}
       >
         <div className="relative w-full h-full rounded overflow-hidden bg-black/90">
-          <Image
-            src={activeProject.image}
-            alt={`${activeProject.title} — Web Development Project by Babul Hossan`}
-            fill
-            sizes="420px"
-            className="object-cover object-top"
-          />
+          {activeProject.video ? (
+            <video
+              key={activeProject.id}
+              src={activeProject.video}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover object-top"
+            />
+          ) : (
+            <Image
+              src={activeProject.image}
+              alt={`${activeProject.title} — Web Development Project by Babul Hossan`}
+              fill
+              sizes="420px"
+              className="object-cover object-top transition-transform duration-700 ease-out hover:scale-105"
+            />
+          )}
         </div>
       </div>
 

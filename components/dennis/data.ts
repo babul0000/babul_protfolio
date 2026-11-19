@@ -4,6 +4,7 @@ export interface DennisProject {
   category: string;
   year: string;
   image: string;
+  video?: string;
   link: string;
   github?: string;
   description: string;
@@ -17,7 +18,7 @@ export const dennisProjects: DennisProject[] = [
     category: "Design & Development",
     year: "2026",
     image: "/onwear.webp",
-    link: "https://onwear.vercel.app",
+    link: "https://www.onwearbd.com",
     github: "https://github.com/babul0000/onwear",
     description: "Full-stack high-performance e-commerce platform with Next.js 14, Stripe checkout, dynamic filtering, and Prisma ORM.",
     tech: ["Next.js 14", "TypeScript", "Prisma", "PostgreSQL", "Tailwind CSS"],

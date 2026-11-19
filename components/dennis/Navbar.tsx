@@ -140,20 +140,30 @@ export default function Navbar() {
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label="Toggle Navigation Menu"
-                className={`relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex flex-col items-center justify-center gap-1.5 transition-colors duration-300 shadow-2xl cursor-pointer ${
+                className={`group relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex flex-col items-center justify-center gap-1.5 transition-colors duration-400 shadow-2xl cursor-pointer overflow-hidden ${
                   isMenuOpen
-                    ? "bg-white text-[#1C1D20]"
-                    : "bg-[#1C1D20] text-white border border-white/10"
+                    ? "bg-white text-[#1C1D20] hover:bg-[#455CE9] hover:text-white"
+                    : "bg-[#1C1D20] text-white border border-white/10 hover:bg-[#455CE9] hover:border-[#455CE9]"
                 }`}
               >
+                {/* Dennis Snellenberg Signature Blue Rolling Hover Fill */}
                 <span
-                  className={`w-5 sm:w-6 md:w-7 h-[2px] transition-all duration-300 ${
-                    isMenuOpen ? "bg-[#1C1D20] rotate-45 translate-y-[3.5px] sm:translate-y-[4px]" : "bg-white"
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-full bg-[#455CE9] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.3,1)] pointer-events-none"
+                />
+
+                <span
+                  className={`relative z-10 w-5 sm:w-6 md:w-7 h-[2px] transition-all duration-300 ${
+                    isMenuOpen
+                      ? "bg-[#1C1D20] group-hover:bg-white rotate-45 translate-y-[3.5px] sm:translate-y-[4px]"
+                      : "bg-white"
                   }`}
                 />
                 <span
-                  className={`w-5 sm:w-6 md:w-7 h-[2px] transition-all duration-300 ${
-                    isMenuOpen ? "bg-[#1C1D20] -rotate-45 -translate-y-[3.5px] sm:-translate-y-[4px]" : "bg-white"
+                  className={`relative z-10 w-5 sm:w-6 md:w-7 h-[2px] transition-all duration-300 ${
+                    isMenuOpen
+                      ? "bg-[#1C1D20] group-hover:bg-white -rotate-45 -translate-y-[3.5px] sm:-translate-y-[4px]"
+                      : "bg-white"
                   }`}
                 />
               </button>
