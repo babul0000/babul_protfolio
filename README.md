@@ -8,6 +8,7 @@ Live Site: [https://babul-portfolio.vercel.app](https://babul-portfolio.vercel.a
 
 ## ✨ Features & Highlights
 
+- **🎨 Dennis Snellenberg Signature Aesthetic**: Full-fidelity editorial typography, magnetic micro-interactions, floating cursor preview followers, curved SVG preloader, and mobile-responsive sticky card stacking.
 - **⚡ 100% Authentic & Recruiter-Focused**: Clean, honest presentation of technical skills, real projects, verifiable GitHub code, and genuine credentials with zero artificial or placeholder data.
 - **🛠️ Core MERN & Modern Stack**: Focused expertise across React, Next.js 14, Node.js, Express.js, MongoDB, TypeScript, and relational workflows with PostgreSQL & Prisma ORM.
 - **⌘ Clean Command Palette (CMD/CTRL + K)**: Instant keyboard-driven navigation across portfolio sections, project case studies, and direct contact channels.
